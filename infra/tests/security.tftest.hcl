@@ -6,15 +6,18 @@ mock_provider "aws" {
     defaults = { arn = "arn:aws:iam::123456789012:role/pantridge-test-api" }
   }
   mock_resource "aws_cloudfront_distribution" {
+    override_during = plan
     defaults = { domain_name = "d123example.cloudfront.net", hosted_zone_id = "Z2FDTNDATAQYW2", arn = "arn:aws:cloudfront::123456789012:distribution/EXAMPLE" }
   }
   mock_resource "aws_dynamodb_table" {
     defaults = { arn = "arn:aws:dynamodb:us-west-2:123456789012:table/pantridge-test-kitchen" }
   }
   mock_resource "aws_s3_bucket" {
+    override_during = plan
     defaults = { arn = "arn:aws:s3:::pantridge-test", bucket_regional_domain_name = "pantridge-test.s3.us-west-2.amazonaws.com" }
   }
   mock_resource "aws_lambda_function" {
+    override_during = plan
     defaults = { arn = "arn:aws:lambda:us-west-2:123456789012:function:pantridge-test-api", invoke_arn = "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:123456789012:function:pantridge-test-api/invocations" }
   }
   mock_resource "aws_cognito_user_pool" {
@@ -28,6 +31,22 @@ mock_provider "aws" {
   }
 }
 mock_provider "aws" { alias = "edge" }
+run "github_deploy_is_main_only" {
+  command = plan
+  variables { github_repository = "example/pantridge" }
+  override_data {
+    target = data.aws_iam_openid_connect_provider.github[0]
+    values = { arn = "arn:aws:iam::123456789012:oidc-provider/token.actions.githubusercontent.com" }
+  }
+  assert {
+    condition = jsondecode(aws_iam_role.github_deploy[0].assume_role_policy).Statement[0].Condition.StringEquals["token.actions.githubusercontent.com:sub"] == "repo:example/pantridge:ref:refs/heads/main"
+    error_message = "Only the selected repository's main branch may deploy."
+  }
+  assert {
+    condition = alltrue([for statement in jsondecode(aws_iam_role_policy.github_deploy[0].policy).Statement : alltrue([for action in statement.Action : contains(["s3:ListBucket", "s3:GetObject", "s3:PutObject", "cloudfront:CreateInvalidation", "lambda:UpdateFunctionCode", "lambda:GetFunctionConfiguration"], action)])])
+    error_message = "Deployment must only publish application code, without infrastructure or data permissions."
+  }
+}
 run "google_accounts_are_verified" {
   command = plan
   override_resource {
@@ -100,4 +119,5 @@ run "private_by_default" {
     error_message = "Inventory must have deletion protection and recovery enabled."
   }
 }
+
 

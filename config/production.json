@@ -1,0 +1,29 @@
+{
+  "aws_account_id": {
+    "value": "510682130762"
+  },
+  "app_url": {
+    "value": "https://pantridge.austinwasinger.com"
+  },
+  "web_bucket": {
+    "value": "pantridge-personal-web-fc7f00733bdd7ed0dcffa95d2a"
+  },
+  "distribution_id": {
+    "value": "E2UWAV9C7BG4TE"
+  },
+  "frontend_environment": {
+    "value": {
+      "VITE_API_URL": "https://b07hxygp12.execute-api.us-west-2.amazonaws.com",
+      "VITE_AUTHORITY": "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_xks00OUPC",
+      "VITE_AUTH_DOMAIN": "https://pantridge-personal-510682130762.auth.us-west-2.amazoncognito.com",
+      "VITE_CLIENT_ID": "7rjhkfr0cfrbkp1gvfbn9st9kf",
+      "VITE_IDENTITY_PROVIDER": "Google"
+    }
+  },
+  "application_functions": {
+    "value": {
+      "pantridge-personal-auth-guard": "artifacts/auth.zip",
+      "pantridge-personal-api": "artifacts/api.zip"
+    }
+  }
+}
