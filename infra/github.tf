@@ -7,6 +7,16 @@ variable "github_repository" {
     error_message = "Use owner/repository."
   }
 }
+variable "github_subject_prefix" {
+  description = "Exact sub_claim_prefix reported by GitHub's repository OIDC API. Supports immutable owner/repository IDs."
+  type        = string
+  default     = null
+  validation {
+    condition     = var.github_subject_prefix == null || can(regex("^repo:[A-Za-z0-9_.-]+(@[0-9]+)?/[A-Za-z0-9_.-]+(@[0-9]+)?$", var.github_subject_prefix))
+    error_message = "Use the exact repo:owner/repository prefix, optionally including numeric IDs."
+  }
+}
+
 data "aws_iam_openid_connect_provider" "github" {
   count = var.github_repository == null ? 0 : 1
   arn   = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/token.actions.githubusercontent.com"
@@ -19,7 +29,7 @@ resource "aws_iam_role" "github_deploy" {
     Principal = { Federated = data.aws_iam_openid_connect_provider.github[0].arn },
     Condition = { StringEquals = {
       "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com",
-      "token.actions.githubusercontent.com:sub" = "repo:${var.github_repository}:ref:refs/heads/main"
+      "token.actions.githubusercontent.com:sub" = "${coalesce(var.github_subject_prefix, "repo:${var.github_repository}")}:ref:refs/heads/main"
     } }
   }] })
 }

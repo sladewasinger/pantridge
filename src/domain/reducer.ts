@@ -1,5 +1,7 @@
 import type { Command } from './commands';
 import { snapshotSchema, type Snapshot } from './model';
+import { initializeStarter } from './starter';
+import { saveFood, removeFood, normalizeShopping } from './food-commands';
 
 function replace<T extends { id: string }>(list: T[], value: T): T[] {
   return [...list.filter((item) => item.id !== value.id), value];
@@ -29,8 +31,12 @@ function putAway(
 
 export function applyCommand(data: Snapshot, command: Command): Snapshot {
   switch (command.type) {
+    case 'kitchen.initialize':
+      return initializeStarter(data);
+    case 'food.remove':
+      return removeFood(data, command.foodId);
     case 'food.save':
-      return { ...data, foods: replace(data.foods, command.food) };
+      return saveFood(data, command.food);
     case 'stock.add':
       if (!data.foods.some((food) => food.id === command.stock.foodId))
         throw new Error('Food no longer exists.');
@@ -55,7 +61,7 @@ export function applyCommand(data: Snapshot, command: Command): Snapshot {
         }),
       };
     case 'shopping.save':
-      return { ...data, shopping: replace(data.shopping, command.item) };
+      return { ...data, shopping: replace(data.shopping, normalizeShopping(data, command.item)) };
     case 'shopping.purchase':
       return {
         ...data,

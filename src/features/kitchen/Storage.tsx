@@ -1,27 +1,25 @@
-import { useState } from 'react';
-import { Snowflake } from 'lucide-react';
 import { useKitchen } from '../../data/store';
-import type { Food, Location } from '../../domain/model';
+import type { Food } from '../../domain/model';
+import type { StoragePage } from '../../app/navigation';
 import { stockedFoods } from '../../domain/selectors';
 import { FoodTile } from './FoodTile';
 import { useShelfDrag } from './useShelfDrag';
+import { Doors } from './Doors';
 
 export function Storage({
   location,
   onSelect,
 }: {
-  location: Location;
+  location: StoragePage;
   onSelect: (food: Food) => void;
 }) {
   const { data } = useKitchen();
   const { root, move, finish, cancel, click, target, start, message, error } = useShelfDrag();
-  const [frozen, setFrozen] = useState(false);
-  const foods = stockedFoods(data).filter(
-    (food) => food.location === location && (location === 'pantry' || food.frozen === frozen),
+  const foods = stockedFoods(data).filter((food) =>
+    location === 'freezer'
+      ? food.location === 'fridge' && food.frozen
+      : food.location === location && (location === 'pantry' || !food.frozen),
   );
-  const frozenCount = stockedFoods(data).filter(
-    (food) => food.location === 'fridge' && food.frozen,
-  ).length;
   return (
     <div
       ref={root}
@@ -32,12 +30,7 @@ export function Storage({
       onLostPointerCapture={cancel}
       onClickCapture={click}
     >
-      {location === 'fridge' && (
-        <button className="freezer-tab" aria-pressed={frozen} onClick={() => setFrozen(!frozen)}>
-          <Snowflake size={16} />
-          {frozen ? 'Back to fridge' : `Frozen · ${frozenCount}`}
-        </button>
-      )}
+      {location === 'freezer' && <div className="icicles" aria-hidden="true" />}
       {[0, 1, 2].map((shelf) => (
         <div
           key={shelf}
@@ -69,14 +62,7 @@ export function Storage({
           {error}
         </p>
       )}
-      {location === 'pantry' ? (
-        <>
-          <div className="swing-door door-left" aria-hidden="true" />
-          <div className="swing-door door-right" aria-hidden="true" />
-        </>
-      ) : (
-        <div className="swing-door" aria-hidden="true" />
-      )}
+      <Doors location={location} />
     </div>
   );
 }

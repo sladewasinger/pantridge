@@ -1,0 +1,239 @@
+.door-stage {
+  position: absolute;
+  inset: 0;
+  perspective: 1100px;
+  perspective-origin: 50% 45%;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  z-index: 3;
+}
+.swing-door {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  animation: door-open 760ms cubic-bezier(0.4, 0, 0.2, 1) 40ms both;
+}
+.door-right {
+  transform-origin: right center;
+  animation-name: door-open-right;
+}
+.pantry .door-left {
+  right: 50%;
+}
+.pantry .door-right {
+  left: 50%;
+}
+.door-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+.door-front {
+  transform: translateZ(7px);
+  border: 2px solid #637c5a;
+  background: linear-gradient(105deg, #acbb9b 0%, #8fa580 25%, #78936f 80%, #627e5b 100%);
+  box-shadow:
+    inset 3px 2px 2px #e5ebce90,
+    inset -3px -2px 3px #3f603b70;
+}
+.door-panel {
+  position: absolute;
+  inset: 14px;
+  border-radius: 14px;
+  border-top: 2px solid #d8e0bb85;
+  background: linear-gradient(120deg, #e1e6c618, transparent 35%);
+}
+.door-handle {
+  position: absolute;
+  left: 17px;
+  top: 34%;
+  width: 9px;
+  height: 78px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #b89d65, #f7e6b7 45%, #c8b075);
+  transform: translateZ(10px);
+  box-shadow: 5px 3px 4px #31442e55;
+}
+.door-inside {
+  transform: rotateY(180deg) translateZ(7px);
+  background: #e6e8db;
+  border: 7px solid #b8c2af;
+  box-shadow:
+    inset 0 0 0 5px #f5f5e9,
+    inset 0 0 20px #73896960;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 24px 14px;
+}
+.door-inside span {
+  height: 21%;
+  border: 5px solid #d2d9c7;
+  border-top: 0;
+  border-radius: 0 0 8px 8px;
+  background: linear-gradient(transparent 55%, #f7f8ed);
+  box-shadow: 0 5px 5px #556a4930;
+}
+.door-edge {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  right: -7px;
+  width: 14px;
+  background: linear-gradient(90deg, #e5e7d6, #a8b69b 30%, #617a58);
+  transform: rotateY(90deg);
+}
+.door-right .door-edge {
+  left: -7px;
+  right: auto;
+}
+.pantry .door-front {
+  border-color: #926137;
+  border-radius: 2px;
+  background: linear-gradient(100deg, #d6af7b, #bc8b55);
+  box-shadow:
+    inset 2px 2px #eed3a5,
+    inset -3px -2px #986b42;
+}
+.pantry .door-panel {
+  inset: 13px 12px;
+  border-radius: 0;
+  border: 3px solid #b28451;
+  background: repeating-linear-gradient(91deg, #d8b581 0 14px, #d2ac7618 15px 16px), #cda36c;
+  box-shadow: inset 3px 3px 6px #8b5f3838;
+}
+.pantry .door-handle {
+  width: 12px;
+  height: 12px;
+  top: 47%;
+  left: auto;
+  right: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 25%, #b79760, #61482e 65%);
+}
+.pantry .door-right .door-handle {
+  left: 9px;
+  right: auto;
+}
+.pantry .door-inside {
+  background: #c99e69;
+  border: 8px solid #aa794a;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 3px #ddba86;
+}
+.pantry .door-inside span {
+  visibility: hidden;
+}
+.pantry .door-edge {
+  background: linear-gradient(90deg, #dfba83, #91633b);
+}
+@keyframes door-open {
+  0% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateY(-108deg);
+    opacity: 0;
+  }
+}
+@keyframes door-open-right {
+  0% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateY(108deg);
+    opacity: 0;
+  }
+}
+.fridge-appliance:hover {
+  transform: none;
+}
+.fridge-appliance > button {
+  position: absolute;
+  left: 4%;
+  width: 88%;
+  background: transparent;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+}
+.freezer-hit {
+  top: 1%;
+  height: 30%;
+}
+.fridge-hit {
+  top: 33%;
+  height: 59%;
+}
+.compartment-label {
+  padding: 5px 8px;
+  border-radius: 7px;
+  background: #fff9eae8;
+  font-size: 13px;
+  line-height: 1.25;
+}
+.compartment-label small {
+  display: block;
+  font-size: 10px;
+  color: #586252;
+  margin-top: 3px;
+}
+.interior.freezer {
+  background: #dfedef;
+  border-color: #edf5f4;
+  outline-color: #b6cdd1;
+}
+.freezer .shelf {
+  border-color: #bbd5d9;
+}
+.freezer .shelf:first-of-type {
+  padding-top: 28px;
+}
+.icicles {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  pointer-events: none;
+  background: linear-gradient(#fff, #c5e5ed);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 15%,
+    94% 15%,
+    92% 75%,
+    89% 15%,
+    81% 15%,
+    78% 100%,
+    74% 15%,
+    65% 15%,
+    63% 60%,
+    60% 15%,
+    49% 15%,
+    46% 85%,
+    43% 15%,
+    33% 15%,
+    30% 50%,
+    28% 15%,
+    18% 15%,
+    15% 100%,
+    11% 15%,
+    5% 15%,
+    3% 55%,
+    0 15%
+  );
+}

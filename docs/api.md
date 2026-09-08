@@ -4,7 +4,7 @@ The deployed API requires `Authorization: Bearer <Cognito access token>`. API Ga
 
 ## Read
 
-`GET /v1/kitchen` returns `{ "revision": 0, "data": { "version": 1, "foods": [], "stock": [], "shopping": [] } }` for a new account. Reads are strongly consistent. Responses use `Cache-Control: no-store`.
+`GET /v1/kitchen` returns a `{ revision, data }` envelope. The first read of an empty account initializes six starter foods through an idempotent transaction, returning revision 1 with `data.starterVersion: 1`. Existing nonempty accounts only receive the marker. Subsequent reads are read-only and strongly consistent. Responses use `Cache-Control: no-store`. See [inventory behavior](inventory-behavior.md) for initialization and deletion details.
 
 ## Apply a change
 
@@ -23,16 +23,18 @@ The deployed API requires `Authorization: Bearer <Cognito access token>`. API Ga
 
 Generate the mutation UUID once and persist it before sending. Retries must reuse that same UUID. The server stores a permanent receipt per owner/mutation and cannot apply it twice. Every command is schema-validated in `src/domain/commands.ts`; inventory transitions live in `src/domain/reducer.ts`.
 
-| Command             | Purpose                                                          |
-| ------------------- | ---------------------------------------------------------------- |
-| `food.save`         | Create/update a generic food identity and its shelf/location     |
-| `stock.add`         | Add a quantity lot with an optional ISO calendar expiration date |
-| `stock.adjust`      | Increment/decrement a lot, clamped to 0–9,999                    |
-| `stock.date`        | Set or clear a lot’s expiration                                  |
-| `shopping.save`     | Add/update a linked or one-time shopping entry                   |
-| `shopping.purchase` | Mark/unmark purchased without changing inventory                 |
-| `shopping.remove`   | Remove an entry or finish a purchase without inventory tracking  |
-| `shopping.putAway`  | Consume a purchased entry and add its stock exactly once         |
+| Command              | Purpose                                                          |
+| -------------------- | ---------------------------------------------------------------- |
+| `food.save`          | Create/update a generic food identity and its shelf/location     |
+| `food.remove`        | Delete food and stock, preserving linked groceries as standalone |
+| `kitchen.initialize` | Initialize starter food once; never refill a cleared kitchen     |
+| `stock.add`          | Add a quantity lot with an optional ISO calendar expiration date |
+| `stock.adjust`       | Increment/decrement a lot, clamped to 0–9,999                    |
+| `stock.date`         | Set or clear a lot’s expiration                                  |
+| `shopping.save`      | Add/update a linked or one-time shopping entry                   |
+| `shopping.purchase`  | Mark/unmark purchased without changing inventory                 |
+| `shopping.remove`    | Remove an entry or finish a purchase without inventory tracking  |
+| `shopping.putAway`   | Consume a purchased entry and add its stock exactly once         |
 
 Counts are integers. Units are explicit, and package details are descriptive rather than automatic conversions. Dates use `YYYY-MM-DD`. Request bodies are capped at 16 KB; array and snapshot bounds are validated on the server.
 

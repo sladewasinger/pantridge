@@ -1,9 +1,16 @@
 import { useKitchen } from '../../data/store';
 import { stockedFoods } from '../../domain/selectors';
-import type { Location } from '../../domain/model';
+import type { StoragePage } from '../../app/navigation';
 
-export function Kitchen({ onOpen }: { onOpen: (location: Location) => void }) {
+export function Kitchen({ onOpen }: { onOpen: (location: StoragePage) => void }) {
   const { data } = useKitchen();
+  const foods = stockedFoods(data);
+  const count = (place: StoragePage) =>
+    foods.filter((food) =>
+      place === 'freezer'
+        ? food.location === 'fridge' && food.frozen
+        : food.location === place && (place === 'pantry' || !food.frozen),
+    ).length;
   return (
     <div className="kitchen-scene">
       <img
@@ -11,25 +18,29 @@ export function Kitchen({ onOpen }: { onOpen: (location: Location) => void }) {
         src="/art/kitchen.svg"
         alt="A warm kitchen with a fridge and wooden pantry"
       />
-      {(['fridge', 'pantry'] as const).map((location) => {
-        const count = stockedFoods(data).filter((food) => food.location === location).length;
-        return (
-          <button
-            key={location}
-            className={`appliance ${location}-button`}
-            onClick={() => onOpen(location)}
-            aria-label={`Open ${location}`}
-          >
-            <img src={`/art/${location}.svg`} alt="" />
-            <span className="appliance-label">
-              {location === 'fridge' ? 'Fridge' : 'Pantry'}
-              <small>
-                {count} {count === 1 ? 'item' : 'items'}
-              </small>
-            </span>
-          </button>
-        );
-      })}
+      <div className="appliance fridge-appliance">
+        <img src="/art/fridge.svg" alt="" />
+        <button className="freezer-hit" onClick={() => onOpen('freezer')} aria-label="Open freezer">
+          <span className="compartment-label">
+            Freezer<small>{count('freezer')} items</small>
+          </span>
+        </button>
+        <button className="fridge-hit" onClick={() => onOpen('fridge')} aria-label="Open fridge">
+          <span className="compartment-label">
+            Fridge<small>{count('fridge')} items</small>
+          </span>
+        </button>
+      </div>
+      <button
+        className="appliance pantry-button"
+        onClick={() => onOpen('pantry')}
+        aria-label="Open pantry"
+      >
+        <img src="/art/pantry.svg" alt="" />
+        <span className="appliance-label">
+          Pantry<small>{count('pantry')} items</small>
+        </span>
+      </button>
     </div>
   );
 }

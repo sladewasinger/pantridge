@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { GetCommand, TransactWriteCommand } from '@aws-sdk/lib-dynamodb';
 import type * as DocumentSdk from '@aws-sdk/lib-dynamodb';
-import { mutate } from '../../api/repository';
+import { mutate, read } from '../../api/repository';
 import { egg, kitchen, lotId } from './fixtures';
 const { send } = vi.hoisted(() => ({ send: vi.fn() }));
 vi.mock('@aws-sdk/lib-dynamodb', async (original) => ({
@@ -13,6 +13,21 @@ beforeEach(() => {
   vi.stubEnv('TABLE_NAME', 'test-kitchen');
 });
 describe('cloud mutation receipts', () => {
+  it('initializes a new cloud kitchen transactionally and skips initialized reads', async () => {
+    send
+      .mockResolvedValueOnce({})
+      .mockResolvedValueOnce({})
+      .mockResolvedValueOnce({})
+      .mockResolvedValueOnce({});
+    const seeded = await read('owner');
+    expect(seeded.data.foods).toHaveLength(6);
+    expect(seeded.revision).toBe(1);
+    expect(send.mock.calls[3]?.[0]).toBeInstanceOf(TransactWriteCommand);
+    send.mockClear();
+    send.mockResolvedValueOnce({ Item: seeded });
+    expect(await read('owner')).toEqual(seeded);
+    expect(send).toHaveBeenCalledTimes(1);
+  });
   it('returns the current snapshot for an already-applied mutation without writing again', async () => {
     send
       .mockResolvedValueOnce({ Item: { appliedAt: '2026-09-08' } })

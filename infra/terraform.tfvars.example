@@ -7,3 +7,7 @@ environment         = "personal"
 # For Namecheap/external DNS, leave route53_zone_id unset.
 # For Route53-managed DNS, set the existing public zone:
 # route53_zone_id   = "Z0123456789EXAMPLE"
+# Optional GitHub deployment (existing account OIDC provider required).
+# github_repository = "owner/repository"
+# Set the exact sub_claim_prefix from the repository OIDC API:
+# github_subject_prefix = "repo:owner@123/repository@456"

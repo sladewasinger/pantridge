@@ -34,7 +34,7 @@ if (process.argv.includes('--api')) {
       '--output',
       'text',
     ]);
-    run('aws', ['lambda', 'wait', 'function-updated-v2', '--function-name', name]);
+    run('aws', ['lambda', 'wait', 'function-updated', '--function-name', name]);
   }
 }
 // Keep old hashed assets available to already-open clients during an update.

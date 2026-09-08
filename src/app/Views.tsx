@@ -1,4 +1,3 @@
-import type { Location } from '../domain/model';
 import { Kitchen } from '../features/kitchen/Kitchen';
 import { Storage } from '../features/kitchen/Storage';
 import { SearchResults } from '../features/kitchen/SearchResults';
@@ -8,7 +7,7 @@ import { Shopping } from '../features/shopping/Shopping';
 import { ShoppingForm } from '../features/shopping/ShoppingForm';
 import { PutAway } from '../features/shopping/PutAway';
 import { Settings } from '../features/settings/Settings';
-import type { Overlay, ViewState } from './navigation';
+import type { Overlay, ViewState, StoragePage } from './navigation';
 
 export function MainView({
   view,
@@ -16,7 +15,7 @@ export function MainView({
   onOverlay,
 }: {
   view: ViewState;
-  onOpen: (location: Location) => void;
+  onOpen: (location: StoragePage) => void;
   onOverlay: (overlay: Overlay) => void;
 }) {
   if (view.page === 'shopping')
@@ -49,7 +48,7 @@ export function OverlayView({
   onClose,
 }: {
   overlay: Overlay | null;
-  location: Location | null;
+  location: StoragePage | null;
   onClose: () => void;
 }) {
   if (!overlay) return null;
