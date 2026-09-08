@@ -44,7 +44,9 @@ The commonly used shelf should query remembered food identities (including zero 
 
 Receipt import will normalize retailer lines into food/package matches and purchased shopping entries, with stable receipt/line identifiers and an explicit review step for uncertain matches. Do not call Walmart endpoints or store retailer credentials in this web app before that integration is designed.
 
-Category SVGs are the approved local artwork. Animation is isolated in CSS, uses transform/opacity, and honors reduced-motion preferences. A native dialog supplies focus containment, Escape dismissal, and focus restoration. Food movement is available through an accessible location/shelf selector.
+Category SVGs are the approved local artwork. Animation is isolated in CSS and honors reduced-motion preferences. A native dialog supplies focus containment, Escape dismissal, and focus restoration. Mouse and touch dragging move food between shelves through the same persisted command used by the accessible location/shelf selector.
+
+Screen, search, and dialog transitions participate in browser history. Back closes a dialog, clears search, or returns to the previous screen; Forward and reload restore the view. Search keystrokes replace one entry. Returning home unwinds the app's history instead of adding a duplicate home screen. History state is scoped to the signed-in account and contains no unsaved form draft. The operating system controls Back at the root; the app does not trap users with artificial history entries.
 
 ## References
 

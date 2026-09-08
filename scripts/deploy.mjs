@@ -1,18 +1,10 @@
-import { spawnSync } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
+import { run } from './run.mjs';
+import { deploymentConfig } from './deployment-config.mjs';
 
 // Infrastructure is applied separately with a reviewable Terraform plan.
 // This command publishes assets only to the bucket named by that state.
-const terraform = process.env.TERRAFORM_BIN ?? 'terraform';
-function run(command, args, options = {}) {
-  const result = spawnSync(command, args, { stdio: 'inherit', shell: false, ...options });
-  if (result.error) throw result.error;
-  if (result.status !== 0) throw new Error(`${command} failed (${result.status})`);
-  return result.stdout;
-}
-const output = JSON.parse(
-  run(terraform, ['-chdir=infra', 'output', '-json'], { encoding: 'utf8', stdio: 'pipe' }),
-);
+const output = await deploymentConfig();
 const bucket = output.web_bucket?.value;
 const distribution = output.distribution_id?.value;
 const environment = output.frontend_environment?.value;
@@ -26,10 +18,25 @@ const identity = JSON.parse(
 );
 if (!output.aws_account_id?.value || identity.Account !== output.aws_account_id.value)
   throw new Error('AWS CLI account does not match the Terraform deployment account.');
-const env = { ...process.env, ...environment };
-run(process.execPath, ['node_modules/typescript/bin/tsc', '--noEmit']);
-run(process.execPath, ['node_modules/vite/bin/vite.js', 'build'], { env });
+if (!process.argv.includes('--built')) run(process.execPath, ['scripts/build-release.mjs']);
 await readFile('dist/index.html');
+if (process.argv.includes('--api')) {
+  for (const [name, bundle] of Object.entries(output.application_functions.value)) {
+    run('aws', [
+      'lambda',
+      'update-function-code',
+      '--function-name',
+      name,
+      '--zip-file',
+      `fileb://${bundle}`,
+      '--query',
+      'LastModified',
+      '--output',
+      'text',
+    ]);
+    run('aws', ['lambda', 'wait', 'function-updated-v2', '--function-name', name]);
+  }
+}
 // Keep old hashed assets available to already-open clients during an update.
 run('aws', [
   's3',

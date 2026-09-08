@@ -1,0 +1,49 @@
+name: Deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pantridge-production
+  cancel-in-progress: false
+jobs:
+  quality:
+    uses: ./.github/workflows/check.yml
+  deploy:
+    needs: quality
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      PANTRIDGE_DEPLOY_CONFIG: config/production.json
+      AWS_REGION: us-west-2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Build production configuration
+        run: node scripts/build-release.mjs
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:e2e
+      - name: Package application functions
+        run: |
+          zip -j artifacts/api.zip artifacts/api/handler.mjs artifacts/api/handler.mjs.map
+          zip -j artifacts/auth.zip artifacts/auth/handler.mjs
+      - uses: aws-actions/configure-aws-credentials@cabfdba3510de1431bac9dba27511d97497fc100 # v5
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: us-west-2
+          allowed-account-ids: '510682130762'
+      - name: Deploy tested application code
+        run: node scripts/deploy.mjs --built --api
+      - name: Verify live application
+        run: curl --fail --retry 3 https://pantridge.austinwasinger.com/ -o /dev/null
