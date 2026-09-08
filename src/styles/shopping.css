@@ -62,11 +62,11 @@
 }
 .purchased .shop-name {
   text-decoration: line-through;
-  color: #6e7767;
+  color: #596450;
 }
 .purchased .buy-quantity {
   background: #eeece1;
-  color: #6e7767;
+  color: #596450;
 }
 .put-away {
   margin-top: 27px;

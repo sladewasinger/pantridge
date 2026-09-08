@@ -10,6 +10,7 @@ import './styles/kitchen.css';
 import './styles/doors.css';
 import './styles/forms.css';
 import './styles/shopping.css';
+import './styles/polish.css';
 
 const element = document.getElementById('root');
 if (!element) throw new Error('App root is missing.');

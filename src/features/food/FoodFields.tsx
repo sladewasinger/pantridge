@@ -1,16 +1,5 @@
-import { artSchema, unitSchema, type Food } from '../../domain/model';
-const artNames = {
-  eggs: 'Egg carton',
-  milk: 'Milk carton',
-  greens: 'Leafy greens',
-  yogurt: 'Yogurt cup',
-  can: 'Can',
-  pasta: 'Pasta box',
-  oats: 'Oats tub',
-  generic: 'Grocery bag',
-  butter: 'Butter',
-  rice: 'Rice bag',
-};
+import { unitSchema, type Food } from '../../domain/model';
+import { ArtPicker } from './ArtPicker';
 export function FoodFields({
   food,
   onChange,
@@ -34,7 +23,7 @@ export function FoodFields({
         />
       </label>
       {identity && (
-        <div className="form-grid">
+        <>
           <label>
             Unit
             <select
@@ -46,20 +35,8 @@ export function FoodFields({
               ))}
             </select>
           </label>
-          <label>
-            Illustration
-            <select
-              value={food.art}
-              onChange={(e) => patch({ art: artSchema.parse(e.target.value) })}
-            >
-              {artSchema.options.map((art) => (
-                <option key={art} value={art}>
-                  {artNames[art]}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
+          <ArtPicker value={food.art} onChange={(art) => patch({ art })} />
+        </>
       )}
       <div className="form-grid">
         <label>

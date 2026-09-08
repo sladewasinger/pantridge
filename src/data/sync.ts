@@ -42,14 +42,16 @@ async function performSync(): Promise<void> {
     report('offline');
     return;
   }
-  const token = await getToken();
+  const account = getAccount();
+  const token = await getToken(account);
+  if (getAccount() !== account) return;
   if (!token || getAccount() === 'local') {
     report('signin');
     return;
   }
-  const account = getAccount();
   report('syncing');
   let envelope = await request('/v1/kitchen', token);
+  if (getAccount() !== account) return;
   const pending = [...getKitchen().pending];
   const acknowledged = new Set<string>();
   for (const mutation of pending) {
@@ -78,10 +80,11 @@ export function syncKitchen(): Promise<void> {
 export async function useCloudCopy(): Promise<void> {
   await running;
   const reset = async () => {
-    const token = await getToken();
+    const account = getAccount();
+    const token = await getToken(account);
+    if (getAccount() !== account) throw new Error('Your account changed. Please try again.');
     if (!api || !token || !navigator.onLine)
       throw new Error('Reconnect and sign in before using your cloud copy.');
-    const account = getAccount();
     const discarded = new Set(getKitchen().pending.map((mutation) => mutation.id));
     const remote = await request('/v1/kitchen', token);
     if (account !== getAccount()) throw new Error('Your account changed. Please try again.');

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { hasValidLinks } from './integrity';
 
 export const id = z.uuid();
 export const locationSchema = z.enum(['fridge', 'pantry']);
@@ -25,6 +26,10 @@ export const artSchema = z.enum([
   'butter',
   'rice',
   'generic',
+  'bread',
+  'apple',
+  'carrots',
+  'fish',
 ]);
 const label = z.string().trim().min(1).max(80);
 export const dateSchema = z.iso.date();
@@ -53,13 +58,15 @@ export const shoppingSchema = z.object({
   quantity: z.number().int().min(1).max(999),
   purchased: z.boolean(),
 });
-export const snapshotSchema = z.object({
-  version: z.literal(1),
-  starterVersion: z.literal(1).optional(),
-  foods: z.array(foodSchema).max(600),
-  stock: z.array(stockSchema).max(1500),
-  shopping: z.array(shoppingSchema).max(500),
-});
+export const snapshotSchema = z
+  .object({
+    version: z.literal(1),
+    starterVersion: z.literal(1).optional(),
+    foods: z.array(foodSchema).max(600),
+    stock: z.array(stockSchema).max(1500),
+    shopping: z.array(shoppingSchema).max(500),
+  })
+  .refine(hasValidLinks, 'Duplicate IDs or missing food references.');
 export const envelopeSchema = z.object({ revision: z.number().int().min(0), data: snapshotSchema });
 export type Food = z.infer<typeof foodSchema>;
 export type Stock = z.infer<typeof stockSchema>;

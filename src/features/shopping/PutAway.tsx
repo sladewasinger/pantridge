@@ -37,8 +37,6 @@ function PutAwayItem({ item, count }: { item: ShoppingItem; count: number }) {
       onSubmit={(e) => {
         e.preventDefault();
         void run(async () => {
-          // A linked food's saved location is updated explicitly; put-away itself is atomic.
-          if (existing) await dispatch({ type: 'food.save', food });
           await dispatch({
             type: 'shopping.putAway',
             itemId: item.id,

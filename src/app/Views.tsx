@@ -21,6 +21,8 @@ export function MainView({
   if (view.page === 'shopping')
     return (
       <Shopping
+        query={view.query}
+        onAdd={() => onOverlay({ type: 'shopping' })}
         onEdit={(item) => onOverlay({ type: 'shopping', item })}
         onPutAway={() => onOverlay({ type: 'put-away' })}
       />
@@ -37,6 +39,7 @@ export function MainView({
       <Storage
         key={view.location}
         location={view.location}
+        onAdd={(shelf) => onOverlay({ type: 'add', shelf })}
         onSelect={(food) => onOverlay({ type: 'food', id: food.id })}
       />
     );
@@ -56,7 +59,7 @@ export function OverlayView({
     case 'food':
       return <FoodDetails foodId={overlay.id} onClose={onClose} />;
     case 'add':
-      return <AddFood location={location ?? 'pantry'} onClose={onClose} />;
+      return <AddFood location={location ?? 'pantry'} shelf={overlay.shelf} onClose={onClose} />;
     case 'shopping':
       return <ShoppingForm item={overlay.item} onClose={onClose} />;
     case 'put-away':

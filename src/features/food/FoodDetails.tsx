@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Minus, Plus, ShoppingBasket, Trash2 } from 'lucide-react';
-import { dispatch, useKitchen } from '../../data/store';
+import { dispatch, dispatchMany, useKitchen } from '../../data/store';
 import type { Food, Stock } from '../../domain/model';
 import { countFood, units } from '../../domain/selectors';
 import { Modal } from '../../ui/Modal';
 import { useAction } from '../../ui/useAction';
 import { FoodFields } from './FoodFields';
+import { showUndo } from '../../ui/notice';
 
 export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () => void }) {
   const { data } = useKitchen();
@@ -134,6 +135,12 @@ export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () =
           onClick={() =>
             void run(async () => {
               await dispatch({ type: 'food.remove', foodId });
+              showUndo(`${food.name} deleted`, () =>
+                dispatchMany([
+                  { type: 'food.restore', food },
+                  ...lots.map((stock) => ({ type: 'stock.add' as const, stock })),
+                ]),
+              );
               onClose();
             })
           }

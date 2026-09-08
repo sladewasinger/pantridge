@@ -23,6 +23,8 @@ The deployed API requires `Authorization: Bearer <Cognito access token>`. API Ga
 
 Generate the mutation UUID once and persist it before sending. Retries must reuse that same UUID. The server stores a permanent receipt per owner/mutation and cannot apply it twice. Every command is schema-validated in `src/domain/commands.ts`; inventory transitions live in `src/domain/reducer.ts`.
 
+Snapshots reject duplicate IDs and missing food references. `food.restore` accepts a food identity only when its ID is absent; deletion Undo follows it with separate `stock.add` mutations in one local transaction, keeping each API request below the body limit. Put-away validates linked identity and units as well as quantity, then saves placement, stock and shopping removal in one server transaction.
+
 | Command              | Purpose                                                          |
 | -------------------- | ---------------------------------------------------------------- |
 | `food.save`          | Create/update a generic food identity and its shelf/location     |

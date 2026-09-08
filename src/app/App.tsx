@@ -3,6 +3,7 @@ import { Header } from './Header';
 import { MainView, OverlayView } from './Views';
 import { SyncIndicator } from './SyncIndicator';
 import { PwaNotice } from './PwaNotice';
+import { UndoNotice } from '../ui/UndoNotice';
 import {
   closeOverlay,
   navigate,
@@ -46,6 +47,7 @@ export function App() {
       </nav>
       <OverlayView overlay={overlay} location={location} onClose={closeOverlay} />
       <PwaNotice />
+      <UndoNotice />
     </div>
   );
 }

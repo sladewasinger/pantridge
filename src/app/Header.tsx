@@ -1,4 +1,4 @@
-import { ArrowLeft, Plus, Search, Settings2 } from 'lucide-react';
+import { ArrowLeft, Plus, Search, Settings2, X } from 'lucide-react';
 import { viewTitle, type ViewState } from './navigation';
 export function Header({
   view,
@@ -37,18 +37,25 @@ export function Header({
           <Plus />
         </button>
       </div>
-      {view.page === 'kitchen' && (
-        <label className="search-field">
-          <Search size={19} />
-          <input
-            type="search"
-            aria-label="Find your food"
-            placeholder="Find your food"
-            value={view.query}
-            onChange={(e) => onSearch(e.target.value)}
-          />
-        </label>
-      )}
+      <div className="search-field">
+        <Search size={19} />
+        <input
+          type="search"
+          aria-label={view.page === 'shopping' ? 'Search shopping list' : 'Find your food'}
+          placeholder={view.page === 'shopping' ? 'Search your list' : 'Find your food'}
+          value={view.query}
+          onChange={(e) => onSearch(e.target.value)}
+        />
+        {view.query && (
+          <button
+            className="icon-button clear-search"
+            aria-label="Clear search"
+            onClick={() => onSearch('')}
+          >
+            <X size={16} />
+          </button>
+        )}
+      </div>
     </header>
   );
 }

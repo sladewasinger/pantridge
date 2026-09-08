@@ -3,7 +3,7 @@ export type Page = 'kitchen' | 'shopping';
 export type StoragePage = Location | 'freezer';
 export type Overlay =
   | { type: 'food'; id: string }
-  | { type: 'add' }
+  | { type: 'add'; shelf?: number }
   | { type: 'shopping'; item?: ShoppingItem }
   | { type: 'put-away' }
   | { type: 'settings' };

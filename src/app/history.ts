@@ -13,7 +13,7 @@ const frameSchema = z.object({
   overlay: z
     .discriminatedUnion('type', [
       z.object({ type: z.literal('food'), id }),
-      z.object({ type: z.literal('add') }),
+      z.object({ type: z.literal('add'), shelf: z.number().int().min(0).max(2).optional() }),
       z.object({ type: z.literal('shopping'), item: shoppingSchema.optional() }),
       z.object({ type: z.literal('put-away') }),
       z.object({ type: z.literal('settings') }),

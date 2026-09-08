@@ -10,7 +10,9 @@ export function SearchResults({
 }) {
   const { data } = useKitchen();
   const matches = data.foods.filter((food) =>
-    `${food.name} ${food.brand} ${food.packageSize}`.toLowerCase().includes(query.toLowerCase()),
+    `${food.name} ${food.brand} ${food.packageSize}`
+      .toLowerCase()
+      .includes(query.trim().toLowerCase()),
   );
   return (
     <div className="search-results">
@@ -20,7 +22,8 @@ export function SearchResults({
           <span>
             {food.name}
             <small>
-              {food.brand || food.location} · {units(countFood(data, food.id), food.unit)}
+              {food.frozen ? 'Freezer' : food.location === 'fridge' ? 'Fridge' : 'Pantry'} ·{' '}
+              {units(countFood(data, food.id), food.unit)}
             </small>
           </span>
         </button>

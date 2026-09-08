@@ -1,7 +1,7 @@
 import type { Command } from './commands';
 import { snapshotSchema, type Snapshot } from './model';
 import { initializeStarter } from './starter';
-import { saveFood, removeFood, normalizeShopping } from './food-commands';
+import { saveFood, removeFood, normalizeShopping, restoreFood } from './food-commands';
 
 function replace<T extends { id: string }>(list: T[], value: T): T[] {
   return [...list.filter((item) => item.id !== value.id), value];
@@ -14,16 +14,17 @@ function putAway(
   const entry = data.shopping.find((item) => item.id === command.itemId);
   if (!entry?.purchased) return data;
   if (command.stock.foodId !== command.food.id) throw new Error('Food and stock do not match.');
+  if (entry.foodId && entry.foodId !== command.food.id)
+    throw new Error('Purchased food and inventory do not match.');
+  if (entry.unit !== command.food.unit)
+    throw new Error('Purchased units do not match. Review this item.');
   if (data.stock.some((stock) => stock.id === command.stock.id))
     throw new Error('Stock ID already exists.');
   // A concurrent edit must not be silently consumed with stale quantities.
   if (entry.quantity !== command.stock.quantity)
     throw new Error('Purchased quantity changed. Review it before putting it away.');
   return {
-    ...data,
-    foods: data.foods.some((food) => food.id === command.food.id)
-      ? data.foods
-      : [...data.foods, command.food],
+    ...saveFood(data, command.food),
     stock: [...data.stock, command.stock],
     shopping: data.shopping.filter((item) => item.id !== command.itemId),
   };
@@ -35,6 +36,8 @@ export function applyCommand(data: Snapshot, command: Command): Snapshot {
       return initializeStarter(data);
     case 'food.remove':
       return removeFood(data, command.foodId);
+    case 'food.restore':
+      return restoreFood(data, command.food);
     case 'food.save':
       return saveFood(data, command.food);
     case 'stock.add':

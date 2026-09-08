@@ -1,0 +1,243 @@
+.art-field {
+  border: 0;
+  padding: 0;
+  margin: 0 0 20px;
+  min-width: 0;
+}
+.art-field legend {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.art-picker {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+}
+.art-picker button {
+  min-height: 58px;
+  padding: 4px;
+  background: #f3eedf;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  position: relative;
+}
+.art-picker button[aria-pressed='true'] {
+  background: #e2ead7;
+  border-color: #69805a;
+  box-shadow: inset 0 0 0 1px #69805a;
+}
+.art-picker img {
+  width: 44px;
+  height: 44px;
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
+.art-picker svg {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  color: #38563e;
+}
+.purchase-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.purchase-target input {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+.shop-row {
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: 8px;
+  padding: 13px 0;
+}
+.shop-info {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.shop-copy {
+  min-width: 0;
+}
+.shop-art {
+  width: 32px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.shopping-progress {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 10px 0 16px;
+  font-size: 12px;
+  color: #586d51;
+}
+.shopping-progress progress {
+  width: 100%;
+  height: 5px;
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  background: #e3e7d7;
+}
+.shopping-progress progress::-webkit-progress-bar {
+  background: #e3e7d7;
+}
+.shopping-progress progress::-webkit-progress-value {
+  background: #759261;
+  border-radius: 5px;
+  transition: width 180ms;
+}
+.shopping-progress progress::-moz-progress-bar {
+  background: #759261;
+}
+.empty-art {
+  width: 150px;
+  height: 120px;
+}
+.undo-notice {
+  position: fixed;
+  bottom: max(88px, calc(env(safe-area-inset-bottom) + 76px));
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(430px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: #fffaf0;
+  border: 1px solid #b7c2a5;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px #32483125;
+  padding: 8px 12px;
+  z-index: 6;
+  font-size: 13px;
+}
+.undo-notice > span {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+.undo-notice > button {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px;
+  background: transparent;
+  color: #38563e;
+  font-weight: 600;
+}
+.undo-notice .error {
+  width: 100%;
+  margin: 0;
+}
+.empty-shelf {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 70px;
+  color: #68775e;
+  cursor: pointer;
+  border-radius: 12px;
+}
+.empty-shelf svg {
+  color: #819176;
+}
+.empty-shelf:hover {
+  background: #ffffff30;
+}
+.expiration {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 8px;
+  padding: 3px 6px;
+}
+.expiration.soon {
+  color: #735b24;
+  background: #f3e5bb;
+}
+.expiration.past {
+  color: #8b4436;
+  background: #f3ded2;
+}
+.expiration.later {
+  color: #5e7053;
+}
+.sheet {
+  animation: sheet-enter 190ms ease-out;
+  scroll-padding-block: 80px 24px;
+}
+.sheet-heading {
+  position: sticky;
+  top: -24px;
+  background: #fffaf0;
+  padding: 8px 0 14px;
+  margin-bottom: 12px;
+  z-index: 2;
+}
+.sheet input,
+.sheet select,
+.sheet button {
+  scroll-margin-block: 80px 20px;
+}
+.clear-search {
+  margin-right: -10px;
+}
+.food-tile img {
+  filter: drop-shadow(0 4px 2px #5a4d3514);
+}
+.primary,
+.secondary,
+.art-picker button,
+.buy-quantity {
+  transition:
+    background 150ms,
+    transform 150ms;
+}
+.primary:active,
+.secondary:active,
+.art-picker button:active,
+.buy-quantity:active {
+  transform: scale(0.97);
+}
+@keyframes sheet-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 350px) {
+  .shop-art {
+    width: 25px;
+  }
+  .shop-info {
+    gap: 5px;
+  }
+  .shop-name {
+    font-size: 15px;
+  }
+  .shopping-list {
+    padding-inline: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shopping-progress progress::-webkit-progress-value {
+    transition: none;
+  }
+}

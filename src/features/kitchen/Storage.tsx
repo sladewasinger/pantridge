@@ -5,13 +5,16 @@ import { stockedFoods } from '../../domain/selectors';
 import { FoodTile } from './FoodTile';
 import { useShelfDrag } from './useShelfDrag';
 import { Doors } from './Doors';
+import { Plus } from 'lucide-react';
 
 export function Storage({
   location,
   onSelect,
+  onAdd,
 }: {
   location: StoragePage;
   onSelect: (food: Food) => void;
+  onAdd: (shelf: number) => void;
 }) {
   const { data } = useKitchen();
   const { root, move, finish, cancel, click, target, start, message, error } = useShelfDrag();
@@ -50,7 +53,14 @@ export function Storage({
               />
             ))}
           {!foods.some((food) => food.shelf === shelf) && (
-            <span className="empty-shelf">Empty</span>
+            <button
+              className="empty-shelf"
+              onClick={() => onAdd(shelf)}
+              aria-label={`Add food to ${['top', 'middle', 'bottom'][shelf]} shelf`}
+            >
+              <Plus size={18} strokeWidth={1.4} />
+              <span>Empty</span>
+            </button>
           )}
         </div>
       ))}

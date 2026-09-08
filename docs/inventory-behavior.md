@@ -6,4 +6,6 @@ The freezer has its own screen and entry point on the upper green door. Persiste
 
 Editing a unit changes its label, preserving numeric counts and dates; it is not a quantity conversion. Linked shopping entries receive the new name and unit too. Deleting a food removes its stock lots while retaining requested groceries as standalone shopping entries. All changes use the same validated domain commands locally and in the API, with offline persistence and idempotent sync.
 
-Butter and rice add artwork enum values. Installed clients must accept the PWA update to render these new foods and edit them; old clients can reject a snapshot containing new artwork. Updates preserve IndexedDB data. Backup restore still requires an empty inventory; delete starter foods first when restoring a new kitchen.
+Butter, rice, bread, apple, carrots, and fish add artwork enum values. Installed clients must accept the PWA update to render these new foods and edit them; old clients can reject a snapshot containing new artwork. Updates preserve IndexedDB data. Backup restore still requires an empty inventory; delete starter foods first when restoring a new kitchen.
+
+Deleting food offers Undo until dismissed, replaced by another deletion, or the page reloads. Restoration refuses to overwrite an existing identity and restores lots atomically in IndexedDB. Shopping entries retained during deletion remain standalone.
