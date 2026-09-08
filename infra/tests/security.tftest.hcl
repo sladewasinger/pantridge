@@ -33,13 +33,16 @@ mock_provider "aws" {
 mock_provider "aws" { alias = "edge" }
 run "github_deploy_is_main_only" {
   command = plan
-  variables { github_repository = "example/pantridge" }
+  variables {
+    github_repository     = "example/pantridge"
+    github_subject_prefix = "repo:example@123/pantridge@456"
+  }
   override_data {
     target = data.aws_iam_openid_connect_provider.github[0]
     values = { arn = "arn:aws:iam::123456789012:oidc-provider/token.actions.githubusercontent.com" }
   }
   assert {
-    condition     = jsondecode(aws_iam_role.github_deploy[0].assume_role_policy).Statement[0].Condition.StringEquals["token.actions.githubusercontent.com:sub"] == "repo:example/pantridge:ref:refs/heads/main"
+    condition     = jsondecode(aws_iam_role.github_deploy[0].assume_role_policy).Statement[0].Condition.StringEquals["token.actions.githubusercontent.com:sub"] == "repo:example@123/pantridge@456:ref:refs/heads/main"
     error_message = "Only the selected repository's main branch may deploy."
   }
   assert {

@@ -2,6 +2,7 @@ import { useSyncExternalStore } from 'react';
 import { mutationSchema, type Command } from '../domain/commands';
 import { reduceChecked } from '../domain/reducer';
 import { blankKitchen, changeKitchen, readKitchen, type StoredKitchen } from './database';
+import { initializeStarter } from '../domain/starter';
 
 let account = 'local';
 let current: StoredKitchen = blankKitchen();
@@ -17,7 +18,13 @@ export const getKitchen = () => current;
 export const isReady = () => ready;
 export async function loadKitchen(key = account): Promise<void> {
   account = key;
-  const next = await readKitchen(key);
+  let next = await readKitchen(key);
+  if (key === 'local' && !next.data.starterVersion) {
+    next = await changeKitchen(key, (stored) => ({
+      ...stored,
+      data: initializeStarter(stored.data),
+    }));
+  }
   if (key !== account) return;
   ready = true;
   publish(next);

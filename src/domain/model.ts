@@ -22,6 +22,8 @@ export const artSchema = z.enum([
   'can',
   'pasta',
   'oats',
+  'butter',
+  'rice',
   'generic',
 ]);
 const label = z.string().trim().min(1).max(80);
@@ -53,6 +55,7 @@ export const shoppingSchema = z.object({
 });
 export const snapshotSchema = z.object({
   version: z.literal(1),
+  starterVersion: z.literal(1).optional(),
   foods: z.array(foodSchema).max(600),
   stock: z.array(stockSchema).max(1500),
   shopping: z.array(shoppingSchema).max(500),

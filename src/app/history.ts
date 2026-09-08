@@ -1,14 +1,14 @@
 import { useSyncExternalStore } from 'react';
 import { z } from 'zod';
-import { id, locationSchema, shoppingSchema, type Location } from '../domain/model';
-import type { Overlay, Page } from './navigation';
+import { id, shoppingSchema } from '../domain/model';
+import type { Overlay, Page, StoragePage } from './navigation';
 
 const frameSchema = z.object({
   version: z.literal(1),
   account: z.string(),
   depth: z.number().int().nonnegative(),
   page: z.enum(['kitchen', 'shopping']),
-  location: locationSchema.nullable(),
+  location: z.enum(['fridge', 'pantry', 'freezer']).nullable(),
   query: z.string(),
   overlay: z
     .discriminatedUnion('type', [
@@ -71,7 +71,7 @@ export function navigate(page: Page) {
   }
   if (current.page !== page) push({ ...home, page });
 }
-export function openLocation(location: Location) {
+export function openLocation(location: StoragePage) {
   push({ ...home, location });
 }
 export function openOverlay(overlay: Overlay) {

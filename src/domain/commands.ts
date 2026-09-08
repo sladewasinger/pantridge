@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { dateSchema, foodSchema, id, shoppingSchema, stockSchema } from './model';
 
 export const commandSchema = z.discriminatedUnion('type', [
+  z.object({ type: z.literal('kitchen.initialize') }),
+  z.object({ type: z.literal('food.remove'), foodId: id }),
   z.object({ type: z.literal('food.save'), food: foodSchema }),
   z.object({ type: z.literal('stock.add'), stock: stockSchema }),
   z.object({

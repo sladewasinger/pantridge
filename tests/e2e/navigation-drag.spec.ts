@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 async function addBeans(page: Page) {
   await page.getByRole('button', { name: 'Add food', exact: true }).click();
-  await page.getByLabel('Food name').fill('Black beans');
+  await page.getByLabel('Food name').fill('Test beans');
   await page.getByRole('combobox', { name: 'Illustration', exact: true }).selectOption('can');
   await page.getByRole('button', { name: 'Add to pantry', exact: true }).click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
@@ -57,7 +57,7 @@ test('dragging moves food to another shelf and persists without opening details'
 }) => {
   await page.goto('/');
   await addBeans(page);
-  const tile = page.getByRole('button', { name: 'Black beans, 1 item', exact: true });
+  const tile = page.getByRole('button', { name: 'Test beans, 1 item', exact: true });
   const source = await tile.boundingBox();
   const destination = await page.locator('[data-shelf="2"]').boundingBox();
   if (!source || !destination) throw new Error('Missing drag target');
@@ -66,11 +66,15 @@ test('dragging moves food to another shelf and persists without opening details'
   await page.mouse.move(destination.x + destination.width / 2, destination.y + 40, { steps: 15 });
   await expect(page.locator('[data-shelf="2"]')).toHaveClass(/drop-target/);
   await page.mouse.up();
-  await expect(page.locator('[data-shelf="2"] .food-tile')).toHaveCount(1);
+  await expect(
+    page.locator('[data-shelf="2"] .food-tile').filter({ hasText: 'Test beans' }),
+  ).toHaveCount(1);
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(tile.locator('.food-label')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
   await page.reload();
-  await expect(page.locator('[data-shelf="2"] .food-tile')).toHaveCount(1);
+  await expect(
+    page.locator('[data-shelf="2"] .food-tile').filter({ hasText: 'Test beans' }),
+  ).toHaveCount(1);
   await tile.click();
   await expect(page.getByRole('dialog')).toBeVisible();
 });
@@ -81,7 +85,7 @@ test('touch dragging works and a cancelled gesture does not move food', async ({
 }) => {
   await page.goto('/');
   await addBeans(page);
-  const tile = page.getByRole('button', { name: 'Black beans, 1 item', exact: true });
+  const tile = page.getByRole('button', { name: 'Test beans, 1 item', exact: true });
   const source = await tile.boundingBox();
   const destination = await page.locator('[data-shelf="1"]').boundingBox();
   if (!source || !destination) throw new Error('Missing touch target');
@@ -91,10 +95,14 @@ test('touch dragging works and a cancelled gesture does not move food', async ({
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [point] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [end] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
-  await expect(page.locator('[data-shelf="0"] .food-tile')).toHaveCount(1);
+  await expect(
+    page.locator('[data-shelf="0"] .food-tile').filter({ hasText: 'Test beans' }),
+  ).toHaveCount(1);
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [point] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [end] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
-  await expect(page.locator('[data-shelf="1"] .food-tile')).toHaveCount(1);
+  await expect(
+    page.locator('[data-shelf="1"] .food-tile').filter({ hasText: 'Test beans' }),
+  ).toHaveCount(1);
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });

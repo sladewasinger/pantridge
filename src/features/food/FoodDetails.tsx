@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Minus, Plus, ShoppingBasket } from 'lucide-react';
+import { Minus, Plus, ShoppingBasket, Trash2 } from 'lucide-react';
 import { dispatch, useKitchen } from '../../data/store';
 import type { Food, Stock } from '../../domain/model';
 import { countFood, units } from '../../domain/selectors';
@@ -127,6 +127,21 @@ export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () =
           }}
         />
       )}
+      {editing && (
+        <button
+          className="text-button danger full"
+          disabled={busy}
+          onClick={() =>
+            void run(async () => {
+              await dispatch({ type: 'food.remove', foodId });
+              onClose();
+            })
+          }
+        >
+          <Trash2 size={16} />
+          Delete food
+        </button>
+      )}
       {error && (
         <p className="error" role="alert">
           {error}
@@ -146,7 +161,10 @@ function EditFood({ food, onSave }: { food: Food; onSave: (food: Food) => Promis
         void run(() => onSave(draft));
       }}
     >
-      <FoodFields food={draft} onChange={setDraft} identity={false} />
+      <FoodFields food={draft} onChange={setDraft} />
+      {draft.unit !== food.unit && (
+        <p className="muted">Counts stay the same; only the unit changes.</p>
+      )}
       <button className="secondary full" disabled={busy}>
         Save changes
       </button>

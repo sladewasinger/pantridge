@@ -7,6 +7,7 @@ import { App } from './app/App';
 import { initializeNavigation } from './app/history';
 import './styles/base.css';
 import './styles/kitchen.css';
+import './styles/doors.css';
 import './styles/forms.css';
 import './styles/shopping.css';
 

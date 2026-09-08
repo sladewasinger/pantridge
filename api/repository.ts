@@ -3,6 +3,7 @@ import { DynamoDBDocumentClient, GetCommand, TransactWriteCommand } from '@aws-s
 import { emptySnapshot, envelopeSchema, type Envelope } from '../src/domain/model';
 import type { Mutation } from '../src/domain/commands';
 import { reduceChecked } from '../src/domain/reducer';
+import { starterMutationId } from '../src/domain/starter';
 
 const client = DynamoDBDocumentClient.from(new DynamoDBClient({}), {
   marshallOptions: { removeUndefinedValues: true },
@@ -13,13 +14,22 @@ function table(): string {
   return name;
 }
 const key = (owner: string, sk = 'kitchen') => ({ pk: `user#${owner}`, sk });
-export async function read(owner: string): Promise<Envelope> {
+async function readStored(owner: string): Promise<Envelope> {
   const response = await client.send(
     new GetCommand({ TableName: table(), Key: key(owner), ConsistentRead: true }),
   );
   return response.Item
     ? envelopeSchema.parse(response.Item)
     : { revision: 0, data: emptySnapshot() };
+}
+export async function read(owner: string): Promise<Envelope> {
+  const current = await readStored(owner);
+  return current.data.starterVersion
+    ? current
+    : mutate(owner, {
+        id: starterMutationId,
+        command: { type: 'kitchen.initialize' },
+      });
 }
 async function wasApplied(owner: string, mutationId: string): Promise<boolean> {
   const result = await client.send(
@@ -33,8 +43,8 @@ async function wasApplied(owner: string, mutationId: string): Promise<boolean> {
 }
 export async function mutate(owner: string, mutation: Mutation): Promise<Envelope> {
   for (let attempt = 0; attempt < 5; attempt++) {
-    if (await wasApplied(owner, mutation.id)) return read(owner);
-    const current = await read(owner);
+    if (await wasApplied(owner, mutation.id)) return readStored(owner);
+    const current = await readStored(owner);
     const next = {
       revision: current.revision + 1,
       data: reduceChecked(current.data, mutation.command),

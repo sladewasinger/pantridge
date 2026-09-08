@@ -67,7 +67,7 @@ function PutAwayItem({ item, count }: { item: ShoppingItem; count: number }) {
         </p>
       )}
       <button className="primary full" disabled={busy}>
-        Put in {food.location}
+        Put in {food.frozen ? 'freezer' : food.location}
       </button>
       <button
         className="text-button full"

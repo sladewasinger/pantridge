@@ -17,7 +17,9 @@ Use `develop` for local development and merge tested changes into `main` for Git
 - Keep generic food identities separate from stock lots and shopping entries.
 - Zero stock hides a food from shelves while preserving search and shopping history.
 - One-time shopping entries need no permanent food identity.
-- Frozen food appears within the fridge. Shelf names are fixed.
+- The top green door opens a separate freezer page with icicles; the bottom opens the fridge. Preserve the existing frozen flag in storage for compatibility. Shelf names are fixed.
+- Empty new kitchens start with one package each of eggs, milk, butter, black beans, rice, and pasta. Initialization happens once; deleted defaults must never reappear. Existing nonempty kitchens are preserved.
+- Food units and artwork are editable. Unit edits retain numeric quantities and update linked shopping labels. Deleting food removes its inventory and leaves linked groceries as one-time shopping entries.
 - Walmart receipt import, commonly used shelves, automatic restocking, and bulk management are future features. Do not silently expand scope into them.
 
 ## Implementation and checks

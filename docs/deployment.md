@@ -59,7 +59,7 @@ Use the same AWS account/profile for Terraform and the AWS CLI. `pnpm deploy` re
 pnpm deploy
 ```
 
-Set `AWS_PROFILE` for the CLI when using a named profile. `TERRAFORM_BIN` can select a Terraform executable outside PATH. The deploy script intentionally stops if Terraform outputs are absent. API code changes require `pnpm build` followed by another reviewed Terraform plan/apply; frontend-only publishing does not update Lambda.
+Set `AWS_PROFILE` for the CLI when using a named profile. `TERRAFORM_BIN` can select a Terraform executable outside PATH. The deploy script stops if neither Terraform outputs nor an explicit deployment configuration is available. Routine frontend and Lambda code deployments now run through the [main-branch GitHub workflow](github-deployment.md). Terraform remains manual for infrastructure changes. Local `pnpm deploy` publishes only the frontend unless `--api` is passed with packaged application functions.
 
 ## Enable the initial sign-in adapter
 

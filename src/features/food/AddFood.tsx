@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { dispatchMany } from '../../data/store';
 import { newFood } from '../../domain/selectors';
-import type { Location } from '../../domain/model';
+import type { StoragePage } from '../../app/navigation';
 import { Modal } from '../../ui/Modal';
 import { Quantity } from '../../ui/Quantity';
 import { useAction } from '../../ui/useAction';
 import { FoodFields } from './FoodFields';
-export function AddFood({ location, onClose }: { location: Location; onClose: () => void }) {
-  const [food, setFood] = useState(() => ({ ...newFood(), location }));
+export function AddFood({ location, onClose }: { location: StoragePage; onClose: () => void }) {
+  const [food, setFood] = useState(() => ({
+    ...newFood(),
+    location: location === 'freezer' ? ('fridge' as const) : location,
+    frozen: location === 'freezer',
+  }));
   const [quantity, setQuantity] = useState(1);
   const [expires, setExpires] = useState('');
   const { run, busy, error } = useAction();
@@ -45,7 +49,7 @@ export function AddFood({ location, onClose }: { location: Location; onClose: ()
           </p>
         )}
         <button className="primary full" disabled={busy}>
-          Add to {food.location}
+          Add to {food.frozen ? 'freezer' : food.location}
         </button>
       </form>
     </Modal>

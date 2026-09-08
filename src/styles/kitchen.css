@@ -30,7 +30,7 @@
   height: 100%;
   display: block;
 }
-.fridge-button {
+.fridge-appliance {
   left: 9%;
   width: 37%;
 }
@@ -57,7 +57,7 @@
   margin-top: 4px;
 }
 .interior {
-  overflow: clip;
+  overflow: visible;
   margin: 6px 20px 20px;
   border: 9px solid #faf9ed;
   outline: 1px solid #c9cebe;
@@ -65,29 +65,12 @@
   background: #e3e6d9;
   box-shadow: inset 0 5px 14px #64705c26;
   position: relative;
-  perspective: 900px;
   animation: approach 230ms ease-out;
 }
 .interior.pantry {
   background: #eedbb7;
   border-color: #bf8d5b;
   outline-color: #966b45;
-}
-.freezer-tab {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 13px;
-  background: #d9dfd2;
-  border-bottom: 5px solid #c4cebd;
-  border-radius: 10px 10px 0 0;
-  font-size: 12px;
-  min-height: 48px;
-}
-.freezer-tab[aria-pressed='true'] {
-  background: #cddedc;
 }
 .shelf {
   display: grid;
@@ -163,69 +146,6 @@
     italic 15px Georgia,
     serif;
 }
-.swing-door {
-  position: absolute;
-  inset: -3px;
-  border-radius: 13px;
-  background: linear-gradient(110deg, #9cae8e, #78936f);
-  border: 3px solid #637c5a;
-  transform-origin: left center;
-  backface-visibility: hidden;
-  z-index: 3;
-  pointer-events: none;
-  animation: door-open 380ms cubic-bezier(0.2, 0.7, 0.2, 1) 80ms forwards;
-}
-.swing-door::after {
-  content: '';
-  position: absolute;
-  right: 17px;
-  top: 35%;
-  height: 68px;
-  width: 7px;
-  background: #f1deab;
-  border-radius: 5px;
-}
-.fridge .swing-door {
-  transform-origin: right center;
-  animation-name: door-open-right;
-}
-.fridge .swing-door::after {
-  left: 17px;
-  right: auto;
-}
-.pantry .swing-door {
-  background: #cda16b;
-  border-color: #a77545;
-  border-radius: 3px;
-}
-.pantry .door-left {
-  right: 50%;
-}
-.pantry .door-right {
-  left: 50%;
-  transform-origin: right center;
-  animation-name: door-open-right;
-}
-.pantry .swing-door::before {
-  content: '';
-  position: absolute;
-  inset: 13px 12px;
-  border: 2px solid #bb8b55;
-  background: #d8b17c;
-  box-shadow: inset 3px 2px #c99d65;
-}
-.pantry .swing-door::after {
-  right: 9px;
-  top: 47%;
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  background: #614c35;
-}
-.pantry .door-right::after {
-  right: auto;
-  left: 9px;
-}
 .search-results {
   padding: 4px 22px 24px;
 }
@@ -262,17 +182,5 @@
   to {
     transform: scale(1);
     opacity: 1;
-  }
-}
-@keyframes door-open {
-  to {
-    transform: rotateY(-112deg);
-    opacity: 0;
-  }
-}
-@keyframes door-open-right {
-  to {
-    transform: rotateY(112deg);
-    opacity: 0;
   }
 }

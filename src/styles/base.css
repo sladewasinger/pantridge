@@ -58,6 +58,7 @@ h3 {
   font-weight: 500;
 }
 .app-shell {
+  overflow: clip;
   max-width: 480px;
   margin: 0 auto;
   background: var(--paper);

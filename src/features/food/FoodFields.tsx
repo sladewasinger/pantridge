@@ -1,13 +1,15 @@
 import { artSchema, unitSchema, type Food } from '../../domain/model';
 const artNames = {
   eggs: 'Egg carton',
-  milk: 'Milk bottle',
+  milk: 'Milk carton',
   greens: 'Leafy greens',
   yogurt: 'Yogurt cup',
   can: 'Can',
   pasta: 'Pasta box',
   oats: 'Oats tub',
   generic: 'Grocery bag',
+  butter: 'Butter',
+  rice: 'Rice bag',
 };
 export function FoodFields({
   food,
@@ -63,13 +65,17 @@ export function FoodFields({
         <label>
           Keep in
           <select
-            value={food.location}
+            value={food.frozen ? 'freezer' : food.location}
             onChange={(e) =>
-              patch({ location: e.target.value === 'fridge' ? 'fridge' : 'pantry', frozen: false })
+              patch({
+                location: e.target.value === 'pantry' ? 'pantry' : 'fridge',
+                frozen: e.target.value === 'freezer',
+              })
             }
           >
             <option value="pantry">Pantry</option>
             <option value="fridge">Fridge</option>
+            <option value="freezer">Freezer</option>
           </select>
         </label>
         <label>
@@ -81,16 +87,6 @@ export function FoodFields({
           </select>
         </label>
       </div>
-      {food.location === 'fridge' && (
-        <label className="check-label">
-          <input
-            type="checkbox"
-            checked={food.frozen}
-            onChange={(e) => patch({ frozen: e.target.checked })}
-          />
-          Frozen
-        </label>
-      )}
       <details>
         <summary>Brand & package details</summary>
         <label>
