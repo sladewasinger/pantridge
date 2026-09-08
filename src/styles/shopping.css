@@ -1,0 +1,108 @@
+.shopping-list {
+  padding: 4px 23px 25px;
+  min-height: 420px;
+}
+.shop-row {
+  display: grid;
+  grid-template-columns: 23px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+  padding: 17px 0;
+  border-bottom: 1px solid #ddd8c9;
+}
+.shop-row > input {
+  width: 23px;
+  height: 23px;
+  accent-color: var(--green);
+  margin: 0;
+  cursor: pointer;
+}
+.shop-info {
+  min-width: 0;
+  text-align: left;
+  background: transparent;
+  padding: 5px 0;
+  min-height: 56px;
+}
+.shop-name {
+  display: block;
+  font-size: 17px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.home-stock {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 9px;
+  color: #66715f;
+  font-size: 12px;
+  line-height: 1.2;
+}
+.buy-quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 10px;
+  align-self: start;
+  margin-top: 5px;
+  background: #e1e9d7;
+  color: #365638;
+  border-radius: 12px;
+  font-size: 23px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.buy-quantity svg {
+  align-self: flex-end;
+  margin-bottom: 3px;
+}
+.purchased .shop-name {
+  text-decoration: line-through;
+  color: #6e7767;
+}
+.purchased .buy-quantity {
+  background: #eeece1;
+  color: #6e7767;
+}
+.put-away {
+  margin-top: 27px;
+}
+.count-pill {
+  display: grid;
+  place-items: center;
+  min-width: 25px;
+  min-height: 25px;
+  border-radius: 7px;
+  background: #ffffff26;
+  font-size: 13px;
+}
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -2px 0 20px;
+}
+.suggestions button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 44px;
+  padding: 5px 9px;
+  border: 1px solid #dcd7c4;
+  border-radius: 10px;
+  background: #f7f1e1;
+  font-size: 12px;
+}
+.suggestions img {
+  width: 26px;
+  height: 26px;
+}
+.linked-note {
+  color: #527349;
+  font-size: 12px;
+  margin-bottom: 20px;
+}

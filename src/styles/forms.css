@@ -1,0 +1,176 @@
+.sheet {
+  border: 1px solid #d8d1bf;
+  border-radius: 24px 24px 0 0;
+  width: min(100%, 480px);
+  max-width: 100%;
+  max-height: 90dvh;
+  padding: 24px 24px max(24px, env(safe-area-inset-bottom));
+  position: fixed;
+  margin: auto auto 0;
+  color: var(--ink);
+  background: #fffaf0;
+  overscroll-behavior: contain;
+  box-shadow: 0 -14px 70px #263a3233;
+}
+.sheet::backdrop {
+  background: #283c3145;
+  backdrop-filter: blur(2px);
+}
+.sheet-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.sheet-heading h2 {
+  font-size: 27px;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.sheet label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.sheet label > input,
+.sheet select {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  margin-top: 8px;
+  padding: 11px 12px;
+  border: 1px solid #cecdbd;
+  background: #f9f3e5;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.primary,
+.secondary,
+.text-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 13px 17px;
+  border-radius: 12px;
+  font-size: 15px;
+}
+.primary {
+  background: var(--green);
+  color: #fffdf4;
+}
+.secondary {
+  background: #e7ebdc;
+  color: #38533d;
+}
+.text-button {
+  background: transparent;
+  color: #4b684d;
+}
+.full {
+  width: 100%;
+  margin-top: 12px;
+}
+.danger {
+  color: #9b3c32;
+}
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px 0 24px;
+}
+.quantity-control input {
+  width: 85px;
+  background: transparent;
+  border: 1px solid #d8d4c5;
+  text-align: center;
+  padding: 10px 4px;
+  border-radius: 9px;
+  font-size: 20px;
+}
+.optional {
+  color: #687460;
+  font-size: 11px;
+  margin-left: 6px;
+}
+.sheet .check-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+}
+.sheet .check-label input {
+  width: 22px;
+  min-height: 22px;
+  margin: 0;
+  accent-color: var(--green);
+}
+details {
+  margin: 8px 0 20px;
+}
+summary {
+  cursor: pointer;
+  padding: 12px 0;
+  font-size: 14px;
+  color: #5c7057;
+}
+.food-overview {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 22px;
+}
+.food-overview img {
+  width: 80px;
+  height: 80px;
+}
+.food-overview span {
+  font-size: 21px;
+}
+.food-overview small {
+  display: block;
+  font-size: 12px;
+  color: #66715d;
+  margin-top: 6px;
+}
+.lot {
+  border-top: 1px solid #ded8c9;
+  padding: 18px 0 6px;
+}
+.lot-quantity {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.lot-quantity span {
+  font-size: 18px;
+}
+.settings-section {
+  margin-bottom: 24px;
+}
+.settings-section h3 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+.file-label {
+  margin-top: 20px;
+}
+.file-label input {
+  font-size: 12px !important;
+}
+@media (min-width: 600px) {
+  .sheet {
+    margin: auto;
+    border-radius: 24px;
+  }
+}

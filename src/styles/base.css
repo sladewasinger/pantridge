@@ -1,0 +1,258 @@
+:root {
+  font-family: 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+  color: #283c31;
+  background: #e9e6dc;
+  font-synthesis: none;
+  --paper: #f7f2e6;
+  --ink: #283c31;
+  --green: #547258;
+  --wood: #b98252;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+button,
+a,
+input,
+select,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+:focus-visible {
+  outline: 3px solid #456849;
+  outline-offset: 3px;
+}
+button {
+  border: 0;
+}
+svg {
+  flex-shrink: 0;
+}
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+h1,
+h2,
+h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+}
+.app-shell {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--paper);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.app-header {
+  padding: max(14px, env(safe-area-inset-top)) 23px 14px;
+}
+.brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #626e5b;
+}
+.icon-button {
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border-radius: 50%;
+}
+.title-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 19px;
+}
+h1 {
+  font-size: 34px;
+  line-height: 1.15;
+  flex: 1;
+  margin: 0;
+}
+.round {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #d6d5c5;
+  border-radius: 50%;
+  background: #fffaf0;
+  flex-shrink: 0;
+  padding: 0;
+}
+.round svg {
+  width: 20px;
+  height: 20px;
+}
+.add-button {
+  background: var(--green);
+  color: #fffdf4;
+  border-color: var(--green);
+}
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fffaf0;
+  border: 1px solid #d7d5c7;
+  border-radius: 14px;
+  padding: 0 13px;
+}
+.search-field input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 14px 0;
+  font-size: 16px;
+}
+main {
+  flex: 1;
+}
+.bottom-nav {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  gap: 12px;
+  padding: 10px 22px max(12px, env(safe-area-inset-bottom));
+  background: #fcf8ed;
+  border-top: 1px solid #d8d5c5;
+  z-index: 4;
+}
+.bottom-nav button {
+  flex: 1;
+  min-height: 49px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: transparent;
+  border-radius: 13px;
+  font-size: 14px;
+}
+.bottom-nav button[aria-current] {
+  background: #e5ebd9;
+  color: #38563e;
+}
+.sync-indicator {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 10px;
+  font-size: 11px;
+  color: #5f6c58;
+  background: transparent;
+}
+.muted {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #606b59;
+}
+.error {
+  color: #a1322f;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.empty-state {
+  padding: 55px 12px;
+  text-align: center;
+  color: #64715b;
+}
+.empty-state h2 {
+  font-size: 28px;
+  margin: 17px 0 10px;
+  color: var(--ink);
+}
+.empty-state p {
+  line-height: 1.6;
+  font-size: 14px;
+}
+.loading,
+.startup-error {
+  padding: 50px 24px;
+  max-width: 480px;
+  margin: auto;
+}
+.startup-error h1 {
+  margin-bottom: 24px;
+}
+.update-notice {
+  position: sticky;
+  bottom: 80px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #e5ebd9;
+  padding: 12px 20px;
+  font-size: 13px;
+}
+.update-notice button {
+  padding: 8px;
+  border-radius: 8px;
+  background: #fffaf0;
+  min-height: 44px;
+}
+@media (min-width: 600px) {
+  .app-shell {
+    margin: 30px auto;
+    min-height: calc(100dvh - 60px);
+    border: 1px solid #d8d0bf;
+    border-radius: 26px;
+    overflow: clip;
+    box-shadow: 0 12px 50px #46503c0c;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

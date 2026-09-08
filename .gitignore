@@ -1,0 +1,16 @@
+node_modules/
+.pnpm-store/
+dist/
+coverage/
+playwright-report/
+test-results/
+.env*
+!.env.example
+*.tsbuildinfo
+.terraform/
+*.tfstate*
+*.tfplan
+*.tfvars
+!*.tfvars.example
+.tools/
+artifacts/

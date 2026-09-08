@@ -1,0 +1,9 @@
+region              = "us-west-2"
+aws_profile         = "your-profile"
+# aws_account_id    = "123456789012"
+environment         = "personal"
+# Optional: omit domain_name to use the CloudFront hostname.
+# domain_name       = "pantridge.example.com"
+# For Namecheap/external DNS, leave route53_zone_id unset.
+# For Route53-managed DNS, set the existing public zone:
+# route53_zone_id   = "Z0123456789EXAMPLE"

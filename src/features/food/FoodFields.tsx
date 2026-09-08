@@ -1,0 +1,116 @@
+import { artSchema, unitSchema, type Food } from '../../domain/model';
+const artNames = {
+  eggs: 'Egg carton',
+  milk: 'Milk bottle',
+  greens: 'Leafy greens',
+  yogurt: 'Yogurt cup',
+  can: 'Can',
+  pasta: 'Pasta box',
+  oats: 'Oats tub',
+  generic: 'Grocery bag',
+};
+export function FoodFields({
+  food,
+  onChange,
+  identity = true,
+}: {
+  food: Food;
+  onChange: (food: Food) => void;
+  identity?: boolean;
+}) {
+  const patch = (value: Partial<Food>) => onChange({ ...food, ...value });
+  return (
+    <>
+      <label>
+        Food name
+        <input
+          required
+          maxLength={80}
+          value={food.name}
+          onChange={(e) => patch({ name: e.target.value })}
+          placeholder="e.g. Black beans"
+        />
+      </label>
+      {identity && (
+        <div className="form-grid">
+          <label>
+            Unit
+            <select
+              value={food.unit}
+              onChange={(e) => patch({ unit: unitSchema.parse(e.target.value) })}
+            >
+              {unitSchema.options.map((unit) => (
+                <option key={unit}>{unit}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Illustration
+            <select
+              value={food.art}
+              onChange={(e) => patch({ art: artSchema.parse(e.target.value) })}
+            >
+              {artSchema.options.map((art) => (
+                <option key={art} value={art}>
+                  {artNames[art]}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+      )}
+      <div className="form-grid">
+        <label>
+          Keep in
+          <select
+            value={food.location}
+            onChange={(e) =>
+              patch({ location: e.target.value === 'fridge' ? 'fridge' : 'pantry', frozen: false })
+            }
+          >
+            <option value="pantry">Pantry</option>
+            <option value="fridge">Fridge</option>
+          </select>
+        </label>
+        <label>
+          Shelf
+          <select value={food.shelf} onChange={(e) => patch({ shelf: Number(e.target.value) })}>
+            <option value={0}>Top shelf</option>
+            <option value={1}>Middle shelf</option>
+            <option value={2}>Bottom shelf</option>
+          </select>
+        </label>
+      </div>
+      {food.location === 'fridge' && (
+        <label className="check-label">
+          <input
+            type="checkbox"
+            checked={food.frozen}
+            onChange={(e) => patch({ frozen: e.target.checked })}
+          />
+          Frozen
+        </label>
+      )}
+      <details>
+        <summary>Brand & package details</summary>
+        <label>
+          Brand
+          <input
+            maxLength={80}
+            value={food.brand}
+            onChange={(e) => patch({ brand: e.target.value })}
+          />
+        </label>
+        <label>
+          Package size
+          <input
+            maxLength={80}
+            value={food.packageSize}
+            onChange={(e) => patch({ packageSize: e.target.value })}
+            placeholder="e.g. 12-count"
+          />
+        </label>
+      </details>
+    </>
+  );
+}
