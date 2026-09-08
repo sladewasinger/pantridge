@@ -31,9 +31,11 @@ test('shopping search, progress, and large check targets work offline', async ({
   await page.getByRole('button', { name: 'Add your first item' }).click();
   await page.getByLabel('Item name').fill('Eggs');
   await page.getByRole('button', { name: 'Add to list', exact: true }).click();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
   await page.getByRole('button', { name: 'Add shopping item' }).click();
   await page.getByLabel('Item name').fill('Apples');
   await page.getByRole('button', { name: 'Add to list', exact: true }).click();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
   await page.evaluate(async () => {
     await navigator.serviceWorker.ready;
   });
