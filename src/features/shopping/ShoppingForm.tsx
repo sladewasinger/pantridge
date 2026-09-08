@@ -8,9 +8,16 @@ import { useAction } from '../../ui/useAction';
 
 export function ShoppingForm({ item, onClose }: { item?: ShoppingItem; onClose: () => void }) {
   const { data } = useKitchen();
+  const current = item ? data.shopping.find((entry) => entry.id === item.id) : undefined;
   const [draft, setDraft] = useState<ShoppingItem>(
     () =>
-      item ?? { id: crypto.randomUUID(), name: '', unit: 'items', quantity: 1, purchased: false },
+      current ?? {
+        id: crypto.randomUUID(),
+        name: '',
+        unit: 'items',
+        quantity: 1,
+        purchased: false,
+      },
   );
   const { run, busy, error } = useAction();
   const suggestions = data.foods
@@ -30,6 +37,8 @@ export function ShoppingForm({ item, onClose }: { item?: ShoppingItem; onClose: 
         onSubmit={(e) => {
           e.preventDefault();
           void run(async () => {
+            if (item && !current)
+              throw new Error('This item was removed. Close this sheet to continue.');
             await dispatch({ type: 'shopping.save', item: draft });
             onClose();
           });

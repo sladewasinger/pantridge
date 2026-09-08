@@ -6,11 +6,20 @@ import { Modal } from '../../ui/Modal';
 import { Quantity } from '../../ui/Quantity';
 import { useAction } from '../../ui/useAction';
 import { FoodFields } from './FoodFields';
-export function AddFood({ location, onClose }: { location: StoragePage; onClose: () => void }) {
+export function AddFood({
+  location,
+  shelf = 0,
+  onClose,
+}: {
+  location: StoragePage;
+  shelf?: number;
+  onClose: () => void;
+}) {
   const [food, setFood] = useState(() => ({
     ...newFood(),
     location: location === 'freezer' ? ('fridge' as const) : location,
     frozen: location === 'freezer',
+    shelf,
   }));
   const [quantity, setQuantity] = useState(1);
   const [expires, setExpires] = useState('');

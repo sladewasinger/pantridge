@@ -4,7 +4,7 @@ async function addEggs(page: Page) {
   await page.getByRole('button', { name: 'Add food', exact: true }).click();
   await page.getByLabel('Food name').fill('Test eggs');
   await page.getByRole('combobox', { name: 'Unit', exact: true }).selectOption('cartons');
-  await page.getByRole('combobox', { name: 'Illustration', exact: true }).selectOption('eggs');
+  await page.getByRole('button', { name: 'Use Egg carton artwork', exact: true }).click();
   await page.getByRole('combobox', { name: 'Keep in', exact: true }).selectOption('fridge');
   await page.getByRole('spinbutton', { name: 'Quantity', exact: true }).fill('2');
   await page.getByRole('button', { name: 'Add to fridge', exact: true }).click();

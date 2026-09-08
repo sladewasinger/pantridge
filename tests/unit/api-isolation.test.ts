@@ -39,3 +39,15 @@ it('never accesses persistence without an authenticated subject', async () => {
   expect(read).not.toHaveBeenCalled();
   expect(mutate).not.toHaveBeenCalled();
 });
+it('rejects oversized and malformed authenticated mutations before persistence', async () => {
+  const event = request('account-one', 'POST /v1/mutations');
+  event.body = 'x'.repeat(16_385);
+  expect((await handler(event)).statusCode).toBe(413);
+  event.body = Buffer.from(event.body).toString('base64');
+  event.isBase64Encoded = true;
+  expect((await handler(event)).statusCode).toBe(413);
+  event.isBase64Encoded = false;
+  event.body = '{invalid';
+  expect((await handler(event)).statusCode).toBe(400);
+  expect(mutate).not.toHaveBeenCalled();
+});

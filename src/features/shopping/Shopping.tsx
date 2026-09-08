@@ -1,71 +1,64 @@
-import { Home, Pencil, ShoppingBasket } from 'lucide-react';
 import { dispatch, useKitchen } from '../../data/store';
 import type { ShoppingItem } from '../../domain/model';
-import { countFood, units } from '../../domain/selectors';
+import { countFood } from '../../domain/selectors';
 import { useAction } from '../../ui/useAction';
+import { ShoppingRow } from './ShoppingRow';
 
 export function Shopping({
+  query,
+  onAdd,
   onEdit,
   onPutAway,
 }: {
+  query: string;
+  onAdd: () => void;
   onEdit: (item: ShoppingItem) => void;
   onPutAway: () => void;
 }) {
   const { data } = useKitchen();
   const { run, error, busy } = useAction();
   const purchased = data.shopping.filter((item) => item.purchased).length;
+  const remaining = data.shopping.length - purchased;
+  const matches = data.shopping
+    .filter((item) => item.name.toLowerCase().includes(query.trim().toLowerCase()))
+    .toSorted((a, b) => Number(a.purchased) - Number(b.purchased));
   return (
     <div className="shopping-list">
-      {!data.shopping.length && (
+      {!data.shopping.length ? (
         <div className="empty-state">
-          <ShoppingBasket size={38} strokeWidth={1.3} />
+          <img className="empty-art" src="/art/shopping.svg" alt="" />
           <h2>A fresh list</h2>
-          <p>Add your next grocery run with the + button.</p>
+          <button className="secondary" onClick={onAdd}>
+            Add your first item
+          </button>
+        </div>
+      ) : (
+        <div className="shopping-progress">
+          <span>{remaining ? `${remaining} to get` : 'Ready to put away'}</span>
+          <span>
+            {purchased} / {data.shopping.length}
+          </span>
+          <progress aria-label="Shopping completed" max={data.shopping.length} value={purchased} />
         </div>
       )}
-      {data.shopping.map((item) => (
-        <div className={`shop-row ${item.purchased ? 'purchased' : ''}`} key={item.id}>
-          <input
-            type="checkbox"
-            aria-label={`Mark ${item.name} purchased`}
-            checked={item.purchased}
-            disabled={busy}
-            onChange={(e) =>
-              void run(() =>
-                dispatch({
-                  type: 'shopping.purchase',
-                  itemId: item.id,
-                  purchased: e.target.checked,
-                }),
-              )
-            }
-          />
-          <button
-            className="shop-info"
-            onClick={() => onEdit(item)}
-            aria-label={`Edit ${item.name}`}
-          >
-            <span className="shop-name">{item.name}</span>
-            {item.foodId ? (
-              <span className="home-stock">
-                <Home size={14} />
-                <span className="sr-only">At home: </span>
-                {units(countFood(data, item.foodId), item.unit)}
-              </span>
-            ) : (
-              <span className="home-stock">One-time item</span>
-            )}
-          </button>
-          <button
-            className="buy-quantity"
-            onClick={() => onEdit(item)}
-            aria-label={`Buy ${units(item.quantity, item.unit)} of ${item.name}`}
-          >
-            <span>{item.quantity}</span>
-            <Pencil size={10} aria-hidden="true" />
-          </button>
-        </div>
+      {matches.map((item) => (
+        <ShoppingRow
+          key={item.id}
+          item={item}
+          busy={busy}
+          food={data.foods.find((food) => food.id === item.foodId)}
+          have={item.foodId ? countFood(data, item.foodId) : 0}
+          onEdit={onEdit}
+          onPurchase={(checked) =>
+            void run(() =>
+              dispatch({ type: 'shopping.purchase', itemId: item.id, purchased: checked }),
+            )
+          }
+        />
       ))}
+      {!!data.shopping.length && !matches.length && (
+        <p className="empty-message">No matching items.</p>
+      )}
       {purchased > 0 && (
         <button className="primary full put-away" onClick={onPutAway}>
           Put groceries away <span className="count-pill">{purchased}</span>

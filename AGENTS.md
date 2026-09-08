@@ -26,6 +26,8 @@ Use `develop` for local development and merge tested changes into `main` for Git
 
 Keep domain transitions pure and shared with the API. UI modules must not import server code. Keep the persistent outbox and snapshot transactional; retry mutation IDs unchanged. Preserve unacknowledged edits during sync and never replace a newer local revision with an older server response.
 
+Bind tokens to the active kitchen subject before and after refresh. Validate snapshot ID uniqueness and food references. Put-away must update placement, stock and shopping atomically. Preserve visual artwork selection, 44px shopping check targets, deletion Undo, and quantity fields that can be cleared before typing. Pin third-party GitHub Actions to verified commits.
+
 Use small feature folders and the existing validation limits. Do not disable complexity, nesting, file-size, or folder-count checks to fit a change; extract a cohesive module instead. Keep test exceptions limited to test files.
 
 Run `pnpm check`. For changes to persistence, shopping, animation, or app navigation, also run `pnpm test:e2e` against the production build. For infrastructure, run Terraform format, validate, and mocked tests. Live AWS integration cannot be claimed from mocked tests.

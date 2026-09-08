@@ -1,4 +1,5 @@
 import { Minus, Plus } from 'lucide-react';
+import { useState } from 'react';
 export function Quantity({
   value,
   onChange,
@@ -12,6 +13,7 @@ export function Quantity({
   max?: number;
   label?: string;
 }) {
+  const [draft, setDraft] = useState<string | null>(null);
   return (
     <div className="quantity-control" role="group" aria-label={label}>
       <button
@@ -25,11 +27,18 @@ export function Quantity({
       </button>
       <input
         type="number"
+        inputMode="numeric"
+        required
         aria-label={label}
         min={min}
         max={max}
-        value={value}
-        onChange={(e) => onChange(Math.min(max, Math.max(min, Number(e.target.value))))}
+        value={draft ?? value}
+        onBlur={() => setDraft(null)}
+        onChange={(e) => {
+          setDraft(e.target.value);
+          const number = e.target.valueAsNumber;
+          if (Number.isInteger(number) && number >= min && number <= max) onChange(number);
+        }}
       />
       <button
         type="button"

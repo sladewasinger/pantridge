@@ -1,6 +1,8 @@
 import type { Food, Snapshot } from '../../domain/model';
 import type { PointerEvent } from 'react';
-import { countFood, dateLabel, foodLots, units } from '../../domain/selectors';
+import { countFood, foodLots, units } from '../../domain/selectors';
+import { expirationBadge } from '../../domain/expiration';
+import { Clock3 } from 'lucide-react';
 export function FoodTile({
   food,
   data,
@@ -14,6 +16,7 @@ export function FoodTile({
 }) {
   const amount = units(countFood(data, food.id), food.unit);
   const expires = foodLots(data, food.id)[0]?.expires;
+  const badge = expires ? expirationBadge(expires) : null;
   return (
     <button
       className="food-tile"
@@ -26,7 +29,12 @@ export function FoodTile({
         {food.name}
         <small>{amount}</small>
       </span>
-      {expires && <span className="expiration">Use by {dateLabel(expires)}</span>}
+      {badge && (
+        <span className={`expiration ${badge.tone}`} aria-label={`Expiration: ${badge.label}`}>
+          <Clock3 size={11} />
+          {badge.label}
+        </span>
+      )}
     </button>
   );
 }

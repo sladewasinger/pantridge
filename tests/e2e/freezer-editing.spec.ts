@@ -46,7 +46,7 @@ test('starter artwork, unit edits, and deletion persist offline', async ({ page,
   await page.getByRole('button', { name: 'Eggs, 1 carton', exact: true }).click();
   await page.getByRole('button', { name: 'Move or edit item' }).click();
   await page.getByRole('combobox', { name: 'Unit', exact: true }).selectOption('items');
-  await page.getByRole('combobox', { name: 'Illustration', exact: true }).selectOption('generic');
+  await page.getByRole('button', { name: 'Use Grocery bag artwork', exact: true }).click();
   await page.getByRole('button', { name: 'Save changes', exact: true }).click();
   await page.getByRole('button', { name: 'Close', exact: true }).click();
   await expect(

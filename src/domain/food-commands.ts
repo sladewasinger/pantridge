@@ -1,5 +1,10 @@
 import type { Food, ShoppingItem, Snapshot } from './model';
 
+export function restoreFood(data: Snapshot, food: Food): Snapshot {
+  if (data.foods.some((item) => item.id === food.id)) throw new Error('Food already exists.');
+  return { ...data, foods: [...data.foods, food] };
+}
+
 export function saveFood(data: Snapshot, food: Food): Snapshot {
   return {
     ...data,
