@@ -70,15 +70,20 @@
 .scan-attribution a {
   color: inherit;
 }
-.scan-unspecified {
+.sheet .scan-unspecified {
   display: flex;
   align-items: center;
   gap: 12px;
   min-height: 44px;
 }
-.scan-unspecified input {
-  width: 22px;
-  height: 22px;
+.sheet .scan-unspecified input {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  min-height: 20px;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--green);
 }
 .package-fields {
   padding: 12px;
