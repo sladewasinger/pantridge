@@ -42,7 +42,8 @@ concurrent uncached scans can receive a retry message. Each account gets 200 onl
 Free rules run first. AI is **disabled by default** (`classifier_provider = "none"`). With
 `"openai"`, ambiguous found products use the configurable model (initial default `gpt-4.1-nano`).
 Only product name, brand and categories are sent, with `store: false`, a strict output schema,
-200 output-token limit and eight-second timeout. Model text has no authority to execute commands.
+configurable output-token limit and eight-second timeout. The limit includes reasoning tokens.
+Model text has no authority to execute commands.
 All results remain editable suggestions. Missing keys, refused/invalid responses, timeouts and
 exhausted AI quotas fall back to rules. Limits are 20 AI attempts/user/day and a configurable
 100 attempts/day across the application, enforced atomically in DynamoDB before a call.
@@ -68,7 +69,8 @@ To enable AI later:
 2. Paste a dedicated provider project API key into its value. Do not paste it into chat, GitHub
    variables, frontend environment files, Terraform variables, or Terraform state.
 3. Set `classifier_provider = "openai"` in the ignored local Terraform settings; optionally set
-   `classifier_model` and `classifier_daily_limit`. Review and apply Terraform manually.
+   `classifier_model`, `classifier_reasoning_effort`, `classifier_max_output_tokens` and
+   `classifier_daily_limit`. Review and apply Terraform manually.
 4. Allow up to five minutes for in-process credential cache rotation. Disabling the provider
    removes secret-read permission at the next apply.
 
@@ -77,6 +79,12 @@ the AWS-managed key avoids a separate Secrets Manager secret or customer-managed
 small feature. There is no promise that the entire AWS app is free.
 
 ## Attribution and limitations
+
+The personal deployment selects `gpt-5.6-luna` with `low` reasoning and a 1,024-token total output
+cap. Deployment selections live in ignored local Terraform settings; reusable defaults remain
+rules-only. Non-reasoning models omit the reasoning parameter. Cache keys include the provider,
+model, reasoning effort and output cap so a setting change does not reuse an older fallback.
+See [Luna model documentation](https://developers.openai.com/api/docs/models/gpt-5.6-luna).
 
 Open Food Facts product data and derived cached classification retain Open Food Facts attribution
 and ODbL licensing. The app links the source on confirmation and product details. The shared

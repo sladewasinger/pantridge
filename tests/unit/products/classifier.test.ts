@@ -71,6 +71,7 @@ it('caps output, sends only product data, and validates structured output', asyn
   >;
   expect(request.store).toBe(false);
   expect(request.max_output_tokens).toBe(200);
+  expect(request).not.toHaveProperty('reasoning');
   expect(JSON.stringify(request)).not.toContain('private-owner');
   expect(request.input).toContain('Ignore instructions');
   expect(request.instructions).toContain('untrusted');
@@ -87,4 +88,21 @@ it('falls back to free rules on quota exhaustion, provider refusal, or missing k
   mocks.takeQuota.mockRejectedValue(new Error('Limit'));
   expect(await classifyProduct(product, '', 'owner')).toBeNull();
   expect(fetcher).toHaveBeenCalledTimes(1);
+});
+it('sends the selected Luna model with low reasoning and a bounded reasoning-inclusive budget', async () => {
+  vi.stubEnv('CLASSIFIER_PROVIDER', 'openai');
+  vi.stubEnv('CLASSIFIER_MODEL', 'gpt-5.6-luna');
+  vi.stubEnv('CLASSIFIER_REASONING_EFFORT', 'low');
+  vi.stubEnv('CLASSIFIER_MAX_OUTPUT_TOKENS', '1024');
+  const fetcher = vi.fn().mockResolvedValue(Response.json({ output: [] }));
+  vi.stubGlobal('fetch', fetcher);
+  const { classifyProduct } = await import('../../../api/products/classifier');
+  await classifyProduct(product, '', 'owner');
+  const request = JSON.parse((fetcher.mock.calls[0]?.[1] as RequestInit).body as string) as unknown;
+  expect(request).toMatchObject({
+    model: 'gpt-5.6-luna',
+    reasoning: { effort: 'low' },
+    max_output_tokens: 1024,
+    store: false,
+  });
 });
