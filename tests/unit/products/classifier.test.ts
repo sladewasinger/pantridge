@@ -51,9 +51,9 @@ it('caps output, sends only product data, and validates structured output', asyn
             {
               type: 'output_text',
               text: JSON.stringify({
-                name: 'Black Beans',
+                name: 'Canned oysters',
                 unit: 'cans',
-                art: 'can',
+                art: 'plain-tin',
                 location: 'pantry',
               }),
             },
@@ -64,7 +64,10 @@ it('caps output, sends only product data, and validates structured output', asyn
   );
   vi.stubGlobal('fetch', fetcher);
   const { classifyProduct } = await import('../../../api/products/classifier');
-  expect((await classifyProduct(product, 'en:beans', 'private-owner'))?.name).toBe('Black Beans');
+  expect(await classifyProduct(product, 'en:canned-seafood', 'private-owner')).toMatchObject({
+    name: 'Canned oysters',
+    art: 'plain-tin',
+  });
   const request = JSON.parse((fetcher.mock.calls[0]?.[1] as RequestInit).body as string) as Record<
     string,
     unknown
@@ -75,6 +78,11 @@ it('caps output, sends only product data, and validates structured output', asyn
   expect(JSON.stringify(request)).not.toContain('private-owner');
   expect(request.input).toContain('Ignore instructions');
   expect(request.instructions).toContain('untrusted');
+  expect(request.instructions).toContain('"id":"plain-tin"');
+  expect(request.instructions).toContain('"label":"Crackers"');
+  expect(request.instructions).toContain('"shape":"box"');
+  expect(request.instructions).toContain('"plain":true');
+  expect(request.instructions).toContain('"id":"frozen-dumplings"');
   expect(mocks.takeQuota).toHaveBeenCalledWith('ai-global', 100);
 });
 it('falls back to free rules on quota exhaustion, provider refusal, or missing key', async () => {

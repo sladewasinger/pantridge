@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { hasValidLinks } from './integrity';
 import { sizeSchema } from './products/size';
 import { productSchema } from './products/barcode';
+import { artIds } from './artwork/catalog';
 
 export const id = z.uuid();
 export const locationSchema = z.enum(['fridge', 'pantry']);
@@ -17,22 +18,7 @@ export const unitSchema = z.enum([
   'tubs',
   'packs',
 ]);
-export const artSchema = z.enum([
-  'eggs',
-  'milk',
-  'greens',
-  'yogurt',
-  'can',
-  'pasta',
-  'oats',
-  'butter',
-  'rice',
-  'generic',
-  'bread',
-  'apple',
-  'carrots',
-  'fish',
-]);
+export const artSchema = z.enum(artIds);
 const label = z.string().trim().min(1).max(80);
 export const dateSchema = z.iso.date();
 export const foodSchema = z.object({

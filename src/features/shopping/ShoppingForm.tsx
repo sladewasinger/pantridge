@@ -1,3 +1,4 @@
+import { artPath } from '../../domain/artwork/catalog';
 import { useState } from 'react';
 import { Trash2 } from 'lucide-react';
 import { dispatch, useKitchen } from '../../data/store';
@@ -75,7 +76,7 @@ export function ShoppingForm({ item, onClose }: { item?: ShoppingItem; onClose: 
                   })
                 }
               >
-                <img src={`/art/${food.art}.svg`} alt="" />
+                <img src={artPath(food.art)} alt="" />
                 {food.name}
                 <small>{packageLabel(food) || 'Unspecified size'}</small>
               </button>

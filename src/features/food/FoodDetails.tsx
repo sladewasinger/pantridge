@@ -1,3 +1,4 @@
+import { artPath } from '../../domain/artwork/catalog';
 import { useState } from 'react';
 import { Minus, Plus, ShoppingBasket, Trash2 } from 'lucide-react';
 import { dispatch, dispatchMany, useKitchen } from '../../data/store';
@@ -21,7 +22,7 @@ export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () =
   return (
     <Modal title={food.name} onClose={onClose}>
       <div className="food-overview">
-        <img src={`/art/${food.art}.svg`} alt="" />
+        <img src={artPath(food.art)} alt="" />
         <span>
           {units(countFood(data, foodId), food.unit)}
           <small>

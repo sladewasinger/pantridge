@@ -16,9 +16,11 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "structure": "node scripts/check-structure.mjs",
+    "artwork:generate": "node scripts/artwork/generate.mjs",
+    "artwork:check": "node scripts/artwork/generate.mjs --check",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "check": "pnpm typecheck && pnpm lint && pnpm structure && pnpm format:check && pnpm test && pnpm build",
+    "check": "pnpm typecheck && pnpm lint && pnpm structure && pnpm artwork:check && pnpm format:check && pnpm test && pnpm build",
     "deploy": "node scripts/deploy.mjs"
   },
   "dependencies": {

@@ -1,3 +1,4 @@
+import { artPath } from '../../domain/artwork/catalog';
 import { useKitchen } from '../../data/store';
 import type { Food } from '../../domain/model';
 import { countFood, units } from '../../domain/selectors';
@@ -33,7 +34,7 @@ export function SearchResults({
           <h2>{foods[0]?.name}</h2>
           {foods.map((food) => (
             <button className="search-result" key={food.id} onClick={() => onSelect(food)}>
-              <img src={`/art/${food.art}.svg`} alt="" />
+              <img src={artPath(food.art)} alt="" />
               <span>
                 {packageLabel(food) || 'Unspecified size'}
                 <small>

@@ -3,7 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 async function addBeans(page: Page) {
   await page.getByRole('button', { name: 'Add food', exact: true }).click();
   await page.getByLabel('Food name').fill('Test beans');
-  await page.getByRole('button', { name: 'Use Can artwork', exact: true }).click();
+  await page.getByRole('button', { name: 'Use Black beans can artwork', exact: true }).click();
   await page.getByRole('button', { name: 'Add to pantry', exact: true }).click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await page.getByRole('button', { name: 'Open pantry', exact: true }).click();
