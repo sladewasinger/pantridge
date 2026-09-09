@@ -81,6 +81,17 @@ test('camera decodes a barcode once and unknown products require an explicit siz
   );
   await signedIn(page);
   await cameraFixture(page);
+  await page.route('http://127.0.0.1:4174/', async (route) => {
+    const response = await route.fetch();
+    await route.fulfill({
+      response,
+      headers: {
+        ...response.headers(),
+        'Content-Security-Policy':
+          "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.pantridge.test; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; worker-src 'self'",
+      },
+    });
+  });
   let lookups = 0;
   await page.route('https://api.pantridge.test/v1/products/resolve', (route) => {
     lookups++;
