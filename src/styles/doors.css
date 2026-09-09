@@ -12,7 +12,7 @@
   inset: 0;
   transform-style: preserve-3d;
   transform-origin: left center;
-  animation: door-open 760ms cubic-bezier(0.4, 0, 0.2, 1) 40ms both;
+  animation: door-open 450ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 .door-right {
   transform-origin: right center;

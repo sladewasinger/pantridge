@@ -7,13 +7,16 @@ test('hinged doors project in 3D without expanding the viewport and honor reduce
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
   await page.getByRole('button', { name: 'Open fridge', exact: true }).click();
+  await expect(page.locator('.swing-door')).toHaveCSS('animation-duration', '0.45s');
+  await expect(page.locator('.swing-door')).toHaveCSS('animation-delay', '0s');
   await page
     .locator('.interior')
     .evaluate((element) => element.getAnimations().forEach((animation) => animation.finish()));
   const geometry = await page.locator('.swing-door').evaluate((door) => {
     for (const animation of door.getAnimations()) {
       animation.pause();
-      animation.currentTime = 370;
+      const timing = animation.effect!.getTiming();
+      animation.currentTime = Number(timing.delay) + Number(timing.duration) * 0.44;
     }
     const rect = door.getBoundingClientRect();
     return {

@@ -115,6 +115,25 @@ test('camera decodes a barcode once and unknown products require an explicit siz
   await page.getByLabel('Food name').fill('Mystery beans');
   await page.getByRole('button', { name: 'Add to pantry', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('Enter a size');
+  const sizeOption = page.locator('.scan-unspecified');
+  await sizeOption.scrollIntoViewIfNeeded();
+  const layout = await sizeOption.evaluate((label) => {
+    const input = label.querySelector('input')!.getBoundingClientRect();
+    const row = label.getBoundingClientRect();
+    return {
+      width: input.width,
+      height: input.height,
+      targetHeight: row.height,
+      centerOffset: Math.abs(input.y + input.height / 2 - (row.y + row.height / 2)),
+      display: getComputedStyle(label).display,
+    };
+  });
+  expect(layout.width).toBe(20);
+  expect(layout.height).toBe(20);
+  expect(layout.targetHeight).toBeGreaterThanOrEqual(44);
+  expect(layout.centerOffset).toBeLessThan(1);
+  expect(layout.display).toBe('flex');
+  await page.screenshot({ path: 'artifacts/scanner-size-checkbox.png' });
   await page.getByRole('checkbox', { name: 'Unspecified size' }).check();
   await page.getByRole('button', { name: 'Add to pantry', exact: true }).click();
   await expect(page.getByLabel('Barcode', { exact: true })).toBeVisible();
