@@ -3,9 +3,8 @@ import type { StoragePage } from '../../app/navigation';
 import { dispatch, getKitchen } from '../../data/store';
 import type { Lookup } from '../../domain/products/lookup';
 import type { Food } from '../../domain/model';
-import { newFood } from '../../domain/selectors';
 import { matchVariant, packageLabel } from '../../domain/products/variants';
-import { sizeLabel } from '../../domain/products/size';
+import { scanDraft } from './draft';
 import { FoodFields } from '../food/FoodFields';
 import { Quantity } from '../../ui/Quantity';
 import { useAction } from '../../ui/useAction';
@@ -23,19 +22,7 @@ export function ScanConfirm({
   location: StoragePage | null;
   onDone: () => void;
 }) {
-  const [food, setFood] = useState<Food>(() => {
-    const place = location ?? result.suggestion.location;
-    return {
-      ...newFood(),
-      ...result.suggestion,
-      name: result.found ? result.suggestion.name : '',
-      location: place === 'pantry' ? ('pantry' as const) : ('fridge' as const),
-      frozen: place === 'freezer',
-      size: result.size,
-      packageSize: sizeLabel(result.size),
-      brand: result.product.brand,
-    };
-  });
+  const [food, setFood] = useState<Food>(() => scanDraft(getKitchen().data, result, location));
   const [quantity, setQuantity] = useState(1);
   const [expires, setExpires] = useState('');
   const [unspecified, setUnspecified] = useState(false);

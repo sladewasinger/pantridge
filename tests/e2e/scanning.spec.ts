@@ -45,6 +45,32 @@ test('anonymous scanning is disabled while manual package sizes remain available
   await expect(page.locator('.search-result')).toContainText('15 oz');
 });
 
+test('signed-in confirmation can be edited or cancelled without adding stock', async ({ page }) => {
+  await signedIn(page);
+  await page.route('https://api.pantridge.test/v1/products/resolve', (route) =>
+    route.fulfill({
+      json: {
+        product: { barcode: '03017620422003', name: 'Test Beans', brand: 'Test' },
+        found: true,
+        suggestion: { name: 'Black Beans', unit: 'cans', art: 'can', location: 'pantry' },
+        size: { amount: 15, measure: 'oz', packs: 1 },
+        packageText: '15 oz',
+        source: 'openfoodfacts',
+        classifiedBy: 'rules',
+      },
+    }),
+  );
+  await page.goto('/');
+  await scan(page, '3017620422003');
+  await page.getByText('Edit details', { exact: true }).click();
+  await page.getByLabel('Food name').fill('Canned Black Beans');
+  await page.getByLabel('Size', { exact: true }).fill('29');
+  await page.goBack();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await page.getByRole('searchbox').fill('Beans');
+  await expect(page.locator('.search-result')).toHaveCount(0);
+});
+
 test('camera decodes a barcode once and unknown products require an explicit size decision', async ({
   page,
   browserName,

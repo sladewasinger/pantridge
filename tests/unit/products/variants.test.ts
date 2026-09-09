@@ -5,6 +5,7 @@ import { normalizeBarcode } from '../../../src/domain/products/barcode';
 import { parseSize } from '../../../src/domain/products/size';
 import { rememberedProduct, variantKey } from '../../../src/domain/products/variants';
 import { egg } from '../fixtures';
+import { scanDraft } from '../../../src/features/scanning/draft';
 
 const food = { ...egg, name: 'Black Beans', unit: 'cans' as const, size: parseSize('15 oz') };
 function scan(brand: string, size = '15 oz') {
@@ -68,4 +69,37 @@ it('keeps matching-size shopping stock linked and preserves size when food is de
   data = reduceChecked(data, { type: 'food.remove', foodId: command.food.id });
   expect(data.shopping[0]?.foodId).toBeUndefined();
   expect(data.shopping[0]?.packageSize).toBe('15 oz');
+});
+
+it('repeat scans retain corrected artwork, shelf and descriptive sizes', () => {
+  const command = scan('Test');
+  let data = reduceChecked(emptySnapshot(), command);
+  const corrected = {
+    ...command.food,
+    shelf: 2,
+    art: 'rice' as const,
+    size: undefined,
+    packageSize: 'Family size',
+    location: 'fridge' as const,
+  };
+  data = reduceChecked(data, { type: 'food.save', food: corrected });
+  const draft = scanDraft(
+    data,
+    {
+      product: command.stock.product,
+      found: true,
+      suggestion: { name: 'Beans', unit: 'cans', art: 'can', location: 'pantry' },
+      packageText: 'Family size',
+      source: 'manual',
+      classifiedBy: 'rules',
+    },
+    null,
+  );
+  expect(draft).toMatchObject({
+    shelf: 2,
+    art: 'rice',
+    packageSize: 'Family size',
+    location: 'fridge',
+    name: 'Black Beans',
+  });
 });
