@@ -12,6 +12,7 @@ import './styles/forms.css';
 import './styles/shopping.css';
 import './styles/polish.css';
 import './styles/scanning.css';
+import './styles/artwork.css';
 
 const element = document.getElementById('root');
 if (!element) throw new Error('App root is missing.');

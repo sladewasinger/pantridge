@@ -1,3 +1,4 @@
+import { artPath } from '../../domain/artwork/catalog';
 import { Home, Pencil } from 'lucide-react';
 import type { Food, ShoppingItem, Snapshot } from '../../domain/model';
 import { OtherSizes } from './OtherSizes';
@@ -32,7 +33,7 @@ export function ShoppingRow({
         />
       </label>
       <button className="shop-info" onClick={() => onEdit(item)} aria-label={`Edit ${item.name}`}>
-        {food && <img className="shop-art" src={`/art/${food.art}.svg`} alt="" />}
+        {food && <img className="shop-art" src={artPath(food.art)} alt="" />}
         <span className="shop-copy">
           <span className="shop-name">{item.name}</span>
           {item.packageSize && <span className="size-label">{item.packageSize}</span>}

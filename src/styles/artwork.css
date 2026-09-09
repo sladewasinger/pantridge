@@ -1,0 +1,52 @@
+.sheet .art-search {
+  margin-bottom: 6px;
+}
+.art-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.art-filters button {
+  min-height: 44px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  color: #4b604b;
+  background: transparent;
+  font-size: 12px;
+}
+.art-filters button[aria-pressed='true'] {
+  color: #fffaf0;
+  background: #44644c;
+}
+.art-picker {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-height: 280px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: #a9b59a #f3eedf;
+}
+.art-picker button {
+  min-height: 84px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+}
+.art-picker button span {
+  display: block;
+  font-size: 10px;
+  line-height: 1.2;
+  color: #4c604a;
+  overflow-wrap: anywhere;
+}
+.art-picker img {
+  width: 52px;
+  height: 48px;
+}
+.art-picker svg {
+  top: 3px;
+  bottom: auto;
+}

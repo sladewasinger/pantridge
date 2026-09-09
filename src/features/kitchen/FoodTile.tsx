@@ -1,3 +1,4 @@
+import { artPath } from '../../domain/artwork/catalog';
 import type { Food, Snapshot } from '../../domain/model';
 import type { PointerEvent } from 'react';
 import { countFood, foodLots, units } from '../../domain/selectors';
@@ -25,7 +26,7 @@ export function FoodTile({
       onPointerDown={(event) => onDragStart(event, food)}
       aria-label={`${food.name}${packageLabel(food) ? `, ${packageLabel(food)}` : ''}, ${amount}`}
     >
-      <img src={`/art/${food.art}.svg`} alt="" draggable="false" />
+      <img src={artPath(food.art)} alt="" draggable="false" />
       <span className="food-label">
         {food.name}
         {packageLabel(food) && <span className="size-label">{packageLabel(food)}</span>}

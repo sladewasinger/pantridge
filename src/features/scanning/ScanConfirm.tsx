@@ -1,3 +1,4 @@
+import { artPath } from '../../domain/artwork/catalog';
 import { useState } from 'react';
 import type { StoragePage } from '../../app/navigation';
 import { dispatch, getKitchen } from '../../data/store';
@@ -58,7 +59,7 @@ export function ScanConfirm({
       }}
     >
       <div className="scan-product">
-        <img src={`/art/${food.art}.svg`} alt="" />
+        <img src={artPath(food.art)} alt="" />
         <span>
           {food.name || 'Product not found'}
           <small>
