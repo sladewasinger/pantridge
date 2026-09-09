@@ -1,4 +1,5 @@
 import type { Food, ShoppingItem, Snapshot } from './model';
+import { packageLabel } from './products/variants';
 
 export function restoreFood(data: Snapshot, food: Food): Snapshot {
   if (data.foods.some((item) => item.id === food.id)) throw new Error('Food already exists.');
@@ -10,7 +11,9 @@ export function saveFood(data: Snapshot, food: Food): Snapshot {
     ...data,
     foods: [...data.foods.filter((item) => item.id !== food.id), food],
     shopping: data.shopping.map((item) =>
-      item.foodId === food.id ? { ...item, name: food.name, unit: food.unit } : item,
+      item.foodId === food.id
+        ? { ...item, name: food.name, unit: food.unit, packageSize: packageLabel(food) }
+        : item,
     ),
   };
 }
@@ -28,5 +31,7 @@ export function removeFood(data: Snapshot, foodId: string): Snapshot {
 }
 export function normalizeShopping(data: Snapshot, item: ShoppingItem): ShoppingItem {
   const food = data.foods.find((food) => food.id === item.foodId);
-  return food ? { ...item, name: food.name, unit: food.unit } : item;
+  return food
+    ? { ...item, name: food.name, unit: food.unit, packageSize: packageLabel(food) }
+    : item;
 }

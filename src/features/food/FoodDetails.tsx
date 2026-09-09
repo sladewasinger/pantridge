@@ -31,6 +31,22 @@ export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () =
       </div>
       {lots.map((stock) => (
         <div className="lot" key={stock.id}>
+          {stock.product && (
+            <small className="muted">
+              {stock.product.brand} · {stock.product.name}
+              {stock.product.source === 'openfoodfacts' && (
+                <a
+                  className="scan-attribution"
+                  href={`https://world.openfoodfacts.org/product/${stock.product.barcode}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {' '}
+                  · Open Food Facts
+                </a>
+              )}
+            </small>
+          )}
           <div className="lot-quantity">
             <button
               className="round"

@@ -5,6 +5,8 @@ import type {
 import { ZodError } from 'zod';
 import { mutationSchema } from '../src/domain/commands';
 import { mutate, read } from './repository';
+import { resolveProduct } from './products/resolve';
+import { ProductError } from './products/errors';
 
 function response(statusCode: number, value: unknown): APIGatewayProxyStructuredResultV2 {
   return {
@@ -21,10 +23,13 @@ export async function handler(
     return response(401, { message: 'Sign in to open your kitchen.' });
   try {
     if (event.routeKey === 'GET /v1/kitchen') return response(200, await read(owner));
-    if (event.routeKey !== 'POST /v1/mutations') return response(404, { message: 'Not found.' });
+    if (!['POST /v1/mutations', 'POST /v1/products/resolve'].includes(event.routeKey))
+      return response(404, { message: 'Not found.' });
     const body = requestBody(event);
     if (Buffer.byteLength(body) > 16_384)
       return response(413, { message: 'This change is too large.' });
+    if (event.routeKey === 'POST /v1/products/resolve')
+      return response(200, await resolveProduct(owner, body));
     const mutation = mutationSchema.parse(JSON.parse(body));
     return response(200, await mutate(owner, mutation));
   } catch (error) {
@@ -38,6 +43,7 @@ function requestBody(event: APIGatewayProxyEventV2WithJWTAuthorizer): string {
 }
 
 function failure(error: unknown, requestId: string): APIGatewayProxyStructuredResultV2 {
+  if (error instanceof ProductError) return response(error.status, { message: error.message });
   if (error instanceof SyntaxError || error instanceof ZodError)
     return response(400, { message: 'This change is invalid. Update the app and try again.' });
   if (

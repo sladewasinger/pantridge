@@ -1,9 +1,11 @@
 import { Home, Pencil } from 'lucide-react';
-import type { Food, ShoppingItem } from '../../domain/model';
+import type { Food, ShoppingItem, Snapshot } from '../../domain/model';
+import { OtherSizes } from './OtherSizes';
 import { units } from '../../domain/selectors';
 
 export function ShoppingRow({
   item,
+  data,
   food,
   have,
   busy,
@@ -11,6 +13,7 @@ export function ShoppingRow({
   onPurchase,
 }: {
   item: ShoppingItem;
+  data: Snapshot;
   food?: Food;
   have: number;
   busy: boolean;
@@ -32,6 +35,7 @@ export function ShoppingRow({
         {food && <img className="shop-art" src={`/art/${food.art}.svg`} alt="" />}
         <span className="shop-copy">
           <span className="shop-name">{item.name}</span>
+          {item.packageSize && <span className="size-label">{item.packageSize}</span>}
           <span className="home-stock">
             {item.foodId ? (
               <>
@@ -43,6 +47,7 @@ export function ShoppingRow({
               'One-time item'
             )}
           </span>
+          <OtherSizes data={data} food={food} />
         </span>
       </button>
       <button

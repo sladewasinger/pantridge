@@ -23,6 +23,7 @@ export function App() {
         onHome={() => navigate('kitchen')}
         onSearch={search}
         onSettings={settings}
+        onScan={() => openOverlay({ type: 'scan' })}
         onAdd={() => openOverlay({ type: page === 'shopping' ? 'shopping' : 'add' })}
       />
       <main id="main-content">

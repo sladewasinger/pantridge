@@ -17,6 +17,7 @@ const frameSchema = z.object({
       z.object({ type: z.literal('shopping'), item: shoppingSchema.optional() }),
       z.object({ type: z.literal('put-away') }),
       z.object({ type: z.literal('settings') }),
+      z.object({ type: z.literal('scan') }),
     ])
     .nullable(),
 });

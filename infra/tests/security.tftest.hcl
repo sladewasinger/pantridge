@@ -10,7 +10,8 @@ mock_provider "aws" {
     defaults        = { domain_name = "d123example.cloudfront.net", hosted_zone_id = "Z2FDTNDATAQYW2", arn = "arn:aws:cloudfront::123456789012:distribution/EXAMPLE" }
   }
   mock_resource "aws_dynamodb_table" {
-    defaults = { arn = "arn:aws:dynamodb:us-west-2:123456789012:table/pantridge-test-kitchen" }
+    override_during = plan
+    defaults        = { arn = "arn:aws:dynamodb:us-west-2:123456789012:table/pantridge-test-kitchen" }
   }
   mock_resource "aws_s3_bucket" {
     override_during = plan
@@ -120,6 +121,26 @@ run "private_by_default" {
   assert {
     condition     = aws_dynamodb_table.kitchen.deletion_protection_enabled && aws_dynamodb_table.kitchen.point_in_time_recovery[0].enabled
     error_message = "Inventory must have deletion protection and recovery enabled."
+  }
+}
+
+run "scanner_is_authenticated_and_ai_is_opt_in" {
+  command = plan
+  assert {
+    condition     = aws_apigatewayv2_route.api["POST /v1/products/resolve"].authorization_type == "JWT" && aws_lambda_function.api.environment[0].variables["CLASSIFIER_PROVIDER"] == "none"
+    error_message = "Barcode lookup must require authentication, with paid AI disabled by default."
+  }
+  assert {
+    condition     = aws_dynamodb_table.products.ttl[0].enabled && length(jsondecode(aws_iam_role_policy.products.policy).Statement) == 1
+    error_message = "Cache must expire and rules-only mode must not have secret access."
+  }
+}
+run "classifier_key_access_is_narrow" {
+  command = plan
+  variables { classifier_provider = "openai" }
+  assert {
+    condition     = jsondecode(aws_iam_role_policy.products.policy).Statement[1].Action == ["ssm:GetParameter"] && endswith(jsondecode(aws_iam_role_policy.products.policy).Statement[1].Resource, ":parameter/pantridge-personal/classifier/api-key")
+    error_message = "AI may read only its dedicated provider key, never a wildcard parameter path."
   }
 }
 

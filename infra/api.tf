@@ -26,10 +26,20 @@ resource "aws_lambda_function" "api" {
   handler          = "handler.handler"
   filename         = data.archive_file.api.output_path
   source_code_hash = data.archive_file.api.output_base64sha256
-  timeout          = 15
+  timeout          = 25
   memory_size      = 256
-  environment { variables = { TABLE_NAME = aws_dynamodb_table.kitchen.name } }
-  depends_on = [aws_iam_role_policy.api, aws_cloudwatch_log_group.api]
+  environment {
+    variables = {
+      TABLE_NAME               = aws_dynamodb_table.kitchen.name
+      PRODUCT_TABLE            = aws_dynamodb_table.products.name
+      OFF_USER_AGENT           = "Pantridge/1.0 (${local.url})"
+      CLASSIFIER_PROVIDER      = var.classifier_provider
+      CLASSIFIER_MODEL         = var.classifier_model
+      CLASSIFIER_DAILY_LIMIT   = tostring(var.classifier_daily_limit)
+      CLASSIFIER_KEY_PARAMETER = local.classifier_key_parameter
+    }
+  }
+  depends_on = [aws_iam_role_policy.api, aws_iam_role_policy.products, aws_cloudwatch_log_group.api]
 }
 resource "aws_apigatewayv2_api" "api" {
   name          = local.name
@@ -58,7 +68,7 @@ resource "aws_apigatewayv2_integration" "api" {
   payload_format_version = "2.0"
 }
 resource "aws_apigatewayv2_route" "api" {
-  for_each             = toset(["GET /v1/kitchen", "POST /v1/mutations"])
+  for_each             = toset(["GET /v1/kitchen", "POST /v1/mutations", "POST /v1/products/resolve"])
   api_id               = aws_apigatewayv2_api.api.id
   route_key            = each.value
   target               = "integrations/${aws_apigatewayv2_integration.api.id}"

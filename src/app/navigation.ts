@@ -6,7 +6,8 @@ export type Overlay =
   | { type: 'add'; shelf?: number }
   | { type: 'shopping'; item?: ShoppingItem }
   | { type: 'put-away' }
-  | { type: 'settings' };
+  | { type: 'settings' }
+  | { type: 'scan' };
 export interface ViewState {
   page: Page;
   location: StoragePage | null;

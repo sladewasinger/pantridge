@@ -1,17 +1,20 @@
 import { ArrowLeft, Plus, Search, Settings2, X } from 'lucide-react';
 import { viewTitle, type ViewState } from './navigation';
+import { ScanButton } from '../features/scanning/ScanButton';
 export function Header({
   view,
   onHome,
   onAdd,
   onSettings,
   onSearch,
+  onScan,
 }: {
   view: ViewState;
   onHome: () => void;
   onAdd: () => void;
   onSettings: () => void;
   onSearch: (query: string) => void;
+  onScan: () => void;
 }) {
   const home = view.page === 'kitchen' && !view.location && !view.query;
   return (
@@ -29,6 +32,7 @@ export function Header({
           </button>
         )}
         <h1>{viewTitle(view)}</h1>
+        {view.page === 'kitchen' && <ScanButton onClick={onScan} />}
         <button
           className="round add-button"
           aria-label={view.page === 'shopping' ? 'Add shopping item' : 'Add food'}
