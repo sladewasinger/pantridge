@@ -4,6 +4,7 @@ import { MainView, OverlayView } from './Views';
 import { SyncIndicator } from './SyncIndicator';
 import { PwaNotice } from './PwaNotice';
 import { UndoNotice } from '../ui/UndoNotice';
+import { ShoppingBadge } from './ShoppingBadge';
 import {
   closeOverlay,
   navigate,
@@ -40,10 +41,13 @@ export function App() {
         </button>
         <button
           aria-current={page === 'shopping' ? 'page' : undefined}
+          aria-describedby="shopping-count"
+          aria-label="Shopping"
           onClick={() => navigate('shopping')}
         >
           <ShoppingBasket size={22} />
           Shopping
+          <ShoppingBadge />
         </button>
       </nav>
       <OverlayView overlay={overlay} location={location} onClose={closeOverlay} />

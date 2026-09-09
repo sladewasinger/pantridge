@@ -3,6 +3,10 @@ import type { APIGatewayProxyEventV2WithJWTAuthorizer } from 'aws-lambda';
 import { handler } from '../../api/handler';
 const { read, mutate } = vi.hoisted(() => ({ read: vi.fn(), mutate: vi.fn() }));
 vi.mock('../../api/repository', () => ({ read, mutate }));
+vi.mock('../../api/access/protection', () => ({
+  protectRequest: vi.fn(),
+  recordMalformed: vi.fn(),
+}));
 beforeEach(() => {
   vi.clearAllMocks();
   read.mockResolvedValue({ revision: 0 });

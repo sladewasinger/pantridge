@@ -163,3 +163,43 @@ run "luna_low_configuration" {
 }
 
 
+run "bounded_cloud_access" {
+  command = plan
+  assert {
+    condition     = aws_lambda_function.api.environment[0].variables["MAX_USERS"] == "100" && aws_lambda_function.api.environment[0].variables["USER_REQUESTS_PER_MINUTE"] == "240"
+    error_message = "Reserve 100 slots and permit normal cart activity."
+  }
+  assert {
+    condition     = aws_dynamodb_table.access.deletion_protection_enabled && aws_dynamodb_table.access.ttl[0].enabled && aws_dynamodb_table.access.on_demand_throughput[0].max_write_request_units == 100
+    error_message = "Admission state must be protected and transient counters must expire with bounded throughput."
+  }
+  assert {
+    condition     = aws_lambda_function.api.reserved_concurrent_executions == -1 && aws_apigatewayv2_stage.api.default_route_settings[0].throttling_rate_limit == 15
+    error_message = "Respect low-quota shared Lambda accounts and bound gateway traffic."
+  }
+  assert {
+    condition     = jsondecode(aws_iam_role_policy.access.policy).Statement[0].Resource == aws_dynamodb_table.access.arn && contains(aws_apigatewayv2_api.api.cors_configuration[0].expose_headers, "retry-after")
+    error_message = "Keep access policy scoped and allow clients to honor cooldowns."
+  }
+}
+run "configurable_capacity_and_emergency_pause" {
+  command = plan
+  variables {
+    max_users     = 150
+    api_enabled   = false
+    access_limits = { requests_per_minute = 300, suspend_per_minute = 900 }
+  }
+  assert {
+    condition     = aws_lambda_function.api.environment[0].variables["MAX_USERS"] == "150" && aws_lambda_function.api.environment[0].variables["API_ENABLED"] == "false" && aws_lambda_function.api.environment[0].variables["ABUSE_REQUESTS_PER_MINUTE"] == "900"
+    error_message = "Capacity, pause and abuse thresholds must be configurable."
+  }
+}
+run "reject_invalid_limits" {
+  command = plan
+  variables {
+    max_users     = 0
+    access_limits = { requests_per_minute = 500, suspend_per_minute = 100 }
+  }
+  expect_failures = [var.max_users, var.access_limits]
+}
+

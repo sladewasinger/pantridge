@@ -17,6 +17,8 @@ export const commandSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('shopping.save'), item: shoppingSchema }),
   z.object({ type: z.literal('shopping.purchase'), itemId: id, purchased: z.boolean() }),
   z.object({ type: z.literal('shopping.remove'), itemId: id }),
+  z.object({ type: z.literal('shopping.discard'), itemId: id }),
+  z.object({ type: z.literal('shopping.restore'), item: shoppingSchema }),
   z.object({
     type: z.literal('shopping.putAway'),
     itemId: id,

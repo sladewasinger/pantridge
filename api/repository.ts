@@ -4,6 +4,7 @@ import { emptySnapshot, envelopeSchema, type Envelope } from '../src/domain/mode
 import type { Mutation } from '../src/domain/commands';
 import { reduceChecked } from '../src/domain/reducer';
 import { starterMutationId } from '../src/domain/starter';
+import { reserveWriteBudget } from './access/write-budget';
 
 const client = DynamoDBDocumentClient.from(new DynamoDBClient({}), {
   marshallOptions: { removeUndefinedValues: true },
@@ -50,6 +51,7 @@ export async function mutate(owner: string, mutation: Mutation): Promise<Envelop
       data: reduceChecked(current.data, mutation.command),
     };
     try {
+      await reserveWriteBudget(next);
       await client.send(
         new TransactWriteCommand({
           TransactItems: [

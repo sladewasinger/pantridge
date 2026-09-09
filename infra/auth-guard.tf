@@ -18,21 +18,24 @@ resource "aws_iam_role_policy" "auth_guard" {
   count = local.google_enabled ? 1 : 0
   role  = aws_iam_role.auth_guard[0].id
   policy = jsonencode({ Version = "2012-10-17", Statement = [
+    { Effect = "Allow", Action = ["dynamodb:GetItem", "dynamodb:PutItem", "dynamodb:UpdateItem"], Resource = aws_dynamodb_table.access.arn },
     { Effect = "Allow", Action = ["logs:CreateLogStream", "logs:PutLogEvents"], Resource = "${aws_cloudwatch_log_group.auth_guard[0].arn}:*" }
   ] })
 }
 resource "aws_lambda_function" "auth_guard" {
-  count            = local.google_enabled ? 1 : 0
-  function_name    = "${local.name}-auth-guard"
-  role             = aws_iam_role.auth_guard[0].arn
-  runtime          = "nodejs22.x"
-  architectures    = ["arm64"]
-  handler          = "handler.handler"
-  filename         = data.archive_file.auth_guard[0].output_path
-  source_code_hash = data.archive_file.auth_guard[0].output_base64sha256
-  timeout          = 5
-  memory_size      = 128
-  depends_on       = [aws_iam_role_policy.auth_guard]
+  count                          = local.google_enabled ? 1 : 0
+  function_name                  = "${local.name}-auth-guard"
+  role                           = aws_iam_role.auth_guard[0].arn
+  runtime                        = "nodejs22.x"
+  architectures                  = ["arm64"]
+  handler                        = "handler.handler"
+  filename                       = data.archive_file.auth_guard[0].output_path
+  source_code_hash               = data.archive_file.auth_guard[0].output_base64sha256
+  timeout                        = 5
+  memory_size                    = 128
+  reserved_concurrent_executions = var.lambda_concurrency.auth
+  environment { variables = local.access_environment }
+  depends_on = [aws_iam_role_policy.auth_guard]
 }
 resource "aws_lambda_permission" "auth_guard" {
   count          = local.google_enabled ? 1 : 0

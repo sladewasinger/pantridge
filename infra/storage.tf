@@ -32,6 +32,10 @@ resource "aws_dynamodb_table" "kitchen" {
   hash_key                    = "pk"
   range_key                   = "sk"
   deletion_protection_enabled = true
+  on_demand_throughput {
+    max_read_request_units  = 1000
+    max_write_request_units = 600
+  }
   attribute {
     name = "pk"
     type = "S"

@@ -2,6 +2,10 @@ resource "aws_dynamodb_table" "products" {
   name         = "${local.name}-products"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "pk"
+  on_demand_throughput {
+    max_read_request_units  = 100
+    max_write_request_units = 100
+  }
   attribute {
     name = "pk"
     type = "S"

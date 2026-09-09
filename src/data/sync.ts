@@ -1,5 +1,6 @@
 import { getToken } from '../auth/session';
-import { envelopeSchema, type Envelope } from '../domain/model';
+import { cloudRequest, syncAllowed } from './sync-request';
+import { syncBatch } from './sync-batch';
 import { reconcile } from './reconcile';
 import { getAccount, getKitchen, updateKitchen } from './store';
 
@@ -14,25 +15,6 @@ function report(next: SyncStatus, message = '') {
   detail = message;
   window.dispatchEvent(new Event('pantridge-sync'));
 }
-async function request(path: string, token: string, body?: string): Promise<Envelope> {
-  const response = await fetch(`${api}${path}`, {
-    method: body ? 'POST' : 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      ...(body ? { 'Content-Type': 'application/json' } : {}),
-    },
-    body,
-    signal: AbortSignal.timeout(15_000),
-    cache: 'no-store',
-  });
-  if (response.status === 401)
-    throw new Error('Sign in again to sync. Your changes are safe on this device.');
-  if (!response.ok) {
-    const error = (await response.json()) as { message?: string };
-    throw new Error(error.message ?? 'Sync is unavailable. Your changes are saved on this device.');
-  }
-  return envelopeSchema.parse(await response.json());
-}
 async function performSync(): Promise<void> {
   if (!api) {
     report('local');
@@ -43,6 +25,7 @@ async function performSync(): Promise<void> {
     return;
   }
   const account = getAccount();
+  if (!syncAllowed(account)) return;
   const token = await getToken(account);
   if (getAccount() !== account) return;
   if (!token || getAccount() === 'local') {
@@ -50,18 +33,11 @@ async function performSync(): Promise<void> {
     return;
   }
   report('syncing');
-  let envelope = await request('/v1/kitchen', token);
+  const envelope = await cloudRequest(account, '/v1/kitchen', token);
   if (getAccount() !== account) return;
-  const pending = [...getKitchen().pending];
-  const acknowledged = new Set<string>();
-  for (const mutation of pending) {
-    if (getAccount() !== account) return;
-    envelope = await request('/v1/mutations', token, JSON.stringify(mutation));
-    acknowledged.add(mutation.id);
-  }
+  await syncBatch(account, token, envelope);
   if (getAccount() !== account) return;
-  await updateKitchen((current) => reconcile(current, envelope, acknowledged));
-  report('synced');
+  report(getKitchen().pending.length ? 'syncing' : 'synced');
 }
 export function syncKitchen(): Promise<void> {
   running ??= performSync()
@@ -86,7 +62,7 @@ export async function useCloudCopy(): Promise<void> {
     if (!api || !token || !navigator.onLine)
       throw new Error('Reconnect and sign in before using your cloud copy.');
     const discarded = new Set(getKitchen().pending.map((mutation) => mutation.id));
-    const remote = await request('/v1/kitchen', token);
+    const remote = await cloudRequest(account, '/v1/kitchen', token);
     if (account !== getAccount()) throw new Error('Your account changed. Please try again.');
     await updateKitchen((current) => reconcile(current, remote, discarded));
     report('synced');
@@ -101,7 +77,14 @@ export function startSync(): () => void {
     void syncKitchen();
   };
   const offline = () => report('offline');
-  const interval = window.setInterval(trigger, 30_000);
+  let lastPoll = 0;
+  const interval = window.setInterval(() => {
+    if (document.hidden || !syncAllowed(getAccount())) return;
+    if (getKitchen().pending.length || Date.now() - lastPoll >= 300_000) {
+      lastPoll = Date.now();
+      trigger();
+    }
+  }, 30_000);
   window.addEventListener('online', trigger);
   window.addEventListener('offline', offline);
   window.addEventListener('pantridge-change', trigger);
