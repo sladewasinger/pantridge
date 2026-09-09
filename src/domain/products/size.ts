@@ -16,7 +16,7 @@ export function sizeLabel(size?: PackageSize): string {
 export function parseSize(text: string): PackageSize | undefined {
   const match =
     /^(?:(\d+)\s*[x×]\s*)?(\d+(?:\.\d+)?)\s*(fl\s*oz|oz|lbs?|g|kg|ml|l|gal|count|ct)$/i.exec(
-      text.trim(),
+      text.trim().replace(/\s+[e℮]$/i, ''),
     );
   if (!match?.[3]) return undefined;
   const measure = match[3].toLowerCase().replace(/\s+/g, ' ');

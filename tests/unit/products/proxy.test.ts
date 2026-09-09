@@ -57,6 +57,7 @@ it('provides manual entry for missing products, and does not cache upstream fail
   await expect(lookupOpenFoodFacts('03017620422003')).rejects.toThrow('unavailable');
 });
 it('preserves meaningful distinctions and rejects excessive upstream payloads', async () => {
+  expect(classifyRules('Nutella', 'Nutella, Ferrero', '').suggestion.name).toBe('Nutella');
   expect(classifyRules('Heinz Dried Black Beans', 'Heinz', '').suggestion.name).toBe(
     'Dried Black Beans',
   );

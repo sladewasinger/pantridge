@@ -115,3 +115,26 @@
   font-size: 11px;
   margin-top: 4px;
 }
+.scan-placement {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+}
+.scan-placement button {
+  flex: 1;
+  min-height: 44px;
+  border-radius: 14px;
+  background: #e9e7db;
+  color: #455c48;
+}
+.scan-placement button[aria-pressed='true'] {
+  background: #345a46;
+  color: #fffdf6;
+}
+.scan-details {
+  margin: 16px 0;
+}
+.scan-details > summary {
+  padding: 12px 0;
+  font-size: 14px;
+}

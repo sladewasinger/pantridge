@@ -73,29 +73,53 @@ export function ScanConfirm({
       <div className="scan-product">
         <img src={`/art/${food.art}.svg`} alt="" />
         <span>
-          {result.product.name || 'Product not found'}
+          {food.name || 'Product not found'}
+          <small>
+            {packageLabel(food) || 'Unspecified size'} · {food.unit}
+          </small>
           <small>{result.product.brand}</small>
         </span>
       </div>
       {result.packageText && !result.size && (
         <p className="muted">Package label: {result.packageText}</p>
       )}
-      <FoodFields food={food} onChange={setFood} compact />
-      {!packageLabel(food) && (
-        <label className="scan-unspecified">
-          <input
-            type="checkbox"
-            checked={unspecified}
-            onChange={(e) => setUnspecified(e.target.checked)}
-          />
-          Unspecified size
-        </label>
-      )}
       <Quantity value={quantity} onChange={setQuantity} min={1} />
-      <label>
-        Expiration <span className="optional">optional</span>
-        <input type="date" value={expires} onChange={(e) => setExpires(e.target.value)} />
-      </label>
+      <div className="scan-placement" role="group" aria-label="Storage location">
+        {(['pantry', 'fridge', 'freezer'] as const).map((place) => (
+          <button
+            key={place}
+            type="button"
+            aria-pressed={(food.frozen ? 'freezer' : food.location) === place}
+            onClick={() =>
+              setFood({
+                ...food,
+                location: place === 'pantry' ? 'pantry' : 'fridge',
+                frozen: place === 'freezer',
+              })
+            }
+          >
+            {place === 'pantry' ? 'Pantry' : place === 'fridge' ? 'Fridge' : 'Freezer'}
+          </button>
+        ))}
+      </div>
+      <details open={!result.found || !result.size} className="scan-details">
+        <summary>Edit details</summary>
+        <FoodFields food={food} onChange={setFood} compact />
+        {!packageLabel(food) && (
+          <label className="scan-unspecified">
+            <input
+              type="checkbox"
+              checked={unspecified}
+              onChange={(e) => setUnspecified(e.target.checked)}
+            />
+            Unspecified size
+          </label>
+        )}
+        <label>
+          Expiration <span className="optional">optional</span>
+          <input type="date" value={expires} onChange={(e) => setExpires(e.target.value)} />
+        </label>
+      </details>
       {match && (
         <p className="muted">
           Adds to your existing {match.name} · {packageLabel(match) || 'Unspecified'}

@@ -24,7 +24,8 @@ export function classifyRules(name: string, brand: string, categories: string) {
     .map((value) => value.trim())
     .filter(Boolean))
     generic = generic.replaceAll(new RegExp(part.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), '');
-  generic = generic.replace(/\s+/g, ' ').trim().slice(0, 80) || 'Unknown food';
+  generic =
+    generic.replace(/\s+/g, ' ').trim().slice(0, 80) || name.trim().slice(0, 80) || 'Unknown food';
   const text = `${generic} ${categories}`.toLowerCase().replaceAll('-', ' ');
   // Preserve important variants rather than aggressively stripping descriptors.
   const match = rules.find(([pattern]) => pattern.test(generic.toLowerCase()));

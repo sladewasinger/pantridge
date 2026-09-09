@@ -30,7 +30,7 @@ async function scan(page: Page, code: string) {
   await page.getByRole('button', { name: 'Scan food barcode' }).click();
   await page.getByLabel('Barcode', { exact: true }).fill(code);
   await page.getByRole('button', { name: 'Find product' }).click();
-  await expect(page.getByLabel('Food name')).toBeVisible();
+  await expect(page.locator('.scan-product')).toBeVisible();
 }
 test('anonymous scanning is disabled while manual package sizes remain available', async ({
   page,

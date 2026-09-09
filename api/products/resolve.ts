@@ -9,7 +9,7 @@ export async function resolveProduct(owner: string, body: string) {
   if (!process.env.PRODUCT_TABLE) throw new ProductError(503, 'Scanning is not configured yet.');
   const barcode = normalizeBarcode(lookupRequestSchema.parse(JSON.parse(body)).barcode);
   await takeQuota(`scan#${owner}`, 200);
-  const key = `product#v1#${process.env.CLASSIFIER_PROVIDER ?? 'none'}#${process.env.CLASSIFIER_MODEL ?? ''}#${barcode}`;
+  const key = `product#v2#${process.env.CLASSIFIER_PROVIDER ?? 'none'}#${process.env.CLASSIFIER_MODEL ?? ''}#${barcode}`;
   const cached = await cachedProduct(key);
   if (cached) return cached;
   await takeLookupSlot();

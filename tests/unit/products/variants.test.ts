@@ -46,6 +46,7 @@ it('normalizes barcode aliases, validates checksums, and distinguishes measure d
   expect(() => normalizeBarcode('00000000')).toThrow();
   expect(parseSize('2 x 150 g')).toEqual({ amount: 150, measure: 'g', packs: 2 });
   expect(parseSize('15 oz (425 g)')).toBeUndefined();
+  expect(parseSize('400 g e')).toEqual({ amount: 400, measure: 'g', packs: 1 });
   expect(variantKey({ ...food, size: undefined, packageSize: '15oz' })).toBe(variantKey(food));
   expect(variantKey({ ...food, size: parseSize('15 fl oz') })).not.toBe(variantKey(food));
 });
