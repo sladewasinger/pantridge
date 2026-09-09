@@ -7,6 +7,7 @@ export const commandSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('food.restore'), food: foodSchema }),
   z.object({ type: z.literal('food.save'), food: foodSchema }),
   z.object({ type: z.literal('stock.add'), stock: stockSchema }),
+  z.object({ type: z.literal('stock.scan'), food: foodSchema, stock: stockSchema }),
   z.object({
     type: z.literal('stock.adjust'),
     stockId: id,

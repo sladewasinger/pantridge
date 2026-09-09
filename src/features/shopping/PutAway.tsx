@@ -29,7 +29,10 @@ export function PutAway({ onClose }: { onClose: () => void }) {
 function PutAwayItem({ item, count }: { item: ShoppingItem; count: number }) {
   const { data } = useKitchen();
   const existing = data.foods.find((food) => food.id === item.foodId);
-  const [food, setFood] = useState(() => existing ?? { ...newFood(item.name), unit: item.unit });
+  const [food, setFood] = useState(
+    () =>
+      existing ?? { ...newFood(item.name), unit: item.unit, packageSize: item.packageSize ?? '' },
+  );
   const [expires, setExpires] = useState('');
   const { run, error, busy } = useAction();
   return (

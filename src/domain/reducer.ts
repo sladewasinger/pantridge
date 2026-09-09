@@ -2,6 +2,7 @@ import type { Command } from './commands';
 import { snapshotSchema, type Snapshot } from './model';
 import { initializeStarter } from './starter';
 import { saveFood, removeFood, normalizeShopping, restoreFood } from './food-commands';
+import { addScannedStock } from './products/scan-command';
 
 function replace<T extends { id: string }>(list: T[], value: T): T[] {
   return [...list.filter((item) => item.id !== value.id), value];
@@ -45,6 +46,8 @@ export function applyCommand(data: Snapshot, command: Command): Snapshot {
         throw new Error('Food no longer exists.');
       if (data.stock.some((stock) => stock.id === command.stock.id)) return data;
       return { ...data, stock: [...data.stock, command.stock] };
+    case 'stock.scan':
+      return addScannedStock(data, command.food, command.stock);
     case 'stock.adjust':
       return {
         ...data,

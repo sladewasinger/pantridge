@@ -1,13 +1,16 @@
 import { unitSchema, type Food } from '../../domain/model';
 import { ArtPicker } from './ArtPicker';
+import { PackageFields } from './PackageFields';
 export function FoodFields({
   food,
   onChange,
   identity = true,
+  compact = false,
 }: {
   food: Food;
   onChange: (food: Food) => void;
   identity?: boolean;
+  compact?: boolean;
 }) {
   const patch = (value: Partial<Food>) => onChange({ ...food, ...value });
   return (
@@ -35,7 +38,15 @@ export function FoodFields({
               ))}
             </select>
           </label>
-          <ArtPicker value={food.art} onChange={(art) => patch({ art })} />
+          <PackageFields food={food} onChange={onChange} />
+          {compact ? (
+            <details>
+              <summary>Change artwork</summary>
+              <ArtPicker value={food.art} onChange={(art) => patch({ art })} />
+            </details>
+          ) : (
+            <ArtPicker value={food.art} onChange={(art) => patch({ art })} />
+          )}
         </>
       )}
       <div className="form-grid">
@@ -79,7 +90,7 @@ export function FoodFields({
           <input
             maxLength={80}
             value={food.packageSize}
-            onChange={(e) => patch({ packageSize: e.target.value })}
+            onChange={(e) => patch({ packageSize: e.target.value, size: undefined })}
             placeholder="e.g. 12-count"
           />
         </label>

@@ -45,6 +45,7 @@ export function Shopping({
         <ShoppingRow
           key={item.id}
           item={item}
+          data={data}
           busy={busy}
           food={data.foods.find((food) => food.id === item.foodId)}
           have={item.foodId ? countFood(data, item.foodId) : 0}

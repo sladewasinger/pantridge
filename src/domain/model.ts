@@ -1,5 +1,7 @@
 import { z } from 'zod';
 import { hasValidLinks } from './integrity';
+import { sizeSchema } from './products/size';
+import { productSchema } from './products/barcode';
 
 export const id = z.uuid();
 export const locationSchema = z.enum(['fridge', 'pantry']);
@@ -40,6 +42,7 @@ export const foodSchema = z.object({
   art: artSchema,
   brand: z.string().trim().max(80).default(''),
   packageSize: z.string().trim().max(80).default(''),
+  size: sizeSchema.optional(),
   location: locationSchema,
   shelf: z.number().int().min(0).max(2),
   frozen: z.boolean(),
@@ -49,6 +52,7 @@ export const stockSchema = z.object({
   foodId: id,
   quantity: z.number().int().min(0).max(9999),
   expires: dateSchema.optional(),
+  product: productSchema.optional(),
 });
 export const shoppingSchema = z.object({
   id,
@@ -57,6 +61,7 @@ export const shoppingSchema = z.object({
   unit: unitSchema,
   quantity: z.number().int().min(1).max(999),
   purchased: z.boolean(),
+  packageSize: z.string().trim().max(80).optional(),
 });
 export const snapshotSchema = z
   .object({

@@ -44,4 +44,9 @@ Invalid input returns 400, unauthenticated requests 401, conflicting state/capac
 
 ## Future purchase import
 
+Barcode lookup now uses authenticated `POST /v1/products/resolve` and the atomic `stock.scan`
+mutation. Package sizes and product provenance are optional additive snapshot fields. See
+[barcode scanning](barcode-scanning.md) for the data model, provider configuration, rate limits,
+license obligations and deployment ordering. Existing manual commands remain supported.
+
 The API and frontend do not import Walmart receipts yet. A future integration should map each retailer product to a generic food plus optional brand/package details, persist the source receipt/line identity, then create purchased shopping entries. Uncertain matches should appear in put-away review. The importer must retain stable mutation IDs across retries and have its own authenticated client. Imported purchases must not bypass the inventory reducer or duplicate quantities on repeated receipt uploads.

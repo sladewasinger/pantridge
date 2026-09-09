@@ -3,6 +3,7 @@ import type { PointerEvent } from 'react';
 import { countFood, foodLots, units } from '../../domain/selectors';
 import { expirationBadge } from '../../domain/expiration';
 import { Clock3 } from 'lucide-react';
+import { packageLabel } from '../../domain/products/variants';
 export function FoodTile({
   food,
   data,
@@ -22,11 +23,12 @@ export function FoodTile({
       className="food-tile"
       onClick={() => onSelect(food)}
       onPointerDown={(event) => onDragStart(event, food)}
-      aria-label={`${food.name}, ${amount}`}
+      aria-label={`${food.name}${packageLabel(food) ? `, ${packageLabel(food)}` : ''}, ${amount}`}
     >
       <img src={`/art/${food.art}.svg`} alt="" draggable="false" />
       <span className="food-label">
         {food.name}
+        {packageLabel(food) && <span className="size-label">{packageLabel(food)}</span>}
         <small>{amount}</small>
       </span>
       {badge && (

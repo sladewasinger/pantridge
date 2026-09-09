@@ -7,6 +7,7 @@ import { Shopping } from '../features/shopping/Shopping';
 import { ShoppingForm } from '../features/shopping/ShoppingForm';
 import { PutAway } from '../features/shopping/PutAway';
 import { Settings } from '../features/settings/Settings';
+import { ScanFood } from '../features/scanning/ScanFood';
 import type { Overlay, ViewState, StoragePage } from './navigation';
 
 export function MainView({
@@ -56,6 +57,8 @@ export function OverlayView({
 }) {
   if (!overlay) return null;
   switch (overlay.type) {
+    case 'scan':
+      return <ScanFood location={location} onClose={onClose} />;
     case 'food':
       return <FoodDetails foodId={overlay.id} onClose={onClose} />;
     case 'add':

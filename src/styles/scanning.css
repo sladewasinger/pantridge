@@ -1,0 +1,140 @@
+.scan-entry {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+}
+.scan-entry small {
+  position: absolute;
+  top: 100%;
+  font-size: 9px;
+  white-space: nowrap;
+  color: var(--muted);
+}
+.scan-entry button {
+  position: relative;
+}
+.scan-lock {
+  position: absolute;
+  bottom: 5px;
+  right: 4px;
+}
+.scan-camera {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #263b33;
+  margin: 12px 0;
+}
+.scan-camera video {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+.scan-camera p {
+  color: white;
+  text-align: center;
+  padding: 0 16px;
+}
+.scan-guide {
+  position: absolute;
+  inset: 45px 28px 95px;
+  border: 2px solid #f8e9c9;
+  border-radius: 15px;
+  pointer-events: none;
+  box-shadow: 0 0 0 70px #0002;
+}
+.scan-product {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 18px;
+  background: #e7eddf;
+}
+.scan-product img {
+  width: 76px;
+  height: 90px;
+}
+.scan-product small {
+  display: block;
+  margin-top: 5px;
+  color: #596650;
+}
+.scan-attribution {
+  font-size: 12px;
+  text-align: center;
+  color: #596650;
+}
+.scan-attribution a {
+  color: inherit;
+}
+.scan-unspecified {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+}
+.scan-unspecified input {
+  width: 22px;
+  height: 22px;
+}
+.package-fields {
+  padding: 12px;
+  border: 1px solid #cdd3bd;
+  border-radius: 14px;
+  min-width: 0;
+  margin: 12px 0;
+}
+.package-fields legend {
+  font-size: 13px;
+  padding: 0 6px;
+}
+.size-label {
+  display: block;
+  color: #52644c;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 3px 0;
+}
+.food-label .size-label {
+  font-size: 10px;
+}
+.food-search-group {
+  margin-bottom: 16px;
+}
+.food-search-group h2 {
+  font-size: 20px;
+  margin: 12px 6px 4px;
+}
+.other-sizes {
+  display: block;
+  color: #626956;
+  font-size: 11px;
+  margin-top: 4px;
+}
+.scan-placement {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+}
+.scan-placement button {
+  flex: 1;
+  min-height: 44px;
+  border-radius: 14px;
+  background: #e9e7db;
+  color: #455c48;
+}
+.scan-placement button[aria-pressed='true'] {
+  background: #345a46;
+  color: #fffdf6;
+}
+.scan-details {
+  margin: 16px 0;
+}
+.scan-details > summary {
+  padding: 12px 0;
+  font-size: 14px;
+}
