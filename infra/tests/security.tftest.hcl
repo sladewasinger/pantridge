@@ -126,6 +126,11 @@ run "private_by_default" {
 
 run "scanner_is_authenticated_and_ai_is_opt_in" {
   command = plan
+  variables {
+    classifier_provider          = "none"
+    classifier_reasoning_effort  = null
+    classifier_max_output_tokens = 200
+  }
   assert {
     condition     = aws_apigatewayv2_route.api["POST /v1/products/resolve"].authorization_type == "JWT" && aws_lambda_function.api.environment[0].variables["CLASSIFIER_PROVIDER"] == "none"
     error_message = "Barcode lookup must require authentication, with paid AI disabled by default."
@@ -141,6 +146,19 @@ run "classifier_key_access_is_narrow" {
   assert {
     condition     = jsondecode(aws_iam_role_policy.products.policy).Statement[1].Action == ["ssm:GetParameter"] && endswith(jsondecode(aws_iam_role_policy.products.policy).Statement[1].Resource, ":parameter/pantridge-personal/classifier/api-key")
     error_message = "AI may read only its dedicated provider key, never a wildcard parameter path."
+  }
+}
+run "luna_low_configuration" {
+  command = plan
+  variables {
+    classifier_provider          = "openai"
+    classifier_model             = "gpt-5.6-luna"
+    classifier_reasoning_effort  = "low"
+    classifier_max_output_tokens = 1024
+  }
+  assert {
+    condition     = aws_lambda_function.api.environment[0].variables["CLASSIFIER_MODEL"] == "gpt-5.6-luna" && aws_lambda_function.api.environment[0].variables["CLASSIFIER_REASONING_EFFORT"] == "low" && aws_lambda_function.api.environment[0].variables["CLASSIFIER_MAX_OUTPUT_TOKENS"] == "1024"
+    error_message = "The selected Luna model, reasoning effort and token cap must reach Lambda."
   }
 }
 

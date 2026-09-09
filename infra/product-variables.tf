@@ -25,3 +25,21 @@ variable "classifier_daily_limit" {
     error_message = "Use an integer from 0 to 10000."
   }
 }
+variable "classifier_reasoning_effort" {
+  description = "Optional supported reasoning effort for the selected model. Null omits reasoning for non-reasoning models."
+  type        = string
+  default     = null
+  validation {
+    condition     = var.classifier_reasoning_effort == null || contains(["none", "low", "medium", "high", "xhigh", "max"], var.classifier_reasoning_effort)
+    error_message = "Choose a supported reasoning effort or null."
+  }
+}
+variable "classifier_max_output_tokens" {
+  description = "Total output budget, including reasoning tokens."
+  type        = number
+  default     = 200
+  validation {
+    condition     = var.classifier_max_output_tokens >= 200 && var.classifier_max_output_tokens <= 4096 && floor(var.classifier_max_output_tokens) == var.classifier_max_output_tokens
+    error_message = "Use an integer output budget from 200 to 4096."
+  }
+}

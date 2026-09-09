@@ -30,13 +30,15 @@ resource "aws_lambda_function" "api" {
   memory_size      = 256
   environment {
     variables = {
-      TABLE_NAME               = aws_dynamodb_table.kitchen.name
-      PRODUCT_TABLE            = aws_dynamodb_table.products.name
-      OFF_USER_AGENT           = "Pantridge/1.0 (${local.url})"
-      CLASSIFIER_PROVIDER      = var.classifier_provider
-      CLASSIFIER_MODEL         = var.classifier_model
-      CLASSIFIER_DAILY_LIMIT   = tostring(var.classifier_daily_limit)
-      CLASSIFIER_KEY_PARAMETER = local.classifier_key_parameter
+      TABLE_NAME                   = aws_dynamodb_table.kitchen.name
+      PRODUCT_TABLE                = aws_dynamodb_table.products.name
+      OFF_USER_AGENT               = "Pantridge/1.0 (${local.url})"
+      CLASSIFIER_PROVIDER          = var.classifier_provider
+      CLASSIFIER_MODEL             = var.classifier_model
+      CLASSIFIER_REASONING_EFFORT  = var.classifier_reasoning_effort == null ? "" : var.classifier_reasoning_effort
+      CLASSIFIER_MAX_OUTPUT_TOKENS = tostring(var.classifier_max_output_tokens)
+      CLASSIFIER_DAILY_LIMIT       = tostring(var.classifier_daily_limit)
+      CLASSIFIER_KEY_PARAMETER     = local.classifier_key_parameter
     }
   }
   depends_on = [aws_iam_role_policy.api, aws_iam_role_policy.products, aws_cloudwatch_log_group.api]
