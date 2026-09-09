@@ -3,6 +3,7 @@ import { snapshotSchema, type Snapshot } from './model';
 import { initializeStarter } from './starter';
 import { saveFood, removeFood, normalizeShopping, restoreFood } from './food-commands';
 import { addScannedStock } from './products/scan-command';
+import { restoreShopping } from './shopping-commands';
 
 function replace<T extends { id: string }>(list: T[], value: T): T[] {
   return [...list.filter((item) => item.id !== value.id), value];
@@ -77,6 +78,13 @@ export function applyCommand(data: Snapshot, command: Command): Snapshot {
       };
     case 'shopping.remove':
       return { ...data, shopping: data.shopping.filter((item) => item.id !== command.itemId) };
+    case 'shopping.discard':
+      return {
+        ...data,
+        shopping: data.shopping.filter((item) => item.id !== command.itemId || !item.purchased),
+      };
+    case 'shopping.restore':
+      return restoreShopping(data, command.item);
     case 'shopping.putAway':
       return putAway(data, command);
   }

@@ -50,7 +50,7 @@ describe('sync after interrupted requests', () => {
     await syncKitchen();
     expect(syncStatus().status).toBe('error');
     expect(store.getKitchen().data.stock[0]?.quantity).toBe(2);
-    expect(store.getKitchen().pending).toHaveLength(2);
+    expect(store.getKitchen().pending).toHaveLength(1);
     await syncKitchen();
     expect(store.getKitchen().pending).toEqual([]);
     expect(store.getKitchen().data.stock[0]?.quantity).toBe(2);

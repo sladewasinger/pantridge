@@ -11,9 +11,10 @@ Use `develop` for local development and merge tested changes into `main` for Git
 ## Product boundaries
 
 - Local/offline use must remain available.
-- Google sign-in is optional for cross-device sync and open to any Google user. Keep anonymous device-only use open and isolate each signed-in kitchen by the verified token's subject. Do not add an email allowlist.
+- Google sign-in is optional for cross-device sync and open to Google users within the configurable admission cap (100 initially). Keep anonymous device-only use open and isolate each signed-in kitchen by the verified token's subject. Do not add an email allowlist. Preserve atomic admission, suspension checks, and generous abuse limits that accommodate normal cart entry.
 - Inventory and shopping edits commit to IndexedDB before success is reported.
 - Purchases do not increase inventory until the put-away action.
+- Shopping's badge counts unchecked rows. Discarding checked rows does not change inventory and supports Undo.
 - Keep generic food identities separate from stock lots and shopping entries.
 - Zero stock hides a food from shelves while preserving search and shopping history.
 - One-time shopping entries need no permanent food identity.

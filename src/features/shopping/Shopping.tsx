@@ -3,6 +3,7 @@ import type { ShoppingItem } from '../../domain/model';
 import { countFood } from '../../domain/selectors';
 import { useAction } from '../../ui/useAction';
 import { ShoppingRow } from './ShoppingRow';
+import { DiscardChecked } from './DiscardChecked';
 
 export function Shopping({
   query,
@@ -61,9 +62,12 @@ export function Shopping({
         <p className="empty-message">No matching items.</p>
       )}
       {purchased > 0 && (
-        <button className="primary full put-away" onClick={onPutAway}>
-          Put groceries away <span className="count-pill">{purchased}</span>
-        </button>
+        <>
+          <button className="primary full put-away" onClick={onPutAway}>
+            Put groceries away <span className="count-pill">{purchased}</span>
+          </button>
+          <DiscardChecked />
+        </>
       )}
       {error && (
         <p className="error" role="alert">

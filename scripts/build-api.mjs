@@ -21,6 +21,9 @@ await build({
   target: 'node22',
   format: 'esm',
   bundle: true,
+  banner: {
+    js: "import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);",
+  },
 });
 
 // A fresh ESM process matches Lambda's module loading, without test-runner shims.
@@ -34,6 +37,13 @@ const probe = spawnSync(
     const { handler } = await import(${JSON.stringify(bundleUrl)});
     const result = await handler({ requestContext: {} });
     if (result.statusCode !== 401) throw new Error('API startup probe failed');
+    const auth = await import(${JSON.stringify(new URL('../artifacts/auth/handler.mjs', import.meta.url).href)});
+    try {
+      await auth.handler({ request: { userAttributes: {} }, userName: 'invalid' });
+      throw new Error('Auth startup probe failed');
+    } catch (error) {
+      if (!error.message.includes('verified Google account')) throw error;
+    }
   `,
   ],
   { stdio: 'inherit', shell: false },

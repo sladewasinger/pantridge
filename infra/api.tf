@@ -19,17 +19,18 @@ resource "aws_iam_role_policy" "api" {
   ] })
 }
 resource "aws_lambda_function" "api" {
-  function_name    = "${local.name}-api"
-  role             = aws_iam_role.api.arn
-  runtime          = "nodejs22.x"
-  architectures    = ["arm64"]
-  handler          = "handler.handler"
-  filename         = data.archive_file.api.output_path
-  source_code_hash = data.archive_file.api.output_base64sha256
-  timeout          = 25
-  memory_size      = 256
+  function_name                  = "${local.name}-api"
+  role                           = aws_iam_role.api.arn
+  runtime                        = "nodejs22.x"
+  architectures                  = ["arm64"]
+  handler                        = "handler.handler"
+  filename                       = data.archive_file.api.output_path
+  source_code_hash               = data.archive_file.api.output_base64sha256
+  timeout                        = 25
+  memory_size                    = 256
+  reserved_concurrent_executions = var.lambda_concurrency.api
   environment {
-    variables = {
+    variables = merge(local.access_environment, {
       TABLE_NAME                   = aws_dynamodb_table.kitchen.name
       PRODUCT_TABLE                = aws_dynamodb_table.products.name
       OFF_USER_AGENT               = "Pantridge/1.0 (${local.url})"
@@ -39,18 +40,19 @@ resource "aws_lambda_function" "api" {
       CLASSIFIER_MAX_OUTPUT_TOKENS = tostring(var.classifier_max_output_tokens)
       CLASSIFIER_DAILY_LIMIT       = tostring(var.classifier_daily_limit)
       CLASSIFIER_KEY_PARAMETER     = local.classifier_key_parameter
-    }
+    })
   }
-  depends_on = [aws_iam_role_policy.api, aws_iam_role_policy.products, aws_cloudwatch_log_group.api]
+  depends_on = [aws_iam_role_policy.api, aws_iam_role_policy.products, aws_iam_role_policy.access, aws_cloudwatch_log_group.api]
 }
 resource "aws_apigatewayv2_api" "api" {
   name          = local.name
   protocol_type = "HTTP"
   cors_configuration {
-    allow_origins = [local.url]
-    allow_methods = ["GET", "POST", "OPTIONS"]
-    allow_headers = ["authorization", "content-type"]
-    max_age       = 3600
+    allow_origins  = [local.url]
+    allow_methods  = ["GET", "POST", "OPTIONS"]
+    allow_headers  = ["authorization", "content-type"]
+    expose_headers = ["retry-after"]
+    max_age        = 3600
   }
 }
 resource "aws_apigatewayv2_authorizer" "owner" {
@@ -83,8 +85,8 @@ resource "aws_apigatewayv2_stage" "api" {
   name        = "$default"
   auto_deploy = true
   default_route_settings {
-    throttling_burst_limit = 10
-    throttling_rate_limit  = 5
+    throttling_burst_limit = 30
+    throttling_rate_limit  = 15
   }
 }
 resource "aws_lambda_permission" "api" {

@@ -1,4 +1,5 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+vi.mock('../../api/access/admission', () => ({ admitAccount: vi.fn(), reserveIdentity: vi.fn() }));
 import type { PreSignUpTriggerEvent, PreTokenGenerationTriggerEvent } from 'aws-lambda';
 import { handler } from '../../api/auth-guard';
 
@@ -47,7 +48,11 @@ describe('Google access', () => {
         ...signUp(),
         triggerSource,
         request: {
-          userAttributes: { email: 'anyone@example.com', email_verified: 'true' },
+          userAttributes: {
+            email: 'anyone@example.com',
+            email_verified: 'true',
+            sub: 'google-subject',
+          },
           groupConfiguration: {},
         },
         response: { claimsOverrideDetails: {} },

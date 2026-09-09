@@ -3,6 +3,7 @@ import { GetCommand, TransactWriteCommand } from '@aws-sdk/lib-dynamodb';
 import type * as DocumentSdk from '@aws-sdk/lib-dynamodb';
 import { mutate, read } from '../../api/repository';
 import { egg, kitchen, lotId } from './fixtures';
+vi.mock('../../api/access/write-budget', () => ({ reserveWriteBudget: vi.fn() }));
 const { send } = vi.hoisted(() => ({ send: vi.fn() }));
 vi.mock('@aws-sdk/lib-dynamodb', async (original) => ({
   ...(await original<typeof DocumentSdk>()),
