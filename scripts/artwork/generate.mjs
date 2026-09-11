@@ -28,7 +28,7 @@ function render(recipe) {
   const body = shape.startsWith('drink-')
     ? drinkArt(recipe)
     : (renderers[shape]?.() ?? packageArt(recipe));
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 70"><title>${escape(label)}</title><ellipse cx="40" cy="65" rx="24" ry="3" fill="#6b7159" opacity=".12"/><g stroke-linejoin="round" stroke-linecap="round">${body.trimEnd().replaceAll(/[\t ]+$/gm, '')}</g></svg>\n`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 70"><title>${escape(label)}</title><ellipse cx="40" cy="65" rx="24" ry="3" fill="#6b7159" opacity=".12"/><g stroke-linejoin="round" stroke-linecap="round">${body.replaceAll(/[\t ]+$/gm, '')}</g></svg>\n`;
 }
 async function save(relative, content) {
   const file = path.join(root, relative);
