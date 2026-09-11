@@ -19,7 +19,8 @@ Open Food Facts `source`). Brands do not create separate shelf variants. The lat
 lot supplies a kitchen-specific barcode mapping, including after consumption reaches zero.
 Deleting its food deletes these mappings. No private correction changes the shared catalog.
 Cached confirmed products can be scanned offline; unknown ones require a connection or manual entry.
-Unrecognized sizes require an explicit size or Unspecified selection. No expiration is inferred.
+Unrecognized sizes require an explicit size or Unspecified selection. Editable estimated reminders
+are distinct from printed expiration dates; see [date reminders](freshness.md).
 
 Shopping references the exact variant and retains a size label if it becomes a one-time item.
 Generic grouping is based on normalized names, not an extensive food taxonomy. Users can correct
@@ -28,7 +29,7 @@ stock, and a global canonical-food service is not required for this release.
 
 ## Proxy and optional classification
 
-`POST /v1/products/resolve` accepts only `{ "barcode": "3017620422003" }` behind the existing
+`POST /v1/products/resolve` accepts `{ "barcode": "3017620422003", "stage": "lookup" }` behind the existing
 Cognito JWT authorizer. The verified token subject supplies quota identity. The client cannot
 choose an upstream URL, owner, model, prompt, or provider. EAN-8, UPC-A, EAN-13 and GTIN-14 checksums
 are validated and equivalent leading-zero representations are normalized.
@@ -38,6 +39,19 @@ and a 64 KB response cap. Shared product cache entries expire after 30 days (mis
 day). Expired entries are never treated as valid while DynamoDB TTL deletion catches up.
 Global requests are spaced at least 4.3 seconds apart to respect the documented 15 reads/min/IP;
 concurrent uncached scans can receive a retry message. Each account gets 200 online lookups/day.
+
+The lookup stage returns OFF details, package size and nutrition before optional AI runs. A
+response with `enhancement: "pending"` lets the client issue the same request with `stage: "enhance"`.
+Refinement reads only server-cached public metadata, never user-provided product text. It does not
+consume a second daily scan allowance; API abuse protection and AI quotas still apply. Omitting
+stage preserves the original combined response for older clients. No additional API route or
+Terraform change is needed. Shared raw and refined cache keys are versioned independently.
+
+Confirmation stays usable during refinement. A wand/spinner marks pending suggestions. Explicit
+field edits, including reselecting the same artwork or storage, take precedence; storage and frozen
+status are protected together. Known private variants retain their corrections. Cancel/save aborts
+the client request and ignores late responses; an already running server call may still finish and
+consume its reserved quota. A failed refinement keeps the initial result available.
 
 Free rules run first. AI is **disabled by default** (`classifier_provider = "none"`). With
 `"openai"`, ambiguous found products use the configurable model (initial default `gpt-4.1-nano`).
@@ -49,6 +63,24 @@ exhausted AI quotas fall back to rules. Limits are 20 AI attempts/user/day and a
 100 attempts/day across the application, enforced atomically in DynamoDB before a call.
 These limits bound attempts, not a guaranteed currency budget. Provider pricing and AWS charges
 still apply; use provider project budgets as another control. No model key is needed for free rules.
+
+The structured response optionally includes bounded `estimatedDays` when a local food profile is
+unavailable. No image, private inventory or nutrition record is sent to the model.
+
+## Nutrition
+
+OFF nutriments are stored on the branded stock lot, not the generic food identity. Item/Nutrition
+tabs show per-serving or per-100-g/ml values in a package-style label, with a package selector when
+multiple scanned brands exist. Sodium is normalized from grams to milligrams; kJ-only energy is
+converted to kcal. Missing values remain missing (shown as a dash), never zero. Prepared-product
+fields, inferred daily values and allergen claims are excluded. Source links retain OFF attribution.
+
+These are community-supplied facts, not independently verified package labels. Previously remembered
+barcodes retain their offline records without a fresh API call and may lack nutrition. This release
+does not backfill older lots. Added metadata counts toward the existing bounded snapshot size, so
+very large kitchens may reach the byte limit before the item-count limit.
+
+Field reference: [OFF nutrition schema](https://openfoodfacts.github.io/documentation/docs/Product-Opener/schemas/schemas/product_nutrition/).
 
 The provider adapter is isolated in `api/products/classifier.ts`. Adding another provider requires
 an adapter and Terraform enum/config changes, without altering scanning or inventory transitions.

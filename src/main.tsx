@@ -8,6 +8,8 @@ import { initializeNavigation } from './app/history';
 import './styles/base.css';
 import './styles/kitchen.css';
 import './styles/doors.css';
+import './styles/cellar.css';
+import './styles/nutrition.css';
 import './styles/forms.css';
 import './styles/shopping.css';
 import './styles/polish.css';

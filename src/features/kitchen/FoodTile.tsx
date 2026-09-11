@@ -17,7 +17,8 @@ export function FoodTile({
   onDragStart: (event: PointerEvent<HTMLButtonElement>, food: Food) => void;
 }) {
   const amount = units(countFood(data, food.id), food.unit);
-  const expires = foodLots(data, food.id)[0]?.expires;
+  const firstLot = foodLots(data, food.id)[0];
+  const expires = firstLot?.expires;
   const badge = expires ? expirationBadge(expires) : null;
   return (
     <button
@@ -33,9 +34,13 @@ export function FoodTile({
         <small>{amount}</small>
       </span>
       {badge && (
-        <span className={`expiration ${badge.tone}`} aria-label={`Expiration: ${badge.label}`}>
+        <span
+          className={`expiration ${badge.tone}`}
+          role="img"
+          aria-label={`${firstLot?.expirySource ? 'Estimated reminder' : 'Expiration'}: ${badge.label}`}
+        >
           <Clock3 size={11} />
-          {badge.label}
+          {firstLot?.expirySource ? `~ ${badge.label.replace('Past date', 'Review')}` : badge.label}
         </span>
       )}
     </button>

@@ -63,7 +63,7 @@ export function applyCommand(data: Snapshot, command: Command): Snapshot {
         ...data,
         stock: data.stock.map((stock) => {
           if (stock.id !== command.stockId) return stock;
-          const { expires: _expires, ...rest } = stock;
+          const { expires: _expires, expirySource: _source, ...rest } = stock;
           return command.expires ? { ...rest, expires: command.expires } : rest;
         }),
       };

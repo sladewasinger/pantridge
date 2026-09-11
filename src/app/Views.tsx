@@ -9,6 +9,7 @@ import { PutAway } from '../features/shopping/PutAway';
 import { Settings } from '../features/settings/Settings';
 import { ScanFood } from '../features/scanning/ScanFood';
 import type { Overlay, ViewState, StoragePage } from './navigation';
+import { Underground } from '../features/cellar/Underground';
 
 export function MainView({
   view,
@@ -44,7 +45,15 @@ export function MainView({
         onSelect={(food) => onOverlay({ type: 'food', id: food.id })}
       />
     );
-  return <Kitchen onOpen={onOpen} />;
+  return (
+    <>
+      <Kitchen onOpen={onOpen} />
+      <Underground
+        onSelect={(food) => onOverlay({ type: 'food', id: food.id })}
+        onAdd={() => onOverlay({ type: 'add', location: 'unspecified' })}
+      />
+    </>
+  );
 }
 export function OverlayView({
   overlay,
@@ -62,7 +71,13 @@ export function OverlayView({
     case 'food':
       return <FoodDetails foodId={overlay.id} onClose={onClose} />;
     case 'add':
-      return <AddFood location={location ?? 'pantry'} shelf={overlay.shelf} onClose={onClose} />;
+      return (
+        <AddFood
+          location={overlay.location ?? location ?? 'pantry'}
+          shelf={overlay.shelf}
+          onClose={onClose}
+        />
+      );
     case 'shopping':
       return <ShoppingForm item={overlay.item} onClose={onClose} />;
     case 'put-away':

@@ -1,0 +1,154 @@
+.cellar-entrance {
+  position: absolute;
+  left: 23%;
+  top: 86%;
+  width: 54%;
+  min-height: 48px;
+  padding: 0;
+  background: transparent;
+  transition: transform 150ms;
+}
+.cellar-entrance:hover {
+  transform: translateY(-2px);
+}
+.cellar-entrance img {
+  display: block;
+  width: 100%;
+}
+.cellar-entrance > span {
+  position: absolute;
+  inset: 20% 12% auto;
+  font-size: 13px;
+  color: #382b20;
+  text-shadow: 0 1px #e9cba2;
+}
+.cellar-entrance small {
+  font-size: 10px;
+  margin-left: 5px;
+}
+.underground {
+  position: relative;
+  border-top: 12px solid #987751;
+  padding: 26px 23px 0;
+  background:
+    url('/art/underground/roots.svg') top center / 420px 700px repeat-y,
+    linear-gradient(#917552, #6c5541 600px, #4b4237 1600px, #343831 4000px);
+  color: #fff3d9;
+  scroll-margin-top: 12px;
+  overflow: hidden;
+}
+.underground-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.underground-heading h2 {
+  margin: 0 0 3px;
+  color: #fff0d0;
+  font-size: 26px;
+}
+.underground-heading small {
+  color: #f0dcbb;
+  font-size: 12px;
+}
+.underground-heading .round {
+  background: #f2e3c7;
+  color: #574b37;
+}
+.underground-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 17px 0 25px;
+  color: #f4e7cf;
+  font-size: 10px;
+}
+.underground-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.underground-shelf {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding: 15px 8px 8px;
+  margin-bottom: 24px;
+  border-bottom: 9px solid #b4946d;
+  box-shadow: 0 7px 8px #201e2833;
+  border-radius: 0 0 5px 5px;
+  background: radial-gradient(ellipse at bottom, #ead1a21c, transparent 80%);
+}
+.underground-shelf[data-depth='1'] {
+  border-color: #aa906d;
+}
+.underground-shelf[data-depth='2'] {
+  border-color: #988263;
+}
+.underground-shelf[data-depth='3'] {
+  border-color: #8e8066;
+}
+.underground-slot {
+  position: relative;
+  min-width: 0;
+}
+.underground .food-tile {
+  width: 100%;
+  color: #fff6df;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+.underground :focus-visible {
+  outline-color: #fff1c7;
+}
+.underground .food-label small,
+.underground .size-label {
+  color: #efe0c7;
+}
+.underground .food-tile img {
+  filter: drop-shadow(0 4px 3px #222a2a35);
+}
+.underground-location {
+  position: absolute;
+  z-index: 1;
+  right: 6px;
+  top: -6px;
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f3e0b8;
+  color: #695133;
+  pointer-events: none;
+}
+.underground-location.freezer {
+  color: #416f7a;
+  background: #e1f4f5;
+  box-shadow: 0 0 7px #cff7ff88;
+}
+.underground-location.fridge {
+  background: #dce7cb;
+  color: #4f694d;
+}
+.underground-location.unspecified {
+  background: #f3e9d5;
+  color: #71654c;
+}
+.underground-empty,
+.underground-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 52px;
+  color: #f8eacb;
+  background: #ffffff0a;
+  border: 1px solid #e9cda438;
+  border-radius: 8px;
+}
+.underground-bedrock {
+  height: 85px;
+  background: radial-gradient(ellipse at 30% 130%, #a69c7a44, transparent 65%);
+}

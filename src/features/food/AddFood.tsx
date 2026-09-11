@@ -6,6 +6,8 @@ import { Modal } from '../../ui/Modal';
 import { Quantity } from '../../ui/Quantity';
 import { useAction } from '../../ui/useAction';
 import { FoodFields } from './FoodFields';
+import { useExpiration } from './useExpiration';
+import { ExpirationField } from './ExpirationField';
 export function AddFood({
   location,
   shelf = 0,
@@ -22,7 +24,7 @@ export function AddFood({
     shelf,
   }));
   const [quantity, setQuantity] = useState(1);
-  const [expires, setExpires] = useState('');
+  const expiry = useExpiration(food);
   const { run, busy, error } = useAction();
   return (
     <Modal title="Add to your kitchen" onClose={onClose}>
@@ -38,7 +40,7 @@ export function AddFood({
                   id: crypto.randomUUID(),
                   foodId: food.id,
                   quantity,
-                  ...(expires ? { expires } : {}),
+                  ...expiry.fields,
                 },
               },
             ]);
@@ -48,10 +50,7 @@ export function AddFood({
       >
         <FoodFields food={food} onChange={setFood} autoArtwork />
         <Quantity value={quantity} onChange={setQuantity} min={1} />
-        <label>
-          Expiration <span className="optional">optional</span>
-          <input type="date" value={expires} onChange={(e) => setExpires(e.target.value)} />
-        </label>
+        <ExpirationField value={expiry.value} source={expiry.source} onChange={expiry.set} />
         {error && (
           <p role="alert" className="error">
             {error}

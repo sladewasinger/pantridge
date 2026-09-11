@@ -2,10 +2,24 @@ import { fridgeArt } from './fridge';
 import { pantryArt } from './pantry';
 import { freezerArt } from './freezer';
 import { packagingArt } from './packaging';
+import { householdArt } from './household';
 
-export const artworkGroups = ['All', 'Fridge', 'Pantry', 'Freezer', 'Packaging'] as const;
+export const artworkGroups = [
+  'All',
+  'Fridge',
+  'Pantry',
+  'Freezer',
+  'Packaging',
+  'Household',
+] as const;
 export type ArtworkGroup = (typeof artworkGroups)[number];
-const entries = [...fridgeArt, ...pantryArt, ...freezerArt, ...packagingArt] as const;
+const entries = [
+  ...fridgeArt,
+  ...pantryArt,
+  ...freezerArt,
+  ...packagingArt,
+  ...householdArt,
+] as const;
 export type ArtId = (typeof entries)[number][0];
 export const artIds = entries.map(([id]) => id);
 const legacyShapes: Partial<Record<ArtId, string>> = {
@@ -39,7 +53,8 @@ function groupFor(id: ArtId, index: number): ArtworkGroup {
   if (pantryFruit.includes(id)) return 'Pantry';
   if (index < fridgeArt.length) return 'Fridge';
   if (index < fridgeArt.length + pantryArt.length) return 'Pantry';
-  return index < entries.length - packagingArt.length ? 'Freezer' : 'Packaging';
+  if (index < fridgeArt.length + pantryArt.length + freezerArt.length) return 'Freezer';
+  return index < entries.length - householdArt.length ? 'Packaging' : 'Household';
 }
 export const artwork = entries.map(([id, label, src, shape], index) => ({
   id,
@@ -51,7 +66,7 @@ export const artwork = entries.map(([id, label, src, shape], index) => ({
 }));
 const byId = new Map(artwork.map((entry) => [entry.id, entry]));
 export const artPath = (id: ArtId) => byId.get(id)!.src;
-export const artworkVersion = 'food-art-v1';
+export const artworkVersion = 'food-art-v2';
 // Public, stable metadata only. Personal kitchen choices never enter the classifier prompt.
 export const artworkMetadata = artwork.map(({ id, label, shape, group, keywords }) => ({
   id,

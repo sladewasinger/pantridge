@@ -121,7 +121,8 @@
   margin-top: 4px;
 }
 .scan-placement {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
   margin: 16px 0;
 }
@@ -142,4 +143,19 @@
 .scan-details > summary {
   padding: 12px 0;
   font-size: 14px;
+}
+.scan-refining {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #8b7755;
+  margin-left: 8px;
+}
+.scan-refining > svg:last-of-type {
+  animation: refining-spin 1s linear infinite;
+}
+@keyframes refining-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

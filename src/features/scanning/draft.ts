@@ -12,7 +12,7 @@ export function scanDraft(data: Snapshot, result: Lookup, location: StoragePage 
     name: result.found ? result.suggestion.name : '',
     size: result.size,
     packageSize: sizeLabel(result.size),
-    location: result.suggestion.location === 'pantry' ? 'pantry' : 'fridge',
+    location: result.suggestion.location === 'freezer' ? 'fridge' : result.suggestion.location,
     frozen: result.suggestion.location === 'freezer',
   };
   const known =
@@ -22,7 +22,7 @@ export function scanDraft(data: Snapshot, result: Lookup, location: StoragePage 
   return {
     ...food,
     brand: result.product.brand,
-    location: place === 'pantry' ? 'pantry' : 'fridge',
+    location: place === 'freezer' ? 'fridge' : place,
     frozen: place === 'freezer',
   };
 }

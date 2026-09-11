@@ -17,6 +17,7 @@ function Door({ side }: { side: 'left' | 'right' }) {
   );
 }
 export function Doors({ location }: { location: StoragePage }) {
+  if (location === 'unspecified') return null;
   return (
     <div className="door-stage" aria-hidden="true">
       {location === 'pantry' && <Door side="left" />}

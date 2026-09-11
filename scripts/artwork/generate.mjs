@@ -8,10 +8,11 @@ import { fridge, pantry, freezer, packaging } from './catalog.mjs';
 import { packageArt } from './packages.mjs';
 import { produceArt } from './produce.mjs';
 import { cheeseArt, proteinArt } from './protein.mjs';
+import { household, householdArt } from './household.mjs';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const check = process.argv.includes('--check');
-const groups = { fridge, pantry, freezer, packaging };
+const groups = { fridge, pantry, freezer, packaging, household };
 const escape = (value) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;');
 function render(recipe) {
   const [id, label, shape] = recipe;
@@ -19,6 +20,7 @@ function render(recipe) {
     produce: () => produceArt(id),
     protein: () => proteinArt(recipe),
     cheese: () => cheeseArt(recipe),
+    household: () => householdArt(id),
   };
   const body = renderers[shape]?.() ?? packageArt(recipe);
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 70"><title>${escape(label)}</title><ellipse cx="40" cy="65" rx="24" ry="3" fill="#6b7159" opacity=".12"/><g stroke-linejoin="round" stroke-linecap="round">${body}</g></svg>\n`;
@@ -61,5 +63,5 @@ for (const [group, recipes] of Object.entries(groups)) {
 if (fridge.length + pantry.length + freezer.length !== 100 || freezer.length !== 10)
   throw new Error('The library must contain 100 food illustrations, including 10 freezer foods.');
 console.log(
-  `Artwork ${check ? 'verified' : 'generated'}: 100 foods + ${packaging.length} plain packaging options.`,
+  `Artwork ${check ? 'verified' : 'generated'}: 100 foods + ${packaging.length} plain packages + ${household.length} household items.`,
 );

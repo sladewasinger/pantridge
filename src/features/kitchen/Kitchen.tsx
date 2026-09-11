@@ -41,6 +41,22 @@ export function Kitchen({ onOpen }: { onOpen: (location: StoragePage) => void })
           Pantry<small>{count('pantry')} items</small>
         </span>
       </button>
+      <button
+        className="cellar-entrance"
+        onClick={() => {
+          const cellar = document.getElementById('underground');
+          cellar?.scrollIntoView({
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+              ? 'instant'
+              : 'smooth',
+          });
+          cellar?.focus({ preventScroll: true });
+        }}
+        aria-label="Explore cellar"
+      >
+        <img src="/art/cellar-hatch.svg" alt="" />
+        <span>Cellar ↓</span>
+      </button>
     </div>
   );
 }

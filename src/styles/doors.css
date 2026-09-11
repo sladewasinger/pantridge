@@ -156,9 +156,6 @@
     opacity: 0;
   }
 }
-.fridge-appliance:hover {
-  transform: none;
-}
 .fridge-appliance > button {
   position: absolute;
   left: 4%;

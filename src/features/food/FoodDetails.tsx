@@ -8,6 +8,8 @@ import { Modal } from '../../ui/Modal';
 import { useAction } from '../../ui/useAction';
 import { FoodFields } from './FoodFields';
 import { showUndo } from '../../ui/notice';
+import { ItemTabs } from '../nutrition/ItemTabs';
+import { estimatedDate } from '../../domain/freshness/estimate';
 
 export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () => void }) {
   const { data } = useKitchen();
@@ -21,156 +23,163 @@ export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () =
     void run(() => dispatch({ type: 'stock.adjust', stockId: stock.id, delta }));
   return (
     <Modal title={food.name} onClose={onClose}>
-      <div className="food-overview">
-        <img src={artPath(food.art)} alt="" />
-        <span>
-          {units(countFood(data, foodId), food.unit)}
-          <small>
-            {food.brand} {food.packageSize}
-          </small>
-        </span>
-      </div>
-      {lots.map((stock) => (
-        <div className="lot" key={stock.id}>
-          {stock.product && (
-            <small className="muted">
-              {stock.product.brand} · {stock.product.name}
-              {stock.product.source === 'openfoodfacts' && (
-                <a
-                  className="scan-attribution"
-                  href={`https://world.openfoodfacts.org/product/${stock.product.barcode}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {' '}
-                  · Open Food Facts
-                </a>
-              )}
+      <ItemTabs products={lots.flatMap((lot) => (lot.product ? [lot.product] : []))}>
+        <div className="food-overview">
+          <img src={artPath(food.art)} alt="" />
+          <span>
+            {units(countFood(data, foodId), food.unit)}
+            <small>
+              {food.brand} {food.packageSize}
             </small>
-          )}
-          <div className="lot-quantity">
-            <button
-              className="round"
-              aria-label="Use one"
-              disabled={busy || stock.quantity === 0}
-              onClick={() => adjust(stock, -1)}
-            >
-              <Minus />
-            </button>
-            <span>{units(stock.quantity, food.unit)}</span>
-            <button
-              className="round"
-              aria-label="Add one"
-              disabled={busy || stock.quantity >= 9999}
-              onClick={() => adjust(stock, 1)}
-            >
-              <Plus />
-            </button>
-          </div>
-          <label>
-            Expiration
-            <input
-              type="date"
-              aria-label={`Expiration for lot ${stock.id}`}
-              value={stock.expires ?? ''}
-              onChange={(e) =>
-                void run(() =>
-                  dispatch({
-                    type: 'stock.date',
-                    stockId: stock.id,
-                    expires: e.target.value || null,
-                  }),
-                )
-              }
-            />
-          </label>
+          </span>
         </div>
-      ))}
-      <button
-        className="secondary full"
-        disabled={busy}
-        onClick={() =>
-          void run(() =>
-            dispatch({
-              type: 'stock.add',
-              stock: { id: crypto.randomUUID(), foodId, quantity: 1 },
-            }),
-          )
-        }
-      >
-        Add a separate package
-      </button>
-      {countFood(data, foodId) === 0 && (
-        <p className="muted">
-          Off the shelf, still remembered. Add it to your list whenever you need it.
-        </p>
-      )}
-      <button
-        className="primary full"
-        disabled={busy}
-        onClick={() =>
-          void run(async () => {
-            const existing = data.shopping.find(
-              (item) => item.foodId === foodId && !item.purchased,
-            );
-            await dispatch({
-              type: 'shopping.save',
-              item: existing
-                ? { ...existing, quantity: existing.quantity + 1 }
-                : {
-                    id: crypto.randomUUID(),
-                    foodId,
-                    name: food.name,
-                    unit: food.unit,
-                    quantity: 1,
-                    purchased: false,
-                  },
-            });
-            onClose();
-          })
-        }
-      >
-        <ShoppingBasket size={18} />
-        Add to shopping list
-      </button>
-      <button className="text-button full" onClick={() => setEditing(!editing)}>
-        {editing ? 'Cancel editing' : 'Move or edit item'}
-      </button>
-      {editing && (
-        <EditFood
-          food={food}
-          onSave={async (next) => {
-            await dispatch({ type: 'food.save', food: next });
-            setEditing(false);
-          }}
-        />
-      )}
-      {editing && (
+        {lots.map((stock) => (
+          <div className="lot" key={stock.id}>
+            {stock.product && (
+              <small className="muted">
+                {stock.product.brand} · {stock.product.name}
+                {stock.product.source === 'openfoodfacts' && (
+                  <a
+                    className="scan-attribution"
+                    href={`https://world.openfoodfacts.org/product/${stock.product.barcode}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {' '}
+                    · Open Food Facts
+                  </a>
+                )}
+              </small>
+            )}
+            <div className="lot-quantity">
+              <button
+                className="round"
+                aria-label="Use one"
+                disabled={busy || stock.quantity === 0}
+                onClick={() => adjust(stock, -1)}
+              >
+                <Minus />
+              </button>
+              <span>{units(stock.quantity, food.unit)}</span>
+              <button
+                className="round"
+                aria-label="Add one"
+                disabled={busy || stock.quantity >= 9999}
+                onClick={() => adjust(stock, 1)}
+              >
+                <Plus />
+              </button>
+            </div>
+            <label>
+              Expiration {stock.expirySource && <span className="optional">estimated</span>}
+              <input
+                type="date"
+                aria-label={`Expiration for lot ${stock.id}`}
+                value={stock.expires ?? ''}
+                onChange={(e) =>
+                  void run(() =>
+                    dispatch({
+                      type: 'stock.date',
+                      stockId: stock.id,
+                      expires: e.target.value || null,
+                    }),
+                  )
+                }
+              />
+            </label>
+          </div>
+        ))}
         <button
-          className="text-button danger full"
+          className="secondary full"
+          disabled={busy}
+          onClick={() =>
+            void run(() =>
+              dispatch({
+                type: 'stock.add',
+                stock: {
+                  id: crypto.randomUUID(),
+                  foodId,
+                  quantity: 1,
+                  ...estimatedDate(food, new Date()),
+                },
+              }),
+            )
+          }
+        >
+          Add a separate package
+        </button>
+        {countFood(data, foodId) === 0 && (
+          <p className="muted">
+            Off the shelf, still remembered. Add it to your list whenever you need it.
+          </p>
+        )}
+        <button
+          className="primary full"
           disabled={busy}
           onClick={() =>
             void run(async () => {
-              await dispatch({ type: 'food.remove', foodId });
-              showUndo(`${food.name} deleted`, () =>
-                dispatchMany([
-                  { type: 'food.restore', food },
-                  ...lots.map((stock) => ({ type: 'stock.add' as const, stock })),
-                ]),
+              const existing = data.shopping.find(
+                (item) => item.foodId === foodId && !item.purchased,
               );
+              await dispatch({
+                type: 'shopping.save',
+                item: existing
+                  ? { ...existing, quantity: existing.quantity + 1 }
+                  : {
+                      id: crypto.randomUUID(),
+                      foodId,
+                      name: food.name,
+                      unit: food.unit,
+                      quantity: 1,
+                      purchased: false,
+                    },
+              });
               onClose();
             })
           }
         >
-          <Trash2 size={16} />
-          Delete food
+          <ShoppingBasket size={18} />
+          Add to shopping list
         </button>
-      )}
-      {error && (
-        <p className="error" role="alert">
-          {error}
-        </p>
-      )}
+        <button className="text-button full" onClick={() => setEditing(!editing)}>
+          {editing ? 'Cancel editing' : 'Move or edit item'}
+        </button>
+        {editing && (
+          <EditFood
+            food={food}
+            onSave={async (next) => {
+              await dispatch({ type: 'food.save', food: next });
+              setEditing(false);
+            }}
+          />
+        )}
+        {editing && (
+          <button
+            className="text-button danger full"
+            disabled={busy}
+            onClick={() =>
+              void run(async () => {
+                await dispatch({ type: 'food.remove', foodId });
+                showUndo(`${food.name} deleted`, () =>
+                  dispatchMany([
+                    { type: 'food.restore', food },
+                    ...lots.map((stock) => ({ type: 'stock.add' as const, stock })),
+                  ]),
+                );
+                onClose();
+              })
+            }
+          >
+            <Trash2 size={16} />
+            Delete food
+          </button>
+        )}
+        {error && (
+          <p className="error" role="alert">
+            {error}
+          </p>
+        )}
+      </ItemTabs>
     </Modal>
   );
 }

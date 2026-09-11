@@ -32,7 +32,7 @@ test('artwork catalog loads, filters on mobile, and preserves a new selection', 
   await page.getByRole('combobox', { name: 'Unit', exact: true }).selectOption('cans');
   await page.setViewportSize({ width: 320, height: 700 });
   const picker = page.locator('.art-picker');
-  await expect(picker.getByRole('button')).toHaveCount(108);
+  await expect(picker.getByRole('button')).toHaveCount(artwork.length);
   await page.getByRole('button', { name: 'Freezer', exact: true }).click();
   await expect(picker.getByRole('button')).toHaveCount(10);
   await page.getByRole('button', { name: 'Packaging', exact: true }).click();
