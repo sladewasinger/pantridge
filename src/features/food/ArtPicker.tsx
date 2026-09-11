@@ -6,11 +6,12 @@ export function ArtPicker({
   value,
   onChange,
 }: {
-  value: Food['art'];
+  value: Food['art'] | undefined;
   onChange: (art: Food['art']) => void;
 }) {
   const [query, setQuery] = useState('');
   const [group, setGroup] = useState<ArtworkGroup>('All');
+  const selected = artwork.find((art) => art.id === value);
   const visible = artwork.filter(
     (art) =>
       (group === 'All' || art.group === group) &&
@@ -21,6 +22,12 @@ export function ArtPicker({
   return (
     <fieldset className="art-field">
       <legend>Illustration</legend>
+      {selected && (
+        <div className="art-selected" role="status">
+          <img src={selected.src} alt="" />
+          <span>{selected.label}</span>
+        </div>
+      )}
       <label className="art-search">
         <span className="sr-only">Search illustrations</span>
         <input

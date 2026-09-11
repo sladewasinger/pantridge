@@ -1,3 +1,4 @@
+import { bananas, greens } from './fresh-produce.mjs';
 const circles = (points, color, radius = 8) =>
   points.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="${radius}" fill="${color}"/>`).join('');
 const citrus = (color, shape) =>
@@ -5,8 +6,8 @@ const citrus = (color, shape) =>
 const berrySeeds =
   '<g fill="#f0ca8b"><path d="m30 33 1 2m10-6 1 2m-5 10 1 2m-8 0 1 2m10 4 1 2m8-10 1 2" stroke="#f0ca8b" stroke-width="1.5"/></g>';
 const produce = {
-  bananas:
-    '<path d="M20 15c-9 21 8 43 34 36-19-1-28-18-25-32Z" fill="#ddbc63" stroke="#b8994e"/><path d="M25 13c-5 23 17 42 37 26-21 7-28-7-28-23Z" fill="#ebcf79" stroke="#b8994e"/><path d="M33 13c-2 22 15 29 30 12-14 3-17-4-22-13Z" fill="#f1d993" stroke="#b8994e"/><path d="m25 13 2-7 12 1 2 5" fill="#9a945b"/><path d="m54 51 4-2m3-10 3-3m-1-11 2-3" stroke="#927952" stroke-width="3"/>',
+  bananas,
+  greens,
   orange: citrus('#dda453', 'M59 26C51 10 21 15 18 35c-3 20 19 31 34 19 10-7 12-17 7-28Z'),
   lemon: citrus(
     '#e6c75f',

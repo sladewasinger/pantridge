@@ -46,7 +46,7 @@ export function AddFood({
           });
         }}
       >
-        <FoodFields food={food} onChange={setFood} />
+        <FoodFields food={food} onChange={setFood} autoArtwork />
         <Quantity value={quantity} onChange={setQuantity} min={1} />
         <label>
           Expiration <span className="optional">optional</span>

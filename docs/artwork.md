@@ -1,6 +1,6 @@
 # Food artwork
 
-The library includes 100 food illustrations (40 fridge, 50 pantry, 10 freezer) and eight plain packaging illustrations. This is a curated collection of common US groceries, not a statistical popularity ranking. Categories organize the picker; they are not food storage advice. Adding artwork does not create inventory.
+The library includes 100 food illustrations (35 fridge, 55 pantry, 10 freezer) and eight plain packaging illustrations. This is a curated collection of common US groceries, not a statistical popularity ranking. Categories organize the picker; they are not food storage advice. Apple, bananas, orange, lemon and lime appear under Pantry; cucumber and zucchini remain under Fridge. Asset paths remain stable even when browsing categories change. Adding artwork does not create inventory.
 
 All assets are local SVGs in the approved warm kitchen style, available offline through the PWA precache. The 14 existing illustration IDs and paths remain compatible, including `generic` (now a plain grocery bag). The plain seafood tin intentionally contains no fish symbol and can represent sardines, oysters, mackerel, or other tinned foods. Crackers and chips have distinct box and bag illustrations. The picker supports search (including packaging aliases), category filters, keyboard selection and a bounded scrolling grid.
 
@@ -12,6 +12,8 @@ All assets are local SVGs in the approved warm kitchen style, available offline 
 - Keep IDs stable: they are part of saved food records, sync mutations, and the API's artwork enum. Update `artworkVersion` when changing classifier-visible choices or metadata so shared cached product lookups are refreshed.
 
 ## Automatic selection
+
+Manual Add food matches the typed name against local artwork labels and curated synonyms, including small spelling errors and extra brand words. Specific multiword matches take precedence; ambiguous or unknown names leave the picker unselected. A small preview shows the current match. Selecting any illustration manually locks that choice for the rest of the form. Editing existing food and confirming scans preserve their existing artwork. Matching works offline and makes no API calls; it does not change the chosen storage location, unit, or name. Saving without choosing artwork keeps the existing neutral grocery-bag fallback.
 
 The classifier receives the same catalog the picker uses: stable ID, human-readable label, package shape, plain-packaging flag and relevant aliases. Text metadata avoids transmitting 108 image files on each lookup. The strict structured-output schema only accepts IDs that have a bundled asset. The model is instructed to use matching food artwork, otherwise the appropriate plain package; package unit alone is not enough to pick a food illustration. Existing basic rules can still select established staples without a model request.
 

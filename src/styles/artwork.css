@@ -50,3 +50,16 @@
   top: 3px;
   bottom: auto;
 }
+.art-selected {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  color: #53634b;
+  font-size: 13px;
+}
+.art-selected img {
+  width: 42px;
+  height: 38px;
+  object-fit: contain;
+}
