@@ -41,6 +41,7 @@ test('anonymous scanning is disabled while manual package sizes remain available
   await page.getByLabel('Food name').fill('Test Beans');
   await page.getByLabel('Size', { exact: true }).fill('15');
   await page.getByRole('button', { name: 'Add to pantry', exact: true }).click();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
   await page.getByRole('searchbox').fill('Test Beans');
   await expect(page.locator('.search-result')).toContainText('15 oz');
 });

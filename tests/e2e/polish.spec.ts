@@ -76,6 +76,7 @@ test('empty shelves preselect placement and artwork buttons preview the saved it
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   await page.getByRole('button', { name: 'Add to freezer', exact: true }).click();
   await expect(page.locator('[data-shelf="1"] img')).toHaveAttribute('src', '/art/fish.svg');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
   await page.getByRole('searchbox').fill(' salmon ');
   await expect(page.locator('.search-result')).toContainText('Freezer');
 });
