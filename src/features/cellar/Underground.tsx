@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { DoorClosed, Refrigerator, Snowflake, Package, Plus } from 'lucide-react';
 import type { Food } from '../../domain/model';
-import { stockedFoods } from '../../domain/selectors';
+import { cellarFoods } from '../../domain/selectors';
 import { useKitchen } from '../../data/store';
 import { FoodTile } from '../kitchen/FoodTile';
 
@@ -34,12 +34,7 @@ export function Underground({
   const { data } = useKitchen();
   const [limit, setLimit] = useState(24);
   const sentinel = useRef<HTMLButtonElement>(null);
-  const foods = stockedFoods(data).sort(
-    (a, b) =>
-      Number(b.location === 'unspecified') - Number(a.location === 'unspecified') ||
-      a.name.localeCompare(b.name) ||
-      a.id.localeCompare(b.id),
-  );
+  const foods = cellarFoods(data);
   const visible = foods.slice(0, limit);
   const more = limit < foods.length;
   useEffect(() => {
@@ -72,10 +67,10 @@ export function Underground({
           <Refrigerator size={13} /> Fridge
         </span>
         <span>
-          <Snowflake size={13} /> Freezer
+          <DoorClosed size={13} /> Pantry
         </span>
         <span>
-          <DoorClosed size={13} /> Pantry
+          <Snowflake size={13} /> Freezer
         </span>
       </div>
       {Array.from({ length: Math.ceil(visible.length / 2) }, (_, index) => (

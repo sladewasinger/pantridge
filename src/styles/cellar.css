@@ -28,7 +28,7 @@
 }
 .underground {
   position: relative;
-  border-top: 12px solid #987751;
+  border-top: 80px solid #513c2e;
   padding: 26px 23px 0;
   background:
     url('/art/underground/roots.svg') top center / 420px 700px repeat-y,
