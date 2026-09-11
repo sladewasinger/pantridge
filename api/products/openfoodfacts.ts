@@ -3,6 +3,7 @@ import { parseSize } from '../../src/domain/products/size';
 import type { Lookup } from '../../src/domain/products/lookup';
 import { boundedJson, ProductError } from './errors';
 import { classifyRules } from './rules';
+import { readNutrition } from './nutrition';
 
 const text = z.string().catch('');
 const responseSchema = z.object({
@@ -14,6 +15,9 @@ const responseSchema = z.object({
       brands: text,
       quantity: text,
       categories_tags: z.array(z.string()).catch([]),
+      nutriments: z.record(z.string(), z.unknown()).optional(),
+      serving_size: text,
+      no_nutrition_data: text,
     })
     .optional(),
 });
@@ -23,7 +27,7 @@ export async function lookupOpenFoodFacts(barcode: string) {
   );
   url.searchParams.set(
     'fields',
-    'product_name,product_name_en,generic_name_en,brands,quantity,categories_tags',
+    'product_name,product_name_en,generic_name_en,brands,quantity,categories_tags,nutriments,serving_size,no_nutrition_data',
   );
   const response = await fetch(url, {
     headers: {
@@ -40,14 +44,17 @@ export async function lookupOpenFoodFacts(barcode: string) {
   return productResult(barcode, parsed.product);
 }
 function productResult(barcode: string, p: z.infer<typeof responseSchema>['product']) {
-  const name = (p?.product_name_en || p?.product_name || '').slice(0, 160);
-  const brand = (p?.brands ?? '').slice(0, 80);
-  const categories = (p?.categories_tags ?? []).slice(0, 30).join(' ').slice(0, 1500);
+  const { name, brand, categories, packageText, nutrition } = productFields(p);
   const { suggestion, confident } = classifyRules(name, brand, categories);
-  const packageText = (p?.quantity ?? '').slice(0, 80);
   const size = parseSize(packageText);
   const result: Lookup = {
-    product: { barcode, name, brand, ...(name ? { source: 'openfoodfacts' as const } : {}) },
+    product: {
+      barcode,
+      name,
+      brand,
+      ...(name ? { source: 'openfoodfacts' as const } : {}),
+      ...(nutrition ? { nutrition } : {}),
+    },
     found: !!name,
     suggestion,
     ...(size ? { size } : {}),
@@ -56,4 +63,14 @@ function productResult(barcode: string, p: z.infer<typeof responseSchema>['produ
     classifiedBy: 'rules',
   };
   return { result, confident, categories };
+}
+function productFields(p: z.infer<typeof responseSchema>['product']) {
+  if (!p) return { name: '', brand: '', categories: '', packageText: '', nutrition: undefined };
+  return {
+    name: (p.product_name_en || p.product_name).slice(0, 160),
+    brand: p.brands.slice(0, 80),
+    categories: p.categories_tags.slice(0, 30).join(' ').slice(0, 1500),
+    packageText: p.quantity.slice(0, 80),
+    nutrition: readNutrition(p.nutriments, p.serving_size, p.no_nutrition_data),
+  };
 }

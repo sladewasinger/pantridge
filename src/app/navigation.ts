@@ -3,7 +3,7 @@ export type Page = 'kitchen' | 'shopping';
 export type StoragePage = Location | 'freezer';
 export type Overlay =
   | { type: 'food'; id: string }
-  | { type: 'add'; shelf?: number }
+  | { type: 'add'; shelf?: number; location?: Location }
   | { type: 'shopping'; item?: ShoppingItem }
   | { type: 'put-away' }
   | { type: 'settings' }
@@ -19,5 +19,6 @@ export function viewTitle({ page, location, query }: ViewState): string {
   if (location === 'fridge') return 'Fridge';
   if (location === 'pantry') return 'Pantry';
   if (location === 'freezer') return 'Freezer';
+  if (location === 'unspecified') return 'Unspecified';
   return 'My kitchen';
 }

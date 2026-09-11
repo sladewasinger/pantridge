@@ -38,8 +38,10 @@ export function SearchResults({
               <span>
                 {packageLabel(food) || 'Unspecified size'}
                 <small>
-                  {food.frozen ? 'Freezer' : food.location === 'fridge' ? 'Fridge' : 'Pantry'} ·{' '}
-                  {units(countFood(data, food.id), food.unit)}
+                  {food.frozen
+                    ? 'Freezer'
+                    : food.location.charAt(0).toUpperCase() + food.location.slice(1)}{' '}
+                  · {units(countFood(data, food.id), food.unit)}
                 </small>
               </span>
             </button>

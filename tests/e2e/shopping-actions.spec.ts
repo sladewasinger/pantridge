@@ -18,6 +18,7 @@ test('shopping badge counts active rows and checked items can be discarded and u
   await page.getByRole('button', { name: 'Undo', exact: true }).click();
   await expect(page.getByRole('checkbox', { name: 'Mark Eggs purchased' })).toBeChecked();
   await page.getByRole('button', { name: 'Discard checked items' }).click();
+  await expect(page.getByRole('checkbox', { name: 'Mark Eggs purchased' })).toHaveCount(0);
   await page.evaluate(async () => {
     await navigator.serviceWorker.ready;
   });

@@ -5,7 +5,7 @@ import { productSchema } from './products/barcode';
 import { artIds } from './artwork/catalog';
 
 export const id = z.uuid();
-export const locationSchema = z.enum(['fridge', 'pantry']);
+export const locationSchema = z.enum(['fridge', 'pantry', 'unspecified']);
 export const unitSchema = z.enum([
   'items',
   'cartons',
@@ -38,6 +38,7 @@ export const stockSchema = z.object({
   foodId: id,
   quantity: z.number().int().min(0).max(9999),
   expires: dateSchema.optional(),
+  expirySource: z.enum(['estimate', 'ai']).optional(),
   product: productSchema.optional(),
 });
 export const shoppingSchema = z.object({

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { nutritionSchema } from './nutrition';
 
 export function validBarcode(code: string): boolean {
   if (!/^(?:\d{8}|\d{12}|\d{13}|\d{14})$/.test(code)) return false;
@@ -17,5 +18,6 @@ export const productSchema = z.object({
   name: z.string().trim().max(160),
   brand: z.string().trim().max(80),
   source: z.literal('openfoodfacts').optional(),
+  nutrition: nutritionSchema.optional(),
 });
 export type Product = z.infer<typeof productSchema>;

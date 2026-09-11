@@ -19,7 +19,8 @@
   filter: drop-shadow(0 5px 3px #725c3020);
   transition: transform 150ms;
 }
-.appliance:hover {
+.appliance:hover,
+.appliance:focus-within {
   transform: translateY(-3px);
 }
 .appliance:active {

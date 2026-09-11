@@ -7,6 +7,7 @@ import { Modal } from '../../ui/Modal';
 import { Quantity } from '../../ui/Quantity';
 import { useAction } from '../../ui/useAction';
 import { packageLabel } from '../../domain/products/variants';
+import { shoppingSuggestions } from '../../domain/shopping-suggestions';
 
 export function ShoppingForm({ item, onClose }: { item?: ShoppingItem; onClose: () => void }) {
   const { data } = useKitchen();
@@ -22,9 +23,7 @@ export function ShoppingForm({ item, onClose }: { item?: ShoppingItem; onClose: 
       },
   );
   const { run, busy, error } = useAction();
-  const suggestions = data.foods
-    .filter((food) => food.name.toLowerCase().includes(draft.name.toLowerCase()))
-    .slice(0, 6);
+  const suggestions = shoppingSuggestions(data, draft.name);
   function setName(name: string) {
     const { foodId: _foodId, packageSize: _size, ...rest } = draft;
     const exact = data.foods.filter(

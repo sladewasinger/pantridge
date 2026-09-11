@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
 import { z } from 'zod';
-import { id, shoppingSchema } from '../domain/model';
+import { id, shoppingSchema, locationSchema } from '../domain/model';
 import type { Overlay, Page, StoragePage } from './navigation';
 
 const frameSchema = z.object({
@@ -8,12 +8,16 @@ const frameSchema = z.object({
   account: z.string(),
   depth: z.number().int().nonnegative(),
   page: z.enum(['kitchen', 'shopping']),
-  location: z.enum(['fridge', 'pantry', 'freezer']).nullable(),
+  location: z.enum(['fridge', 'pantry', 'freezer', 'unspecified']).nullable(),
   query: z.string(),
   overlay: z
     .discriminatedUnion('type', [
       z.object({ type: z.literal('food'), id }),
-      z.object({ type: z.literal('add'), shelf: z.number().int().min(0).max(2).optional() }),
+      z.object({
+        type: z.literal('add'),
+        shelf: z.number().int().min(0).max(2).optional(),
+        location: locationSchema.optional(),
+      }),
       z.object({ type: z.literal('shopping'), item: shoppingSchema.optional() }),
       z.object({ type: z.literal('put-away') }),
       z.object({ type: z.literal('settings') }),
@@ -68,6 +72,13 @@ function back(distance = 1) {
 export function navigate(page: Page) {
   if (page === 'kitchen') {
     if (current.depth) back(current.depth);
+    else
+      window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? 'instant'
+          : 'smooth',
+      });
     return;
   }
   if (current.page !== page) push({ ...home, page });

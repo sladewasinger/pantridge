@@ -1,0 +1,87 @@
+.item-tabs,
+.nutrition-basis {
+  display: flex;
+  gap: 4px;
+  margin: 10px 0 16px;
+}
+.item-tabs button {
+  flex: 1;
+  padding: 11px;
+  background: #eee6d4;
+  border-radius: 10px;
+}
+.item-tabs [aria-selected='true'] {
+  background: #586f55;
+  color: #fff9ec;
+}
+.nutrition-label {
+  padding: 14px;
+  border: 2px solid #35372e;
+  background: #fffdf5;
+  color: #25291f;
+  font-family: Arial, sans-serif;
+}
+.nutrition-label h3 {
+  font-family: inherit;
+  font-size: clamp(27px, 8vw, 36px);
+  letter-spacing: -1.5px;
+  margin: 0;
+  border-bottom: 1px solid;
+  font-weight: 900;
+}
+.nutrition-label p {
+  font-size: 12px;
+  margin: 6px 0;
+}
+.nutrition-basis {
+  margin: 10px 0;
+}
+.nutrition-basis button {
+  min-height: 44px;
+  flex: 1;
+  font-size: 12px;
+  border: 1px solid #c8cbbb;
+  border-radius: 5px;
+  background: transparent;
+}
+.nutrition-basis [aria-pressed='true'] {
+  background: #e1e7d9;
+  border-color: #6b7c60;
+}
+.nutrition-calories {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-top: 9px solid;
+  border-bottom: 5px solid;
+  padding: 7px 0;
+}
+.nutrition-calories strong {
+  font-size: 23px;
+}
+.nutrition-calories b {
+  font-size: 34px;
+}
+.nutrition-label dl {
+  margin: 0 0 8px;
+  border-bottom: 5px solid;
+}
+.nutrition-label dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid #52584b;
+  padding: 7px 0;
+  font-size: 14px;
+}
+.nutrition-label dt {
+  font-weight: 700;
+}
+.nutrition-label dd {
+  margin: 0;
+}
+.nutrition-label small {
+  font-size: 11px;
+  line-height: 1.4;
+  display: block;
+}
