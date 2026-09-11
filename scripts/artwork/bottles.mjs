@@ -1,3 +1,5 @@
+import { beerBottleArt } from './beer.mjs';
+
 const silhouettes = {
   longneck: 'M35 11h10v15c0 5 8 8 8 16v17q0 5-5 5H32q-5 0-5-5V42c0-8 8-11 8-16Z',
   wine: 'M35 10h10v18c0 5 10 6 10 16v15q0 5-5 5H30q-5 0-5-5V44c0-10 10-11 10-16Z',
@@ -31,6 +33,7 @@ function drinkCan(glass, paper, closure, motif) {
 
 export function drinkArt([, , shape, glass, paper, closure, motif]) {
   const kind = shape.replace('drink-', '');
+  if (kind === 'beer') return beerBottleArt();
   if (kind === 'can') return drinkCan(glass, paper, closure, motif);
   const outline = silhouettes[kind];
   if (!outline) throw new Error(`Unknown drink silhouette: ${shape}`);

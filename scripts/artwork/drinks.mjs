@@ -1,6 +1,6 @@
 // Bottle silhouettes, glass color, label color, closure color, and restrained label motif.
 export const drinks = [
-  ['beer-bottle', 'Beer bottle', 'drink-longneck', '#93602f', '#ead9a9', '#65754f', 'grain'],
+  ['beer-bottle', 'Beer bottle', 'drink-beer'],
   ['beer-can', 'Beer can', 'drink-can', '#b2baa4', '#eee2be', '#697d66', 'grain'],
   ['red-wine', 'Red wine', 'drink-wine', '#594942', '#ead9c7', '#754955', 'seal'],
   ['white-wine', 'White wine', 'drink-wine', '#aeb27d', '#f0e6c9', '#b39b62', 'seal'],

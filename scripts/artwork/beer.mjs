@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 70"><title>Beer bottle</title><ellipse cx="40" cy="65" rx="24" ry="3" fill="#6b7159" opacity=".12"/><g stroke-linejoin="round" stroke-linecap="round"><path d="M36 8h8v14c0 5 8 8 8 14v25q0 4-5 4H33q-5 0-5-4V36c0-6 8-9 8-14Z" fill="#805025" stroke="#674522" stroke-width="1.1"/>
+// A tall 12 oz longneck: crown cap, narrow neck, rounded shoulders and curved paper label.
+export function beerBottleArt() {
+  return `<path d="M36 8h8v14c0 5 8 8 8 14v25q0 4-5 4H33q-5 0-5-4V36c0-6 8-9 8-14Z" fill="#805025" stroke="#674522" stroke-width="1.1"/>
     <path d="M38 10v13c0 6-7 10-7 15v22" fill="none" stroke="#d2a363" stroke-width="2.2" opacity=".75"/>
     <path d="M43 12v10c0 6 7 10 7 15v24q-10 3-19 0" fill="none" stroke="#513d25" stroke-width="1.5" opacity=".6"/>
     <path d="M35.5 17q4.5 1 9 0v7q-4.5 1.5-9 0Z" fill="#dfd0a6" stroke="#b29c6a" stroke-width=".5"/>
@@ -11,4 +13,5 @@
     <path d="M29.5 44q10.5-1 21 0v6q-10.5 1-21 0Z" fill="#f0e3bd"/>
     <text x="40" y="48.7" text-anchor="middle" fill="#536442" font-family="Georgia,serif" font-size="5.2" font-weight="bold" letter-spacing=".35">BEER</text>
     <path d="M36.5 53h7m-5 2h3" stroke="#eaddb5" stroke-width=".7"/>
-    <path d="M33 62q7 1.5 14 0" fill="none" stroke="#b58343" stroke-width="1.1"/></g></svg>
+    <path d="M33 62q7 1.5 14 0" fill="none" stroke="#b58343" stroke-width="1.1"/>`;
+}
