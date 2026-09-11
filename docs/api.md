@@ -31,6 +31,7 @@ Snapshots reject duplicate IDs and missing food references. `food.restore` accep
 | `food.remove`        | Delete food and stock, preserving linked groceries as standalone |
 | `kitchen.initialize` | Initialize starter food once; never refill a cleared kitchen     |
 | `stock.add`          | Add a quantity lot with an optional ISO calendar expiration date |
+| `stock.remove`       | Remove one lot by stockId, retaining food and shopping identity  |
 | `stock.adjust`       | Increment/decrement a lot, clamped to 0–9,999                    |
 | `stock.date`         | Set or clear a lot’s expiration                                  |
 | `shopping.save`      | Add/update a linked or one-time shopping entry                   |

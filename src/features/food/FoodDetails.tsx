@@ -1,14 +1,16 @@
 import { artPath } from '../../domain/artwork/catalog';
 import { useState } from 'react';
-import { Minus, Plus, ShoppingBasket, Trash2 } from 'lucide-react';
+import { ShoppingBasket, Trash2 } from 'lucide-react';
 import { dispatch, dispatchMany, useKitchen } from '../../data/store';
-import type { Food, Stock } from '../../domain/model';
+import type { Food } from '../../domain/model';
 import { countFood, units } from '../../domain/selectors';
 import { Modal } from '../../ui/Modal';
 import { useAction } from '../../ui/useAction';
 import { FoodFields } from './FoodFields';
 import { showUndo } from '../../ui/notice';
 import { ItemTabs } from '../nutrition/ItemTabs';
+import { StockLot } from './StockLot';
+import { UndoNotice } from '../../ui/UndoNotice';
 import { estimatedDate } from '../../domain/freshness/estimate';
 
 export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () => void }) {
@@ -19,8 +21,6 @@ export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () =
   if (!current) return null;
   const food = current;
   const lots = data.stock.filter((stock) => stock.foodId === foodId);
-  const adjust = (stock: Stock, delta: number) =>
-    void run(() => dispatch({ type: 'stock.adjust', stockId: stock.id, delta }));
   return (
     <Modal title={food.name} onClose={onClose}>
       <ItemTabs products={lots.flatMap((lot) => (lot.product ? [lot.product] : []))}>
@@ -33,61 +33,21 @@ export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () =
             </small>
           </span>
         </div>
-        {lots.map((stock) => (
-          <div className="lot" key={stock.id}>
-            {stock.product && (
-              <small className="muted">
-                {stock.product.brand} · {stock.product.name}
-                {stock.product.source === 'openfoodfacts' && (
-                  <a
-                    className="scan-attribution"
-                    href={`https://world.openfoodfacts.org/product/${stock.product.barcode}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {' '}
-                    · Open Food Facts
-                  </a>
-                )}
-              </small>
-            )}
-            <div className="lot-quantity">
-              <button
-                className="round"
-                aria-label="Use one"
-                disabled={busy || stock.quantity === 0}
-                onClick={() => adjust(stock, -1)}
-              >
-                <Minus />
-              </button>
-              <span>{units(stock.quantity, food.unit)}</span>
-              <button
-                className="round"
-                aria-label="Add one"
-                disabled={busy || stock.quantity >= 9999}
-                onClick={() => adjust(stock, 1)}
-              >
-                <Plus />
-              </button>
-            </div>
-            <label>
-              Expiration {stock.expirySource && <span className="optional">estimated</span>}
-              <input
-                type="date"
-                aria-label={`Expiration for lot ${stock.id}`}
-                value={stock.expires ?? ''}
-                onChange={(e) =>
-                  void run(() =>
-                    dispatch({
-                      type: 'stock.date',
-                      stockId: stock.id,
-                      expires: e.target.value || null,
-                    }),
-                  )
-                }
-              />
-            </label>
-          </div>
+        {lots.map((stock, index) => (
+          <StockLot
+            key={stock.id}
+            stock={stock}
+            unit={food.unit}
+            index={index}
+            busy={busy}
+            onChange={(command) => void run(() => dispatch(command))}
+            onRemove={() =>
+              void run(async () => {
+                await dispatch({ type: 'stock.remove', stockId: stock.id });
+                showUndo('Package deleted', () => dispatch({ type: 'stock.add', stock }));
+              })
+            }
+          />
         ))}
         <button
           className="secondary full"
@@ -180,6 +140,7 @@ export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () =
           </p>
         )}
       </ItemTabs>
+      <UndoNotice />
     </Modal>
   );
 }

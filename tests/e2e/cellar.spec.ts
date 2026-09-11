@@ -45,11 +45,26 @@ test('cellar continues below the kitchen, puts unassigned stock first and loads 
     'aria-label',
     'Napkins, 1 pack',
   );
-  for (const place of ['unspecified', 'pantry', 'fridge', 'freezer'])
+  await expect(cellar).toHaveCSS('border-top-width', '80px');
+  await expect(cellar).toHaveCSS('border-top-color', 'rgb(81, 60, 46)');
+  for (const place of ['unspecified', 'pantry', 'fridge'])
     await expect(cellar.getByLabel(`Stored in ${place}`).first()).toBeVisible();
   await page.screenshot({ path: 'artifacts/cellar-mobile.png' });
   await page.getByRole('button', { name: 'Deeper' }).scrollIntoViewIfNeeded();
   await expect(cellar.locator('.food-tile')).toHaveCount(30);
+  await expect(cellar.locator('.underground-location').last()).toHaveAttribute(
+    'aria-label',
+    'Stored in freezer',
+  );
+  const places = await cellar
+    .locator('.underground-location')
+    .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('title')));
+  expect(places).toEqual([
+    'unspecified',
+    ...Array(14).fill('fridge'),
+    ...Array(14).fill('pantry'),
+    'freezer',
+  ]);
   await expect(page.getByRole('button', { name: 'Deeper' })).toHaveCount(0);
   await page.setViewportSize({ width: 320, height: 700 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

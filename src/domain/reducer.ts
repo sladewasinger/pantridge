@@ -49,6 +49,8 @@ export function applyCommand(data: Snapshot, command: Command): Snapshot {
       return { ...data, stock: [...data.stock, command.stock] };
     case 'stock.scan':
       return addScannedStock(data, command.food, command.stock);
+    case 'stock.remove':
+      return { ...data, stock: data.stock.filter((stock) => stock.id !== command.stockId) };
     case 'stock.adjust':
       return {
         ...data,
