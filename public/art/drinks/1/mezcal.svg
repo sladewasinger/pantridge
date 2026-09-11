@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 70"><title>Mezcal</title><ellipse cx="40" cy="65" rx="24" ry="3" fill="#6b7159" opacity=".12"/><g stroke-linejoin="round" stroke-linecap="round"><path d="M33 12h14v10l11 8q3 2 3 6v23q0 5-5 5H24q-5 0-5-5V36q0-4 3-6l11-8Z" fill="#bac4ae" stroke="#655f48" stroke-opacity=".55" stroke-width="1.2"/>
+    <path d="M33 12h14v10l11 8q3 2 3 6v23q0 5-5 5H24q-5 0-5-5V36q0-4 3-6l11-8Z" fill="none" stroke="#f7edca" stroke-opacity=".22" stroke-width="3" transform="translate(1 0) scale(.975 1)"/>
+    <path d="M37 17v9m-6 10v21" stroke="#fff7df" opacity=".48" stroke-width="2.5" fill="none"/>
+    <path d="M48 54v5q-8 3-16 0" stroke="#413c32" opacity=".2" stroke-width="2" fill="none"/>
+    <rect x="25" y="35" width="30" height="19" rx="2" fill="#e7d9bd"/>
+    <rect x="27" y="37" width="26" height="15" rx="1" fill="none" stroke="#8e7559" stroke-opacity=".4" stroke-width=".65"/>
+    <g stroke="#8e7559" stroke-width="1.1"><path d="M40 48q-7-3-8-9l8 9-4-12 4 12 4-12-4 12q7-3 8-9Z" fill="none"/></g><rect x="33" y="6" width="14" height="8" rx="2" fill="#8e7559"/><path d="M35 8h10" stroke="#fff4d8" opacity=".4"/></g></svg>

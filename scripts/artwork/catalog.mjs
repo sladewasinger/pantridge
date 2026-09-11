@@ -1,5 +1,7 @@
 // Authored illustration recipes. IDs are persistent food values; never rename existing IDs.
 // Each recipe: id, picker label, silhouette, primary ink, accent ink, package illustration.
+import { plainBottles } from './drinks.mjs';
+
 export const fridge = [
   ['eggs', 'Egg carton', 'legacy'],
   ['milk', 'Milk carton', 'legacy'],
@@ -118,4 +120,5 @@ export const packaging = [
   ['plain-jar', 'Plain jar', 'jar', '#b3ad8e', '#e7dcc4', ''],
   ['plain-bottle', 'Plain bottle', 'bottle', '#9aab91', '#e5ddc4', ''],
   ['plain-carton', 'Plain carton', 'carton', '#a1afa4', '#ede4cf', ''],
+  ...plainBottles,
 ];

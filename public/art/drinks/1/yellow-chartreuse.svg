@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 70"><title>Yellow Chartreuse</title><ellipse cx="40" cy="65" rx="24" ry="3" fill="#6b7159" opacity=".12"/><g stroke-linejoin="round" stroke-linecap="round"><path d="M34 12h12v12c0 6 11 7 11 18v15q0 7-7 7H30q-7 0-7-7V42c0-11 11-12 11-18Z" fill="#b7ab55" stroke="#655f48" stroke-opacity=".55" stroke-width="1.2"/>
+    <path d="M34 12h12v12c0 6 11 7 11 18v15q0 7-7 7H30q-7 0-7-7V42c0-11 11-12 11-18Z" fill="none" stroke="#f7edca" stroke-opacity=".22" stroke-width="3" transform="translate(1 0) scale(.975 1)"/>
+    <path d="M37 17v9m-6 10v21" stroke="#fff7df" opacity=".48" stroke-width="2.5" fill="none"/>
+    <path d="M48 54v5q-8 3-16 0" stroke="#413c32" opacity=".2" stroke-width="2" fill="none"/>
+    <rect x="29" y="35" width="22" height="19" rx="2" fill="#f0dea0"/>
+    <rect x="31" y="37" width="18" height="15" rx="1" fill="none" stroke="#beac54" stroke-opacity=".4" stroke-width=".65"/>
+    <g stroke="#beac54" stroke-width="1.1"><path d="M40 49V38m0 6q-7 0-6-5 6 0 6 5Zm0-3q6 0 6-5-6 0-6 5Z" fill="none"/></g><rect x="33" y="6" width="14" height="8" rx="2" fill="#beac54"/><path d="M35 8h10" stroke="#fff4d8" opacity=".4"/></g></svg>

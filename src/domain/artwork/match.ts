@@ -1,7 +1,9 @@
 import { artwork, type ArtId } from './catalog';
 import { tokens, wordSimilarity } from './words';
+import { drinkAliases } from './drink-aliases';
 
 const aliases: Partial<Record<ArtId, string[]>> = {
+  ...drinkAliases,
   greens: ['lettuce', 'spinach', 'kale', 'salad greens'],
   'plain-tin': ['sardines', 'oysters', 'mackerel', 'anchovies'],
   'bell-pepper': ['capsicum', 'bell peppers'],
@@ -13,7 +15,7 @@ const aliases: Partial<Record<ArtId, string[]>> = {
 const candidates = artwork.map((art) => ({
   id: art.id,
   terms: [
-    art.group === 'Packaging'
+    art.group === 'Packaging' || art.group === 'Drinks'
       ? art.label
       : art.label.replace(/\b(carton|cup|can|box|bag|tub)\b/gi, ''),
     ...(aliases[art.id] ?? []),

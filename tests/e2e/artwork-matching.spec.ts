@@ -18,6 +18,11 @@ test('new food matches artwork offline, clears uncertain matches, and respects m
   await expect(selected).toHaveText('Bananas');
   await name.fill('great value sardines');
   await expect(selected).toHaveText('Plain seafood tin');
+  await name.fill('Maker’s Mark bourbon');
+  await expect(selected).toHaveText('Whiskey');
+  await name.fill('Yellow Chartreuse');
+  await expect(selected).toHaveText('Yellow Chartreuse');
+  await expect(selected.locator('img')).toHaveJSProperty('complete', true);
   await name.fill('Mystery food');
   await expect(selected).toHaveCount(0);
   await expect(page.locator('.art-picker [aria-pressed="true"]')).toHaveCount(0);

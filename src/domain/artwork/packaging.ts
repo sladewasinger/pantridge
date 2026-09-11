@@ -8,4 +8,22 @@ export const packagingArt = [
   ['plain-jar', 'Plain jar', '/art/packaging/1/plain-jar.svg', 'jar'],
   ['plain-bottle', 'Plain bottle', '/art/packaging/1/plain-bottle.svg', 'bottle'],
   ['plain-carton', 'Plain carton', '/art/packaging/1/plain-carton.svg', 'carton'],
+  [
+    'plain-amber-bottle',
+    'Plain amber bottle',
+    '/art/packaging/1/plain-amber-bottle.svg',
+    'drink-longneck',
+  ],
+  [
+    'plain-green-bottle',
+    'Plain green bottle',
+    '/art/packaging/1/plain-green-bottle.svg',
+    'drink-wine',
+  ],
+  [
+    'plain-clear-bottle',
+    'Plain clear bottle',
+    '/art/packaging/1/plain-clear-bottle.svg',
+    'drink-tall',
+  ],
 ] as const;

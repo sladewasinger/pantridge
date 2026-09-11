@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 70"><title>Tequila</title><ellipse cx="40" cy="65" rx="24" ry="3" fill="#6b7159" opacity=".12"/><g stroke-linejoin="round" stroke-linecap="round"><path d="M34 13h12v10c0 5 16 5 16 21v9q0 11-22 11T18 53v-9c0-16 16-16 16-21Z" fill="#c4c9ab" stroke="#655f48" stroke-opacity=".55" stroke-width="1.2"/>
+    <path d="M34 13h12v10c0 5 16 5 16 21v9q0 11-22 11T18 53v-9c0-16 16-16 16-21Z" fill="none" stroke="#f7edca" stroke-opacity=".22" stroke-width="3" transform="translate(1 0) scale(.975 1)"/>
+    <path d="M37 17v9m-6 10v21" stroke="#fff7df" opacity=".48" stroke-width="2.5" fill="none"/>
+    <path d="M48 54v5q-8 3-16 0" stroke="#413c32" opacity=".2" stroke-width="2" fill="none"/>
+    <rect x="25" y="35" width="30" height="19" rx="2" fill="#ece2c7"/>
+    <rect x="27" y="37" width="26" height="15" rx="1" fill="none" stroke="#a88a5f" stroke-opacity=".4" stroke-width=".65"/>
+    <g stroke="#a88a5f" stroke-width="1.1"><path d="M40 48q-7-3-8-9l8 9-4-12 4 12 4-12-4 12q7-3 8-9Z" fill="none"/></g><rect x="33" y="6" width="14" height="8" rx="2" fill="#a88a5f"/><path d="M35 8h10" stroke="#fff4d8" opacity=".4"/></g></svg>

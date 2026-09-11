@@ -1,0 +1,17 @@
+// A tall 12 oz longneck: crown cap, narrow neck, rounded shoulders and curved paper label.
+export function beerBottleArt() {
+  return `<path d="M36 8h8v14c0 5 8 8 8 14v25q0 4-5 4H33q-5 0-5-4V36c0-6 8-9 8-14Z" fill="#805025" stroke="#674522" stroke-width="1.1"/>
+    <path d="M38 10v13c0 6-7 10-7 15v22" fill="none" stroke="#d2a363" stroke-width="2.2" opacity=".75"/>
+    <path d="M43 12v10c0 6 7 10 7 15v24q-10 3-19 0" fill="none" stroke="#513d25" stroke-width="1.5" opacity=".6"/>
+    <path d="M35.5 17q4.5 1 9 0v7q-4.5 1.5-9 0Z" fill="#dfd0a6" stroke="#b29c6a" stroke-width=".5"/>
+    <path d="M37 20h6m-6 2h6" stroke="#66744b" stroke-width=".9"/>
+    <path d="m35 4 2-.8h6l2 .8 1 4-2-.5-2 .5-2-.5-2 .5-2-.5-2 .5Z" fill="#c5b784" stroke="#897d55" stroke-width=".8"/>
+    <path d="M37 5v2m3-2v2m3-2v2" stroke="#f0e3b5" stroke-width=".8"/>
+    <ellipse cx="40" cy="47" rx="10.5" ry="12" fill="#e9ddb8" stroke="#c6b78a" stroke-width=".6"/>
+    <ellipse cx="40" cy="47" rx="8.5" ry="10" fill="#697b54"/>
+    <path d="M39.5 43v-3m0 2-2-1m2 0 2-1" fill="none" stroke="#eaddb5" stroke-width=".8"/>
+    <path d="M29.5 44q10.5-1 21 0v6q-10.5 1-21 0Z" fill="#f0e3bd"/>
+    <text x="40" y="48.7" text-anchor="middle" fill="#536442" font-family="Georgia,serif" font-size="5.2" font-weight="bold" letter-spacing=".35">BEER</text>
+    <path d="M36.5 53h7m-5 2h3" stroke="#eaddb5" stroke-width=".7"/>
+    <path d="M33 62q7 1.5 14 0" fill="none" stroke="#b58343" stroke-width="1.1"/>`;
+}

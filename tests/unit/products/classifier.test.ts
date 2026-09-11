@@ -83,6 +83,10 @@ it('caps output, sends only product data, and validates structured output', asyn
   expect(request.instructions).toContain('"shape":"box"');
   expect(request.instructions).toContain('"plain":true');
   expect(request.instructions).toContain('"id":"frozen-dumplings"');
+  expect(request.instructions).toContain('"id":"chartreuse"');
+  expect(request.instructions).toContain('"id":"yellow-chartreuse"');
+  expect(request.instructions).toContain('"label":"Plain amber bottle"');
+  expect(request.instructions).toContain('bourbon');
   expect(mocks.takeQuota).toHaveBeenCalledWith('ai-global', 100);
 });
 it('falls back to free rules on quota exhaustion, provider refusal, or missing key', async () => {

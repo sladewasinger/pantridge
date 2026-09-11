@@ -35,8 +35,10 @@ test('artwork catalog loads, filters on mobile, and preserves a new selection', 
   await expect(picker.getByRole('button')).toHaveCount(artwork.length);
   await page.getByRole('button', { name: 'Freezer', exact: true }).click();
   await expect(picker.getByRole('button')).toHaveCount(10);
+  await page.getByRole('button', { name: 'Drinks', exact: true }).click();
+  await expect(picker.getByRole('button')).toHaveCount(18);
   await page.getByRole('button', { name: 'Packaging', exact: true }).click();
-  await expect(picker.getByRole('button')).toHaveCount(8);
+  await expect(picker.getByRole('button')).toHaveCount(11);
   await page.getByRole('searchbox', { name: 'Search illustrations' }).fill('oysters');
   await expect(picker.getByRole('button')).toHaveCount(1);
   await picker.getByRole('button', { name: 'Use Plain seafood tin artwork' }).click();
@@ -60,4 +62,30 @@ test('artwork catalog loads, filters on mobile, and preserves a new selection', 
   expect(
     await tile.locator('img').evaluate((img) => (img as HTMLImageElement).naturalWidth),
   ).toBeGreaterThan(0);
+});
+
+test('a new drink illustration persists and remains available without a network', async ({
+  page,
+  context,
+  browserName,
+}) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Add food', exact: true }).click();
+  await page.getByLabel('Food name').fill('Yellow Chartreuse');
+  await page.getByRole('combobox', { name: 'Unit', exact: true }).selectOption('bottles');
+  await expect(page.locator('.art-selected')).toHaveText('Yellow Chartreuse');
+  await page.getByRole('button', { name: 'Add to pantry', exact: true }).click();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Open pantry', exact: true }).click();
+  const tile = page.getByRole('button', { name: 'Yellow Chartreuse, 1 bottle', exact: true });
+  await expect(tile.locator('img')).toHaveAttribute('src', '/art/drinks/1/yellow-chartreuse.svg');
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready;
+  });
+  if (browserName === 'chromium') await context.setOffline(true);
+  await page.reload();
+  await expect(tile.locator('img')).toHaveAttribute('src', '/art/drinks/1/yellow-chartreuse.svg');
+  await expect
+    .poll(() => tile.locator('img').evaluate((img) => (img as HTMLImageElement).naturalWidth))
+    .toBeGreaterThan(0);
 });

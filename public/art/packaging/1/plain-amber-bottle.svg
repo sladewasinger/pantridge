@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 70"><title>Plain amber bottle</title><ellipse cx="40" cy="65" rx="24" ry="3" fill="#6b7159" opacity=".12"/><g stroke-linejoin="round" stroke-linecap="round"><path d="M35 11h10v15c0 5 8 8 8 16v17q0 5-5 5H32q-5 0-5-5V42c0-8 8-11 8-16Z" fill="#9a6a3e" stroke="#655f48" stroke-opacity=".55" stroke-width="1.2"/>
+    <path d="M35 11h10v15c0 5 8 8 8 16v17q0 5-5 5H32q-5 0-5-5V42c0-8 8-11 8-16Z" fill="none" stroke="#f7edca" stroke-opacity=".22" stroke-width="3" transform="translate(1 0) scale(.975 1)"/>
+    <path d="M37 17v9m-6 10v21" stroke="#fff7df" opacity=".48" stroke-width="2.5" fill="none"/>
+    <path d="M48 54v5q-8 3-16 0" stroke="#413c32" opacity=".2" stroke-width="2" fill="none"/>
+    <rect x="29" y="35" width="22" height="19" rx="2" fill="#eadfc9"/>
+
+    <rect x="33" y="6" width="14" height="8" rx="2" fill="#76604b"/><path d="M35 8h10" stroke="#fff4d8" opacity=".4"/></g></svg>
