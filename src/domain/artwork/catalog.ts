@@ -34,19 +34,20 @@ const aliases: Partial<Record<ArtId, string>> = {
   'green-onions': 'scallions spring onions',
   'ground-beef': 'minced beef hamburger',
 };
+const pantryFruit: readonly ArtId[] = ['apple', 'bananas', 'orange', 'lemon', 'lime'];
+function groupFor(id: ArtId, index: number): ArtworkGroup {
+  if (pantryFruit.includes(id)) return 'Pantry';
+  if (index < fridgeArt.length) return 'Fridge';
+  if (index < fridgeArt.length + pantryArt.length) return 'Pantry';
+  return index < entries.length - packagingArt.length ? 'Freezer' : 'Packaging';
+}
 export const artwork = entries.map(([id, label, src, shape], index) => ({
   id,
   label,
   src,
   shape: legacyShapes[id] ?? shape,
   keywords: aliases[id] ?? '',
-  group: (index < fridgeArt.length
-    ? 'Fridge'
-    : index < fridgeArt.length + pantryArt.length
-      ? 'Pantry'
-      : index < entries.length - packagingArt.length
-        ? 'Freezer'
-        : 'Packaging') as ArtworkGroup,
+  group: groupFor(id, index),
 }));
 const byId = new Map(artwork.map((entry) => [entry.id, entry]));
 export const artPath = (id: ArtId) => byId.get(id)!.src;

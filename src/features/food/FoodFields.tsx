@@ -1,18 +1,22 @@
 import { unitSchema, type Food } from '../../domain/model';
 import { ArtPicker } from './ArtPicker';
 import { PackageFields } from './PackageFields';
+import { useArtworkMatch } from './useArtworkMatch';
 export function FoodFields({
   food,
   onChange,
   identity = true,
   compact = false,
+  autoArtwork = false,
 }: {
   food: Food;
   onChange: (food: Food) => void;
   identity?: boolean;
   compact?: boolean;
+  autoArtwork?: boolean;
 }) {
   const patch = (value: Partial<Food>) => onChange({ ...food, ...value });
+  const illustration = useArtworkMatch(food, onChange, autoArtwork);
   return (
     <>
       <label>
@@ -21,7 +25,7 @@ export function FoodFields({
           required
           maxLength={80}
           value={food.name}
-          onChange={(e) => patch({ name: e.target.value })}
+          onChange={(e) => illustration.rename(e.target.value)}
           placeholder="e.g. Black beans"
         />
       </label>
@@ -42,10 +46,10 @@ export function FoodFields({
           {compact ? (
             <details>
               <summary>Change artwork</summary>
-              <ArtPicker value={food.art} onChange={(art) => patch({ art })} />
+              <ArtPicker value={illustration.value} onChange={illustration.select} />
             </details>
           ) : (
-            <ArtPicker value={food.art} onChange={(art) => patch({ art })} />
+            <ArtPicker value={illustration.value} onChange={illustration.select} />
           )}
         </>
       )}

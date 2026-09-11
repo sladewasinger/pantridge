@@ -47,7 +47,8 @@ for (const [group, recipes] of Object.entries(groups)) {
     if (ids.has(id)) throw new Error(`Duplicate artwork ID: ${id}`);
     ids.add(id);
     const asset = imagePath(recipe, group, index);
-    if (shape !== 'legacy') await save(`public${asset}`, render(recipe));
+    if (id === 'greens') await save(`public${asset}`, render([id, label, 'produce']));
+    else if (shape !== 'legacy') await save(`public${asset}`, render(recipe));
     else await readFile(path.join(root, `public${asset}`));
     entries.push([id, label, asset, shape]);
   }
