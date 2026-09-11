@@ -3,12 +3,15 @@ import { pantryArt } from './pantry';
 import { freezerArt } from './freezer';
 import { packagingArt } from './packaging';
 import { householdArt } from './household';
+import { drinksArt } from './drinks';
+import { drinkAliases } from './drink-aliases';
 
 export const artworkGroups = [
   'All',
   'Fridge',
   'Pantry',
   'Freezer',
+  'Drinks',
   'Packaging',
   'Household',
 ] as const;
@@ -19,6 +22,7 @@ const entries = [
   ...freezerArt,
   ...packagingArt,
   ...householdArt,
+  ...drinksArt,
 ] as const;
 export type ArtId = (typeof entries)[number][0];
 export const artIds = entries.map(([id]) => id);
@@ -49,24 +53,36 @@ const aliases: Partial<Record<ArtId, string>> = {
   'ground-beef': 'minced beef hamburger',
 };
 const pantryFruit: readonly ArtId[] = ['apple', 'bananas', 'orange', 'lemon', 'lime'];
-function groupFor(id: ArtId, index: number): ArtworkGroup {
+const groupedEntries = [
+  ['Fridge', fridgeArt],
+  ['Pantry', pantryArt],
+  ['Freezer', freezerArt],
+  ['Packaging', packagingArt],
+  ['Household', householdArt],
+  ['Drinks', drinksArt],
+] as const;
+const groupsById = new Map<ArtId, ArtworkGroup>(
+  groupedEntries.flatMap(([group, items]) => items.map(([id]) => [id, group] as const)),
+);
+function groupFor(id: ArtId): ArtworkGroup {
   if (pantryFruit.includes(id)) return 'Pantry';
-  if (index < fridgeArt.length) return 'Fridge';
-  if (index < fridgeArt.length + pantryArt.length) return 'Pantry';
-  if (index < fridgeArt.length + pantryArt.length + freezerArt.length) return 'Freezer';
-  return index < entries.length - householdArt.length ? 'Packaging' : 'Household';
+  return groupsById.get(id)!;
 }
-export const artwork = entries.map(([id, label, src, shape], index) => ({
+function packageShape(shape: string): string {
+  if (!shape.startsWith('drink-')) return shape;
+  return shape === 'drink-can' ? 'can' : `${shape.slice(6)} bottle`;
+}
+export const artwork = entries.map(([id, label, src, shape]) => ({
   id,
   label,
   src,
-  shape: legacyShapes[id] ?? shape,
-  keywords: aliases[id] ?? '',
-  group: groupFor(id, index),
+  shape: legacyShapes[id] ?? packageShape(shape),
+  keywords: aliases[id] ?? drinkAliases[id]?.join(' ') ?? '',
+  group: groupFor(id),
 }));
 const byId = new Map(artwork.map((entry) => [entry.id, entry]));
 export const artPath = (id: ArtId) => byId.get(id)!.src;
-export const artworkVersion = 'food-art-v2';
+export const artworkVersion = 'food-art-v3';
 // Public, stable metadata only. Personal kitchen choices never enter the classifier prompt.
 export const artworkMetadata = artwork.map(({ id, label, shape, group, keywords }) => ({
   id,

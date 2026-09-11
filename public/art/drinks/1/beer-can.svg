@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 70"><title>Beer can</title><ellipse cx="40" cy="65" rx="24" ry="3" fill="#6b7159" opacity=".12"/><g stroke-linejoin="round" stroke-linecap="round"><rect x="25" y="12" width="30" height="50" rx="6" fill="#b2baa4" stroke="#8a968a"/>
+    <path d="M26 23h28v28H26Z" fill="#eee2be"/>
+    <path d="M26 22h28m-28 30h28" stroke="#697d66" stroke-width="3"/>
+    <ellipse cx="40" cy="12" rx="14" ry="3.5" fill="#d8ddd2" stroke="#9ea99d"/>
+    <ellipse cx="40" cy="12" rx="4" ry="1.8" fill="none" stroke="#7c8c80"/>
+    <path d="M29 17v40m-1 3q12 3 24 0" fill="none" stroke="#fff8df" opacity=".45"/>
+    <g stroke="#697d66" stroke-width="1.1"><path d="M40 48V37m0 4-4-3m4 7 4-3m-4-4 3-3" fill="none"/></g></g></svg>
