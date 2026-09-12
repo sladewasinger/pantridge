@@ -5,6 +5,32 @@ import { newFood } from '../../domain/selectors';
 import { matchVariant, rememberedProduct } from '../../domain/products/variants';
 import { sizeLabel } from '../../domain/products/size';
 
+export function pendingScan(barcode: string): Lookup {
+  return {
+    product: { barcode, name: '', brand: '' },
+    found: false,
+    source: 'manual',
+    classifiedBy: 'rules',
+    packageText: '',
+    suggestion: { name: 'Scanned item', unit: 'items', art: 'generic', location: 'pantry' },
+  };
+}
+
+export function mergeScanDraft(
+  current: Food,
+  suggestion: Food,
+  dirty: ReadonlySet<keyof Food>,
+  refined: boolean,
+): Food {
+  const fields: (keyof Food)[] = ['name', 'unit', 'art', 'location', 'frozen'];
+  if (!refined) fields.push('size', 'packageSize', 'brand', 'shelf');
+  const merged = { ...current };
+  for (const key of fields) {
+    if (!dirty.has(key)) Object.assign(merged, { [key]: suggestion[key] });
+  }
+  return merged;
+}
+
 export function scanDraft(data: Snapshot, result: Lookup, location: StoragePage | null): Food {
   const candidate: Food = {
     ...newFood(),

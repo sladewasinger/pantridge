@@ -45,23 +45,6 @@ export function PackageFields({ food, onChange }: { food: Food; onChange: (food:
           </select>
         </label>
       </div>
-      {size && (
-        <label>
-          Packages per multipack
-          <input
-            type="number"
-            inputMode="numeric"
-            min="1"
-            max="1000"
-            required
-            value={size.packs || ''}
-            onChange={(e) => {
-              const next = { ...size, packs: Number(e.target.value) };
-              onChange({ ...food, size: next, packageSize: sizeLabel(next) });
-            }}
-          />
-        </label>
-      )}
       {!size && food.packageSize && <p className="muted">Saved size: {food.packageSize}</p>}
     </fieldset>
   );

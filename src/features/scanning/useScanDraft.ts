@@ -4,49 +4,44 @@ import type { Food } from '../../domain/model';
 import type { Lookup } from '../../domain/products/lookup';
 import { matchVariant, rememberedProduct } from '../../domain/products/variants';
 import { getAccount, getKitchen } from '../../data/store';
-import { scanDraft } from './draft';
-import { refineBarcode } from './client';
+import { mergeScanDraft, pendingScan, scanDraft } from './draft';
+import { lookupFlow } from './lookupFlow';
 
-export function useScanDraft(result: Lookup, account: string, location: StoragePage | null) {
+export function useScanDraft(barcode: string, account: string, location: StoragePage | null) {
+  const [result, setResult] = useState(() => pendingScan(barcode));
   const [food, setFood] = useState(() => scanDraft(getKitchen().data, result, location));
-  const [refined, setRefined] = useState(result);
-  const [refining, setRefining] = useState(result.enhancement === 'pending');
+  const [stage, setStage] = useState<'lookup' | 'enhance' | 'complete'>('lookup');
+  const [lookupError, setLookupError] = useState('');
   const dirty = useRef(new Set<keyof Food>());
-  const known = useRef(
-    !!rememberedProduct(getKitchen().data, result.product.barcode) ||
-      !!matchVariant(getKitchen().data, food),
-  );
+  const known = useRef(false);
   useEffect(() => {
-    if (result.enhancement !== 'pending') return;
     const controller = new AbortController();
-    void refineBarcode(result.product.barcode, account, controller.signal)
-      .then((next) => {
-        if (controller.signal.aborted || getAccount() !== account) return;
-        setRefined(next);
-        if (known.current) return;
-        const suggestion = scanDraft(getKitchen().data, next, location);
-        setFood((current) => {
-          const merged = { ...current };
-          for (const key of ['name', 'unit', 'art', 'location', 'frozen'] as const) {
-            if (dirty.current.has(key)) continue;
-            Object.assign(merged, { [key]: suggestion[key] });
-          }
-          return merged;
-        });
-      })
-      .catch(() => {
-        /* The initial result remains usable if optional refinement fails. */
-      })
-      .finally(() => {
-        if (!controller.signal.aborted) setRefining(false);
-      });
+    function receive(next: Lookup, refined: boolean) {
+      if (getAccount() !== account) return;
+      setResult(next);
+      if (refined && known.current) return;
+      const data = getKitchen().data;
+      const suggestion = scanDraft(data, next, location);
+      if (!refined)
+        known.current = !!rememberedProduct(data, barcode) || !!matchVariant(data, suggestion);
+      setFood((current) => mergeScanDraft(current, suggestion, dirty.current, refined));
+    }
+    void lookupFlow(barcode, account, controller.signal, {
+      receive,
+      progress: setStage,
+      failure: setLookupError,
+    });
     return () => controller.abort();
-  }, [account, location, result]);
+  }, [account, barcode, location]);
   function touch(...keys: (keyof Food)[]) {
     for (const key of keys) dirty.current.add(key);
     if (keys.includes('location') || keys.includes('frozen')) {
       dirty.current.add('location');
       dirty.current.add('frozen');
+    }
+    if (keys.includes('size') || keys.includes('packageSize')) {
+      dirty.current.add('size');
+      dirty.current.add('packageSize');
     }
   }
   function edit(next: Food) {
@@ -54,5 +49,5 @@ export function useScanDraft(result: Lookup, account: string, location: StorageP
       if (JSON.stringify(next[key]) !== JSON.stringify(food[key])) touch(key);
     setFood(next);
   }
-  return { food, edit, touch, refined, refining };
+  return { food, edit, touch, result, stage, lookupError };
 }

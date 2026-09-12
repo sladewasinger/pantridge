@@ -2,6 +2,7 @@ import { unitSchema, locationSchema, type Food } from '../../domain/model';
 import { ArtPicker } from './ArtPicker';
 import { PackageFields } from './PackageFields';
 import { useArtworkMatch } from './useArtworkMatch';
+import type { ReactNode } from 'react';
 export function FoodFields({
   food,
   onChange,
@@ -9,6 +10,7 @@ export function FoodFields({
   compact = false,
   autoArtwork = false,
   onEdit,
+  quantityControl,
 }: {
   food: Food;
   onChange: (food: Food) => void;
@@ -16,6 +18,7 @@ export function FoodFields({
   compact?: boolean;
   autoArtwork?: boolean;
   onEdit?: (...keys: (keyof Food)[]) => void;
+  quantityControl?: ReactNode;
 }) {
   const patch = (value: Partial<Food>) => {
     onEdit?.(...(Object.keys(value) as (keyof Food)[]));
@@ -41,6 +44,7 @@ export function FoodFields({
           placeholder="e.g. Black beans"
         />
       </label>
+      {quantityControl}
       {identity && (
         <>
           <label>

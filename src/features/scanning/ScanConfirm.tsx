@@ -1,14 +1,12 @@
-import { artPath } from '../../domain/artwork/catalog';
+import { ScanPreview } from './ScanPreview';
 import { useState } from 'react';
 import type { StoragePage } from '../../app/navigation';
 import { dispatch, getKitchen } from '../../data/store';
-import type { Lookup } from '../../domain/products/lookup';
 import { matchVariant, packageLabel } from '../../domain/products/variants';
 import { useScanDraft } from './useScanDraft';
 import { useExpiration } from '../food/useExpiration';
 import { ExpirationField } from '../food/ExpirationField';
 import { ItemTabs } from '../nutrition/ItemTabs';
-import { Sparkles, LoaderCircle } from 'lucide-react';
 import { FoodFields } from '../food/FoodFields';
 import { Quantity } from '../../ui/Quantity';
 import { useAction } from '../../ui/useAction';
@@ -16,20 +14,28 @@ import { showUndo } from '../../ui/notice';
 import { requireScanAccount } from './client';
 
 export function ScanConfirm({
-  result,
+  barcode,
   account,
   location,
   onDone,
 }: {
-  result: Lookup;
+  barcode: string;
   account: string;
   location: StoragePage | null;
   onDone: () => void;
 }) {
-  const { food, edit: setFood, touch, refined, refining } = useScanDraft(result, account, location);
+  const {
+    food,
+    edit: setFood,
+    touch,
+    result,
+    stage,
+    lookupError,
+  } = useScanDraft(barcode, account, location);
   const [quantity, setQuantity] = useState(1);
-  const expiry = useExpiration(food, refined.suggestion.estimatedDays);
+  const expiry = useExpiration(food, result.suggestion.estimatedDays);
   const [unspecified, setUnspecified] = useState(false);
+
   const { run, error, busy } = useAction();
   const match = matchVariant(getKitchen().data, food);
   return (
@@ -49,7 +55,11 @@ export function ScanConfirm({
               foodId: food.id,
               quantity,
               ...expiry.fields,
-              product: { ...result.product, brand: food.brand },
+              product: {
+                ...result.product,
+                name: result.product.name || food.name,
+                brand: food.brand,
+              },
             },
           });
           requireScanAccount(account);
@@ -61,28 +71,39 @@ export function ScanConfirm({
         });
       }}
     >
-      <div className="scan-product">
-        <img src={artPath(food.art)} alt="" />
-        <span>
-          {food.name || 'Product not found'}
-          {refining && (
-            <span className="scan-refining" role="status">
-              <Sparkles size={15} />
-              <LoaderCircle size={14} />
-              <span className="sr-only">Refining details</span>
-            </span>
-          )}
-          <small>
-            {packageLabel(food) || 'Unspecified size'} · {food.unit}
-          </small>
-          <small>{result.product.brand}</small>
-        </span>
-      </div>
+      <ScanPreview food={food} stage={stage} />
+      {lookupError && (
+        <p role="status" className="muted">
+          {lookupError}
+        </p>
+      )}
       <ItemTabs products={[result.product]}>
         {result.packageText && !result.size && (
           <p className="muted">Package label: {result.packageText}</p>
         )}
-        <Quantity value={quantity} onChange={setQuantity} min={1} />
+
+        <div className="scan-details">
+          <FoodFields
+            food={food}
+            onChange={setFood}
+            onEdit={touch}
+            compact
+            quantityControl={<Quantity value={quantity} onChange={setQuantity} min={1} />}
+          />
+          {!packageLabel(food) && (
+            <label className="scan-unspecified">
+              <input
+                type="checkbox"
+                checked={unspecified}
+                onChange={(e) => {
+                  touch('size', 'packageSize');
+                  setUnspecified(e.target.checked);
+                }}
+              />
+              Unspecified size
+            </label>
+          )}
+        </div>
         <div className="scan-placement" role="group" aria-label="Storage location">
           {(['pantry', 'fridge', 'freezer', 'unspecified'] as const).map((place) => (
             <button
@@ -102,20 +123,6 @@ export function ScanConfirm({
             </button>
           ))}
         </div>
-        <details open={!result.found || !result.size} className="scan-details">
-          <summary>Edit details</summary>
-          <FoodFields food={food} onChange={setFood} onEdit={touch} compact />
-          {!packageLabel(food) && (
-            <label className="scan-unspecified">
-              <input
-                type="checkbox"
-                checked={unspecified}
-                onChange={(e) => setUnspecified(e.target.checked)}
-              />
-              Unspecified size
-            </label>
-          )}
-        </details>
         <ExpirationField value={expiry.value} source={expiry.source} onChange={expiry.set} />
         {match && (
           <p className="muted">
