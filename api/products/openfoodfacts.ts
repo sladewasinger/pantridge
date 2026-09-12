@@ -71,6 +71,6 @@ function productFields(p: z.infer<typeof responseSchema>['product']) {
     brand: p.brands.slice(0, 80),
     categories: p.categories_tags.slice(0, 30).join(' ').slice(0, 1500),
     packageText: p.quantity.slice(0, 80),
-    nutrition: readNutrition(p.nutriments, p.serving_size, p.no_nutrition_data),
+    nutrition: readNutrition(p.nutriments, p.serving_size, p.no_nutrition_data, p.quantity),
   };
 }

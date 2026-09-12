@@ -1,4 +1,6 @@
 import type { Nutrients, Nutrition } from '../../src/domain/products/nutrition';
+import { servingAmount, packageAmount } from '../../src/domain/products/nutrition-amount';
+import { parseSize } from '../../src/domain/products/size';
 
 const keys: [keyof Nutrients, string, number][] = [
   ['calories', 'energy-kcal', 1],
@@ -29,6 +31,7 @@ export function readNutrition(
   data: Record<string, unknown> | undefined,
   serving: string,
   absent: string,
+  packageText = '',
 ): Nutrition | undefined {
   if (!data || absent === 'on') return undefined;
   const per100 = readBasis(data, '100g');
@@ -36,8 +39,10 @@ export function readNutrition(
   const hasValues = (values: Nutrients) =>
     Object.values(values).some((value) => value !== undefined);
   if (!hasValues(per100) && !hasValues(perServing)) return undefined;
+  const basis = servingAmount(serving)?.unit ?? packageAmount(parseSize(packageText))?.unit;
   return {
     per100,
+    ...(basis ? { basis } : {}),
     ...(hasValues(perServing) ? { perServing } : {}),
     ...(serving ? { serving: serving.slice(0, 80) } : {}),
   };

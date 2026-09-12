@@ -43,8 +43,8 @@ async function setup(page: Page, slowLookup = false, failLookup = false) {
     },
     suggestion: { name: 'Brand Lentil Crisps', unit: 'items', art: 'generic', location: 'pantry' },
     found: true,
-    size: { amount: 100, measure: 'g', packs: 1 },
-    packageText: '100 g',
+    size: { amount: 432, measure: 'g', packs: 1 },
+    packageText: '432 g',
     source: 'openfoodfacts',
     classifiedBy: 'rules',
     enhancement: 'pending',
@@ -124,6 +124,19 @@ test('saving during refinement does not let late AI change the saved item', asyn
   const { release } = await setup(page);
   await page.getByRole('button', { name: 'Add to pantry', exact: true }).click();
   await expect(page.getByLabel('Barcode', { exact: true })).toBeVisible();
+  const notice = page.locator('dialog .notice-top');
+  await expect(notice).toContainText('1 added');
+  await page.getByLabel('Barcode', { exact: true }).fill('3017620422003');
+  await page.getByRole('button', { name: 'Find product' }).click();
+  await expect(page.getByLabel('Food name')).toBeVisible();
+  await expect
+    .poll(async () => {
+      const banner = (await notice.boundingBox())!;
+      const modal = (await page.getByRole('dialog').boundingBox())!;
+      return banner.y < 30 && banner.y + banner.height <= modal.y;
+    })
+    .toBe(true);
+  await page.screenshot({ path: 'artifacts/scan-top-notice.png' });
   release();
   await page.getByRole('button', { name: 'Close', exact: true }).click();
   await page.reload();
@@ -133,6 +146,36 @@ test('saving during refinement does not let late AI change the saved item', asyn
     'aria-label',
     'Stored in pantry',
   );
+});
+
+test('nutrition supports whole packages and custom measured amounts without changing stock', async ({
+  page,
+}) => {
+  const { release } = await setup(page);
+  await page.getByRole('tab', { name: 'Nutrition', exact: true }).click();
+  await page.getByRole('button', { name: 'Whole package', exact: true }).click();
+  await expect(page.locator('.nutrition-calories')).toContainText('1771');
+  await expect(page.locator('.nutrition-label')).toContainText('432 g');
+  await expect(page.locator('.nutrition-label')).toContainText('1296 mg');
+  await page.getByRole('button', { name: 'Custom amount' }).click();
+  await page.getByRole('spinbutton', { name: 'Nutrition amount' }).fill('50');
+  await expect(page.locator('.nutrition-calories')).toContainText('205');
+  await page.getByRole('combobox', { name: 'Nutrition unit' }).selectOption('oz');
+  await page.getByRole('spinbutton', { name: 'Nutrition amount' }).fill('1');
+  await expect(page.locator('.nutrition-calories')).toContainText('116');
+  await page.getByRole('spinbutton', { name: 'Nutrition amount' }).fill('');
+  await expect(page.locator('.nutrition-calories')).toContainText('—');
+  await page.setViewportSize({ width: 320, height: 700 });
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  await page.screenshot({ path: 'artifacts/nutrition-custom.png' });
+  await page.getByRole('spinbutton', { name: 'Nutrition amount' }).fill('-1');
+  release();
+  await page.getByRole('tab', { name: 'Item', exact: true }).click();
+  await expect(page.getByRole('spinbutton', { name: 'Quantity', exact: true })).toHaveValue('1');
+  await expect(page.getByLabel('Size', { exact: true })).toHaveValue('432');
+  await page.getByRole('button', { name: 'Pantry', exact: true }).click();
+  await page.getByRole('button', { name: 'Add to pantry', exact: true }).click();
+  await expect(page.getByLabel('Barcode', { exact: true })).toBeVisible();
 });
 
 test('the form opens before lookup returns and both stages preserve manual fields', async ({

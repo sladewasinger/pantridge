@@ -1,8 +1,17 @@
 import { useId, useState, type ReactNode } from 'react';
 import type { Product } from '../../domain/products/barcode';
 import { NutritionPanel } from './NutritionPanel';
+import type { PackageSize } from '../../domain/products/size';
 
-export function ItemTabs({ children, products }: { children: ReactNode; products: Product[] }) {
+export function ItemTabs({
+  children,
+  products,
+  size,
+}: {
+  children: ReactNode;
+  products: Product[];
+  size?: PackageSize;
+}) {
   const [tab, setTab] = useState(0);
   const id = useId();
   return (
@@ -34,7 +43,7 @@ export function ItemTabs({ children, products }: { children: ReactNode; products
         {children}
       </div>
       <div role="tabpanel" id={`${id}-panel-1`} aria-labelledby={`${id}-tab-1`} hidden={tab !== 1}>
-        <NutritionPanel products={products} />
+        <NutritionPanel products={products} size={size} />
       </div>
     </>
   );

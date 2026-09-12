@@ -33,6 +33,41 @@ test('Back and Forward restore screens, including after an offline reload', asyn
   await expect(page.getByRole('heading', { name: 'My kitchen' })).toBeVisible();
 });
 
+test('touch dragging allows ordinary swipes to scroll without moving a tile', async ({
+  page,
+  context,
+}) => {
+  await page.setViewportSize({ width: 390, height: 500 });
+  await page.goto('/');
+  await addBeans(page);
+  const tile = page.getByRole('button', { name: 'Test beans, 1 item', exact: true });
+  await tile.scrollIntoViewIfNeeded();
+  const source = (await tile.boundingBox())!;
+  const before = await page.evaluate(() => window.scrollY);
+  const cdp = await context.newCDPSession(page);
+  const point = { x: source.x + source.width / 2, y: source.y + 45 };
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [point] });
+  await expect(tile).not.toHaveClass(/dragging/);
+  for (let i = 1; i <= 4; i++) {
+    await cdp.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: [{ x: point.x, y: point.y - i * 25 }],
+    });
+  }
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(before + 20);
+  await expect(
+    page.locator('[data-shelf="0"] .food-tile').filter({ hasText: 'Test beans' }),
+  ).toHaveCount(1);
+  await expect(tile).not.toHaveClass(/dragging/);
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  expect(
+    await page
+      .locator('[data-shelf="0"]')
+      .evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(' ').length),
+  ).toBe(3);
+});
+
 test('Back closes dialogs first; typing search creates only one history step', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Open fridge', exact: true }).click();
@@ -93,12 +128,14 @@ test('touch dragging works and a cancelled gesture does not move food', async ({
   const point = { x: source.x + source.width / 2, y: source.y + 25 };
   const end = { x: destination.x + destination.width / 2, y: destination.y + 40 };
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [point] });
+  await expect(tile).toHaveClass(/dragging/);
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [end] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
   await expect(
     page.locator('[data-shelf="0"] .food-tile').filter({ hasText: 'Test beans' }),
   ).toHaveCount(1);
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [point] });
+  await expect(tile).toHaveClass(/dragging/);
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [end] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
   await expect(

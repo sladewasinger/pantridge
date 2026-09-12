@@ -70,10 +70,10 @@
 }
 .underground-shelf {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  padding: 15px 8px 8px;
-  margin-bottom: 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 4px;
+  padding: 10px 4px 5px;
+  margin-bottom: 16px;
   border-bottom: 9px solid #b4946d;
   box-shadow: 0 7px 8px #201e2833;
   border-radius: 0 0 5px 5px;

@@ -14,6 +14,7 @@ export const nutritionSchema = z.object({
   per100: nutrientsSchema,
   perServing: nutrientsSchema.optional(),
   serving: z.string().max(80).optional(),
+  basis: z.enum(['g', 'ml']).optional(),
 });
 export type Nutrients = z.infer<typeof nutrientsSchema>;
 export type Nutrition = z.infer<typeof nutritionSchema>;

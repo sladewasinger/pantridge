@@ -39,6 +39,7 @@ test('cellar continues below the kitchen, puts unassigned stock first and loads 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const cellar = page.getByRole('region', { name: 'Cellar inventory' });
   await expect(cellar.locator('.food-tile')).toHaveCount(24);
+  await expect(cellar.locator('.underground-shelf').first().locator('.food-tile')).toHaveCount(3);
   await page.getByRole('button', { name: 'Explore cellar' }).click();
   await expect(cellar).toBeFocused();
   await expect(cellar.locator('.food-tile').first()).toHaveAttribute(
