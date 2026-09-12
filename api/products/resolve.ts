@@ -41,7 +41,7 @@ export async function resolveProduct(owner: string, body: string) {
   const raw =
     request.stage === 'enhance' ? await cachedProduct(key.raw) : await initial(barcode, key.raw);
   if (!raw) throw new ProductError(409, 'Look up this product again before refining it.');
-  if (request.stage === 'lookup')
+  if (request.stage !== 'enhance')
     return {
       ...raw,
       enhancement: process.env.CLASSIFIER_PROVIDER === 'openai' ? raw.enhancement : 'unavailable',

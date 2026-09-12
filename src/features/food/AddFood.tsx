@@ -48,8 +48,12 @@ export function AddFood({
           });
         }}
       >
-        <FoodFields food={food} onChange={setFood} autoArtwork />
-        <Quantity value={quantity} onChange={setQuantity} min={1} />
+        <FoodFields
+          food={food}
+          onChange={setFood}
+          autoArtwork
+          quantityControl={<Quantity value={quantity} onChange={setQuantity} min={1} />}
+        />
         <ExpirationField value={expiry.value} source={expiry.source} onChange={expiry.set} />
         {error && (
           <p role="alert" className="error">

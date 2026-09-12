@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { emptySnapshot } from '../../src/domain/model';
 
-async function setup(page: Page) {
+async function setup(page: Page, slowLookup = false, failLookup = false) {
   await page.addInitScript(() => {
     localStorage.setItem(
       'oidc.user:https://auth.pantridge.test:pantridge-test',
@@ -24,6 +24,10 @@ async function setup(page: Page) {
   let release = () => {};
   const pending = new Promise<void>((resolve) => {
     release = resolve;
+  });
+  let releaseLookup = () => {};
+  const pendingLookup = new Promise<void>((resolve) => {
+    releaseLookup = resolve;
   });
   const raw = {
     product: {
@@ -64,21 +68,26 @@ async function setup(page: Page) {
           },
         })
         .catch(() => {});
-    } else await route.fulfill({ json: raw });
+    } else {
+      if (slowLookup) await pendingLookup;
+      await route.fulfill(failLookup ? { status: 503, json: {} } : { json: raw }).catch(() => {});
+    }
   });
   await page.goto('/');
   await page.getByRole('button', { name: 'Scan food barcode' }).click();
   await page.getByLabel('Barcode', { exact: true }).fill('3017620422003');
   await page.getByRole('button', { name: 'Find product' }).click();
-  await expect(page.locator('.scan-product')).toContainText('Brand Lentil Crisps');
-  await expect(page.getByText('Refining details')).toBeAttached();
-  return release;
+  if (!slowLookup) {
+    await expect(page.locator('.scan-product')).toContainText('Brand Lentil Crisps');
+    await expect(page.getByText('Refining details')).toBeAttached();
+  }
+  return { release, releaseLookup };
 }
 
 test('raw scan and nutrition are immediately usable while AI respects edited fields', async ({
   page,
 }) => {
-  const release = await setup(page);
+  const { release } = await setup(page);
   await page.getByRole('tab', { name: 'Nutrition', exact: true }).click();
   await expect(page.locator('.nutrition-calories')).toContainText('123');
   await page.getByRole('button', { name: 'Per 100 g/ml' }).click();
@@ -91,7 +100,6 @@ test('raw scan and nutrition are immediately usable while AI respects edited fie
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   await page.screenshot({ path: 'artifacts/nutrition-mobile.png' });
   await page.getByRole('tab', { name: 'Item', exact: true }).click();
-  await page.getByText('Edit details', { exact: true }).click();
   await page.getByLabel('Food name').fill('My Lentil Crisps');
   await page.getByRole('button', { name: 'Pantry', exact: true }).click();
   await page.getByLabel('Expiration').fill('2027-01-02');
@@ -113,7 +121,7 @@ test('raw scan and nutrition are immediately usable while AI respects edited fie
 });
 
 test('saving during refinement does not let late AI change the saved item', async ({ page }) => {
-  const release = await setup(page);
+  const { release } = await setup(page);
   await page.getByRole('button', { name: 'Add to pantry', exact: true }).click();
   await expect(page.getByLabel('Barcode', { exact: true })).toBeVisible();
   release();
@@ -125,4 +133,63 @@ test('saving during refinement does not let late AI change the saved item', asyn
     'aria-label',
     'Stored in pantry',
   );
+});
+
+test('the form opens before lookup returns and both stages preserve manual fields', async ({
+  page,
+}) => {
+  const { release, releaseLookup } = await setup(page, true);
+  await expect(page.getByText('Fetching details…')).toBeVisible();
+  await expect(page.getByLabel('Food name')).toBeVisible();
+  await page.setViewportSize({ width: 320, height: 700 });
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  await page.screenshot({ path: 'artifacts/scan-immediate-form.png' });
+  await page.getByLabel('Food name').fill('My crisps');
+  await page.getByLabel('Size', { exact: true }).fill('50');
+  await page.getByRole('combobox', { name: 'Unit', exact: true }).selectOption('boxes');
+  releaseLookup();
+  await expect(page.getByText('Refining details')).toBeAttached();
+  await expect(page.getByLabel('Food name')).toBeVisible();
+  await expect(page.getByLabel('Food name')).toHaveValue('My crisps');
+  await expect(page.getByLabel('Size', { exact: true })).toHaveValue('50');
+  await page.getByRole('tab', { name: 'Nutrition', exact: true }).click();
+  await expect(page.locator('.nutrition-calories')).toContainText('123');
+  await page.getByRole('tab', { name: 'Item', exact: true }).click();
+  release();
+  await expect(page.getByText('Refining details')).toHaveCount(0);
+  await expect(page.getByLabel('Food name')).toHaveValue('My crisps');
+  await expect(page.getByRole('combobox', { name: 'Unit', exact: true })).toHaveValue('boxes');
+  await expect(page.getByLabel('Size', { exact: true })).toHaveValue('50');
+});
+
+test('saving before lookup finishes cancels it and never applies its late result', async ({
+  page,
+}) => {
+  const { releaseLookup } = await setup(page, true);
+  await expect(page.getByText('Fetching details…')).toBeVisible();
+  await page.getByLabel('Food name').fill('My manual food');
+  await page.getByLabel('Unspecified size', { exact: true }).check();
+  await page.getByRole('button', { name: 'Add to pantry', exact: true }).click();
+  await expect(page.getByLabel('Barcode', { exact: true })).toBeVisible();
+  releaseLookup();
+  await page.getByRole('button', { name: 'Close', exact: true }).click();
+  await page.reload();
+  await expect(page.locator('.underground .food-tile')).toHaveCount(1);
+  await expect(page.locator('.underground .food-tile')).toContainText('My manual food');
+});
+
+test('failed lookup leaves manual entry usable and preserves explicit unknown size', async ({
+  page,
+}) => {
+  const { releaseLookup } = await setup(page, true, true);
+  await page.getByLabel('Food name').fill('Unknown snack');
+  await page.getByLabel('Unspecified size', { exact: true }).check();
+  releaseLookup();
+  await expect(
+    page.getByText('Lookup unavailable. You can enter the details below.'),
+  ).toBeVisible();
+  await expect(page.getByText('Fetching details…')).toHaveCount(0);
+  await expect(page.getByLabel('Food name')).toHaveValue('Unknown snack');
+  await page.getByRole('button', { name: 'Add to pantry', exact: true }).click();
+  await expect(page.getByLabel('Barcode', { exact: true })).toBeVisible();
 });

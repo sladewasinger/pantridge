@@ -8,7 +8,11 @@ export function requireScanAccount(account: string) {
   if (account === 'local' || getAccount() !== account)
     throw new Error('Sign in with Google to scan food.');
 }
-export async function resolveBarcode(code: string, account: string): Promise<Lookup> {
+export async function resolveBarcode(
+  code: string,
+  account: string,
+  signal?: AbortSignal,
+): Promise<Lookup> {
   requireScanAccount(account);
   const barcode = normalizeBarcode(code);
   const remembered = rememberedProduct(getKitchen().data, barcode);
@@ -31,7 +35,7 @@ export async function resolveBarcode(code: string, account: string): Promise<Loo
   }
   if (!navigator.onLine)
     throw new Error('This barcode needs an internet connection. You can enter the food manually.');
-  return requestProduct(barcode, account, 'lookup');
+  return requestProduct(barcode, account, 'lookup', signal);
 }
 export async function refineBarcode(
   barcode: string,
@@ -49,6 +53,7 @@ async function requestProduct(
   const api = import.meta.env.VITE_API_URL as string | undefined;
   if (!api) throw new Error('Scanning is not configured yet.');
   const token = await getToken(account);
+  signal?.throwIfAborted();
   requireScanAccount(account);
   if (!token) throw new Error('Sign in again to scan food.');
   const response = await fetch(`${api}/v1/products/resolve`, {

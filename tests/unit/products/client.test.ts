@@ -10,6 +10,23 @@ beforeEach(() => {
   vi.stubGlobal('navigator', { onLine: false });
   vi.stubGlobal('BroadcastChannel', undefined);
 });
+
+it('does not send a cancelled lookup after a slow token refresh completes', async () => {
+  vi.stubGlobal('navigator', { onLine: true });
+  const store = await import('../../../src/data/store');
+  const { resolveBarcode } = await import('../../../src/features/scanning/client');
+  const account = crypto.randomUUID();
+  await store.loadKitchen(account);
+  const controller = new AbortController();
+  token.mockImplementation(async () => {
+    controller.abort();
+    return 'token';
+  });
+  const fetcher = vi.fn();
+  vi.stubGlobal('fetch', fetcher);
+  await expect(resolveBarcode('3017620422003', account, controller.signal)).rejects.toThrow();
+  expect(fetcher).not.toHaveBeenCalled();
+});
 afterEach(() => {
   vi.unstubAllEnvs();
   vi.unstubAllGlobals();

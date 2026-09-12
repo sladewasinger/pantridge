@@ -40,6 +40,14 @@ test('anonymous scanning is disabled while manual package sizes remain available
   await page.getByRole('button', { name: 'Add food', exact: true }).click();
   await page.getByLabel('Food name').fill('Test Beans');
   await page.getByLabel('Size', { exact: true }).fill('15');
+  await expect(page.getByLabel('Packages per multipack')).toHaveCount(0);
+  const nameY = (await page.getByLabel('Food name').boundingBox())!.y;
+  const quantityY = (await page
+    .getByRole('spinbutton', { name: 'Quantity', exact: true })
+    .boundingBox())!.y;
+  const unitY = (await page.getByRole('combobox', { name: 'Unit', exact: true }).boundingBox())!.y;
+  expect(nameY).toBeLessThan(quantityY);
+  expect(quantityY).toBeLessThan(unitY);
   await page.getByRole('button', { name: 'Add to pantry', exact: true }).click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await page.getByRole('searchbox').fill('Test Beans');
@@ -63,7 +71,6 @@ test('signed-in confirmation can be edited or cancelled without adding stock', a
   );
   await page.goto('/');
   await scan(page, '3017620422003');
-  await page.getByText('Edit details', { exact: true }).click();
   await page.getByLabel('Food name').fill('Canned Black Beans');
   await page.getByLabel('Size', { exact: true }).fill('29');
   await page.goBack();

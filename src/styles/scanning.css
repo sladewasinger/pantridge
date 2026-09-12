@@ -140,15 +140,11 @@
 .scan-details {
   margin: 16px 0;
 }
-.scan-details > summary {
-  padding: 12px 0;
-  font-size: 14px;
-}
 .scan-refining {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: #8b7755;
+  color: #6f5f43;
   margin-left: 8px;
 }
 .scan-refining > svg:last-of-type {

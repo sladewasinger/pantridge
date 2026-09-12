@@ -2,9 +2,8 @@ import { useCallback, useRef, useState } from 'react';
 import { Camera as CameraIcon, ScanBarcode } from 'lucide-react';
 import { getAccount } from '../../data/store';
 import type { StoragePage } from '../../app/navigation';
-import type { Lookup } from '../../domain/products/lookup';
+import { normalizeBarcode } from '../../domain/products/barcode';
 import { Modal } from '../../ui/Modal';
-import { resolveBarcode } from './client';
 import { Camera } from './Camera';
 import { ScanConfirm } from './ScanConfirm';
 
@@ -18,48 +17,41 @@ export function ScanFood({
   const [account] = useState(getAccount);
   const [code, setCode] = useState('');
   const [camera, setCamera] = useState(false);
-  const [result, setResult] = useState<Lookup | null>(null);
+  const [barcode, setBarcode] = useState<string | null>(null);
   const [error, setError] = useState('');
-  const [busy, setBusy] = useState(false);
   const lock = useRef(false);
-  const lookup = useCallback(
-    (barcode: string) => {
-      if (lock.current) return;
+  const lookup = useCallback((value: string) => {
+    if (lock.current) return;
+    try {
+      const normalized = normalizeBarcode(value);
       lock.current = true;
       setCamera(false);
-      setCode(barcode);
-      setBusy(true);
+      setBarcode(normalized);
       setError('');
-      void resolveBarcode(barcode, account)
-        .then(setResult)
-        .catch((error: unknown) => {
-          setError(error instanceof Error ? error.message : 'Lookup failed. Try again.');
-        })
-        .finally(() => {
-          lock.current = false;
-          setBusy(false);
-        });
-    },
-    [account],
-  );
+    } catch {
+      setError('Enter a valid barcode.');
+    }
+  }, []);
   return (
     <Modal title="Scan food" onClose={onClose}>
       {account === 'local' ? (
         <p>Sign in with Google to scan food.</p>
-      ) : result ? (
+      ) : barcode ? (
         <ScanConfirm
-          result={result}
+          key={barcode}
+          barcode={barcode}
           account={account}
           location={location}
           onDone={() => {
-            setResult(null);
+            lock.current = false;
+            setBarcode(null);
             setCode('');
           }}
         />
       ) : (
         <>
           {camera && <Camera onCode={lookup} />}
-          <button className="secondary full" disabled={busy} onClick={() => setCamera(!camera)}>
+          <button className="secondary full" onClick={() => setCamera(!camera)}>
             <CameraIcon size={20} />
             {camera ? 'Stop camera' : 'Open camera'}
           </button>
@@ -81,16 +73,11 @@ export function ScanFood({
                 placeholder="Enter the numbers below the barcode"
               />
             </label>
-            <button className="primary full" disabled={busy}>
+            <button className="primary full">
               <ScanBarcode size={19} />
-              {busy ? 'Looking up…' : 'Find product'}
+              Find product
             </button>
           </form>
-          {busy && (
-            <p role="status" className="muted">
-              Looking up your food…
-            </p>
-          )}
           {error && (
             <p role="alert" className="error">
               {error}

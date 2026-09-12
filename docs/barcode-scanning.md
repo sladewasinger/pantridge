@@ -44,14 +44,16 @@ The lookup stage returns OFF details, package size and nutrition before optional
 response with `enhancement: "pending"` lets the client issue the same request with `stage: "enhance"`.
 Refinement reads only server-cached public metadata, never user-provided product text. It does not
 consume a second daily scan allowance; API abuse protection and AI quotas still apply. Omitting
-stage preserves the original combined response for older clients. No additional API route or
+stage now returns the lookup-only response for older clients too; only explicit `enhance` requests can invoke AI. Older clients must update to request background refinement. No additional API route or
 Terraform change is needed. Shared raw and refined cache keys are versioned independently.
+
+Confirmation opens immediately after a valid barcode is recognized, before token refresh or any network response. The form shows “Fetching details…” while the lookup runs; real product information appears when available. Users can enter a name, choose a size (or explicitly leave it unspecified), and save while lookup is pending. Lookup failure keeps manual entry usable. Both lookup and refinement fill only untouched fields; package size and multipack metadata are protected together. Food name, quantity, unit, then package size appear in that order for manual and scanned entry. The multipack-count input is removed, while previously stored and imported pack counts remain compatible.
 
 Confirmation stays usable during refinement. A wand/spinner marks pending suggestions. Explicit
 field edits, including reselecting the same artwork or storage, take precedence; storage and frozen
 status are protected together. Known private variants retain their corrections. Cancel/save aborts
 the client request and ignores late responses; an already running server call may still finish and
-consume its reserved quota. A failed refinement keeps the initial result available.
+consume its reserved quota. A failed refinement keeps the initial result available. Saving before lookup finishes retains the barcode and manually entered details; late lookup/AI responses do not alter saved stock. This removes UI blocking, not upstream network latency.
 
 Free rules run first. AI is **disabled by default** (`classifier_provider = "none"`). With
 `"openai"`, ambiguous found products use the configurable model (initial default `gpt-4.1-nano`).
