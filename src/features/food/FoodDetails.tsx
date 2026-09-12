@@ -12,6 +12,7 @@ import { ItemTabs } from '../nutrition/ItemTabs';
 import { StockLot } from './StockLot';
 import { UndoNotice } from '../../ui/UndoNotice';
 import { estimatedDate } from '../../domain/freshness/estimate';
+import { parseSize } from '../../domain/products/size';
 
 export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () => void }) {
   const { data } = useKitchen();
@@ -23,7 +24,10 @@ export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () =
   const lots = data.stock.filter((stock) => stock.foodId === foodId);
   return (
     <Modal title={food.name} onClose={onClose}>
-      <ItemTabs products={lots.flatMap((lot) => (lot.product ? [lot.product] : []))}>
+      <ItemTabs
+        products={lots.flatMap((lot) => (lot.product ? [lot.product] : []))}
+        size={food.size ?? parseSize(food.packageSize)}
+      >
         <div className="food-overview">
           <img src={artPath(food.art)} alt="" />
           <span>

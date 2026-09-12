@@ -1,5 +1,7 @@
-import { useState } from 'react';
 import type { Nutrition, Nutrients } from '../../domain/products/nutrition';
+import type { PackageSize } from '../../domain/products/size';
+import { usePortion } from './usePortion';
+import { PortionControls } from './PortionControls';
 const rows: [keyof Nutrients, string, string][] = [
   ['fat', 'Fat', 'g'],
   ['saturatedFat', 'Saturated fat', 'g'],
@@ -9,28 +11,22 @@ const rows: [keyof Nutrients, string, string][] = [
   ['sugars', 'Sugars', 'g'],
   ['protein', 'Protein', 'g'],
 ];
-export function NutritionLabel({ nutrition, name }: { nutrition: Nutrition; name: string }) {
-  const [serving, setServing] = useState(true);
-  const perServing = serving && !!nutrition.perServing;
-  const values = (perServing ? nutrition.perServing : nutrition.per100)!;
+export function NutritionLabel({
+  nutrition,
+  name,
+  size,
+}: {
+  nutrition: Nutrition;
+  name: string;
+  size?: PackageSize;
+}) {
+  const portion = usePortion(nutrition, size);
+  const { values } = portion;
   return (
     <section className="nutrition-label" aria-label="Nutrition information">
       <h3>Nutrition Facts</h3>
       <p>{name}</p>
-      <div className="nutrition-basis">
-        <button
-          type="button"
-          aria-pressed={perServing}
-          disabled={!nutrition.perServing}
-          onClick={() => setServing(true)}
-        >
-          Per serving
-        </button>
-        <button type="button" aria-pressed={!perServing} onClick={() => setServing(false)}>
-          Per 100 g/ml
-        </button>
-      </div>
-      {perServing && <p>Serving size {nutrition.serving || 'not provided'}</p>}
+      <PortionControls portion={portion} nutrition={nutrition} size={size} />
       <div className="nutrition-calories">
         <strong>Calories</strong>
         <b>{values.calories === undefined ? '—' : Math.round(values.calories)}</b>

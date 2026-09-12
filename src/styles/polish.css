@@ -127,6 +127,13 @@
   flex: 1;
   overflow-wrap: anywhere;
 }
+.undo-notice.notice-top {
+  top: max(12px, env(safe-area-inset-top));
+  bottom: auto;
+}
+.sheet:has(.notice-top) {
+  max-height: calc(100dvh - var(--notice-space, 108px));
+}
 .undo-notice > button {
   min-height: 44px;
   min-width: 44px;

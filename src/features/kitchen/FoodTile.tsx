@@ -25,6 +25,7 @@ export function FoodTile({
       className="food-tile"
       onClick={() => onSelect(food)}
       onPointerDown={(event) => onDragStart(event, food)}
+      onContextMenu={(event) => event.preventDefault()}
       aria-label={`${food.name}${packageLabel(food) ? `, ${packageLabel(food)}` : ''}, ${amount}`}
     >
       <img src={artPath(food.art)} alt="" draggable="false" />
