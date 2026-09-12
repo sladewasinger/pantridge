@@ -1,13 +1,30 @@
 import { X } from 'lucide-react';
 import { dismissNotice, useNotice, pauseNotice, resumeNotice } from './notice';
 import { useAction } from './useAction';
-export function UndoNotice() {
+import { useEffect, useRef } from 'react';
+export function UndoNotice({ position = 'bottom' }: { position?: 'top' | 'bottom' }) {
   const notice = useNotice();
   const { run, error, busy } = useAction();
+  const element = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const banner = element.current;
+    const dialog = banner?.closest('dialog');
+    if (position !== 'top' || !banner || !dialog) return;
+    const measure = () =>
+      dialog.style.setProperty('--notice-space', `${banner.getBoundingClientRect().bottom + 12}px`);
+    const observer = new ResizeObserver(measure);
+    observer.observe(banner);
+    measure();
+    return () => {
+      observer.disconnect();
+      dialog.style.removeProperty('--notice-space');
+    };
+  }, [notice, position]);
   if (!notice) return null;
   return (
     <div
-      className="undo-notice"
+      ref={element}
+      className={`undo-notice${position === 'top' ? ' notice-top' : ''}`}
       onPointerEnter={pauseNotice}
       onPointerLeave={resumeNotice}
       onFocusCapture={pauseNotice}

@@ -6,6 +6,7 @@ import { normalizeBarcode } from '../../domain/products/barcode';
 import { Modal } from '../../ui/Modal';
 import { Camera } from './Camera';
 import { ScanConfirm } from './ScanConfirm';
+import { UndoNotice } from '../../ui/UndoNotice';
 
 export function ScanFood({
   location,
@@ -34,6 +35,7 @@ export function ScanFood({
   }, []);
   return (
     <Modal title="Scan food" onClose={onClose}>
+      <UndoNotice position="top" />
       {account === 'local' ? (
         <p>Sign in with Google to scan food.</p>
       ) : barcode ? (

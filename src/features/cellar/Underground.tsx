@@ -73,9 +73,9 @@ export function Underground({
           <Snowflake size={13} /> Freezer
         </span>
       </div>
-      {Array.from({ length: Math.ceil(visible.length / 2) }, (_, index) => (
+      {Array.from({ length: Math.ceil(visible.length / 3) }, (_, index) => (
         <div className="underground-shelf" key={index} data-depth={index % 4}>
-          {visible.slice(index * 2, index * 2 + 2).map((food) => (
+          {visible.slice(index * 3, index * 3 + 3).map((food) => (
             <div className="underground-slot" key={food.id}>
               <Placement food={food} />
               <FoodTile food={food} data={data} onSelect={onSelect} onDragStart={() => {}} />

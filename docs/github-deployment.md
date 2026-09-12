@@ -1,8 +1,8 @@
 # Branches and automatic deployment
 
-Develop locally on `develop`. Open a pull request into `main` when a change is ready to ship. Pushes to `develop` and pull requests run Quality; updates to `main` run Deploy, which first calls the same Quality workflow.
+Start feature branches from `develop`, open a pull request into `develop`, then promote `develop` to `main` through a pull request. Pushes to `develop` and pull requests targeting it run only unit tests and a build. They receive no AWS credentials and do not deploy. Run the full local checks before promotion.
 
-Deploy builds the production frontend and Lambda bundles, runs the mobile browser tests on that build, and only then requests AWS credentials. It updates the two application functions, uploads web assets, publishes HTML last, and invalidates Pantridge's CloudFront distribution. Runs are serialized to avoid overlapping production updates. Manual workflow dispatch is allowed only on `main`.
+Only pushes to `main` trigger Deploy. It first calls Quality for the full checks, browser tests, dependency audit, and mocked Terraform tests. Deploy then builds the production frontend and Lambda bundles, runs the mobile browser tests on that build, and only then requests AWS credentials. It updates the two application functions, uploads web assets, publishes HTML last, and invalidates Pantridge's CloudFront distribution. Runs are serialized to avoid overlapping production updates.
 
 ## AWS connection
 
@@ -20,4 +20,4 @@ Terraform remains manual. Load the Google OAuth inputs as described in `google-s
 
 `node scripts/build-release.mjs` builds with that configuration. `node scripts/deploy.mjs --built --api` publishes a previously tested build and zipped functions. Routine application deployments update code only; a later manual Terraform plan may reconcile bundle hashes without requiring infrastructure replacement.
 
-Require the Quality check on pull requests in GitHub branch protection before allowing merges to `main`. Review infrastructure changes separately. Keep the API backward-compatible with installed PWA versions that might remain offline across a release.
+Branch protection can require `test-build` for pull requests into `develop` and require a pull request for `main`. Quality runs after a merge to `main` and gates deployment; do not require that post-merge check on a promotion PR, where it does not run. Review infrastructure changes separately. Keep the API backward-compatible with installed PWA versions that might remain offline across a release.

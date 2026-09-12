@@ -6,7 +6,7 @@ Keep interface copy sparse. Empty shelves say "Empty"; do not add a kitchen tagl
 
 This app is hosted on the owner's AWS account using Terraform. Do not use Sites. Domain, account, and sign-in preference remain configurable; do not invent credentials or deploy a stack without the owner's deployment instructions.
 
-Use `develop` for local development and merge tested changes into `main` for GitHub Actions application deployments. Terraform applies remain manual. The workflow deploys application code with a role scoped to Pantridge; never expand it to infrastructure administration.
+Use `codex/` feature branches and PR changes into `develop`, then PR `develop` into `main`. Run required checks locally before merging. Develop pushes and PRs into develop run unit tests and a build only; full GitHub checks and application deployment run after a merge to `main`. Terraform applies remain manual. The workflow deploys application code with a role scoped to Pantridge; never expand it to infrastructure administration.
 
 ## Product boundaries
 

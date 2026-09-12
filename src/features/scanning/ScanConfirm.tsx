@@ -12,6 +12,7 @@ import { Quantity } from '../../ui/Quantity';
 import { useAction } from '../../ui/useAction';
 import { showUndo } from '../../ui/notice';
 import { requireScanAccount } from './client';
+import { parseSize } from '../../domain/products/size';
 
 export function ScanConfirm({
   barcode,
@@ -77,7 +78,7 @@ export function ScanConfirm({
           {lookupError}
         </p>
       )}
-      <ItemTabs products={[result.product]}>
+      <ItemTabs products={[result.product]} size={food.size ?? parseSize(food.packageSize)}>
         {result.packageText && !result.size && (
           <p className="muted">Package label: {result.packageText}</p>
         )}

@@ -10,6 +10,8 @@ interface Gesture {
   y: number;
   dragging: boolean;
   shelf: number | null;
+  touch: boolean;
+  timer?: ReturnType<typeof setTimeout>;
 }
 export function useShelfDrag() {
   const root = useRef<HTMLDivElement>(null);
@@ -22,6 +24,7 @@ export function useShelfDrag() {
   function reset() {
     const active = gesture.current;
     gesture.current = null;
+    clearTimeout(active?.timer);
     active?.element.classList.remove('dragging');
     active?.element.style.removeProperty('transform');
     if (active?.element.hasPointerCapture(active.pointerId))
@@ -29,14 +32,20 @@ export function useShelfDrag() {
     setTarget(null);
     return active;
   }
-  useEffect(
-    () => () => {
+  useEffect(() => {
+    const element = root.current;
+    const preventDragScroll = (event: TouchEvent) => {
+      if (gesture.current?.dragging && event.cancelable) event.preventDefault();
+    };
+    element?.addEventListener('touchmove', preventDragScroll, { passive: false });
+    return () => {
       const active = gesture.current;
+      clearTimeout(active?.timer);
+      element?.removeEventListener('touchmove', preventDragScroll);
       if (active?.element.hasPointerCapture(active.pointerId))
         active.element.releasePointerCapture(active.pointerId);
-    },
-    [],
-  );
+    };
+  }, []);
 
   function start(event: PointerEvent<HTMLButtonElement>, food: Food) {
     if (!event.isPrimary || event.button !== 0 || gesture.current) return;
@@ -50,7 +59,17 @@ export function useShelfDrag() {
       y: event.clientY,
       dragging: false,
       shelf: null,
+      touch: event.pointerType === 'touch',
     };
+    const active = gesture.current;
+    if (active.touch)
+      active.timer = setTimeout(() => {
+        if (gesture.current !== active) return;
+        active.dragging = true;
+        suppressClick.current = true;
+        active.element.classList.add('dragging');
+        active.element.style.transform = 'scale(1.06)';
+      }, 500);
     event.currentTarget.setPointerCapture(event.pointerId);
   }
   function move(event: PointerEvent<HTMLDivElement>) {
@@ -58,6 +77,13 @@ export function useShelfDrag() {
     if (!active || event.pointerId !== active.pointerId) return;
     const dx = event.clientX - active.x;
     const dy = event.clientY - active.y;
+    if (active.touch && !active.dragging) {
+      if (Math.hypot(dx, dy) >= 8) {
+        suppressClick.current = true;
+        reset();
+      }
+      return;
+    }
     if (!active.dragging && Math.hypot(dx, dy) < 8) return;
     active.dragging = true;
     suppressClick.current = true;
