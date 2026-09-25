@@ -18,7 +18,7 @@ Use `codex/` feature branches and PR changes into `develop`, then PR `develop` i
 - Keep generic food identities separate from stock lots and shopping entries.
 - Zero stock hides a food from shelves while preserving search and shopping history.
 - One-time shopping entries need no permanent food identity.
-- The top green door opens a separate freezer page with icicles; the bottom opens the fridge. Preserve the existing frozen flag in storage for compatibility. Shelf names are fixed.
+- The top green door opens a separate freezer page with icicles; the bottom opens the fridge. Preserve the existing frozen flag in storage for compatibility. Fridge, pantry, and freezer create as many rows as needed, with three items per row and no shelf selector. Keep the legacy shelf field for storage compatibility; it no longer controls layout.
 - Empty new kitchens start with one package each of eggs, milk, butter, black beans, rice, and pasta. Initialization happens once; deleted defaults must never reappear. Existing nonempty kitchens are preserved.
 - Food units and artwork are editable. Unit edits retain numeric quantities and update linked shopping labels. Deleting food removes its inventory and leaves linked groceries as one-time shopping entries.
 - Barcode scanning requires Google sign-in and confirmation on every scan. Same generic food, unit and package size share a shelf tile across brands; different sizes have separate labeled tiles grouped in search. Preserve branded product metadata on stock lots and explicit unknown-size confirmation. Show lookup results before optional AI refinement; never overwrite user edits or saved stock with late results.

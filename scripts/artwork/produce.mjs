@@ -1,4 +1,5 @@
 import { bananas, greens } from './fresh-produce.mjs';
+import { addedArt } from './additions.mjs';
 const circles = (points, color, radius = 8) =>
   points.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="${radius}" fill="${color}"/>`).join('');
 const citrus = (color, shape) =>
@@ -150,6 +151,7 @@ const produce = {
     '<path d="M11 47c10-2 9-20 27-24 25-7 33 5 24 20-8 15-30 13-38 18-11 8-25-10-13-14Z" fill="#b88360" stroke="#9f6d50"/><path d="M19 48q3-14 20-19m-14 25 14-4m13-17 4 2m-8 7 3 0" stroke="#d2a680" fill="none" stroke-width="2" stroke-linecap="round"/>',
 };
 export function produceArt(id) {
+  if (addedArt(id)) return addedArt(id);
   if (!produce[id]) throw new Error(`Unknown produce: ${id}`);
   return produce[id];
 }

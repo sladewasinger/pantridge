@@ -54,4 +54,4 @@ terraform -chdir=infra test
 - [Architecture and quality rules](docs/architecture.md): boundaries, offline behavior, conflict semantics, and extension points.
 - [API contract](docs/api.md): future phone client and purchase-import integration.
 
-Walmart receipt import, commonly used shelves, automatic restock suggestions, custom shelf names, and a bulk list view are intentionally deferred. Food can be moved using shelf selectors, mouse dragging, or a 500 ms touch hold followed by dragging. Ordinary touch swipes scroll the page.
+Walmart receipt import, commonly used shelves, automatic restock suggestions, custom shelf names, and a bulk list view are intentionally deferred. Food is assigned to a location, with three tiles per automatically generated row. Shopping drag handles support animated reordering; ordinary touch swipes scroll the page.

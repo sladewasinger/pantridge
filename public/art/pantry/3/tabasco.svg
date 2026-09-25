@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 70"><title>Tabasco Original Red bottle</title><ellipse cx="40" cy="65" rx="24" ry="3" fill="#6b7159" opacity=".12"/><g stroke-linejoin="round" stroke-linecap="round"><g transform="translate(17.6 0) scale(.56 1)"><path d="M34 12h12v11c0 7 11 8 12 16v22q0 5-18 5t-18-5V39c1-8 12-9 12-16Z" fill="#d3d2b7" stroke="#979a7d" stroke-width="1.1"/>
+    <path d="M35 19h10v7c0 7 11 8 11 14v20q0 4-16 4t-16-4V40c0-6 11-7 11-14Z" fill="#b95332"/>
+    <path d="M27 38v21q0 2 4 2m6-45v11" fill="none" stroke="#f1d7aa" stroke-width="1.6" opacity=".65"/>
+    <path d="M53 39v21" stroke="#963e28" stroke-width="2"/>
+    <rect x="33" y="4" width="14" height="11" rx="1.7" fill="#b7332c" stroke="#8d3028"/>
+    <path d="M35 6v6m3-6v6m4-6v6m3-6v6" stroke="#d7654a" stroke-width=".6"/>
+    <path d="M33.5 15h13v10h-13Z" fill="#faf2d8" stroke="#cbc5a6" stroke-width=".5"/>
+    <path d="M34 16h12v3H34Zm0 8h12" fill="#39734b" stroke="#39734b" stroke-width=".5"/>
+    <text x="40" y="22.5" text-anchor="middle" font-family="Georgia,serif" font-size="3.3" font-weight="bold" fill="#a8392c">TABASCO</text>
+    <path d="m40 31 17 16-17 17-17-17Z" fill="#fff9e5" stroke="#39734b" stroke-width="1.6"/>
+    <path d="m40 34 14 13-14 14-14-14Z" fill="none" stroke="#75926a" stroke-width=".55"/>
+    <text x="40" y="43" text-anchor="middle" font-family="Georgia,serif" font-size="3.5" fill="#396c46">McILHENNY CO.</text>
+    <text x="40" y="49.7" text-anchor="middle" font-family="Georgia,serif" font-size="6.3" font-weight="bold" fill="#ad352c" textLength="28" lengthAdjust="spacingAndGlyphs">TABASCO</text>
+    <text x="40" y="54" text-anchor="middle" font-family="Georgia,serif" font-size="3.3" fill="#396c46">PEPPER SAUCE</text>
+    <path d="M36 57h8" stroke="#ac3e2d" stroke-width=".6"/></g></g></svg>

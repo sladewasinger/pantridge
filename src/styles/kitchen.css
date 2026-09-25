@@ -97,7 +97,7 @@
   flex-direction: column;
   align-items: center;
   border-radius: 9px;
-  cursor: grab;
+  cursor: pointer;
   touch-action: pan-y;
   -webkit-touch-callout: none;
   user-select: none;
@@ -105,15 +105,6 @@
 }
 .food-tile:hover {
   background: transparent;
-}
-.food-tile.dragging {
-  z-index: 2;
-  pointer-events: none;
-  cursor: grabbing;
-}
-.shelf.drop-target {
-  box-shadow: inset 0 -4px #547258;
-  background: #ffffff25;
 }
 .food-tile img {
   width: min(64px, 100%);

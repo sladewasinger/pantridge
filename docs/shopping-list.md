@@ -1,0 +1,11 @@
+# Compact shopping list
+
+Rows retain 44 px checkboxes, quantity buttons and drag handles with minimal vertical padding. The prominent badge shows count; a measured package size appears alongside the name, for example `1×` and `Beef chuck brisket · 3 lb`. The generic `items` unit and one-time-row caption are omitted visually. At-home quantities remain on a separate secondary line. Other stocked sizes are available in the edit form instead of expanding every list row.
+
+The shopping form supports an optional free-text size such as `3 lb`, `500 g` or `12 fl oz`. Existing linked entries inherit their inventory size. Changing that size detaches the shopping entry from that exact inventory variant; it does not resize food already at home. Put-away carries the requested package description into the new identity. Counts remain whole numbers of packages; sizes do not convert or multiply the inventory count.
+
+Artwork matches the name automatically and previews in a collapsed Change artwork control. A manual choice persists as optional shopping.art through edits, sync, discard Undo and put-away into a new identity. Use automatic artwork clears that override. A shopping-only choice does not overwrite existing linked inventory artwork.
+
+Drag the left grip using touch or a mouse to reorder. Neighboring rows animate aside to open a full-row gap while the lifted row follows the pointer. The page scrolls near the upper or lower edge during dragging. Reduced motion disables the displacement animation. Arrow keys, Home and End on a focused grip move an item within its checked or unchecked group. Swiping elsewhere still scrolls. The order commits to IndexedDB before success is announced, survives reloads, and synchronizes through `shopping.move`. Filtering does not remove hidden entries; a drop at the end moves to the end of its whole group. Edits preserve order. Checked entries remain grouped below active ones.
+
+Add/edit forms are anchored to the top of the visual viewport. A bounded suggestions area below the name can filter without moving the input. Visual viewport resize/scroll events adjust the form for mobile keyboards and keep the focused control within view. Browser tests cover a reduced viewport; physical mobile keyboards can still vary by OS/browser.

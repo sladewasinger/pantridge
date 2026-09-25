@@ -11,6 +11,8 @@ const aliases: Partial<Record<ArtId, string[]>> = {
   'ground-beef': ['minced beef', 'hamburger meat'],
   chips: ['chips', 'crisps'],
   pasta: ['spaghetti', 'penne', 'macaroni'],
+  'red-onion': ['purple onion'],
+  tabasco: ['tabasco', 'tabasco sauce', 'tabasco hot sauce'],
 };
 const candidates = artwork.map((art) => ({
   id: art.id,

@@ -69,7 +69,7 @@ export function FoodFields({
           )}
         </>
       )}
-      <div className="form-grid">
+      <div>
         <label>
           Keep in
           <select
@@ -86,14 +86,6 @@ export function FoodFields({
             <option value="fridge">Fridge</option>
             <option value="freezer">Freezer</option>
             <option value="unspecified">Unspecified</option>
-          </select>
-        </label>
-        <label>
-          Shelf
-          <select value={food.shelf} onChange={(e) => patch({ shelf: Number(e.target.value) })}>
-            <option value={0}>Top shelf</option>
-            <option value={1}>Middle shelf</option>
-            <option value={2}>Bottom shelf</option>
           </select>
         </label>
       </div>

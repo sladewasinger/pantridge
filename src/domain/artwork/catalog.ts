@@ -51,6 +51,10 @@ const aliases: Partial<Record<ArtId, string>> = {
   'bell-pepper': 'capsicum peppers',
   'green-onions': 'scallions spring onions',
   'ground-beef': 'minced beef hamburger',
+  'red-onion': 'red onions purple onion',
+  raspberries: 'raspberry fresh berries',
+  tabasco:
+    'Tabasco original red pepper sauce large glass bottle red cap white diamond green border',
 };
 const pantryFruit: readonly ArtId[] = ['apple', 'bananas', 'orange', 'lemon', 'lime'];
 const groupedEntries = [
@@ -69,6 +73,7 @@ function groupFor(id: ArtId): ArtworkGroup {
   return groupsById.get(id)!;
 }
 function packageShape(shape: string): string {
+  if (shape === 'signature') return 'tall glass sauce bottle with red cap and white diamond label';
   if (!shape.startsWith('drink-')) return shape;
   return shape === 'drink-can' ? 'can' : `${shape.slice(6)} bottle`;
 }
@@ -82,7 +87,7 @@ export const artwork = entries.map(([id, label, src, shape]) => ({
 }));
 const byId = new Map(artwork.map((entry) => [entry.id, entry]));
 export const artPath = (id: ArtId) => byId.get(id)!.src;
-export const artworkVersion = 'food-art-v3';
+export const artworkVersion = 'food-art-v4';
 // Public, stable metadata only. Personal kitchen choices never enter the classifier prompt.
 export const artworkMetadata = artwork.map(({ id, label, shape, group, keywords }) => ({
   id,

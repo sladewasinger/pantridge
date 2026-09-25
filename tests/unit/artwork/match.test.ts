@@ -4,6 +4,12 @@ import { artwork, artworkMetadata } from '../../../src/domain/artwork/catalog';
 
 it.each([
   ['Bananas', 'bananas'],
+  ['Red onions', 'red-onion'],
+  ['Organic purple onion', 'red-onion'],
+  ['Fresh raspberries', 'raspberries'],
+  ['Tabasco', 'tabasco'],
+  ['Tabasco original red pepper sauce', 'tabasco'],
+  ['Beef chuck brisket', undefined],
   ['organic banana', 'bananas'],
   ['banannas', 'bananas'],
   ['great value sardines', 'plain-tin'],

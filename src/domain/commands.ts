@@ -20,6 +20,7 @@ export const commandSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('shopping.remove'), itemId: id }),
   z.object({ type: z.literal('shopping.discard'), itemId: id }),
   z.object({ type: z.literal('shopping.restore'), item: shoppingSchema }),
+  z.object({ type: z.literal('shopping.move'), itemId: id, beforeId: id.nullable() }),
   z.object({
     type: z.literal('shopping.putAway'),
     itemId: id,

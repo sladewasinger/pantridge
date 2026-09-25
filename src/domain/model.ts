@@ -49,6 +49,7 @@ export const shoppingSchema = z.object({
   quantity: z.number().int().min(1).max(999),
   purchased: z.boolean(),
   packageSize: z.string().trim().max(80).optional(),
+  art: artSchema.optional(),
 });
 export const snapshotSchema = z
   .object({

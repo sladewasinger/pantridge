@@ -50,4 +50,6 @@ export const pantryArt = [
   ['onions', 'Onions', '/art/pantry/3/onions.svg', 'produce'],
   ['garlic', 'Garlic', '/art/pantry/3/garlic.svg', 'produce'],
   ['sweet-potatoes', 'Sweet potatoes', '/art/pantry/3/sweet-potatoes.svg', 'produce'],
+  ['red-onion', 'Red onion', '/art/pantry/3/red-onion.svg', 'produce'],
+  ['tabasco', 'Tabasco Original Red bottle', '/art/pantry/3/tabasco.svg', 'signature'],
 ] as const;

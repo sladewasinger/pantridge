@@ -43,6 +43,7 @@ export const fridge = [
   ['hummus', 'Hummus', 'tub', '#c7a269', '#efe2c5', 'hummus'],
   ['orange-juice', 'Orange juice', 'carton', '#d79d47', '#f6e2b1', 'citrus'],
   ['tortillas', 'Tortillas', 'stack', '#e4c893', '#b89962', 'tortilla'],
+  ['raspberries', 'Raspberries', 'produce'],
 ];
 
 export const pantry = [
@@ -96,6 +97,8 @@ export const pantry = [
   ['onions', 'Onions', 'produce'],
   ['garlic', 'Garlic', 'produce'],
   ['sweet-potatoes', 'Sweet potatoes', 'produce'],
+  ['red-onion', 'Red onion', 'produce'],
+  ['tabasco', 'Tabasco Original Red bottle', 'signature'],
 ];
 
 export const freezer = [

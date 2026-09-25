@@ -1,16 +1,20 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import { X } from 'lucide-react';
+import { useModalViewport } from './useModalViewport';
 
 export function Modal({
   title,
   onClose,
   children,
+  placement = 'bottom',
 }: {
   title: string;
   onClose: () => void;
   children: ReactNode;
+  placement?: 'top' | 'bottom';
 }) {
   const ref = useRef<HTMLDialogElement>(null);
+  useModalViewport(ref, placement === 'top');
   useEffect(() => {
     const dialog = ref.current;
     dialog?.showModal();
@@ -21,7 +25,7 @@ export function Modal({
   return (
     <dialog
       ref={ref}
-      className="sheet"
+      className={`sheet${placement === 'top' ? ' sheet-top' : ''}`}
       aria-label={title}
       onCancel={(event) => {
         event.preventDefault();
