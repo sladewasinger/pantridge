@@ -31,7 +31,8 @@ function distance(a: string, b: string): number {
 }
 export function wordSimilarity(a: string, b: string): number {
   if (a === b) return 1;
-  if (Math.min(a.length, b.length) < 4) return 0;
+  // Short food names need exact spelling: "beef" must never match "beer".
+  if (Math.min(a.length, b.length) < 5) return 0;
   const edits = distance(a, b);
   const longest = Math.max(a.length, b.length);
   return edits <= (longest >= 7 ? 2 : 1) && edits / longest <= 0.25 ? 1 - edits / longest : 0;

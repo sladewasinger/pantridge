@@ -5,6 +5,8 @@ import { newFood, units } from '../../domain/selectors';
 import { Modal } from '../../ui/Modal';
 import { useAction } from '../../ui/useAction';
 import { FoodFields } from '../food/FoodFields';
+import { matchArtwork } from '../../domain/artwork/match';
+import { parseSize } from '../../domain/products/size';
 
 export function PutAway({ onClose }: { onClose: () => void }) {
   const { data } = useKitchen();
@@ -31,7 +33,13 @@ function PutAwayItem({ item, count }: { item: ShoppingItem; count: number }) {
   const existing = data.foods.find((food) => food.id === item.foodId);
   const [food, setFood] = useState(
     () =>
-      existing ?? { ...newFood(item.name), unit: item.unit, packageSize: item.packageSize ?? '' },
+      existing ?? {
+        ...newFood(item.name),
+        unit: item.unit,
+        packageSize: item.packageSize ?? '',
+        size: parseSize(item.packageSize ?? ''),
+        art: item.art ?? matchArtwork(item.name) ?? 'generic',
+      },
   );
   const [expires, setExpires] = useState('');
   const { run, error, busy } = useAction();

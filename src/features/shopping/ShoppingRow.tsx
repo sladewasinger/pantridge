@@ -1,28 +1,47 @@
-import { artPath } from '../../domain/artwork/catalog';
-import { Home, Pencil } from 'lucide-react';
-import type { Food, ShoppingItem, Snapshot } from '../../domain/model';
-import { OtherSizes } from './OtherSizes';
+import { GripVertical } from 'lucide-react';
+import type { Food, ShoppingItem } from '../../domain/model';
 import { units } from '../../domain/selectors';
+import type { useShoppingReorder } from './useShoppingReorder';
+import { ShoppingInfo } from './ShoppingInfo';
 
 export function ShoppingRow({
   item,
-  data,
   food,
   have,
   busy,
   onEdit,
   onPurchase,
+  reorder,
 }: {
   item: ShoppingItem;
-  data: Snapshot;
   food?: Food;
   have: number;
   busy: boolean;
   onEdit: (item: ShoppingItem) => void;
   onPurchase: (purchased: boolean) => void;
+  reorder: Omit<ReturnType<typeof useShoppingReorder>, 'root'>;
 }) {
+  const size = item.packageSize;
   return (
-    <div className={`shop-row ${item.purchased ? 'purchased' : ''}`}>
+    <div
+      data-shopping-id={item.id}
+      className={`shop-row ${item.purchased ? 'purchased' : ''} ${reorder.dragId === item.id ? 'is-dragging' : ''}`}
+    >
+      <button
+        className="shopping-grip"
+        aria-label={`Reorder ${item.name}`}
+        aria-describedby={reorder.instructions}
+        disabled={busy}
+        onPointerDown={(event) => reorder.start(event, item)}
+        onPointerMove={reorder.move}
+        onPointerUp={reorder.finish}
+        onPointerCancel={reorder.cancel}
+        onLostPointerCapture={reorder.cancel}
+        onKeyDown={(event) => reorder.keyboard(event, item)}
+        onContextMenu={(event) => event.preventDefault()}
+      >
+        <GripVertical size={18} />
+      </button>
       <label className="purchase-target">
         <input
           type="checkbox"
@@ -32,32 +51,14 @@ export function ShoppingRow({
           onChange={(e) => onPurchase(e.target.checked)}
         />
       </label>
-      <button className="shop-info" onClick={() => onEdit(item)} aria-label={`Edit ${item.name}`}>
-        {food && <img className="shop-art" src={artPath(food.art)} alt="" />}
-        <span className="shop-copy">
-          <span className="shop-name">{item.name}</span>
-          {item.packageSize && <span className="size-label">{item.packageSize}</span>}
-          <span className="home-stock">
-            {item.foodId ? (
-              <>
-                <Home size={14} />
-                <span className="sr-only">At home: </span>
-                {units(have, item.unit)}
-              </>
-            ) : (
-              'One-time item'
-            )}
-          </span>
-          <OtherSizes data={data} food={food} />
-        </span>
-      </button>
+      <ShoppingInfo item={item} food={food} have={have} onEdit={onEdit} />
       <button
         className="buy-quantity"
         onClick={() => onEdit(item)}
-        aria-label={`Buy ${units(item.quantity, item.unit)} of ${item.name}`}
+        aria-label={`Buy ${size ? `${item.quantity} × ${size}` : units(item.quantity, item.unit)} of ${item.name}`}
       >
         <span>{item.quantity}</span>
-        <Pencil size={10} aria-hidden="true" />
+        {size && <small aria-hidden="true">×</small>}
       </button>
     </div>
   );

@@ -1,4 +1,3 @@
-import { artPath } from '../../domain/artwork/catalog';
 import { useState } from 'react';
 import { Trash2 } from 'lucide-react';
 import { dispatch, useKitchen } from '../../data/store';
@@ -8,6 +7,9 @@ import { Quantity } from '../../ui/Quantity';
 import { useAction } from '../../ui/useAction';
 import { packageLabel } from '../../domain/products/variants';
 import { shoppingSuggestions } from '../../domain/shopping-suggestions';
+import { ShoppingSuggestions } from './ShoppingSuggestions';
+import { OtherSizes } from './OtherSizes';
+import { ShoppingArtwork } from './ShoppingArtwork';
 
 export function ShoppingForm({ item, onClose }: { item?: ShoppingItem; onClose: () => void }) {
   const { data } = useKitchen();
@@ -25,7 +27,7 @@ export function ShoppingForm({ item, onClose }: { item?: ShoppingItem; onClose: 
   const { run, busy, error } = useAction();
   const suggestions = shoppingSuggestions(data, draft.name);
   function setName(name: string) {
-    const { foodId: _foodId, packageSize: _size, ...rest } = draft;
+    const { foodId: _foodId, ...rest } = draft;
     const exact = data.foods.filter(
       (food) => food.name.toLowerCase() === name.trim().toLowerCase(),
     );
@@ -37,8 +39,13 @@ export function ShoppingForm({ item, onClose }: { item?: ShoppingItem; onClose: 
     );
   }
   return (
-    <Modal title={item ? 'Edit shopping item' : 'Add to your list'} onClose={onClose}>
+    <Modal
+      title={item ? 'Edit shopping item' : 'Add to your list'}
+      onClose={onClose}
+      placement="top"
+    >
       <form
+        className="shopping-form"
         onSubmit={(e) => {
           e.preventDefault();
           void run(async () => {
@@ -59,51 +66,65 @@ export function ShoppingForm({ item, onClose }: { item?: ShoppingItem; onClose: 
             placeholder="What do you need?"
           />
         </label>
-        {!draft.foodId && suggestions.length > 0 && (
-          <div className="suggestions" aria-label="Remembered foods">
-            {suggestions.map((food) => (
-              <button
-                type="button"
-                key={food.id}
-                onClick={() =>
-                  setDraft({
-                    ...draft,
-                    name: food.name,
-                    unit: food.unit,
-                    foodId: food.id,
-                    packageSize: packageLabel(food),
-                  })
-                }
-              >
-                <img src={artPath(food.art)} alt="" />
-                {food.name}
-                <small>{packageLabel(food) || 'Unspecified size'}</small>
-              </button>
-            ))}
-          </div>
+        {!draft.foodId && (
+          <ShoppingSuggestions
+            foods={suggestions}
+            onSelect={(food) =>
+              setDraft({
+                ...draft,
+                name: food.name,
+                unit: food.unit,
+                foodId: food.id,
+                packageSize: packageLabel(food),
+              })
+            }
+          />
         )}
         {draft.foodId && (
           <p className="linked-note">
             Linked to your kitchen inventory · {draft.packageSize || 'Unspecified size'}
           </p>
         )}
-        <label>
-          Unit
-          <select
-            value={draft.unit}
-            disabled={!!draft.foodId}
-            onChange={(e) => setDraft({ ...draft, unit: unitSchema.parse(e.target.value) })}
-          >
-            {unitSchema.options.map((unit) => (
-              <option key={unit}>{unit}</option>
-            ))}
-          </select>
-        </label>
         <Quantity
           value={draft.quantity}
           min={1}
           onChange={(quantity) => setDraft({ ...draft, quantity })}
         />
+        <div className="form-grid">
+          <label>
+            Size <span className="optional">each</span>
+            <input
+              aria-label="Package size"
+              maxLength={80}
+              placeholder="e.g. 3 lb"
+              value={draft.packageSize ?? ''}
+              onChange={(event) => {
+                const { foodId: _foodId, ...rest } = draft;
+                setDraft({ ...rest, packageSize: event.target.value });
+              }}
+            />
+          </label>
+          <label>
+            Package
+            <select
+              value={draft.unit}
+              disabled={!!draft.foodId}
+              onChange={(e) => setDraft({ ...draft, unit: unitSchema.parse(e.target.value) })}
+            >
+              {unitSchema.options.map((unit) => (
+                <option key={unit} value={unit}>
+                  {unit === 'items' ? 'None' : unit}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <ShoppingArtwork
+          item={draft}
+          food={data.foods.find((food) => food.id === draft.foodId)}
+          onChange={setDraft}
+        />
+        <OtherSizes data={data} food={data.foods.find((food) => food.id === draft.foodId)} />
         {error && (
           <p className="error" role="alert">
             {error}

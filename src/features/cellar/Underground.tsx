@@ -78,7 +78,7 @@ export function Underground({
           {visible.slice(index * 3, index * 3 + 3).map((food) => (
             <div className="underground-slot" key={food.id}>
               <Placement food={food} />
-              <FoodTile food={food} data={data} onSelect={onSelect} onDragStart={() => {}} />
+              <FoodTile food={food} data={data} onSelect={onSelect} />
             </div>
           ))}
         </div>

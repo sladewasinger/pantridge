@@ -4,6 +4,7 @@ import { countFood } from '../../domain/selectors';
 import { useAction } from '../../ui/useAction';
 import { ShoppingRow } from './ShoppingRow';
 import { DiscardChecked } from './DiscardChecked';
+import { useShoppingReorder } from './useShoppingReorder';
 
 export function Shopping({
   query,
@@ -23,8 +24,16 @@ export function Shopping({
   const matches = data.shopping
     .filter((item) => item.name.toLowerCase().includes(query.trim().toLowerCase()))
     .toSorted((a, b) => Number(a.purchased) - Number(b.purchased));
+  const { root, ...reorder } = useShoppingReorder(matches);
   return (
-    <div className="shopping-list">
+    <div className={`shopping-list${reorder.dragId ? ' is-reordering' : ''}`} ref={root}>
+      {reorder.dragId && <div className="shopping-drop-gap" aria-hidden="true" />}
+      <p id={reorder.instructions} className="sr-only">
+        Drag to reorder. With a keyboard, use Up or Down, Home or End.
+      </p>
+      <span className="sr-only" role="status">
+        {reorder.message}
+      </span>
       {!data.shopping.length ? (
         <div className="empty-state">
           <img className="empty-art" src="/art/shopping.svg" alt="" />
@@ -46,8 +55,8 @@ export function Shopping({
         <ShoppingRow
           key={item.id}
           item={item}
-          data={data}
-          busy={busy}
+          busy={busy || reorder.busy}
+          reorder={reorder}
           food={data.foods.find((food) => food.id === item.foodId)}
           have={item.foodId ? countFood(data, item.foodId) : 0}
           onEdit={onEdit}
@@ -69,9 +78,9 @@ export function Shopping({
           <DiscardChecked />
         </>
       )}
-      {error && (
+      {(error || reorder.error) && (
         <p className="error" role="alert">
-          {error}
+          {error || reorder.error}
         </p>
       )}
     </div>

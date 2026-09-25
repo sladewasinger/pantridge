@@ -35,11 +35,14 @@ Snapshots reject duplicate IDs and missing food references. `food.restore` accep
 | `stock.adjust`       | Increment/decrement a lot, clamped to 0–9,999                    |
 | `stock.date`         | Set or clear a lot’s expiration                                  |
 | `shopping.save`      | Add/update a linked or one-time shopping entry                   |
+| `shopping.move`      | Move an entry before another ID, or to its group's end           |
 | `shopping.purchase`  | Mark/unmark purchased without changing inventory                 |
 | `shopping.remove`    | Remove an entry or finish a purchase without inventory tracking  |
 | `shopping.putAway`   | Consume a purchased entry and add its stock exactly once         |
 
 Counts are integers. Units are explicit, and package details are descriptive rather than automatic conversions. Dates use `YYYY-MM-DD`. Request bodies are capped at 16 KB; array and snapshot bounds are validated on the server.
+
+Shopping order is the snapshot's array order; the UI groups unchecked entries before checked ones. `shopping.move` accepts `itemId` and nullable `beforeId`. A null anchor moves to the end; a non-null anchor must exist in the same purchased state. Missing entries, missing anchors, and self-moves are no-ops, so replay cannot resurrect removed items or overwrite quantities. Unrelated concurrent additions survive. Existing-entry `shopping.save` preserves its position. Mutation IDs and the transactional outbox follow the same retry rules as other changes. The API must support this additive command before the updated frontend is published.
 
 Invalid input returns 400, unauthenticated requests 401, conflicting state/capacity 409, oversize requests 413, and transient storage errors 503. Preserve the outbox on any failure. A 409 requires reviewing the conflicting edit; repeating an identical invalid edit does not fix it.
 
@@ -51,3 +54,5 @@ mutation. Package sizes and product provenance are optional additive snapshot fi
 license obligations and deployment ordering. Existing manual commands remain supported.
 
 The API and frontend do not import Walmart receipts yet. A future integration should map each retailer product to a generic food plus optional brand/package details, persist the source receipt/line identity, then create purchased shopping entries. Uncertain matches should appear in put-away review. The importer must retain stable mutation IDs across retries and have its own authenticated client. Imported purchases must not bypass the inventory reducer or duplicate quantities on repeated receipt uploads.
+
+Shopping entries also accept optional art from the shared artwork enum. It records a manual shopping illustration override; missing art means automatic name/inventory matching. Existing snapshots without it remain valid. Clients with an older artwork enum need an app update to read newly added food artwork IDs. No database migration is required.

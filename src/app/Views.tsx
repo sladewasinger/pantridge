@@ -41,7 +41,7 @@ export function MainView({
       <Storage
         key={view.location}
         location={view.location}
-        onAdd={(shelf) => onOverlay({ type: 'add', shelf })}
+        onAdd={() => onOverlay({ type: 'add' })}
         onSelect={(food) => onOverlay({ type: 'food', id: food.id })}
       />
     );
