@@ -25,6 +25,7 @@ export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () =
   return (
     <Modal title={food.name} onClose={onClose}>
       <ItemTabs
+        food={food}
         products={lots.flatMap((lot) => (lot.product ? [lot.product] : []))}
         size={food.size ?? parseSize(food.packageSize)}
       >

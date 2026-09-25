@@ -3,6 +3,7 @@ import { hasValidLinks } from './integrity';
 import { sizeSchema } from './products/size';
 import { productSchema } from './products/barcode';
 import { artIds } from './artwork/catalog';
+import { nutritionEstimateSchema } from './products/nutrition-estimate';
 
 export const id = z.uuid();
 export const locationSchema = z.enum(['fridge', 'pantry', 'unspecified']);
@@ -32,6 +33,7 @@ export const foodSchema = z.object({
   location: locationSchema,
   shelf: z.number().int().min(0).max(2),
   frozen: z.boolean(),
+  nutritionEstimate: nutritionEstimateSchema.optional(),
 });
 export const stockSchema = z.object({
   id,

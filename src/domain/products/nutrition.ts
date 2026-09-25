@@ -18,3 +18,11 @@ export const nutritionSchema = z.object({
 });
 export type Nutrients = z.infer<typeof nutrientsSchema>;
 export type Nutrition = z.infer<typeof nutritionSchema>;
+export function hasNutrition(nutrition?: Nutrition): boolean {
+  return (
+    !!nutrition &&
+    [...Object.values(nutrition.per100), ...Object.values(nutrition.perServing ?? {})].some(
+      (value) => typeof value === 'number',
+    )
+  );
+}
