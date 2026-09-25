@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { Trash2 } from 'lucide-react';
 import { dispatch, useKitchen } from '../../data/store';
 import { unitSchema, type ShoppingItem } from '../../domain/model';
@@ -12,6 +12,7 @@ import { OtherSizes } from './OtherSizes';
 import { ShoppingArtwork } from './ShoppingArtwork';
 
 export function ShoppingForm({ item, onClose }: { item?: ShoppingItem; onClose: () => void }) {
+  const formId = useId();
   const { data } = useKitchen();
   const current = item ? data.shopping.find((entry) => entry.id === item.id) : undefined;
   const [draft, setDraft] = useState<ShoppingItem>(
@@ -43,8 +44,14 @@ export function ShoppingForm({ item, onClose }: { item?: ShoppingItem; onClose: 
       title={item ? 'Edit shopping item' : 'Add to your list'}
       onClose={onClose}
       placement="top"
+      footer={
+        <button type="submit" form={formId} className="primary full" disabled={busy}>
+          {item ? 'Save changes' : 'Add to list'}
+        </button>
+      }
     >
       <form
+        id={formId}
         className="shopping-form"
         onSubmit={(e) => {
           e.preventDefault();
@@ -130,9 +137,6 @@ export function ShoppingForm({ item, onClose }: { item?: ShoppingItem; onClose: 
             {error}
           </p>
         )}
-        <button className="primary full" disabled={busy}>
-          {item ? 'Save changes' : 'Add to list'}
-        </button>
         {item && (
           <button
             type="button"
