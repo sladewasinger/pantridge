@@ -40,4 +40,5 @@ export const fridgeArt = [
   ['hummus', 'Hummus', '/art/fridge/3/hummus.svg', 'tub'],
   ['orange-juice', 'Orange juice', '/art/fridge/3/orange-juice.svg', 'carton'],
   ['tortillas', 'Tortillas', '/art/fridge/3/tortillas.svg', 'stack'],
+  ['raspberries', 'Raspberries', '/art/fridge/3/raspberries.svg', 'produce'],
 ] as const;

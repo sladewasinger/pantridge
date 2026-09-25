@@ -54,13 +54,13 @@ test('shopping search, progress, and large check targets work offline', async ({
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });
 
-test('empty shelves preselect placement and artwork buttons preview the saved item', async ({
+test('empty storage preselects its location and artwork buttons preview the saved item', async ({
   page,
 }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Open freezer', exact: true }).click();
-  await page.getByRole('button', { name: 'Add food to middle shelf', exact: true }).click();
-  await expect(page.getByRole('combobox', { name: 'Shelf', exact: true })).toHaveValue('1');
+  await page.getByRole('button', { name: 'Add food to freezer', exact: true }).click();
+  await expect(page.getByRole('combobox', { name: 'Shelf', exact: true })).toHaveCount(0);
   await page.getByLabel('Food name').fill('Salmon');
   await page.getByRole('button', { name: 'Use Fish artwork', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Use Fish artwork', exact: true })).toHaveAttribute(
@@ -75,7 +75,7 @@ test('empty shelves preselect placement and artwork buttons preview the saved it
   }
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   await page.getByRole('button', { name: 'Add to freezer', exact: true }).click();
-  await expect(page.locator('[data-shelf="1"] img')).toHaveAttribute('src', '/art/fish.svg');
+  await expect(page.locator('[data-shelf="0"] img')).toHaveAttribute('src', '/art/fish.svg');
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await page.getByRole('searchbox').fill(' salmon ');
   await expect(page.locator('.search-result')).toContainText('Freezer');

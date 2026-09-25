@@ -1,6 +1,6 @@
 # Mobile shelves, scan feedback, and nutrition amounts
 
-Kitchen and Cellar shelves display three tiles per row. On touch screens, holding an item still for 500 ms starts dragging; moving at least 8 px before that cancels the hold and allows normal scrolling. Mouse dragging retains its movement threshold. Shelf selectors remain available for keyboard and touch use without dragging.
+Kitchen and Cellar shelves display three tiles per row. Fridge, pantry and freezer now generate rows automatically as inventory grows; manual shelf placement and inventory-tile dragging have been removed. Touch swipes scroll normally. Shopping rows use dedicated drag handles, animated space for dropping, and keyboard reorder controls.
 
 Scan success notices sit at the viewport top, respecting its safe area. The open scan dialog reserves space below the actual banner height, including when another scan opens a full confirmation form. Notices still support Undo, manual dismissal, and the existing ten-second timeout, paused while hovered or focused.
 

@@ -45,13 +45,13 @@ test('offline inventory, shopping, and put-away survive a cold reload', async ({
   ).toBeVisible();
   await context.setOffline(false);
 });
-test('depleted food disappears, remains searchable, and can move shelves', async ({ page }) => {
+test('depleted food disappears, remains searchable, and can change storage', async ({ page }) => {
   await page.goto('/');
   await addEggs(page);
   await page.getByRole('button', { name: 'Open fridge', exact: true }).click();
   await page.getByRole('button', { name: 'Test eggs, 2 cartons', exact: true }).click();
   await page.getByRole('button', { name: 'Move or edit item' }).click();
-  await page.getByRole('combobox', { name: 'Shelf', exact: true }).selectOption('2');
+  await expect(page.getByRole('combobox', { name: 'Shelf', exact: true })).toHaveCount(0);
   await page.getByRole('button', { name: 'Save changes', exact: true }).click();
   await page.getByRole('button', { name: 'Use one', exact: true }).click();
   await page.getByRole('button', { name: 'Use one', exact: true }).click();

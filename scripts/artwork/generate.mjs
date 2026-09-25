@@ -11,6 +11,7 @@ import { cheeseArt, proteinArt } from './protein.mjs';
 import { household, householdArt } from './household.mjs';
 import { drinks } from './drinks.mjs';
 import { drinkArt } from './bottles.mjs';
+import { addedArt } from './additions.mjs';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const formatOptions = await resolveConfig(path.join(root, 'package.json'));
@@ -24,6 +25,7 @@ function render(recipe) {
     protein: () => proteinArt(recipe),
     cheese: () => cheeseArt(recipe),
     household: () => householdArt(id),
+    signature: () => addedArt(id),
   };
   const body = shape.startsWith('drink-')
     ? drinkArt(recipe)
@@ -65,8 +67,9 @@ for (const [group, recipes] of Object.entries(groups)) {
     await format(source, { ...formatOptions, parser: 'typescript' }),
   );
 }
-if (fridge.length + pantry.length + freezer.length !== 100 || freezer.length !== 10)
-  throw new Error('The library must contain 100 food illustrations, including 10 freezer foods.');
+const foodCount = fridge.length + pantry.length + freezer.length;
+if (foodCount !== 103 || freezer.length !== 10)
+  throw new Error('The library must contain 103 food illustrations, including 10 freezer foods.');
 console.log(
-  `Artwork ${check ? 'verified' : 'generated'}: 100 foods + ${packaging.length} plain packages + ${household.length} household items + ${drinks.length} drinks.`,
+  `Artwork ${check ? 'verified' : 'generated'}: ${foodCount} foods + ${packaging.length} plain packages + ${household.length} household items + ${drinks.length} drinks.`,
 );

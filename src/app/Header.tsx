@@ -17,14 +17,17 @@ export function Header({
   onScan: () => void;
 }) {
   const home = view.page === 'kitchen' && !view.location && !view.query;
+  const shopping = view.page === 'shopping';
   return (
-    <header className="app-header">
-      <div className="brand-row">
-        <span className="brand">Pantridge</span>
-        <button className="icon-button" onClick={onSettings} aria-label="Settings">
-          <Settings2 size={19} />
-        </button>
-      </div>
+    <header className={`app-header${shopping ? ' shopping-header' : ''}`}>
+      {!shopping && (
+        <div className="brand-row">
+          <span className="brand">Pantridge</span>
+          <button className="icon-button" onClick={onSettings} aria-label="Settings">
+            <Settings2 size={19} />
+          </button>
+        </div>
+      )}
       <div className="title-row">
         {!home && (
           <button className="round" onClick={onHome} aria-label="Back to kitchen">
@@ -33,6 +36,11 @@ export function Header({
         )}
         <h1>{viewTitle(view)}</h1>
         {view.page === 'kitchen' && <ScanButton onClick={onScan} />}
+        {shopping && (
+          <button className="icon-button" onClick={onSettings} aria-label="Settings">
+            <Settings2 size={19} />
+          </button>
+        )}
         <button
           className="round add-button"
           aria-label={view.page === 'shopping' ? 'Add shopping item' : 'Add food'}

@@ -53,22 +53,17 @@
   accent-color: var(--green);
   cursor: pointer;
 }
-.shop-row {
-  grid-template-columns: 44px minmax(0, 1fr) auto;
-  gap: 8px;
-  padding: 13px 0;
-}
 .shop-info {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 5px;
 }
 .shop-copy {
   min-width: 0;
 }
 .shop-art {
-  width: 32px;
-  height: 44px;
+  width: 26px;
+  height: 32px;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -240,7 +235,7 @@
     font-size: 15px;
   }
   .shopping-list {
-    padding-inline: 16px;
+    padding-inline: 6px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
