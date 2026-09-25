@@ -4,6 +4,7 @@ import type { ShoppingItem } from '../../domain/model';
 import { useAction } from '../../ui/useAction';
 import { keyboardTarget } from './reorder-target';
 import { captureRows, clearPreview, previewMove, type DragRows } from './drag-layout';
+import { moveShoppingItems } from '../../domain/shopping-commands';
 interface Drag {
   item: ShoppingItem;
   handle: HTMLButtonElement;
@@ -21,6 +22,10 @@ export function useShoppingReorder(items: ShoppingItem[]) {
   const root = useRef<HTMLDivElement>(null);
   const gesture = useRef<Drag | null>(null);
   const [dragId, setDragId] = useState('');
+  const [pendingMove, setPendingMove] = useState<{
+    itemId: string;
+    beforeId: string | null;
+  } | null>(null);
   const [message, setMessage] = useState('');
   const instructions = useId();
   const { run, busy, error } = useAction();
@@ -41,13 +46,16 @@ export function useShoppingReorder(items: ShoppingItem[]) {
     const active = release();
     if (active) reset(active);
   }
-  useEffect(
-    () => () => {
-      if (gesture.current) cancelAnimationFrame(gesture.current.frame);
-    },
-    [],
-  );
+  useEffect(() => {
+    const list = root.current;
+    return () => {
+      const active = release();
+      if (active) clearPreview(list, active.rows);
+    };
+  }, []);
   async function save(item: ShoppingItem, before: string | null) {
+    setMessage('');
+    setPendingMove({ itemId: item.id, beforeId: before });
     await run(async () => {
       await dispatch({ type: 'shopping.move', itemId: item.id, beforeId: before });
       const group = getKitchen().data.shopping.filter(
@@ -58,6 +66,7 @@ export function useShoppingReorder(items: ShoppingItem[]) {
         position ? item.name + ' moved to position ' + position + '.' : 'This item was removed.',
       );
     });
+    setPendingMove(null);
   }
   function preview(active: Drag) {
     if (!root.current) return;
@@ -114,8 +123,8 @@ export function useShoppingReorder(items: ShoppingItem[]) {
     if (gesture.current?.pointer !== event.pointerId) return;
     const active = release();
     if (!active) return;
-    if (active.active) void save(active.item, active.before).finally(() => reset(active));
-    else reset(active);
+    reset(active);
+    if (active.active) void save(active.item, active.before);
   }
   function keyboard(event: KeyboardEvent<HTMLButtonElement>, item: ShoppingItem) {
     if (event.key === 'Escape') {
@@ -129,6 +138,11 @@ export function useShoppingReorder(items: ShoppingItem[]) {
   }
   return {
     root,
+    items: pendingMove
+      ? moveShoppingItems(items, pendingMove.itemId, pendingMove.beforeId).toSorted(
+          (a, b) => Number(a.purchased) - Number(b.purchased),
+        )
+      : items,
     dragId,
     instructions,
     message,
