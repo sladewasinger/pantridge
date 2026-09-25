@@ -14,7 +14,6 @@
 }
 .sheet::backdrop {
   background: #283c3145;
-  backdrop-filter: blur(2px);
 }
 .sheet-heading {
   display: flex;

@@ -91,7 +91,10 @@ export function openOverlay(overlay: Overlay) {
   push({ overlay });
 }
 export function closeOverlay() {
-  if (current.overlay) back();
+  if (!current.overlay || traversing) return;
+  back();
+  // Dismiss now; history traversal can finish asynchronously without retaining the dialog.
+  emit({ ...current, overlay: null });
 }
 export function search(query: string) {
   if (traversing || query === current.query) return;

@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useLayoutEffect, useRef, type ReactNode } from 'react';
 import { X } from 'lucide-react';
 import { useModalViewport } from './useModalViewport';
 
@@ -17,10 +17,11 @@ export function Modal({
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   useModalViewport(ref, placement === 'top');
-  useEffect(() => {
+  useLayoutEffect(() => {
     const dialog = ref.current;
     dialog?.showModal();
     return () => {
+      dialog?.getAnimations().forEach((animation) => animation.cancel());
       dialog?.close();
     };
   }, []);
