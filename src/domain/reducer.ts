@@ -4,6 +4,7 @@ import { initializeStarter } from './starter';
 import { saveFood, removeFood, normalizeShopping, restoreFood } from './food-commands';
 import { addScannedStock } from './products/scan-command';
 import { moveShopping, restoreShopping } from './shopping-commands';
+import { saveNutrition } from './products/nutrition-command';
 
 function replace<T extends { id: string }>(list: T[], value: T): T[] {
   return list.some((item) => item.id === value.id)
@@ -44,6 +45,8 @@ export function applyCommand(data: Snapshot, command: Command): Snapshot {
       return restoreFood(data, command.food);
     case 'food.save':
       return saveFood(data, command.food);
+    case 'food.nutrition':
+      return saveNutrition(data, command);
     case 'stock.add':
       if (!data.foods.some((food) => food.id === command.stock.foodId))
         throw new Error('Food no longer exists.');

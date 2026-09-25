@@ -90,3 +90,18 @@
   line-height: 1.4;
   display: block;
 }
+
+.estimate-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: #71542b;
+  background: #f4e9cb;
+  font-size: 12px;
+}
+.nutrition-estimate .muted {
+  margin-bottom: 12px;
+  font-size: 12px;
+}

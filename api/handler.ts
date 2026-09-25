@@ -9,6 +9,7 @@ import { resolveProduct } from './products/resolve';
 import { ProductError } from './products/errors';
 import { protectRequest, recordMalformed } from './access/protection';
 import { AccessError } from './access/config';
+import { resolveNutrition } from './products/nutrition-estimate';
 
 function response(
   statusCode: number,
@@ -43,7 +44,7 @@ export async function handler(
       return response(413, { message: 'This change is too large.' });
     }
     if (event.routeKey === 'POST /v1/products/resolve')
-      return response(200, await resolveProduct(owner, body));
+      return response(200, await productRequest(owner, body));
     const mutation = mutationSchema.parse(JSON.parse(body));
     return response(200, await mutate(owner, mutation));
   } catch (error) {
@@ -56,6 +57,16 @@ export async function handler(
     }
     return failure(error, event.requestContext.requestId);
   }
+}
+
+function productRequest(owner: string, body: string) {
+  const input: unknown = JSON.parse(body);
+  return typeof input === 'object' &&
+    input !== null &&
+    'kind' in input &&
+    input.kind === 'nutrition'
+    ? resolveNutrition(owner, input)
+    : resolveProduct(owner, body);
 }
 
 function requestBody(event: APIGatewayProxyEventV2WithJWTAuthorizer): string {

@@ -1,11 +1,18 @@
 import { z } from 'zod';
 import { dateSchema, foodSchema, id, shoppingSchema, stockSchema } from './model';
+import { nutritionEstimateSchema } from './products/nutrition-estimate';
 
 export const commandSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('kitchen.initialize') }),
   z.object({ type: z.literal('food.remove'), foodId: id }),
   z.object({ type: z.literal('food.restore'), food: foodSchema }),
   z.object({ type: z.literal('food.save'), food: foodSchema }),
+  z.object({
+    type: z.literal('food.nutrition'),
+    foodId: id,
+    name: z.string().trim().min(1).max(80),
+    estimate: nutritionEstimateSchema.nullable(),
+  }),
   z.object({ type: z.literal('stock.add'), stock: stockSchema }),
   z.object({ type: z.literal('stock.remove'), stockId: id }),
   z.object({ type: z.literal('stock.scan'), food: foodSchema, stock: stockSchema }),
