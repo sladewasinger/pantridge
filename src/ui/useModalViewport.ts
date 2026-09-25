@@ -1,5 +1,17 @@
 import { useEffect, type RefObject } from 'react';
 
+function keepFocusVisible(dialog: HTMLDialogElement, viewport: VisualViewport) {
+  const scroller = dialog.querySelector<HTMLElement>('.sheet-body') ?? dialog;
+  const focused = document.activeElement;
+  if (!(focused instanceof HTMLElement) || !scroller.contains(focused)) return;
+  const box = focused.getBoundingClientRect();
+  const region = scroller.getBoundingClientRect();
+  const top = Math.max(region.top, viewport.offsetTop) + 8;
+  const bottom = Math.min(region.bottom, viewport.offsetTop + viewport.height) - 8;
+  if (box.bottom > bottom) scroller.scrollTop += box.bottom - bottom;
+  else if (box.top < top) scroller.scrollTop -= top - box.top;
+}
+
 export function useModalViewport(ref: RefObject<HTMLDialogElement | null>, enabled: boolean) {
   useEffect(() => {
     const dialog = ref.current;
@@ -11,13 +23,7 @@ export function useModalViewport(ref: RefObject<HTMLDialogElement | null>, enabl
       frame = requestAnimationFrame(() => {
         dialog!.style.setProperty('--viewport-top', `${viewport!.offsetTop}px`);
         dialog!.style.setProperty('--viewport-height', `${viewport!.height}px`);
-        const focused = document.activeElement;
-        if (!(focused instanceof HTMLElement) || !dialog!.contains(focused)) return;
-        const box = focused.getBoundingClientRect();
-        const top = Math.max(dialog!.getBoundingClientRect().top, viewport!.offsetTop) + 12;
-        const bottom = viewport!.offsetTop + viewport!.height - 16;
-        if (box.bottom > bottom) dialog!.scrollTop += box.bottom - bottom;
-        else if (box.top < top) dialog!.scrollTop -= top - box.top;
+        keepFocusVisible(dialog!, viewport!);
       });
     }
     measure();

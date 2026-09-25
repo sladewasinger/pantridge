@@ -7,11 +7,13 @@ export function Modal({
   onClose,
   children,
   placement = 'bottom',
+  footer,
 }: {
   title: string;
   onClose: () => void;
   children: ReactNode;
   placement?: 'top' | 'bottom';
+  footer?: ReactNode;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   useModalViewport(ref, placement === 'top');
@@ -25,7 +27,7 @@ export function Modal({
   return (
     <dialog
       ref={ref}
-      className={`sheet${placement === 'top' ? ' sheet-top' : ''}`}
+      className={`sheet${placement === 'top' ? ' sheet-top' : ''}${footer ? ' sheet-framed' : ''}`}
       aria-label={title}
       onCancel={(event) => {
         event.preventDefault();
@@ -38,7 +40,14 @@ export function Modal({
           <X />
         </button>
       </div>
-      {children}
+      {footer ? (
+        <>
+          <div className="sheet-body">{children}</div>
+          <div className="sheet-footer">{footer}</div>
+        </>
+      ) : (
+        children
+      )}
     </dialog>
   );
 }
