@@ -212,3 +212,61 @@ test('touch dragging on the shopping handle reorders without checking or editing
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(20);
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
+
+test('shopping modal pins full-width header and submit above the keyboard while fields scroll', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 412, height: 480 });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Shopping', exact: true }).click();
+  await page.getByRole('button', { name: 'Add your first item' }).click();
+  const dialog = page.getByRole('dialog');
+  const heading = dialog.locator('.sheet-heading');
+  const footer = dialog.locator('.sheet-footer');
+  const submit = page.getByRole('button', { name: 'Add to list', exact: true });
+  const body = dialog.locator('.sheet-body');
+  const initial = (await submit.boundingBox())!;
+  expect(initial.y + initial.height).toBeLessThan(480);
+  await submit.click();
+  await expect(dialog).toBeVisible();
+  await expect(page.getByLabel('Item name')).toBeFocused();
+  await page.getByLabel('Item name').fill('Raspberries');
+  await page.locator('.shopping-artwork summary').click();
+  await page.setViewportSize({ width: 320, height: 360 });
+  await expect
+    .poll(async () => (await footer.boundingBox())!.y + (await footer.boundingBox())!.height)
+    .toBeLessThan(360);
+  const headerBox = (await heading.boundingBox())!;
+  const footerBox = (await footer.boundingBox())!;
+  const dialogBox = (await dialog.boundingBox())!;
+  expect(headerBox.width).toBeCloseTo(dialogBox.width - 2, 0);
+  expect(footerBox.width).toBeCloseTo(headerBox.width, 0);
+  expect(headerBox.y).toBeCloseTo(dialogBox.y + 1, 0);
+  await body.evaluate((element) => {
+    element.scrollTop = element.scrollHeight;
+  });
+  expect((await heading.boundingBox())!.y).toBeCloseTo(headerBox.y, 0);
+  expect((await footer.boundingBox())!.y).toBeCloseTo(footerBox.y, 0);
+  expect(await body.evaluate((element) => element.scrollTop)).toBeGreaterThan(0);
+  expect(
+    await heading.evaluate((element) => {
+      const box = element.getBoundingClientRect();
+      return element.contains(document.elementFromPoint(box.left + 2, box.bottom - 2));
+    }),
+  ).toBe(true);
+  await page.screenshot({ path: 'artifacts/shopping-pinned-actions.png' });
+  await page.getByLabel('Item name').focus();
+  await expect
+    .poll(async () => {
+      const input = (await page.getByLabel('Item name').boundingBox())!;
+      return input.y >= headerBox.y + headerBox.height && input.y + input.height <= footerBox.y;
+    })
+    .toBe(true);
+  await page.getByLabel('Item name').press('Enter');
+  await expect(dialog).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Edit Raspberries', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Edit Raspberries', exact: true }).click();
+  await expect(
+    page.locator('.sheet-footer').getByRole('button', { name: 'Save changes' }),
+  ).toBeVisible();
+});
