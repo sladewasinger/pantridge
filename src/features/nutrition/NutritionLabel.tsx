@@ -15,16 +15,18 @@ export function NutritionLabel({
   nutrition,
   name,
   size,
+  estimated = false,
 }: {
   nutrition: Nutrition;
   name: string;
   size?: PackageSize;
+  estimated?: boolean;
 }) {
   const portion = usePortion(nutrition, size);
   const { values } = portion;
   return (
     <section className="nutrition-label" aria-label="Nutrition information">
-      <h3>Nutrition Facts</h3>
+      <h3>{estimated ? 'Estimated nutrition' : 'Nutrition Facts'}</h3>
       <p>{name}</p>
       <PortionControls portion={portion} nutrition={nutrition} size={size} />
       <div className="nutrition-calories">
@@ -39,7 +41,11 @@ export function NutritionLabel({
           </div>
         ))}
       </dl>
-      <small>As sold. — means not provided. Values vary by package; check its label.</small>
+      <small>
+        {estimated
+          ? 'Approximate values. — means unknown. Check the package for exact nutrition.'
+          : 'As sold. — means not provided. Values vary by package; check its label.'}
+      </small>
     </section>
   );
 }

@@ -7,17 +7,24 @@ import {
 } from '@aws-sdk/lib-dynamodb';
 import { lookupSchema, type Lookup } from '../../src/domain/products/lookup';
 import { ProductError } from './errors';
+import type { z } from 'zod';
 
 const client = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 const table = () => process.env.PRODUCT_TABLE;
 export async function cachedProduct(key: string): Promise<Lookup | null> {
+  return cachedResult(key, lookupSchema);
+}
+export async function cachedResult<T>(key: string, schema: z.ZodType<T>): Promise<T | null> {
   const { Item } = await client.send(new GetCommand({ TableName: table(), Key: { pk: key } }));
   if (!Item || Number(Item.ttl) <= Date.now() / 1000) return null;
-  const result = lookupSchema.safeParse(Item.result);
+  const result = schema.safeParse(Item.result);
   return result.success ? result.data : null;
 }
 export async function cacheProduct(key: string, result: Lookup): Promise<void> {
   const days = result.found ? 30 : 1;
+  return cacheResult(key, result, days);
+}
+export async function cacheResult(key: string, result: unknown, days: number): Promise<void> {
   await client.send(
     new PutCommand({
       TableName: table(),
