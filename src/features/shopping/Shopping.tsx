@@ -51,7 +51,7 @@ export function Shopping({
           <progress aria-label="Shopping completed" max={data.shopping.length} value={purchased} />
         </div>
       )}
-      {matches.map((item) => (
+      {reorder.items.map((item) => (
         <ShoppingRow
           key={item.id}
           item={item}

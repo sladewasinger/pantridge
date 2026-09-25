@@ -178,8 +178,10 @@
   color: #5e7053;
 }
 .sheet {
-  animation: sheet-enter 190ms ease-out;
   scroll-padding-block: 80px 24px;
+}
+.sheet[open]:not(.sheet-top) {
+  animation: sheet-enter 190ms ease-out;
 }
 .sheet-heading {
   position: sticky;
@@ -216,11 +218,9 @@
 }
 @keyframes sheet-enter {
   from {
-    opacity: 0;
     transform: translateY(20px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }

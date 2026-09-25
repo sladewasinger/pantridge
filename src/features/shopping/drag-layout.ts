@@ -34,7 +34,10 @@ export function previewMove(root: HTMLElement, rows: DragRows, itemId: string, c
   return before?.id ?? null;
 }
 export function clearPreview(root: HTMLElement | null, rows: DragRows) {
-  rows.forEach(({ element }) => element.style.removeProperty('transform'));
+  rows.forEach(({ element }) => {
+    element.style.removeProperty('transform');
+    element.getAnimations().forEach((animation) => animation.cancel());
+  });
   root?.style.removeProperty('--drop-top');
   root?.style.removeProperty('--drop-height');
 }
