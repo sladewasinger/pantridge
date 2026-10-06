@@ -1,4 +1,5 @@
 import type { Food, Snapshot } from './model';
+import { hasCookbookData } from './recipes/integrity';
 
 const items = [
   ['Eggs', 'cartons', 'eggs', 'fridge'],
@@ -11,7 +12,7 @@ const items = [
 export const starterMutationId = 'cf51426f-18cf-45f0-a9ca-700000000000';
 export function initializeStarter(data: Snapshot): Snapshot {
   if (data.starterVersion) return data;
-  if (data.foods.length || data.stock.length || data.shopping.length)
+  if (data.foods.length || data.stock.length || data.shopping.length || hasCookbookData(data))
     return { ...data, starterVersion: 1 };
   const foods: Food[] = items.map(([name, unit, art, location], index) => ({
     id: `cf51426f-18cf-45f0-a9ca-10000000000${index}`,

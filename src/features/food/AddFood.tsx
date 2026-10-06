@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { dispatchMany } from '../../data/store';
-import { newFood } from '../../domain/selectors';
+import { newFood, storageLabel, storagePlace } from '../../domain/selectors';
+import { isSupply } from '../../domain/supplies';
+import type { Food } from '../../domain/model';
 import type { StoragePage } from '../../app/navigation';
 import { Modal } from '../../ui/Modal';
 import { Quantity } from '../../ui/Quantity';
@@ -17,10 +19,11 @@ export function AddFood({
   shelf?: number;
   onClose: () => void;
 }) {
-  const [food, setFood] = useState(() => ({
+  const [food, setFood] = useState<Food>(() => ({
     ...newFood(),
     location: location === 'freezer' ? ('fridge' as const) : location,
     frozen: location === 'freezer',
+    ...(location === 'unspecified' ? { kind: 'supply' as const } : {}),
     shelf,
   }));
   const [quantity, setQuantity] = useState(1);
@@ -54,14 +57,16 @@ export function AddFood({
           autoArtwork
           quantityControl={<Quantity value={quantity} onChange={setQuantity} min={1} />}
         />
-        <ExpirationField value={expiry.value} source={expiry.source} onChange={expiry.set} />
+        {!isSupply(food) && (
+          <ExpirationField value={expiry.value} source={expiry.source} onChange={expiry.set} />
+        )}
         {error && (
           <p role="alert" className="error">
             {error}
           </p>
         )}
         <button className="primary full" disabled={busy}>
-          Add to {food.frozen ? 'freezer' : food.location}
+          Add to {storageLabel(storagePlace(food)).toLowerCase()}
         </button>
       </form>
     </Modal>

@@ -1,5 +1,8 @@
 import { z } from 'zod';
+import { stockQuantitySchema } from './quantity';
+import { recipeSchema, mealPlanSchema, cookingRecordSchema } from './recipes/model';
 import { hasValidLinks } from './integrity';
+import { hasValidRecipeLinks } from './recipes/integrity';
 import { sizeSchema } from './products/size';
 import { productSchema } from './products/barcode';
 import { artIds } from './artwork/catalog';
@@ -25,6 +28,7 @@ export const dateSchema = z.iso.date();
 export const foodSchema = z.object({
   id,
   name: label,
+  kind: z.enum(['food', 'supply']).optional(),
   unit: unitSchema,
   art: artSchema,
   brand: z.string().trim().max(80).default(''),
@@ -38,7 +42,7 @@ export const foodSchema = z.object({
 export const stockSchema = z.object({
   id,
   foodId: id,
-  quantity: z.number().int().min(0).max(9999),
+  quantity: stockQuantitySchema,
   expires: dateSchema.optional(),
   expirySource: z.enum(['estimate', 'ai']).optional(),
   product: productSchema.optional(),
@@ -50,6 +54,7 @@ export const shoppingSchema = z.object({
   unit: unitSchema,
   quantity: z.number().int().min(1).max(999),
   purchased: z.boolean(),
+  recipeNote: z.string().trim().max(160).optional(),
   packageSize: z.string().trim().max(80).optional(),
   art: artSchema.optional(),
 });
@@ -60,8 +65,12 @@ export const snapshotSchema = z
     foods: z.array(foodSchema).max(600),
     stock: z.array(stockSchema).max(1500),
     shopping: z.array(shoppingSchema).max(500),
+    recipes: z.array(recipeSchema).max(100).optional(),
+    mealPlan: z.array(mealPlanSchema).max(180).optional(),
+    cookingHistory: z.array(cookingRecordSchema).max(300).optional(),
   })
-  .refine(hasValidLinks, 'Duplicate IDs or missing food references.');
+  .refine(hasValidLinks, 'Duplicate IDs or missing food references.')
+  .refine(hasValidRecipeLinks, 'Duplicate cookbook IDs or missing recipe references.');
 export const envelopeSchema = z.object({ revision: z.number().int().min(0), data: snapshotSchema });
 export type Food = z.infer<typeof foodSchema>;
 export type Stock = z.infer<typeof stockSchema>;

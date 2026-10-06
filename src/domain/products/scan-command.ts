@@ -10,6 +10,7 @@ export function addScannedStock(data: Snapshot, candidate: Food, stock: Stock): 
   const food = existing
     ? {
         ...existing,
+        kind: candidate.kind ?? existing.kind,
         art: candidate.art,
         location: candidate.location,
         frozen: candidate.frozen,

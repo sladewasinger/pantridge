@@ -9,6 +9,14 @@ import { PutAway } from '../features/shopping/PutAway';
 import { Settings } from '../features/settings/Settings';
 import { ScanFood } from '../features/scanning/ScanFood';
 import type { Overlay, ViewState, StoragePage } from './navigation';
+import { navigate } from './history';
+import { Cookbook } from '../features/cookbook/Cookbook';
+import { RecipeDetails } from '../features/cookbook/RecipeDetails';
+import { RecipeEditor } from '../features/cookbook/RecipeEditor';
+import { RecipeSuggestions } from '../features/recipe-suggestions/RecipeSuggestions';
+import { RecipeImport } from '../features/cookbook/RecipeImport';
+import { getCookbookRecipes } from '../domain/recipes/selectors';
+import { useKitchen } from '../data/store';
 import { Underground } from '../features/cellar/Underground';
 
 export function MainView({
@@ -20,6 +28,16 @@ export function MainView({
   onOpen: (location: StoragePage) => void;
   onOverlay: (overlay: Overlay) => void;
 }) {
+  if (view.page === 'cookbook')
+    return (
+      <Cookbook
+        query={view.query}
+        onOpen={(id, planEntryId) => onOverlay({ type: 'recipe', id, planEntryId })}
+        onAdd={() => onOverlay({ type: 'recipe-edit' })}
+        onImport={() => onOverlay({ type: 'recipe-import' })}
+        onSuggest={() => onOverlay({ type: 'recipe-suggest' })}
+      />
+    );
   if (view.page === 'shopping')
     return (
       <Shopping
@@ -47,7 +65,7 @@ export function MainView({
     );
   return (
     <>
-      <Kitchen onOpen={onOpen} />
+      <Kitchen onOpen={onOpen} onCookbook={() => navigate('cookbook')} />
       <Underground
         onSelect={(food) => onOverlay({ type: 'food', id: food.id })}
         onAdd={() => onOverlay({ type: 'add', location: 'unspecified' })}
@@ -64,8 +82,29 @@ export function OverlayView({
   location: StoragePage | null;
   onClose: () => void;
 }) {
+  const { data } = useKitchen();
   if (!overlay) return null;
   switch (overlay.type) {
+    case 'recipe':
+      return (
+        <RecipeDetails
+          key={`${overlay.id}-${overlay.planEntryId ?? ''}`}
+          recipeId={overlay.id}
+          planEntryId={overlay.planEntryId}
+          onClose={onClose}
+        />
+      );
+    case 'recipe-edit':
+      return (
+        <RecipeEditor
+          recipe={getCookbookRecipes(data).find((recipe) => recipe.id === overlay.id)}
+          onClose={onClose}
+        />
+      );
+    case 'recipe-suggest':
+      return <RecipeSuggestions onClose={onClose} />;
+    case 'recipe-import':
+      return <RecipeImport onClose={onClose} />;
     case 'scan':
       return <ScanFood location={location} onClose={onClose} />;
     case 'food':

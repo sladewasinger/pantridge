@@ -7,7 +7,7 @@ const frameSchema = z.object({
   version: z.literal(1),
   account: z.string(),
   depth: z.number().int().nonnegative(),
-  page: z.enum(['kitchen', 'shopping']),
+  page: z.enum(['kitchen', 'shopping', 'cookbook']),
   location: z.enum(['fridge', 'pantry', 'freezer', 'unspecified']).nullable(),
   query: z.string(),
   overlay: z
@@ -22,6 +22,10 @@ const frameSchema = z.object({
       z.object({ type: z.literal('put-away') }),
       z.object({ type: z.literal('settings') }),
       z.object({ type: z.literal('scan') }),
+      z.object({ type: z.literal('recipe'), id, planEntryId: id.optional() }),
+      z.object({ type: z.literal('recipe-edit'), id: id.optional() }),
+      z.object({ type: z.literal('recipe-import') }),
+      z.object({ type: z.literal('recipe-suggest') }),
     ])
     .nullable(),
 });

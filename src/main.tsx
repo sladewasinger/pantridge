@@ -15,6 +15,9 @@ import './styles/shopping.css';
 import './styles/polish.css';
 import './styles/scanning.css';
 import './styles/artwork.css';
+import './styles/cookbook.css';
+import './styles/cookbook-forms.css';
+import './styles/recipe-suggestions.css';
 
 const element = document.getElementById('root');
 if (!element) throw new Error('App root is missing.');

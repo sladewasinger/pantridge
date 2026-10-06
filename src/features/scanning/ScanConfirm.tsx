@@ -13,6 +13,8 @@ import { useAction } from '../../ui/useAction';
 import { showUndo } from '../../ui/notice';
 import { requireScanAccount } from './client';
 import { parseSize } from '../../domain/products/size';
+import { isSupply, normalizeSupply } from '../../domain/supplies';
+import { storageLabel, storagePlace } from '../../domain/selectors';
 
 export function ScanConfirm({
   barcode,
@@ -50,7 +52,7 @@ export function ScanConfirm({
           const stockId = crypto.randomUUID();
           await dispatch({
             type: 'stock.scan',
-            food: { ...food, brand: '' },
+            food: normalizeSupply({ ...food, brand: '' }),
             stock: {
               id: stockId,
               foodId: food.id,
@@ -78,7 +80,11 @@ export function ScanConfirm({
           {lookupError}
         </p>
       )}
-      <ItemTabs products={[result.product]} size={food.size ?? parseSize(food.packageSize)}>
+      <ItemTabs
+        supply={isSupply(food)}
+        products={[result.product]}
+        size={food.size ?? parseSize(food.packageSize)}
+      >
         {result.packageText && !result.size && (
           <p className="muted">Package label: {result.packageText}</p>
         )}
@@ -110,7 +116,8 @@ export function ScanConfirm({
             <button
               key={place}
               type="button"
-              aria-pressed={(food.frozen ? 'freezer' : food.location) === place}
+              aria-pressed={storagePlace(food) === place}
+              disabled={isSupply(food) && place !== 'unspecified'}
               onClick={() => {
                 touch('location');
                 setFood({
@@ -120,11 +127,13 @@ export function ScanConfirm({
                 });
               }}
             >
-              {place.charAt(0).toUpperCase() + place.slice(1)}
+              {storageLabel(place)}
             </button>
           ))}
         </div>
-        <ExpirationField value={expiry.value} source={expiry.source} onChange={expiry.set} />
+        {!isSupply(food) && (
+          <ExpirationField value={expiry.value} source={expiry.source} onChange={expiry.set} />
+        )}
         {match && (
           <p className="muted">
             Adds to your existing {match.name} · {packageLabel(match) || 'Unspecified'}
@@ -136,7 +145,7 @@ export function ScanConfirm({
           </p>
         )}
         <button className="primary full" disabled={busy}>
-          Add to {food.frozen ? 'freezer' : food.location}
+          Add to {storageLabel(storagePlace(food)).toLowerCase()}
         </button>
       </ItemTabs>
       <button className="text-button full" type="button" disabled={busy} onClick={onDone}>

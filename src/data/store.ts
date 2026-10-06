@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from 'react';
+import { hasCookbookData } from '../domain/recipes/integrity';
 import { mutationSchema, type Command } from '../domain/commands';
 import { reduceChecked } from '../domain/reducer';
 import { blankKitchen, changeKitchen, readKitchen, type StoredKitchen } from './database';
@@ -49,7 +50,10 @@ export async function dispatchMany(commands: Command[], requireEmpty = false): P
     mutationSchema.parse({ id: crypto.randomUUID(), command }),
   );
   await updateKitchen((value) => {
-    if (requireEmpty && (value.data.foods.length || value.data.shopping.length))
+    if (
+      requireEmpty &&
+      (value.data.foods.length || value.data.shopping.length || hasCookbookData(value.data))
+    )
       throw new Error('Restore into an empty kitchen to avoid overwriting your food.');
     return {
       ...value,

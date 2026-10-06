@@ -1,4 +1,6 @@
 import type { Command } from './commands';
+import { roundQuantity } from './quantity';
+import { applyRecipeCommand } from './recipes/commands';
 import { snapshotSchema, type Snapshot } from './model';
 import { initializeStarter } from './starter';
 import { saveFood, removeFood, normalizeShopping, restoreFood } from './food-commands';
@@ -37,6 +39,17 @@ function putAway(
 
 export function applyCommand(data: Snapshot, command: Command): Snapshot {
   switch (command.type) {
+    case 'recipe.restore':
+    case 'recipe.save':
+    case 'recipe.remove':
+    case 'recipe.cook':
+    case 'recipe.history.restore':
+    case 'recipe.addMissing':
+    case 'mealPlan.restore':
+    case 'mealPlan.save':
+    case 'mealPlan.addMissing':
+    case 'mealPlan.remove':
+      return applyRecipeCommand(data, command);
     case 'kitchen.initialize':
       return initializeStarter(data);
     case 'food.remove':
@@ -61,7 +74,12 @@ export function applyCommand(data: Snapshot, command: Command): Snapshot {
         ...data,
         stock: data.stock.map((stock) =>
           stock.id === command.stockId
-            ? { ...stock, quantity: Math.min(9999, Math.max(0, stock.quantity + command.delta)) }
+            ? {
+                ...stock,
+                quantity: roundQuantity(
+                  Math.min(9999, Math.max(0, stock.quantity + command.delta)),
+                ),
+              }
             : stock,
         ),
       };

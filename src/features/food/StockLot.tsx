@@ -8,6 +8,7 @@ export function StockLot({
   unit,
   index,
   busy,
+  supply = false,
   onChange,
   onRemove,
 }: {
@@ -15,6 +16,7 @@ export function StockLot({
   unit: Unit;
   index: number;
   busy: boolean;
+  supply?: boolean;
   onChange: (command: Command) => void;
   onRemove: () => void;
 }) {
@@ -64,18 +66,20 @@ export function StockLot({
           <Trash2 size={18} />
         </button>
       </div>
-      <label>
-        Expiration {stock.expirySource && <span className="optional">estimated</span>}
-        <input
-          type="date"
-          aria-label={`Expiration for lot ${stock.id}`}
-          value={stock.expires ?? ''}
-          disabled={busy}
-          onChange={(e) =>
-            onChange({ type: 'stock.date', stockId: stock.id, expires: e.target.value || null })
-          }
-        />
-      </label>
+      {!supply && (
+        <label>
+          Expiration {stock.expirySource && <span className="optional">estimated</span>}
+          <input
+            type="date"
+            aria-label={`Expiration for lot ${stock.id}`}
+            value={stock.expires ?? ''}
+            disabled={busy}
+            onChange={(e) =>
+              onChange({ type: 'stock.date', stockId: stock.id, expires: e.target.value || null })
+            }
+          />
+        </label>
+      )}
     </div>
   );
 }

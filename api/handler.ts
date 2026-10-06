@@ -10,6 +10,7 @@ import { ProductError } from './products/errors';
 import { protectRequest, recordMalformed } from './access/protection';
 import { AccessError } from './access/config';
 import { resolveNutrition } from './products/nutrition-estimate';
+import { resolveRecipeSuggestions } from './recipes/suggest';
 
 function response(
   statusCode: number,
@@ -61,12 +62,11 @@ export async function handler(
 
 function productRequest(owner: string, body: string) {
   const input: unknown = JSON.parse(body);
-  return typeof input === 'object' &&
-    input !== null &&
-    'kind' in input &&
-    input.kind === 'nutrition'
-    ? resolveNutrition(owner, input)
-    : resolveProduct(owner, body);
+  if (typeof input === 'object' && input !== null && 'kind' in input) {
+    if (input.kind === 'nutrition') return resolveNutrition(owner, input);
+    if (input.kind === 'recipe') return resolveRecipeSuggestions(owner, input);
+  }
+  return resolveProduct(owner, body);
 }
 
 function requestBody(event: APIGatewayProxyEventV2WithJWTAuthorizer): string {
@@ -82,7 +82,7 @@ function failure(error: unknown, requestId: string): APIGatewayProxyStructuredRe
     return response(400, { message: 'This change is invalid. Update the app and try again.' });
   if (
     error instanceof Error &&
-    /quantity changed|storage is full|do not match|already exists|no longer exists/.test(
+    /quantity changed|storage is full|do not match|already exists|no longer exists|Cooking history is full|Review.*again|reviewed package/.test(
       error.message,
     )
   )

@@ -1,9 +1,35 @@
 import { z } from 'zod';
+import { recipeSchema, mealPlanSchema, cookingRecordSchema } from './recipes/model';
 import { dateSchema, foodSchema, id, shoppingSchema, stockSchema } from './model';
 import { nutritionEstimateSchema } from './products/nutrition-estimate';
 
 export const commandSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('kitchen.initialize') }),
+  z.object({ type: z.literal('recipe.save'), recipe: recipeSchema }),
+  z.object({ type: z.literal('recipe.restore'), recipe: recipeSchema }),
+  z.object({ type: z.literal('recipe.remove'), recipeId: id }),
+  z.object({ type: z.literal('mealPlan.save'), entry: mealPlanSchema }),
+  z.object({ type: z.literal('mealPlan.restore'), entry: mealPlanSchema }),
+  z.object({ type: z.literal('mealPlan.remove'), entryId: id }),
+  z.object({
+    type: z.literal('mealPlan.addMissing'),
+    entryIds: z.array(id).min(1).max(20),
+    expectedEntries: z.array(mealPlanSchema).min(1).max(20),
+    items: z.array(shoppingSchema).max(40),
+  }),
+  z.object({
+    type: z.literal('recipe.cook'),
+    reviewed: z.literal(true),
+    record: cookingRecordSchema,
+    expectedPlan: mealPlanSchema.optional(),
+  }),
+  z.object({ type: z.literal('recipe.history.restore'), record: cookingRecordSchema }),
+  z.object({
+    type: z.literal('recipe.addMissing'),
+    recipeId: id,
+    servings: z.number().positive().max(100),
+    items: z.array(shoppingSchema).max(40),
+  }),
   z.object({ type: z.literal('food.remove'), foodId: id }),
   z.object({ type: z.literal('food.restore'), food: foodSchema }),
   z.object({ type: z.literal('food.save'), food: foodSchema }),
@@ -35,6 +61,11 @@ export const commandSchema = z.discriminatedUnion('type', [
     stock: stockSchema,
   }),
 ]);
-export const mutationSchema = z.object({ id, command: commandSchema });
+export const mutationSchema = z
+  .object({ id, command: commandSchema })
+  .refine(
+    (mutation) => new TextEncoder().encode(JSON.stringify(mutation)).length <= 16000,
+    'This change is too large to sync. Use fewer ingredients or shorter instructions.',
+  );
 export type Command = z.infer<typeof commandSchema>;
 export type Mutation = z.infer<typeof mutationSchema>;

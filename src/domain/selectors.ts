@@ -1,9 +1,19 @@
 import type { Food, Snapshot, Stock, Unit } from './model';
+import { isSupply } from './supplies';
+import { roundQuantity } from './quantity';
 
 export const countFood = (data: Snapshot, foodId: string): number =>
-  data.stock
-    .filter((stock) => stock.foodId === foodId)
-    .reduce((sum, stock) => sum + stock.quantity, 0);
+  roundQuantity(
+    data.stock
+      .filter((stock) => stock.foodId === foodId)
+      .reduce((sum, stock) => sum + stock.quantity, 0),
+  );
+
+export const storagePlace = (food: Food) =>
+  isSupply(food) ? 'unspecified' : food.frozen ? 'freezer' : food.location;
+
+export const storageLabel = (place: Food['location'] | 'freezer') =>
+  ({ unspecified: 'Storage', fridge: 'Fridge', pantry: 'Pantry', freezer: 'Freezer' })[place];
 
 export const foodLots = (data: Snapshot, foodId: string): Stock[] =>
   data.stock
@@ -14,7 +24,7 @@ export const stockedFoods = (data: Snapshot): Food[] =>
   data.foods.filter((food) => countFood(data, food.id) > 0);
 
 const cellarRank = (food: Food) =>
-  food.frozen ? 3 : { unspecified: 0, fridge: 1, pantry: 2 }[food.location];
+  ({ unspecified: 0, fridge: 1, pantry: 2, freezer: 3 })[storagePlace(food)];
 
 export const cellarFoods = (data: Snapshot): Food[] =>
   stockedFoods(data).sort(
@@ -23,7 +33,7 @@ export const cellarFoods = (data: Snapshot): Food[] =>
   );
 
 export function units(quantity: number, unit: Unit): string {
-  if (quantity !== 1) return `${quantity} ${unit}`;
+  if (roundQuantity(quantity) !== 1) return `${roundQuantity(quantity)} ${unit}`;
   return `1 ${unit === 'boxes' ? 'box' : unit.slice(0, -1)}`;
 }
 

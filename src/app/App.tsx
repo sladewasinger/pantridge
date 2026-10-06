@@ -1,4 +1,4 @@
-import { House, ShoppingBasket } from 'lucide-react';
+import { BookOpen, House, ShoppingBasket } from 'lucide-react';
 import { Header } from './Header';
 import { MainView, OverlayView } from './Views';
 import { SyncIndicator } from './SyncIndicator';
@@ -25,7 +25,11 @@ export function App() {
         onSearch={search}
         onSettings={settings}
         onScan={() => openOverlay({ type: 'scan' })}
-        onAdd={() => openOverlay({ type: page === 'shopping' ? 'shopping' : 'add' })}
+        onAdd={() =>
+          openOverlay({
+            type: page === 'cookbook' ? 'recipe-edit' : page === 'shopping' ? 'shopping' : 'add',
+          })
+        }
       />
       <main id="main-content">
         <MainView view={{ page, location, query }} onOpen={openLocation} onOverlay={openOverlay} />
@@ -38,6 +42,13 @@ export function App() {
         >
           <House size={22} />
           Kitchen
+        </button>
+        <button
+          aria-current={page === 'cookbook' ? 'page' : undefined}
+          onClick={() => navigate('cookbook')}
+        >
+          <BookOpen size={22} />
+          Cookbook
         </button>
         <button
           aria-current={page === 'shopping' ? 'page' : undefined}

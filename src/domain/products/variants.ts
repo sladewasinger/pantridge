@@ -1,13 +1,14 @@
 import type { Food, Snapshot } from '../model';
 import { parseSize, sizeLabel } from './size';
 import { normalizeBarcode } from './barcode';
+import { isSupply } from '../supplies';
 
 export const foodGroup = (name: string) =>
   name.trim().toLocaleLowerCase('en-US').replace(/\s+/g, ' ');
 export const packageLabel = (food: Food) => sizeLabel(food.size) || food.packageSize.trim();
 export function variantKey(food: Food): string {
   const size = sizeLabel(food.size ?? parseSize(food.packageSize)) || food.packageSize;
-  return JSON.stringify([foodGroup(food.name), food.unit, foodGroup(size)]);
+  return JSON.stringify([foodGroup(food.name), food.unit, foodGroup(size), isSupply(food)]);
 }
 export function matchVariant(data: Snapshot, candidate: Food): Food | undefined {
   return data.foods.find((food) => variantKey(food) === variantKey(candidate));

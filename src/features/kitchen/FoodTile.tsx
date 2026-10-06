@@ -4,6 +4,7 @@ import { countFood, foodLots, units } from '../../domain/selectors';
 import { expirationBadge } from '../../domain/expiration';
 import { Clock3 } from 'lucide-react';
 import { packageLabel } from '../../domain/products/variants';
+import { isSupply } from '../../domain/supplies';
 export function FoodTile({
   food,
   data,
@@ -16,7 +17,7 @@ export function FoodTile({
   const amount = units(countFood(data, food.id), food.unit);
   const firstLot = foodLots(data, food.id)[0];
   const expires = firstLot?.expires;
-  const badge = expires ? expirationBadge(expires) : null;
+  const badge = expires && !isSupply(food) ? expirationBadge(expires) : null;
   return (
     <button
       className="food-tile"

@@ -33,6 +33,10 @@ Open the preview once with internet before using it offline. Installation is ava
 - Offline edits, multi-tab persistence, queued cloud changes, backup export/restore.
 - Optional Google sign-in for private cross-device sync and barcode scanning, with configurable AWS Terraform.
 - Package nutrition with per-serving, whole-package, and custom weight or volume views.
+- An illustrated cookbook with saved/imported recipes, conservative inventory matching, use-it-up ordering, and dated meal plans.
+- Optional signed-in AI recipe suggestions with private caching and review before saving.
+- Reviewed missing-ingredient shopping and explicit partial-package cooking deductions with stale-stock protection.
+- Storage for kitchen supplies, excluded from recipes and food-specific suggestions.
 
 ## Checks
 
@@ -46,12 +50,13 @@ terraform -chdir=infra validate
 terraform -chdir=infra test
 ```
 
-`pnpm check` runs strict TypeScript, ESLint, formatting, folder/file limits, unit tests, and the production build. Develop CI runs only unit tests and a build. Main runs the full checks plus browser accessibility/offline tests and Terraform’s mocked security plan before deployment. On Windows, `PLAYWRIGHT_CHANNEL=msedge` can use an installed Edge browser.
+`pnpm check` runs strict TypeScript, ESLint, formatting, folder/file limits, unit tests, and the production build. Develop CI normally runs unit tests and a build; cookbook PRs additionally run the verification-only browser workflow. Main runs the full checks plus browser accessibility/offline tests and Terraform’s mocked security plan before deployment. On Windows, `PLAYWRIGHT_CHANNEL=msedge` can use an installed Edge browser.
 
 ## Deploy and extend
 
 - [AWS deployment](docs/deployment.md): domain, account, region, state, and publishing.
 - [Architecture and quality rules](docs/architecture.md): boundaries, offline behavior, conflict semantics, and extension points.
+- [Cookbook and Storage](docs/cookbook.md): matching, imports, safe cooking, plan shopping, and snapshot limits.
 - [API contract](docs/api.md): future phone client and purchase-import integration.
 
 Walmart receipt import, commonly used shelves, automatic restock suggestions, custom shelf names, and a bulk list view are intentionally deferred. Food is assigned to a location, with three tiles per automatically generated row. Shopping drag handles support animated reordering; ordinary touch swipes scroll the page.

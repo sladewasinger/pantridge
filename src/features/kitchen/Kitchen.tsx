@@ -2,7 +2,13 @@ import { useKitchen } from '../../data/store';
 import { stockedFoods } from '../../domain/selectors';
 import type { StoragePage } from '../../app/navigation';
 
-export function Kitchen({ onOpen }: { onOpen: (location: StoragePage) => void }) {
+export function Kitchen({
+  onOpen,
+  onCookbook,
+}: {
+  onOpen: (location: StoragePage) => void;
+  onCookbook: () => void;
+}) {
   const { data } = useKitchen();
   const foods = stockedFoods(data);
   const count = (place: StoragePage) =>
@@ -31,6 +37,10 @@ export function Kitchen({ onOpen }: { onOpen: (location: StoragePage) => void })
           </span>
         </button>
       </div>
+      <button className="cookbook-book" onClick={onCookbook} aria-label="Open cookbook">
+        <img src="/art/cookbook.svg" alt="" />
+        <span>Cookbook</span>
+      </button>
       <button
         className="appliance pantry-button"
         onClick={() => onOpen('pantry')}

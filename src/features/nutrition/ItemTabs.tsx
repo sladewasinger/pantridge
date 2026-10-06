@@ -3,20 +3,24 @@ import type { Product } from '../../domain/products/barcode';
 import { NutritionPanel } from './NutritionPanel';
 import type { PackageSize } from '../../domain/products/size';
 import type { Food } from '../../domain/model';
+import { isSupply } from '../../domain/supplies';
 
 export function ItemTabs({
   children,
   products,
   size,
   food,
+  supply = false,
 }: {
   children: ReactNode;
   products: Product[];
   size?: PackageSize;
   food?: Food;
+  supply?: boolean;
 }) {
   const [tab, setTab] = useState(0);
   const id = useId();
+  if (supply || (food && isSupply(food))) return <>{children}</>;
   return (
     <>
       <div className="item-tabs" role="tablist" aria-label="Item information">

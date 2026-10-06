@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { DoorClosed, Refrigerator, Snowflake, Package, Plus } from 'lucide-react';
 import type { Food } from '../../domain/model';
-import { cellarFoods } from '../../domain/selectors';
+import { cellarFoods, storageLabel, storagePlace } from '../../domain/selectors';
 import { useKitchen } from '../../data/store';
 import { FoodTile } from '../kitchen/FoodTile';
 
 function Placement({ food }: { food: Food }) {
-  const place = food.frozen ? 'freezer' : food.location;
+  const place = storagePlace(food);
+  const label = storageLabel(place).toLowerCase();
   const Icon = {
     fridge: Refrigerator,
     freezer: Snowflake,
@@ -16,9 +17,9 @@ function Placement({ food }: { food: Food }) {
   return (
     <span
       className={`underground-location ${place}`}
-      title={place}
+      title={label}
       role="img"
-      aria-label={`Stored in ${place}`}
+      aria-label={`Stored in ${label}`}
     >
       <Icon size={13} />
     </span>
@@ -55,13 +56,13 @@ export function Underground({
           <h2>Cellar</h2>
           <small>{foods.length} items</small>
         </div>
-        <button className="round" onClick={onAdd} aria-label="Add unassigned item">
+        <button className="round" onClick={onAdd} aria-label="Add storage item">
           <Plus size={20} />
         </button>
       </div>
       <div className="underground-legend" role="group" aria-label="Storage key">
         <span>
-          <Package size={13} /> Unspecified first
+          <Package size={13} /> Storage
         </span>
         <span>
           <Refrigerator size={13} /> Fridge
