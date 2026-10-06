@@ -1,0 +1,60 @@
+.recipe-form-fields {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  min-width: 0;
+}
+.recipe-ingredient-editor,
+.cook-lot {
+  border: 1px solid #ddd5c3;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 0 0 15px;
+  min-width: 0;
+}
+.recipe-ingredient-editor legend,
+.cook-lot legend {
+  font-size: 13px;
+  padding: 0 5px;
+}
+.recipe-ingredient-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.recipe-ingredient-footer .check-label {
+  margin-bottom: 0;
+}
+.recipe-editor textarea,
+.recipe-import textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  margin-top: 8px;
+  border: 1px solid #cecdbd;
+  border-radius: 10px;
+  color: var(--ink);
+  background: #f9f3e5;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  resize: vertical;
+}
+.sheet .recipe-steps-label {
+  margin-top: 24px;
+}
+.cook-review-notes {
+  padding: 12px 12px 12px 30px;
+  font-size: 13px;
+  line-height: 1.6;
+  background: #f2e8d0;
+  border-radius: 10px;
+}
+.cook-lot p {
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+.cook-lot label {
+  margin: 14px 0 0;
+}

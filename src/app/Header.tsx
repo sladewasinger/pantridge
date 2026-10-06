@@ -18,6 +18,12 @@ export function Header({
 }) {
   const home = view.page === 'kitchen' && !view.location && !view.query;
   const shopping = view.page === 'shopping';
+  const cookbook = view.page === 'cookbook';
+  const searchLabel = cookbook
+    ? 'Find a recipe'
+    : shopping
+      ? 'Search shopping list'
+      : 'Find your food';
   return (
     <header className={`app-header${shopping ? ' shopping-header' : ''}`}>
       {!shopping && (
@@ -43,7 +49,7 @@ export function Header({
         )}
         <button
           className="round add-button"
-          aria-label={view.page === 'shopping' ? 'Add shopping item' : 'Add food'}
+          aria-label={cookbook ? 'Write a recipe' : shopping ? 'Add shopping item' : 'Add food'}
           onClick={onAdd}
         >
           <Plus />
@@ -53,8 +59,10 @@ export function Header({
         <Search size={19} />
         <input
           type="search"
-          aria-label={view.page === 'shopping' ? 'Search shopping list' : 'Find your food'}
-          placeholder={view.page === 'shopping' ? 'Search your list' : 'Find your food'}
+          aria-label={searchLabel}
+          placeholder={
+            cookbook ? 'Find a recipe' : shopping ? 'Search your list' : 'Find your food'
+          }
           value={view.query}
           onChange={(e) => onSearch(e.target.value)}
         />

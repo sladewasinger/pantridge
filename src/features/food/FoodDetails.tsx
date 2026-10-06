@@ -13,6 +13,7 @@ import { StockLot } from './StockLot';
 import { UndoNotice } from '../../ui/UndoNotice';
 import { estimatedDate } from '../../domain/freshness/estimate';
 import { parseSize } from '../../domain/products/size';
+import { isSupply } from '../../domain/supplies';
 
 export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () => void }) {
   const { data } = useKitchen();
@@ -45,6 +46,7 @@ export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () =
             unit={food.unit}
             index={index}
             busy={busy}
+            supply={isSupply(food)}
             onChange={(command) => void run(() => dispatch(command))}
             onRemove={() =>
               void run(async () => {
@@ -136,7 +138,7 @@ export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () =
             }
           >
             <Trash2 size={16} />
-            Delete food
+            Delete {isSupply(food) ? 'supply' : 'food'}
           </button>
         )}
         {error && (

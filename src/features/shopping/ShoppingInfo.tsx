@@ -27,6 +27,7 @@ export function ShoppingInfo({
           {item.name}
           {size && <small className="shop-size"> · {size}</small>}
         </span>
+        {item.recipeNote && <small className="shopping-recipe-note">{item.recipeNote}</small>}
         {item.foodId && (
           <span className="home-stock">
             <Home size={12} />

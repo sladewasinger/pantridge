@@ -33,11 +33,14 @@ export async function requestStructured(
     schema,
     instructions,
     input,
+    maxOutputTokens,
   }: {
     name: string;
     schema: Record<string, unknown>;
     instructions: string;
     input: unknown;
+    // Server-only recipe allowance; callers cannot select a provider or raise shared quotas.
+    maxOutputTokens?: 2048;
   },
 ): Promise<unknown> {
   if (process.env.CLASSIFIER_PROVIDER !== 'openai') return null;
@@ -54,7 +57,10 @@ export async function requestStructured(
         store: false,
         max_output_tokens: Math.max(
           128,
-          Math.min(2048, Number(process.env.CLASSIFIER_MAX_OUTPUT_TOKENS ?? 200) || 200),
+          Math.min(
+            2048,
+            maxOutputTokens ?? (Number(process.env.CLASSIFIER_MAX_OUTPUT_TOKENS ?? 200) || 200),
+          ),
         ),
         ...(process.env.CLASSIFIER_REASONING_EFFORT
           ? { reasoning: { effort: process.env.CLASSIFIER_REASONING_EFFORT } }

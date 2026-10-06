@@ -38,7 +38,7 @@ Local-only and signed-in kitchens use separate IndexedDB keys. Signing in does n
 
 ## Limits and future features
 
-This personal release stores one bounded snapshot per account: at most 600 food identities, 1,500 lots, 500 shopping entries, and 280 KB serialized. Validation stops further additions before DynamoDB’s item limit. Long-lived or larger inventories can move to per-entity records behind the repository adapter; the client command contract stays independent of DynamoDB. Old zero-quantity lots currently remain for their history; archiving is a follow-up.
+This personal release stores one bounded snapshot per account: at most 600 food identities, 1,500 lots, 500 shopping entries, 100 saved recipes, 180 meal plans, 300 cooking records, and 280 KB serialized. Validation stops further additions before DynamoDB’s item limit. Long-lived or larger inventories can move to per-entity records behind the repository adapter; the client command contract stays independent of DynamoDB. Old zero-quantity lots currently remain for their history; archiving is a follow-up.
 
 The commonly used shelf should query remembered food identities (including zero stock), using explicitly pinned favorites initially or consumption history later. It should offer manual additions to shopping. Automatic restocking belongs in a separate suggestion feature, not in quantity arithmetic.
 
@@ -53,3 +53,7 @@ Screen, search, and dialog transitions participate in browser history. Back clos
 - [MDN: service workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers)
 - [Cognito authorization code and PKCE](https://docs.aws.amazon.com/cognito/latest/developerguide/authorization-endpoint.html)
 - [Vite runtime requirements](https://vite.dev/guide/)
+
+## Cookbook extension
+
+See [Cookbook and Storage](cookbook.md) for exact quantity semantics, reviewed cooking, aggregate planned groceries, import boundaries, backward compatibility, and bounded-history limitations. Cookbook data uses the same account key, transaction, backup, and outbox as inventory; there is no parallel local-only recipe store.

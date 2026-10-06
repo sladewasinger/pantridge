@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { emptySnapshot, foodSchema } from '../../src/domain/model';
 
-test('cellar continues below the kitchen, puts unassigned stock first and loads deeper shelves', async ({
+test('cellar continues below the kitchen, puts Storage stock first and loads deeper shelves', async ({
   page,
 }) => {
   const data = { ...emptySnapshot(), starterVersion: 1 };
@@ -48,7 +48,7 @@ test('cellar continues below the kitchen, puts unassigned stock first and loads 
   );
   await expect(cellar).toHaveCSS('border-top-width', '80px');
   await expect(cellar).toHaveCSS('border-top-color', 'rgb(81, 60, 46)');
-  for (const place of ['unspecified', 'pantry', 'fridge'])
+  for (const place of ['storage', 'pantry', 'fridge'])
     await expect(cellar.getByLabel(`Stored in ${place}`).first()).toBeVisible();
   await page.screenshot({ path: 'artifacts/cellar-mobile.png' });
   await page.getByRole('button', { name: 'Deeper' }).scrollIntoViewIfNeeded();
@@ -61,7 +61,7 @@ test('cellar continues below the kitchen, puts unassigned stock first and loads 
     .locator('.underground-location')
     .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('title')));
   expect(places).toEqual([
-    'unspecified',
+    'storage',
     ...Array(14).fill('fridge'),
     ...Array(14).fill('pantry'),
     'freezer',
@@ -74,19 +74,19 @@ test('cellar continues below the kitchen, puts unassigned stock first and loads 
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
 });
 
-test('unassigned items persist offline and the Undo notice expires on its own', async ({
+test('Storage supplies persist offline and the Undo notice expires on its own', async ({
   page,
   context,
 }) => {
   await page.goto('/');
   await page.clock.install();
-  await page.getByRole('button', { name: 'Add unassigned item' }).click();
+  await page.getByRole('button', { name: 'Add storage item' }).click();
   await expect(page.getByLabel('Keep in')).toHaveValue('unspecified');
   await page.reload();
   await expect(page.getByLabel('Keep in')).toHaveValue('unspecified');
-  await page.getByLabel('Food name').fill('Napkins');
-  await expect(page.getByLabel('Expiration')).toHaveValue('');
-  await page.getByRole('button', { name: 'Add to unspecified', exact: true }).click();
+  await page.getByLabel('Supply name').fill('Napkins');
+  await expect(page.getByLabel('Expiration')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Add to storage', exact: true }).click();
   const tile = page.locator('.underground .food-tile').first();
   await expect(tile).toContainText('Napkins');
   await expect(tile.locator('img')).toHaveAttribute('src', '/art/household/1/napkins.svg');
@@ -129,4 +129,61 @@ test('fridge responds to desktop hover and keyboard focus', async ({ browser }) 
     await fridge.evaluate((el) => parseFloat(getComputedStyle(el).transitionDuration)),
   ).toBeLessThan(0.01);
   await context.close();
+});
+
+test('supply selection removes food suggestions and keeps existing stock metadata through edits', async ({
+  page,
+}) => {
+  await page.goto('/');
+  const cellar = page.getByRole('region', { name: 'Cellar inventory' });
+  await cellar.getByRole('button', { name: 'Eggs, 1 carton', exact: true }).click();
+  await page.getByLabel('Expiration for lot').fill('2027-01-02');
+  await page.getByRole('button', { name: 'Move or edit item' }).click();
+  await page.getByLabel('Item type').selectOption('supply');
+  await expect(page.getByLabel('Supply name')).toHaveValue('Eggs');
+  await expect(page.getByLabel('Keep in')).toHaveValue('unspecified');
+  await expect(page.getByLabel('Keep in')).toBeDisabled();
+  await page.getByRole('button', { name: 'Save changes', exact: true }).click();
+  await expect(page.getByRole('tab', { name: 'Nutrition', exact: true })).toHaveCount(0);
+  await expect(page.getByLabel('Expiration for lot')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Close', exact: true }).click();
+  await expect(cellar.locator('.food-tile').first()).toHaveAttribute(
+    'aria-label',
+    'Eggs, 1 carton',
+  );
+  await expect(cellar.locator('.underground-location').first()).toHaveAttribute(
+    'aria-label',
+    'Stored in storage',
+  );
+  await page.reload();
+  await cellar.getByRole('button', { name: 'Eggs, 1 carton', exact: true }).click();
+  await expect(page.getByRole('tab', { name: 'Nutrition', exact: true })).toHaveCount(0);
+  await page.getByRole('button', { name: 'Move or edit item' }).click();
+  await page.getByLabel('Item type').selectOption('food');
+  await page.getByLabel('Keep in').selectOption('fridge');
+  await page.getByRole('button', { name: 'Save changes', exact: true }).click();
+  await expect(page.getByRole('tab', { name: 'Nutrition', exact: true })).toBeVisible();
+  await expect(page.getByLabel('Expiration for lot')).toHaveValue('2027-01-02');
+  await expect(page.getByRole('group', { name: 'Package 1', exact: true })).toContainText(
+    '1 carton',
+  );
+});
+
+test('new household artwork suggests Storage and an explicit Food choice takes priority', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Add food', exact: true }).click();
+  await page.getByLabel('Food name').fill('Paper towels');
+  await expect(page.getByLabel('Item type')).toHaveValue('supply');
+  await expect(page.getByLabel('Keep in')).toHaveValue('unspecified');
+  await expect(page.getByLabel('Expiration')).toHaveCount(0);
+  await page.getByLabel('Item type').selectOption('food');
+  await expect(page.getByLabel('Keep in')).toBeEnabled();
+  await expect(page.getByLabel('Food name')).toHaveValue('Paper towels');
+  await page.getByLabel('Keep in').selectOption('pantry');
+  await page.getByRole('button', { name: 'Add to pantry', exact: true }).click();
+  await page.getByRole('button', { name: 'Open pantry', exact: true }).click();
+  await page.getByRole('button', { name: 'Paper towels, 1 item', exact: true }).click();
+  await expect(page.getByRole('tab', { name: 'Nutrition', exact: true })).toBeVisible();
 });

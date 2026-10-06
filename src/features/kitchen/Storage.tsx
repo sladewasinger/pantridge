@@ -1,7 +1,7 @@
 import { useKitchen } from '../../data/store';
 import type { Food } from '../../domain/model';
 import type { StoragePage } from '../../app/navigation';
-import { stockedFoods } from '../../domain/selectors';
+import { stockedFoods, storageLabel, storagePlace } from '../../domain/selectors';
 import { FoodTile } from './FoodTile';
 import { Doors } from './Doors';
 import { Plus } from 'lucide-react';
@@ -16,11 +16,7 @@ export function Storage({
 }) {
   const { data } = useKitchen();
   const foods = stockedFoods(data)
-    .filter((food) =>
-      location === 'freezer'
-        ? food.location === 'fridge' && food.frozen
-        : food.location === location && (location === 'pantry' || !food.frozen),
-    )
+    .filter((food) => storagePlace(food) === location)
     .sort((a, b) => a.name.localeCompare(b.name) || a.id.localeCompare(b.id));
   return (
     <div className={'interior ' + location}>
@@ -31,7 +27,15 @@ export function Storage({
             <FoodTile key={food.id} food={food} data={data} onSelect={onSelect} />
           ))}
           {!foods.length && (
-            <button className="empty-shelf" onClick={onAdd} aria-label={'Add food to ' + location}>
+            <button
+              className="empty-shelf"
+              onClick={onAdd}
+              aria-label={
+                location === 'unspecified'
+                  ? 'Add supply to storage'
+                  : 'Add food to ' + storageLabel(location).toLowerCase()
+              }
+            >
               <Plus size={18} strokeWidth={1.4} />
               <span>Empty</span>
             </button>

@@ -1,0 +1,307 @@
+.cookbook-book {
+  position: absolute;
+  top: 2%;
+  left: 47%;
+  width: 28%;
+  min-height: 76px;
+  padding: 0;
+  background: transparent;
+  border-radius: 10px;
+  filter: drop-shadow(0 3px 2px #735c3020);
+  transition: transform 150ms;
+}
+.cookbook-book:hover,
+.cookbook-book:focus-visible {
+  transform: rotate(-3deg) translateY(-2px);
+}
+.cookbook-book img {
+  display: block;
+  width: 100%;
+}
+.cookbook-book span {
+  display: inline-block;
+  margin-top: -7px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  color: #443d2e;
+  background: #fff6e3;
+  font-size: 11px;
+}
+.cookbook-page {
+  padding: 0 22px 28px;
+}
+.cookbook-intro {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0 20px;
+}
+.cookbook-intro img {
+  width: 86px;
+  height: 70px;
+}
+.cookbook-intro h2 {
+  font-size: 26px;
+  margin-bottom: 5px;
+}
+.cookbook-intro p,
+.recipe-meta {
+  color: #626b58;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+.cookbook-modes {
+  display: flex;
+  padding: 4px;
+  border-radius: 12px;
+  background: #e9e5d7;
+  gap: 3px;
+}
+.cookbook-modes button {
+  flex: 1;
+  min-height: 44px;
+  padding: 8px 4px;
+  border-radius: 9px;
+  background: transparent;
+  font-size: 13px;
+}
+.cookbook-modes button[aria-pressed='true'] {
+  background: #fffaf0;
+  box-shadow: 0 1px 4px #56462918;
+}
+.cookbook-tools,
+.recipe-detail-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: space-between;
+  padding: 7px 0;
+}
+.cookbook-tools .text-button,
+.recipe-detail-tools .text-button {
+  padding-inline: 8px;
+  font-size: 13px;
+}
+.recipe-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 20px 0;
+  border-top: 1px solid #dcd6c6;
+  text-align: left;
+  background: transparent;
+}
+.recipe-card-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  min-width: 0;
+}
+.recipe-source,
+.recipe-provenance {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 11px;
+  color: #6f705e;
+}
+.recipe-card-title {
+  font:
+    23px/1.2 Georgia,
+    serif;
+  overflow-wrap: anywhere;
+}
+.recipe-match {
+  font-size: 11px;
+  border-radius: 6px;
+  padding: 4px 7px;
+  background: #eee3d1;
+  color: #775333;
+}
+.recipe-match.confirmed {
+  color: #3b5f3e;
+  background: #e5ead8;
+}
+.recipe-use-up {
+  font-size: 11px;
+  color: #765d26;
+}
+.cookbook-note {
+  font-size: 12px;
+  margin: 12px 0;
+}
+.recipe-detail {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.recipe-detail h3,
+.recipe-editor h3 {
+  font-size: 24px;
+  margin: 22px 0 12px;
+}
+.recipe-provenance a {
+  color: #4b684d;
+}
+.sheet .recipe-servings {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 12px 0 22px;
+}
+.sheet .recipe-servings input {
+  width: 92px;
+  margin-top: 0;
+}
+.recipe-ingredients > ul,
+.recipe-shopping-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.recipe-ingredients > ul > li,
+.recipe-shopping-items > li {
+  border-top: 1px solid #e1dacb;
+  padding: 12px 0;
+}
+.recipe-ingredient-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+.recipe-ingredient-line strong {
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+.recipe-ingredient-line > span {
+  flex-shrink: 0;
+}
+.recipe-ingredients small,
+.recipe-shopping-items span {
+  display: block;
+  color: #69715e;
+  font-size: 12px;
+}
+.ingredient-match.missing {
+  color: #875b37;
+}
+.recipe-substitutions {
+  margin: 0;
+}
+.recipe-substitutions summary {
+  font-size: 12px;
+  padding: 7px 0;
+}
+.recipe-substitutions ul,
+.recipe-substitutions p {
+  font-size: 12px;
+  color: #66705d;
+}
+.recipe-substitutions ul {
+  padding-left: 18px;
+}
+.recipe-method ol {
+  padding-left: 24px;
+  margin-bottom: 24px;
+}
+.recipe-method li {
+  padding-left: 7px;
+  margin-bottom: 14px;
+  white-space: pre-wrap;
+}
+.recipe-shopping,
+.recipe-planner {
+  border-top: 1px solid #dcd6c6;
+  padding-top: 3px;
+  margin-bottom: 8px;
+}
+.recipe-success {
+  padding: 12px;
+  border-radius: 9px;
+  background: #e5ead8;
+}
+.meal-plan {
+  border-top: 2px solid #c8b58e;
+  margin-top: 25px;
+  padding-top: 24px;
+}
+.meal-plan h2 {
+  font-size: 27px;
+}
+.meal-plan-row {
+  border-top: 1px solid #ddd6c7;
+  padding: 12px 0 4px;
+}
+.meal-plan-heading {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.meal-plan-open {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 12px;
+  padding: 8px 0;
+  text-align: left;
+  background: transparent;
+  min-width: 0;
+}
+.meal-plan-open time {
+  flex-shrink: 0;
+  font-size: 12px;
+  padding: 8px;
+  background: #e9e6d8;
+  border-radius: 7px;
+}
+.meal-plan-open small {
+  display: block;
+  font-size: 11px;
+  color: #64705b;
+  margin-top: 5px;
+}
+.meal-plan-row .recipe-shopping {
+  border: 0;
+}
+@media (max-width: 390px) {
+  .bottom-nav {
+    gap: 3px;
+    padding-inline: 10px;
+  }
+  .bottom-nav button {
+    gap: 5px;
+    font-size: 12px;
+  }
+  .bottom-nav svg {
+    width: 19px;
+  }
+  .cookbook-intro h2 {
+    font-size: 23px;
+  }
+  .recipe-ingredient-line {
+    flex-wrap: wrap;
+    gap: 2px 12px;
+  }
+}
+
+.meal-plan-select {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 50px;
+  font-size: 13px;
+}
+.meal-plan-select input {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--green);
+}
+.meal-plan-select small {
+  display: block;
+  color: #64705b;
+  font-size: 11px;
+}

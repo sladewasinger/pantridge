@@ -24,10 +24,12 @@ Use `codex/` feature branches and PR changes into `develop`, then PR `develop` i
 - Barcode scanning requires Google sign-in and confirmation on every scan. Same generic food, unit and package size share a shelf tile across brands; different sizes have separate labeled tiles grouped in search. Preserve branded product metadata on stock lots and explicit unknown-size confirmation. Show lookup results before optional AI refinement; never overwrite user edits or saved stock with late results.
 - Date suggestions are explicitly labeled, editable estimates, separate from printed package dates. Prefer curated food/storage profiles; optional AI fallback must be bounded and never presented as a safety guarantee. Unmatched manual items and household supplies receive no estimate.
 - Nutrition estimates are opt-in for signed-in kitchen items without package nutrition. Label AI estimates and their assumptions, require review before saving, retain offline access after saving, and never overwrite package-label data. Share the existing AI budgets and keep cached estimates private to each account.
-- The underground Cellar continues below a thick dark brown floor band and displays all stocked items, grouped Unspecified, Fridge, Pantry, then Freezer, alphabetically within each group, with small location badges. Keep its progressive loading accessible. Nonfood supplies use the unspecified location and household artwork.
+- The underground Cellar continues below a thick dark brown floor band and displays all stocked items, grouped Storage, Fridge, Pantry, then Freezer, alphabetically within each group, with small location badges. Keep its progressive loading accessible. Nonfood supplies use the unspecified location (displayed as Storage) and household artwork. Optional food.kind is authoritative; infer legacy household art only when kind is absent.
 - Individual package rows, including zero-quantity lots, can be deleted without deleting the food or other lots. Preserve package deletion Undo, including barcode, nutrition and date metadata.
 - The product proxy uses cached Open Food Facts data and free rules by default. Optional AI has server-enforced quotas, bounded structured output and a dedicated SSM SecureString key outside Terraform state. Keep private kitchen corrections separate from the shared ODbL catalog.
 - Walmart receipt import, commonly used shelves, automatic restocking, and bulk management are future features. Do not silently expand scope into them.
+
+- Cookbook arrays remain optional in version-one snapshots. Recipes and plans never mutate stock implicitly. Cooking deductions require explicit review, exact lot quantities and package metadata at transaction time, and idempotent cooking IDs. Preserve six-decimal inventory quantities and whole-package shopping counts. Imports remain inert local text; no arbitrary URL fetching.
 
 ## Implementation and checks
 
@@ -36,6 +38,8 @@ Keep domain transitions pure and shared with the API. UI modules must not import
 Bind tokens to the active kitchen subject before and after refresh. Validate snapshot ID uniqueness and food references. Put-away must update placement, stock and shopping atomically. Preserve visual artwork selection, 44px shopping check targets, deletion Undo, and quantity fields that can be cleared before typing. Pin third-party GitHub Actions to verified commits.
 
 Use small feature folders and the existing validation limits. Do not disable complexity, nesting, file-size, or folder-count checks to fit a change; extract a cohesive module instead. Keep test exceptions limited to test files.
+
+Before every release, manually click through affected flows in a real browser and visually inspect the look, feel, and usability at phone and desktop widths. Unit tests and automated E2E are additional checks, not substitutes. A blocked interactive preview blocks release; report the specific blocker instead of calling the UI verified.
 
 Run `pnpm check`. For changes to persistence, shopping, animation, or app navigation, also run `pnpm test:e2e` against the production build. For infrastructure, run Terraform format, validate, and mocked tests. Live AWS integration cannot be claimed from mocked tests.
 

@@ -1,12 +1,15 @@
 import type { Food } from '../model';
 import { matchArtwork } from '../artwork/match';
 import { profiles } from './profiles';
+import { isSupply } from '../supplies';
 
-export function reminderDays(
-  food: Pick<Food, 'name' | 'location' | 'frozen' | 'unit'>,
-): number | undefined {
+type FreshnessFood = Pick<Food, 'name' | 'location' | 'frozen' | 'unit' | 'kind'> &
+  Partial<Pick<Food, 'art'>>;
+
+export function reminderDays(food: FreshnessFood): number | undefined {
   const place = food.frozen ? 'freezer' : food.location;
   if (
+    isSupply(food) ||
     place === 'unspecified' ||
     /\b(opened|leftover|cooked|cut|homemade|infant|formula|baby food)\b/i.test(food.name)
   )
@@ -15,12 +18,9 @@ export function reminderDays(
   if (art === 'plain-tin' && place === 'pantry' && food.unit === 'cans') return 730;
   return art ? profiles[art]?.[place] : undefined;
 }
-export function estimatedDate(
-  food: Pick<Food, 'name' | 'location' | 'frozen' | 'unit'>,
-  today: Date,
-  aiDays?: number | null,
-) {
+export function estimatedDate(food: FreshnessFood, today: Date, aiDays?: number | null) {
   if (
+    isSupply(food) ||
     food.location === 'unspecified' ||
     /\b(infant|formula|baby food|opened|leftover|cooked|cut|homemade)\b/i.test(food.name)
   )
