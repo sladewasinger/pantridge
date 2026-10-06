@@ -92,7 +92,11 @@ test('AI previews disclose transmission, require review/save and leave stock unc
   );
   await page.getByRole('button', { name: 'Review recipe', exact: true }).click();
   await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
-  await expect(page.getByRole('button', { name: 'Saved', exact: true })).toBeDisabled();
+  await expect(
+    page
+      .getByRole('dialog', { name: 'Suggest with AI', exact: true })
+      .getByRole('button', { name: 'Saved', exact: true }),
+  ).toBeDisabled();
   const saved = await recipes(page);
   expect(saved.recipes?.some((recipe) => recipe.title === 'AI egg supper')).toBe(true);
   expect(saved.stock).toEqual(initial.stock);

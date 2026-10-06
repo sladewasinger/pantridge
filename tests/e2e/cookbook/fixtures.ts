@@ -99,6 +99,9 @@ export async function readKitchen(page: Page): Promise<Snapshot> {
 }
 export async function openRecipe(page: Page): Promise<void> {
   await page.getByRole('button', { name: 'Open cookbook', exact: true }).click();
-  await page.getByRole('button', { name: /Weeknight eggs/ }).click();
+  await page
+    .locator('.recipe-list')
+    .getByRole('button', { name: /Weeknight eggs/ })
+    .click();
   await expect(page.getByRole('dialog', { name: 'Weeknight eggs', exact: true })).toBeVisible();
 }
