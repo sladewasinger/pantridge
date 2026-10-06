@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { dispatch, useKitchen } from '../../data/store';
 import type { ShoppingItem } from '../../domain/model';
-import { newFood, units } from '../../domain/selectors';
+import { newFood, storageLabel, storagePlace, units } from '../../domain/selectors';
+import { isSupply, normalizeSupply } from '../../domain/supplies';
 import { Modal } from '../../ui/Modal';
 import { useAction } from '../../ui/useAction';
 import { FoodFields } from '../food/FoodFields';
@@ -31,8 +32,8 @@ export function PutAway({ onClose }: { onClose: () => void }) {
 function PutAwayItem({ item, count }: { item: ShoppingItem; count: number }) {
   const { data } = useKitchen();
   const existing = data.foods.find((food) => food.id === item.foodId);
-  const [food, setFood] = useState(
-    () =>
+  const [food, setFood] = useState(() =>
+    normalizeSupply(
       existing ?? {
         ...newFood(item.name),
         unit: item.unit,
@@ -40,6 +41,7 @@ function PutAwayItem({ item, count }: { item: ShoppingItem; count: number }) {
         size: parseSize(item.packageSize ?? ''),
         art: item.art ?? matchArtwork(item.name) ?? 'generic',
       },
+    ),
   );
   const [expires, setExpires] = useState('');
   const { run, error, busy } = useAction();
@@ -56,7 +58,7 @@ function PutAwayItem({ item, count }: { item: ShoppingItem; count: number }) {
               id: crypto.randomUUID(),
               foodId: food.id,
               quantity: item.quantity,
-              ...(expires ? { expires } : {}),
+              ...(expires && !isSupply(food) ? { expires } : {}),
             },
           });
         });
@@ -66,17 +68,19 @@ function PutAwayItem({ item, count }: { item: ShoppingItem; count: number }) {
         {count} to put away · {units(item.quantity, item.unit)}
       </p>
       <FoodFields food={food} onChange={setFood} identity={!existing} />
-      <label>
-        Expiration <span className="optional">optional</span>
-        <input type="date" value={expires} onChange={(e) => setExpires(e.target.value)} />
-      </label>
+      {!isSupply(food) && (
+        <label>
+          Expiration <span className="optional">optional</span>
+          <input type="date" value={expires} onChange={(e) => setExpires(e.target.value)} />
+        </label>
+      )}
       {error && (
         <p className="error" role="alert">
           {error}
         </p>
       )}
       <button className="primary full" disabled={busy}>
-        Put in {food.frozen ? 'freezer' : food.location}
+        Put in {storageLabel(storagePlace(food)).toLowerCase()}
       </button>
       <button
         className="text-button full"

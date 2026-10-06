@@ -3,6 +3,8 @@ import { ArtPicker } from './ArtPicker';
 import { PackageFields } from './PackageFields';
 import { useArtworkMatch } from './useArtworkMatch';
 import type { ReactNode } from 'react';
+import { isSupply, normalizeSupply } from '../../domain/supplies';
+import { storagePlace } from '../../domain/selectors';
 export function FoodFields({
   food,
   onChange,
@@ -20,11 +22,13 @@ export function FoodFields({
   onEdit?: (...keys: (keyof Food)[]) => void;
   quantityControl?: ReactNode;
 }) {
+  const supply = isSupply(food);
+  const change = (next: Food) => onChange(normalizeSupply(next));
   const patch = (value: Partial<Food>) => {
     onEdit?.(...(Object.keys(value) as (keyof Food)[]));
-    onChange({ ...food, ...value });
+    change({ ...food, ...value });
   };
-  const illustration = useArtworkMatch(food, onChange, autoArtwork);
+  const illustration = useArtworkMatch(food, change, autoArtwork);
   const selectArt = (art: Food['art']) => {
     onEdit?.('art');
     illustration.select(art);
@@ -32,7 +36,7 @@ export function FoodFields({
   return (
     <>
       <label>
-        Food name
+        {supply ? 'Supply name' : 'Food name'}
         <input
           required
           maxLength={80}
@@ -41,10 +45,20 @@ export function FoodFields({
             onEdit?.('name');
             illustration.rename(e.target.value);
           }}
-          placeholder="e.g. Black beans"
+          placeholder={supply ? 'e.g. Paper towels' : 'e.g. Black beans'}
         />
       </label>
       {quantityControl}
+      <label>
+        Item type
+        <select
+          value={supply ? 'supply' : 'food'}
+          onChange={(e) => patch({ kind: e.target.value === 'supply' ? 'supply' : 'food' })}
+        >
+          <option value="food">Food</option>
+          <option value="supply">Kitchen supply</option>
+        </select>
+      </label>
       {identity && (
         <>
           <label>
@@ -58,7 +72,7 @@ export function FoodFields({
               ))}
             </select>
           </label>
-          <PackageFields food={food} onChange={onChange} />
+          <PackageFields food={food} onChange={change} />
           {compact ? (
             <details>
               <summary>Change artwork</summary>
@@ -73,7 +87,8 @@ export function FoodFields({
         <label>
           Keep in
           <select
-            value={food.frozen ? 'freezer' : food.location}
+            value={storagePlace(food)}
+            disabled={supply}
             onChange={(e) =>
               patch({
                 location:
@@ -85,7 +100,7 @@ export function FoodFields({
             <option value="pantry">Pantry</option>
             <option value="fridge">Fridge</option>
             <option value="freezer">Freezer</option>
-            <option value="unspecified">Unspecified</option>
+            <option value="unspecified">Storage</option>
           </select>
         </label>
       </div>

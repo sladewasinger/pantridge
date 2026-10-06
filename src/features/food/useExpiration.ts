@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { Food } from '../../domain/model';
 import { estimatedDate } from '../../domain/freshness/estimate';
+import { isSupply } from '../../domain/supplies';
 
 export function useExpiration(food: Food, aiDays?: number | null) {
   const [today] = useState(() => new Date());
@@ -12,6 +13,9 @@ export function useExpiration(food: Food, aiDays?: number | null) {
     value,
     source,
     set: setManual,
-    fields: value ? { expires: value, ...(source ? { expirySource: source } : {}) } : {},
+    fields:
+      value && !isSupply(food)
+        ? { expires: value, ...(source ? { expirySource: source } : {}) }
+        : {},
   };
 }
