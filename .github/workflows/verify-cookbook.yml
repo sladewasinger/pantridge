@@ -1,7 +1,7 @@
 name: Cookbook verification
 on:
   pull_request:
-    branches: [develop]
+    branches: [develop, main]
     paths:
       - 'src/domain/recipes/**'
       - 'src/features/cookbook/**'
