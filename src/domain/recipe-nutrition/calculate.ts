@@ -5,8 +5,13 @@ import { labelAmount } from './labels';
 
 const nutrients = ['calories', 'protein', 'carbohydrate', 'fat', 'sodium', 'fiber'] as const;
 type Evidence = NonNullable<NonNullable<Recipe['nutrition']>['evidence']>[number];
-function contribution(data: Snapshot, ingredient: RecipeIngredient, servings: number) {
-  const label = labelAmount(data, ingredient);
+function contribution(
+  data: Snapshot,
+  ingredient: RecipeIngredient,
+  servings: number,
+  recipe: Recipe,
+) {
+  const label = labelAmount(data, ingredient, recipe);
   const generic = label ? undefined : profileAmount(ingredient);
   const values = label?.per100 ?? generic?.profile.per100;
   if (!values) return undefined;
@@ -23,7 +28,7 @@ export function calculateRecipeNutrition(data: Snapshot, recipe: Recipe): Recipe
   const missing: string[] = [];
   const evidence: Evidence[] = [];
   for (const ingredient of recipe.ingredients) {
-    const item = contribution(data, ingredient, recipe.servings);
+    const item = contribution(data, ingredient, recipe.servings, recipe);
     if (!item) {
       missing.push(ingredient.name);
       continue;

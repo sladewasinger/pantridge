@@ -27,10 +27,10 @@ test('kitchen matches lead, partials are separated and unrelated recipes require
   await page.getByText('View', { exact: true }).click();
   await page.getByRole('combobox', { name: 'Order recipes' }).selectOption('on-hand');
   await page.getByRole('searchbox', { name: 'Find a recipe' }).fill('Black beans and rice');
-  await expect(page.locator('.recipe-card')).toContainText('possible');
+  await expect(page.locator('.recipe-card')).toContainText('2 of 3 on hand');
   await page.getByRole('button', { name: /Built-in Black beans and rice/ }).click();
-  await expect(page.getByRole('dialog')).toContainText('Possible match: Black Beans (Unsalted)');
-  await expect(page.getByRole('dialog')).toContainText('Possible match: Brown Rice');
+  await expect(page.getByRole('dialog')).toContainText('On hand · review preparation and amount');
+  await expect(page.getByRole('dialog')).not.toContainText('Possible match:');
   await page.getByRole('button', { name: 'Close', exact: true }).click();
   await page.getByRole('searchbox', { name: 'Find a recipe' }).fill('Applesauce');
   await expect(page.getByRole('heading', { name: 'No kitchen matches' })).toBeVisible();

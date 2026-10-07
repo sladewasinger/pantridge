@@ -68,12 +68,12 @@ describe('recipe quantities and identity matching', () => {
     expect(matchingFoods(data, ' egg ')).toHaveLength(1);
     expect(matchingFoods(data, 'Liquid eggs')).toHaveLength(0);
     data.foods[0]!.kind = 'supply';
-    expect(getRecipeAvailability(data, recipe).status).toBe('missing');
+    expect(getRecipeAvailability({ ...data }, recipe).status).toBe('missing');
     delete data.foods[0]!.kind;
     data.foods[0]!.art = 'household-box';
     expect(getRecipeAvailability(data, recipe).status).toBe('missing');
     data.foods[0]!.kind = 'food';
-    expect(getRecipeAvailability(data, recipe).status).toBe('confirmed');
+    expect(getRecipeAvailability({ ...data }, recipe).status).toBe('confirmed');
   });
   it('does not count the same stock twice across repeated ingredient rows', () => {
     const data = stockedKitchen();

@@ -3,7 +3,11 @@ import { roundQuantity } from '../../domain/quantity';
 import type { Recipe, CookingDeduction, MealPlanEntry } from '../../domain/recipes/model';
 import { getMealPlan } from '../../domain/recipes/selectors';
 import { getRecipeAvailability } from '../../domain/recipes/availability';
-import { foodCookingSignature, previewCooking } from '../../domain/recipes/cooking';
+import {
+  foodCookingSignature,
+  lotCookingSignature,
+  previewCooking,
+} from '../../domain/recipes/cooking';
 
 export interface CookRow {
   food: Food;
@@ -11,12 +15,12 @@ export interface CookRow {
   quantity: string;
 }
 export function initialCookRows(data: Snapshot, recipe: Recipe, servings: number): CookRow[] {
-  const foods = new Set(
-    getRecipeAvailability(data, recipe, servings).ingredients.flatMap((item) => item.foodIds),
+  const lots = new Set(
+    getRecipeAvailability(data, recipe, servings).ingredients.flatMap((item) => item.lotIds),
   );
   const preview = previewCooking(data, recipe, servings);
   return data.stock
-    .filter((stock) => stock.quantity > 0 && foods.has(stock.foodId))
+    .filter((stock) => stock.quantity > 0 && lots.has(stock.id))
     .map((stock) => ({
       stock,
       food: data.foods.find((food) => food.id === stock.foodId)!,
@@ -43,18 +47,24 @@ export function reviewedDeductions(rows: CookRow[]): CookingDeduction[] {
         quantity,
         expectedQuantity: row.stock.quantity,
         expectedFoodSignature: foodCookingSignature(row.food),
+        expectedLotSignature: lotCookingSignature(row.food, row.stock),
         remainingQuantity: roundQuantity(row.stock.quantity - quantity),
       },
     ];
   });
 }
 export function reviewIsStale(data: Snapshot, rows: CookRow[]): boolean {
-  return rows.some(
-    (row) =>
-      data.stock.find((stock) => stock.id === row.stock.id)?.quantity !== row.stock.quantity ||
-      JSON.stringify(data.foods.find((food) => food.id === row.food.id)) !==
-        JSON.stringify(row.food),
-  );
+  return rows.some((row) => {
+    const lot = data.stock.find((stock) => stock.id === row.stock.id);
+    const food = data.foods.find((food) => food.id === row.food.id);
+    return (
+      !lot ||
+      !food ||
+      lot.quantity !== row.stock.quantity ||
+      lotCookingSignature(food, lot) !== lotCookingSignature(row.food, row.stock) ||
+      foodCookingSignature(food) !== foodCookingSignature(row.food)
+    );
+  });
 }
 
 export function initialServings(recipe: Recipe, plan?: MealPlanEntry): string {

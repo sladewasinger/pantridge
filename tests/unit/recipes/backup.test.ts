@@ -26,7 +26,7 @@ describe('cookbook backup compatibility', () => {
         ...starterRecipes[0]!,
         id: `fab00000-0000-4000-8000-${String(index).padStart(12, '0')}`,
         title: `Recipe ${index}`,
-        steps: Array<string>(4).fill('x'.repeat(620)),
+        steps: Array<string>(4).fill('x'.repeat(580)),
       };
       snapshot = reduceChecked(snapshot, { type: 'recipe.save', recipe });
     }

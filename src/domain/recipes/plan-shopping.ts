@@ -2,6 +2,7 @@ import type { ShoppingItem, Snapshot } from '../model';
 import type { MealPlanEntry, Recipe } from './model';
 import { getMealPlan, findRecipe } from './selectors';
 import { addMissingShopping, buildMissingShopping } from './shopping';
+import { classifyRecipeIngredient } from '../ingredient-matching/classification';
 
 function planRequirements(data: Snapshot, entryIds: string[]): Recipe {
   if (!entryIds.length || entryIds.length > 20 || new Set(entryIds).size !== entryIds.length)
@@ -12,7 +13,7 @@ function planRequirements(data: Snapshot, entryIds: string[]): Recipe {
     const recipe = findRecipe(data, entry.recipeId);
     if (!recipe) throw new Error('A planned recipe no longer exists. Review the plan again.');
     return recipe.ingredients.map((ingredient) => ({
-      ...ingredient,
+      ...classifyRecipeIngredient(ingredient),
       quantity: (ingredient.quantity * entry.servings) / recipe.servings,
     }));
   });

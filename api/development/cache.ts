@@ -52,12 +52,17 @@ export function cacheProduct(key: string, result: Lookup): Promise<void> {
 }
 export function takeQuota(key: string, limit: number): Promise<void> {
   return serialize(async () => {
+    const localLimit = localDailyLimit(key, limit);
     const datedKey = `quota#${key}#${new Date().toISOString().slice(0, 10)}`;
     const used = (await load(datedKey))?.used ?? 0;
-    if (limit <= 0 || used >= limit)
+    if (localLimit <= 0 || used >= localLimit)
       throw new ProductError(429, 'Local testing daily limit reached.');
     await save(datedKey, { used: used + 1, ttl: Math.floor(Date.now() / 1000) + 172800 });
   });
+}
+function localDailyLimit(key: string, limit: number): number {
+  if (limit <= 0) return limit;
+  return key === 'ai-user#local-development' || key === 'ai-global' ? Math.max(50, limit) : limit;
 }
 export function takeLookupSlot(): Promise<void> {
   return serialize(async () => {

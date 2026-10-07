@@ -1,7 +1,8 @@
-import type { Food, Snapshot } from '../model';
+import type { Food, Snapshot, Stock } from '../model';
+import { matchHash } from '../ingredient-matching/context';
+import { allocateIngredients } from '../ingredient-matching/allocation';
 import { isSupply } from '../supplies';
 import { roundQuantity } from '../quantity';
-import { matchingLots } from './availability';
 import {
   cookingRecordSchema,
   type CookingDeduction,
@@ -21,8 +22,17 @@ export function foodCookingSignature(food: Food): string {
     size: food.size ?? null,
     kind: food.kind ?? null,
     art: food.art,
+    ...(food.ingredient && { ingredient: food.ingredient }),
   });
 }
+export const lotCookingSignature = (food: Food, lot: Stock) =>
+  matchHash([
+    food.ingredient ?? null,
+    lot.ingredient ?? null,
+    lot.ingredientSize ?? null,
+    lot.ingredientSizeBasis ?? null,
+    lot.product ?? null,
+  ]);
 
 export interface CookingPreview {
   deductions: CookingDeduction[];
@@ -33,22 +43,26 @@ function previewIngredient(
   data: Snapshot,
   ingredient: RecipeIngredient,
   required: number,
-  used: Map<string, number>,
+  { used, allocations }: { used: Map<string, number>; allocations: Map<string, number> },
 ): boolean {
-  let left = required;
-  for (const lot of matchingLots(data, ingredient)) {
+  const parts = [...allocations].map(([id, quantity]) => ({
+    id,
+    quantity,
+    precise: roundQuantity(quantity),
+  }));
+  // Six decimals is a storage bound, not permission to round consumption.
+  if (parts.some(({ quantity, precise }) => Math.abs(precise - quantity) > 1e-10 || precise <= 0))
+    return false;
+  let consumed = 0;
+  for (const { id, precise } of parts) {
+    const lot = data.stock.find((row) => row.id === id)!;
     const food = data.foods.find((item) => item.id === lot.foodId)!;
-    const amount = packageAmount(food, ingredient.unit);
-    if (amount === undefined) continue;
+    const amount = packageAmount(food, ingredient.unit, lot)!;
     const already = used.get(lot.id) ?? 0;
-    const quantity = Math.min(lot.quantity - already, left / amount);
-    const precise = roundQuantity(quantity);
-    // Six decimals is a storage bound, not permission to round a recipe's consumption.
-    if (Math.abs(precise - quantity) > 1e-10 || precise <= 0) continue;
     used.set(lot.id, roundQuantity(already + precise));
-    left = Math.max(0, left - precise * amount);
+    consumed += precise * amount;
   }
-  return left <= 1e-8;
+  return consumed + 1e-8 >= required;
 }
 export function previewCooking(
   data: Snapshot,
@@ -57,12 +71,13 @@ export function previewCooking(
 ): CookingPreview {
   const used = new Map<string, number>();
   const notes: string[] = [];
+  const allocation = allocateIngredients(data, recipe, servings);
   for (const ingredient of recipe.ingredients.filter((item) => !item.optional)) {
     const complete = previewIngredient(
       data,
       ingredient,
       (ingredient.quantity * servings) / recipe.servings,
-      used,
+      { used, allocations: allocation.used.get(ingredient)! },
     );
     if (!complete)
       notes.push(
@@ -76,6 +91,10 @@ export function previewCooking(
       foodId: lot.foodId,
       quantity,
       expectedQuantity: lot.quantity,
+      expectedLotSignature: lotCookingSignature(
+        data.foods.find((food) => food.id === lot.foodId)!,
+        lot,
+      ),
       expectedFoodSignature: foodCookingSignature(
         data.foods.find((food) => food.id === lot.foodId)!,
       ),
@@ -95,6 +114,12 @@ function validateDeduction(data: Snapshot, deduction: CookingDeduction): void {
     throw new Error('Kitchen supplies cannot be used as recipe ingredients.');
   if (deduction.expectedFoodSignature !== foodCookingSignature(food))
     throw new Error('Food or package details changed. Review cooking again.');
+  if (
+    (deduction.expectedLotSignature &&
+      deduction.expectedLotSignature !== lotCookingSignature(food, lot)) ||
+    (!deduction.expectedLotSignature && (lot.ingredient || lot.ingredientSize || lot.product))
+  )
+    throw new Error('Product preparation changed. Review cooking again.');
   if (lot.quantity !== deduction.expectedQuantity)
     throw new Error('Package quantity changed. Review cooking again.');
   if (

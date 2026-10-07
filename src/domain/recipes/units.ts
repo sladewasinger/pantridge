@@ -1,4 +1,4 @@
-import type { Food } from '../model';
+import type { Food, Stock } from '../model';
 import { parseSize } from '../products/size';
 import type { RecipeUnit } from './model';
 
@@ -27,8 +27,8 @@ export function convertRecipeAmount(
   if (measures[from].dimension !== measures[to].dimension) return undefined;
   return (amount * measures[from].factor) / measures[to].factor;
 }
-export function packageAmount(food: Food, unit: RecipeUnit): number | undefined {
-  const size = food.size ?? parseSize(food.packageSize);
+export function packageAmount(food: Food, unit: RecipeUnit, lot?: Stock): number | undefined {
+  const size = lot?.ingredientSize ?? food.size ?? parseSize(food.packageSize);
   if (size) return convertRecipeAmount(size.amount * size.packs, size.measure, unit);
   // An item is one count; a carton/can/cup/etc. is an unknown package without a declared size.
   return food.unit === 'items' && unit === 'count' ? 1 : undefined;

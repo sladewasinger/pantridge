@@ -10,6 +10,7 @@ export function useArtworkMatch(food: Food, onChange: (food: Food) => void, enab
       onChange({
         ...food,
         name,
+        ingredient: undefined,
         art: enabled && !manual ? (matchArtwork(name) ?? 'generic') : food.art,
       }),
     select: (art: Food['art']) => {

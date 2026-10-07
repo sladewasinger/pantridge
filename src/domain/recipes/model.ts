@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { roundQuantity, stockQuantitySchema } from '../quantity';
 import { recipeCurationSchema, recipeNutritionSchema } from './metadata';
+import { ingredientIdentitySchema } from '../ingredient-matching/model';
 
 export const recipeUnitSchema = z.enum([
   'count',
@@ -24,6 +25,7 @@ export const ingredientSchema = z.object({
   unit: recipeUnitSchema,
   optional: z.boolean().optional(),
   note: z.string().trim().max(240).optional(),
+  ingredient: ingredientIdentitySchema.optional(),
 });
 export const recipeSchema = z
   .object({
@@ -80,6 +82,7 @@ export const cookingDeductionSchema = z.object({
   quantity: stockQuantitySchema.refine((quantity) => quantity > 0, 'Enter a positive quantity.'),
   expectedQuantity: stockQuantitySchema,
   expectedFoodSignature: z.string().min(1).max(700).optional(),
+  expectedLotSignature: z.string().min(1).max(1000).optional(),
   remainingQuantity: stockQuantitySchema,
 });
 export const cookingRecordSchema = z

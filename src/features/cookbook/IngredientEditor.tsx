@@ -1,6 +1,8 @@
 import { Trash2 } from 'lucide-react';
 import type { RecipeUnit } from '../../domain/recipes/model';
 import { emptyIngredient, type IngredientDraft } from './editorState';
+import { IngredientIdentity } from '../food/IngredientIdentity';
+import { recipeIdentity } from '../../domain/ingredient-matching/classification';
 
 const units: RecipeUnit[] = [
   'count',
@@ -37,9 +39,17 @@ export function IngredientEditor({
             <input
               value={item.name}
               maxLength={80}
-              onChange={(event) => update(item.id, { name: event.target.value })}
+              onChange={(event) =>
+                update(item.id, { name: event.target.value, ingredient: undefined })
+              }
             />
           </label>
+          <IngredientIdentity
+            name={item.name}
+            value={item.ingredient}
+            inferred={recipeIdentity({ ...item, quantity: Number(item.quantity) })}
+            onChange={(ingredient) => update(item.id, { ingredient })}
+          />
           <div className="form-grid">
             <label>
               Amount
@@ -69,7 +79,9 @@ export function IngredientEditor({
             <input
               value={item.note ?? ''}
               maxLength={240}
-              onChange={(event) => update(item.id, { note: event.target.value })}
+              onChange={(event) =>
+                update(item.id, { note: event.target.value, ingredient: undefined })
+              }
             />
           </label>
           <div className="recipe-ingredient-footer">

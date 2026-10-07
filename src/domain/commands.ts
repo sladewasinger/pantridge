@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { recipeSchema, mealPlanSchema, cookingRecordSchema } from './recipes/model';
 import { dateSchema, foodSchema, id, shoppingSchema, stockSchema } from './model';
 import { nutritionEstimateSchema } from './products/nutrition-estimate';
+import { ingredientIdentitySchema } from './ingredient-matching/model';
+import { sizeSchema } from './products/size';
 
 export const commandSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('kitchen.initialize') }),
@@ -41,6 +43,12 @@ export const commandSchema = z.discriminatedUnion('type', [
   }),
   z.object({ type: z.literal('stock.add'), stock: stockSchema }),
   z.object({ type: z.literal('stock.remove'), stockId: id }),
+  z.object({
+    type: z.literal('stock.classify'),
+    stockId: id,
+    ingredient: ingredientIdentitySchema.nullable(),
+  }),
+  z.object({ type: z.literal('stock.recipeAmount'), stockId: id, size: sizeSchema.nullable() }),
   z.object({ type: z.literal('stock.scan'), food: foodSchema, stock: stockSchema }),
   z.object({
     type: z.literal('stock.adjust'),

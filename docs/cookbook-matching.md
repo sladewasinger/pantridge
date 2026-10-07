@@ -1,87 +1,108 @@
-# Kitchen-first recipe discovery
+# Local ingredient identities and kitchen-first recipes
 
-The previous ingredient sort counted missing rows. A three-ingredient recipe with zero stock
-could beat a ten-ingredient recipe with several matches. A synthetic kitchen based on the
-owner's visible shelf names reproduced this with Applesauce; the regression failed before
-the fix.
+Cookbook matching is entirely local and offline. Opening the cookbook, editing inventory,
+changing filters, or adding groceries makes no OpenAI matching call. There is no background
+matching endpoint, queue, timer, opt-in, or paid matching cache. Explicit recipe generation,
+barcode refinement and nutrition estimates retain their existing optional API behavior.
 
-The default cookbook now excludes recipes with no stocked required ingredient or explicitly
-supported possible ingredient match. Optional ingredients, zero-quantity lots and household
-supplies cannot make a recipe qualify. View has a separate Show recipes without matches
-toggle, off by default even for existing preference records. Include built-in recipes remains
-an independent source filter. Search and the time filter respect this scope.
+## Shared identities
 
-Recipes whose required amounts are confirmed or need package-size review form the first
-Ingredients on hand section. Missing quantities, possible choices and unmeasured extra
-ingredients put a recipe below a horizontal Partial matches heading. Explicitly included
-zero-match recipes appear last under More recipes. Each section retains the selected date,
-coverage, time or alphabetical order. Use-soon dates come from required exact-match stock;
-past dates, optional-only matches and empty lots never create urgency.
+The append-only ingredient registry gives inventory and all 104 built-in recipes the same
+canonical IDs. Whole-name aliases and explicitly listed preparation/quality modifiers are
+deterministic. Generic rice accepts listed rice varieties; a white-rice requirement does not
+accept brown rice. Different beans, milk alternatives, powders and composite products remain
+distinct. Cinnamon cereal is not cinnamon; tomato-and-basil crackers are neither ingredient.
+Artwork and arbitrary substring/fuzzy similarity are never identity evidence.
 
-Coverage uses distinct required ingredient identities. Exact stock presence contributes one
-point and an explicit possible match contributes half a point, divided by the required count.
-This ranking measures ingredient coverage, not nutrition, recipe safety or amount sufficiency.
-Cards display actual coverage and possible choices. Raw missing-row counts no longer decide
-relevance. Amount shortages and unknown package sizes retain their existing review behavior.
+Unrecognized exact names receive a stable local custom identity, initially requiring review.
+Users can choose a catalog ingredient or confirm an exact custom name through collapsed
+**Recipe matching** controls in food, package and recipe editors. Renaming a food or ingredient,
+or editing an ingredient note, clears the previous explicit descriptor so it cannot become stale.
+Registry IDs must not be removed or reassigned after release, because they can be saved in backups.
 
-Possible matches are deliberately bounded: listed rice/potato/onion varieties for generic
-ingredients, plus the exact unsalted/salted/organic descriptors. They do not strip arbitrary
-brands, use substring matching, collapse raw/cooked foods or infer dietary compatibility.
-Cinnamon Life Cereal is not cinnamon; wheat crackers are not tomatoes or basil. Red, yellow
-and white onion singular/plural spellings are identity aliases. These three aliases are shared
-with the API as before; possible varieties are discovery-only.
+Each descriptor separates identity, preparation and quantity basis. A stock lot can override
+its generic shelf identity. Recognized product names preserve their more-specific variety and
+preparation; unknown branded/composite descriptions require review even when the shelf name
+is known. An explicit package classification can confirm that evidence. Household supplies
+and zero-quantity lots cannot qualify recipes.
 
-Possible choices never count as confirmed quantities, change shopping identities or select
-cooking lots. Recipe details name the candidate and require explicit editing to use it.
-Saving, nutrition, shopping and cooking continue to assess the selected exact ingredient.
-This is a limited compatibility list, not complete recognition of every branded food.
+## Quantities and review
 
-## Future optional AI identity assistance
+Cooked rice is present for a dry-rice recipe, but cooked grams are never counted as dry grams.
+Net can weight is not drained weight. Primary recipe notes establish preparation and drained basis;
+only an explicit declared whole-can size establishes measurement before draining. Unknown
+preparation, ambiguous garlic counts, missing package sizes and incompatible units require
+review. No cooking yields, density conversions or allergen guarantees are inferred.
+Alternative clauses do not change the primary ingredient's preparation or reuse its amount for a substitute.
 
-No background AI request or timer is implemented by this fix. The proposed ten-minute delay
-is a debounce for batching unresolved names while groceries are entered, not a delay in local
-match updates. Each kitchen edit resets the quiet deadline. A later batch would send only
-unresolved names, reuse reviewed mappings and discard results for an obsolete account or
-kitchen version. Opening the cookbook must not itself generate another request.
+**Recipe amount per package** can store a measured usable amount on a lot. It is tied to its
+reviewed basis and cleared when effective identity/preparation/basis changes. Cooking review
+shows the measured amount alongside the original package label. Food and lot signatures
+protect against stale classifications, measurements, product metadata and quantities.
+Only explicit, reviewed, idempotent cooking transactions deduct stock.
 
-Canonical ingredient identities and explicit preparation/diet compatibility should remain
-the main mechanism. Optional AI could propose identities for unknown labels once for review,
-without rewriting food names, packages, nutrition or stock. Accepted mappings should remain
-private to the kitchen. Automatic calls would need an explicit opt-in and the existing server
-quotas. Closing the browser suspends client work; running scheduled jobs on AWS would be a
-separate infrastructure decision.
+Availability, ranking, shopping, planning, cooking and package nutrition share the local
+resolver. Nutrition labels for uncertain preparations or measured drained portions cannot
+be presented as authoritative recipe nutrition. Known same-dimension conversions preserve
+six-decimal stock quantities; shopping counts remain whole packages.
+Generic nutrition profiles honor reviewed canonical preparation, including cooked versus dry rice;
+unsupported or conflicting evidence stays partial instead of receiving a guessed total.
 
-## Shelf date reminders
+Shopping combines canonical requirements across ordinary notes before rounding package
+counts. Dry/cooked or net/drained requirements remain separate, including one-time shopping
+rows and meal plans. Uncertain present stock is not automatically sent to shopping. Missing
+drained/edible amounts create explicit quantity-review entries rather than inventing yields
+from future purchased net weights. One-time ingredient descriptors survive put-away review.
+Shopping packages are reserved across overlapping generic/specific requirements, so the same purchased
+amount cannot satisfy two different recipe rows. Changes in descriptors invalidate a stale shopping review.
+Shared residual-capacity allocation can reassign an earlier broad requirement to other compatible lots
+when a narrower requirement needs that stock. Mass, volume and count stay separate; required ingredients
+allocate before optional ones. Source lots follow global expiry/id order. Package units remain review-only;
+crossed measurement dimensions with unresolved shared capacity require review rather than invented conversions.
 
-Shelf badges previously displayed every expiration date as month/day, including dates in the
-following year. The comparison itself retained the year; the label was misleading and noisy.
-Shelf reminders now appear only for dates within seven days or already past. The stored date
-remains available and editable in item details. Shared recipe/cooking/plan date labels include
-the year when it differs from the current local year. No date, stock or estimate is rewritten.
+## Persistence and presentation
 
-Manual phone and desktop clicks verified September 2027 rice/beans dates remain in details
-and disappear from shelf badges, while an upcoming egg date remains visible. Unit coverage
-includes the seven/eight-day boundary and December/January rollover. A browser regression
-checks both cellar and fridge tiles, retained detail values, unchanged stock, and a reviewed
-date edit becoming a past-date reminder.
+Optional `ingredient` fields on foods, lots, recipe ingredients and shopping rows preserve
+version-one inventory-only snapshots. Lots optionally store `ingredientSize` and its basis.
+The shared mutation schema adds `stock.classify` and `stock.recipeAmount`; both commit through
+the existing IndexedDB/outbox transaction and authenticated account isolation. Updated clients
+are needed for these new commands. Legacy cooking without a lot signature cannot apply to
+newly classified, measured or branded lots; it must be reviewed using the updated app.
+
+Recipes without stocked required ingredients stay hidden until **View → Show recipes without
+matches** is enabled. Complete ingredient presence and reviewable amounts lead; missing rows
+appear below **Partial matches**. Source, search, time and use-soon filters retain this scope.
+Shelf date badges still show only the next seven days or past dates; full dates remain editable.
 
 ## Verification
 
-`pnpm check` passed: 322 unit tests plus static, structure, artwork, formatting and build checks.
-The production-build browser suites passed 67 Chromium and 56 Windows WebKit cases, each with
-its existing intentional skip. The new browser regression exercises complete/partial sections,
-the screenshot fixture, variety notes, search, source/time/unmatched filters, preference reload,
-accessibility and unchanged inventory/recipes. Existing catalog tests now explicitly enable
-unmatched recipes instead of assuming the whole collection is the default view.
-The new date test initially reloaded before WebKit finished navigation; it now edits the date
-through the detail control and waits for persistence. One existing WebKit outage case also
-hit a transient modal-restoration failure; its standalone rerun and subsequent full suite
-passed without an application change or timeout increase.
+Local matching benchmark, one cold and one warm calculation over all 104 built-ins:
 
-Manual clicks used the exact Vite preview URL `http://127.0.0.1:4176/`, an isolated disposable
-kitchen restored through the normal backup UI. At 390x844 and 1280x900, the reviewer opened
-the cookbook, selected Ingredients on hand, searched for Applesauce, enabled/disabled the
-unmatched toggle, applied the time and source filters and read the black-bean/rice candidate
-notes. Applesauce stayed hidden until explicit inclusion. The partial divider and compact
-counts were visually inspected; this manual interaction is separate from automated screenshots.
-No live kitchen, paid provider call, merge or deployment was involved in this verification.
+| Stocked foods | Cold calculation | Warm calculation |
+| ------------- | ---------------- | ---------------- |
+| 10            | 14.46 ms         | 3.77 ms          |
+| 40            | 10.99 ms         | 5.97 ms          |
+| 200           | 30.40 ms         | 14.11 ms         |
+| 600           | 84.04 ms         | 38.61 ms         |
+
+These desktop Node measurements exclude rendering and are not phone latency guarantees.
+All calculations used zero matching API calls. No quota counters were reset.
+
+Manual browser testing used the isolated 201-item local kitchen. A cooked-rice classification
+and measured 300 g package amount survived reload and immediately updated recipe availability.
+Cancelled cooking preserved stock; explicit confirmation of 0.25 package deducted 75 g from
+only that test lot. Desktop and phone layouts were inspected separately from automated tests.
+The regression suite also covers composite false positives, per-lot preparation, drained
+weights, stale review, semantic shopping aggregation, offline recipe editing and zero matching
+requests. No live Google sign-in or cross-device sync claim is made by these local tests.
+Manual shopping review added only the missing soy-sauce row, with no stock increase. Editing primary
+preparation notes produced confirmed cooked-rice and canned-bean amounts immediately and after reload.
+`pnpm check` passed with 365 unit tests; the production-build Chromium suite passed 69 tests with its
+existing single platform-specific skip. An independent adversarial review found and verified regressions
+for overlapping shopping quantities, crossed variety/preparation capacities, stale descriptors, ambiguous
+counts, package-unit review and cooked/dry nutrition.
+The local WebKit configuration passed 57 tests with its Windows camera skip; its simulated-offline
+exclusions are unchanged. The macOS WebKit release gate additionally runs after merging to main.
+Reload tests wait for dismissed dialogs' asynchronous history transitions before reloading, and the
+cross-tab cooking test returns focus to the review tab. These synchronization checks preserve all
+behavior assertions and existing timeouts; three affected tests also passed three repetitions each.

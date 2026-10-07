@@ -1,0 +1,1466 @@
+[
+  {
+    "id": "all-purpose-flour",
+    "label": "All-purpose flour",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "almonds",
+    "label": "Almonds",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "apple-cider-vinegar",
+    "label": "Apple cider vinegar",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "apples",
+    "label": "Apples",
+    "aliases": ["Apple"],
+    "preparation": "raw"
+  },
+  {
+    "id": "arborio-rice",
+    "label": "Arborio rice",
+    "aliases": [],
+    "parent": "rice",
+    "preparation": "dry"
+  },
+  {
+    "id": "avocado",
+    "label": "Avocado",
+    "aliases": ["Avocados"],
+    "preparation": "raw"
+  },
+  {
+    "id": "bacon-bits",
+    "label": "Bacon bits",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "bacon-slices",
+    "label": "Bacon slices",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "baking-powder",
+    "label": "Baking powder",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "baking-soda",
+    "label": "Baking soda",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "balsamic-vinegar",
+    "label": "Balsamic vinegar",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "bananas",
+    "label": "Bananas",
+    "aliases": ["Banana"],
+    "preparation": "raw"
+  },
+  {
+    "id": "basil",
+    "label": "Basil",
+    "aliases": ["Dried basil"],
+    "preparation": "raw"
+  },
+  {
+    "id": "basil-pesto",
+    "label": "Basil pesto",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "basmati-rice",
+    "label": "Basmati rice",
+    "aliases": [],
+    "parent": "rice",
+    "preparation": "dry"
+  },
+  {
+    "id": "bay-leaves",
+    "label": "Bay leaves",
+    "aliases": ["Bay leaf"],
+    "preparation": "plain"
+  },
+  {
+    "id": "beef-bouillon-cube",
+    "label": "Beef bouillon cube",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "beef-broth",
+    "label": "Beef broth",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "beef-chuck-roast",
+    "label": "Beef chuck roast",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "beer",
+    "label": "Beer",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "beets",
+    "label": "Beets",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "bell-peppers",
+    "label": "Bell peppers",
+    "aliases": ["Bell pepper"],
+    "preparation": "raw"
+  },
+  {
+    "id": "black-beans",
+    "label": "Black beans",
+    "aliases": ["Black bean", "Canned black beans"],
+    "preparation": "unknown"
+  },
+  {
+    "id": "black-pepper",
+    "label": "Black pepper",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "black-peppercorns",
+    "label": "Black peppercorns",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "black-eyed-peas",
+    "label": "Black-eyed peas",
+    "aliases": ["Black eyed peas"],
+    "preparation": "unknown"
+  },
+  {
+    "id": "broccoli",
+    "label": "Broccoli",
+    "aliases": ["Broccoli florets"],
+    "preparation": "raw"
+  },
+  {
+    "id": "brown-lentils",
+    "label": "Brown lentils",
+    "aliases": ["Dry brown lentils"],
+    "preparation": "dry"
+  },
+  {
+    "id": "brown-mushrooms",
+    "label": "Brown mushrooms",
+    "aliases": ["Baby bella mushrooms"],
+    "parent": "mushrooms",
+    "preparation": "raw"
+  },
+  {
+    "id": "brown-rice",
+    "label": "Brown rice",
+    "aliases": ["Cooked brown rice"],
+    "parent": "rice",
+    "preparation": "dry"
+  },
+  {
+    "id": "brown-sugar",
+    "label": "Brown sugar",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "brussels-sprouts",
+    "label": "Brussels sprouts",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "butter",
+    "label": "Butter",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "buttermilk",
+    "label": "Buttermilk",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "cabbage",
+    "label": "Cabbage",
+    "aliases": ["Green cabbage", "Green cabbage head"],
+    "preparation": "raw"
+  },
+  {
+    "id": "canned-mild-green-chiles",
+    "label": "Canned mild green chiles",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "canned-tuna",
+    "label": "Canned tuna",
+    "aliases": ["Tuna"],
+    "preparation": "canned"
+  },
+  {
+    "id": "cannellini-beans",
+    "label": "Cannellini beans",
+    "aliases": ["Cannellini bean"],
+    "preparation": "unknown"
+  },
+  {
+    "id": "canola-oil",
+    "label": "Canola oil",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "capers",
+    "label": "Capers",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "caraway-seeds",
+    "label": "Caraway seeds",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "carrots",
+    "label": "Carrots",
+    "aliases": ["Carrot"],
+    "preparation": "raw"
+  },
+  {
+    "id": "cauliflower",
+    "label": "Cauliflower",
+    "aliases": ["Cauliflower florets"],
+    "preparation": "raw"
+  },
+  {
+    "id": "cauliflower-head",
+    "label": "Cauliflower head",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "cayenne-pepper",
+    "label": "Cayenne pepper",
+    "aliases": ["Cayenne"],
+    "preparation": "plain"
+  },
+  {
+    "id": "celery",
+    "label": "Celery",
+    "aliases": ["Celery ribs"],
+    "preparation": "raw"
+  },
+  {
+    "id": "cheddar-cheese",
+    "label": "Cheddar cheese",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "chicken",
+    "label": "Chicken",
+    "aliases": ["Cooked chicken"],
+    "preparation": "raw"
+  },
+  {
+    "id": "chicken-breast",
+    "label": "Chicken breast",
+    "aliases": ["Chicken breasts"],
+    "parent": "chicken",
+    "preparation": "raw"
+  },
+  {
+    "id": "chicken-broth",
+    "label": "Chicken broth",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "chicken-thighs",
+    "label": "Chicken thighs",
+    "aliases": ["Chicken thigh"],
+    "parent": "chicken",
+    "preparation": "raw"
+  },
+  {
+    "id": "chickpeas",
+    "label": "Chickpeas",
+    "aliases": ["Chickpea", "Garbanzo beans", "Garbanzo bean"],
+    "preparation": "unknown"
+  },
+  {
+    "id": "chili-garlic-sauce",
+    "label": "Chili garlic sauce",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "chili-paste",
+    "label": "Chili paste",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "chili-powder",
+    "label": "Chili powder",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "chili-sauce",
+    "label": "Chili sauce",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "cilantro",
+    "label": "Cilantro",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "cinnamon",
+    "label": "Cinnamon",
+    "aliases": ["Ground cinnamon"],
+    "preparation": "plain"
+  },
+  {
+    "id": "coconut-milk",
+    "label": "Coconut milk",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "coconut-oil",
+    "label": "Coconut oil",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "condensed-cheddar-cheese-soup",
+    "label": "Condensed cheddar cheese soup",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "condensed-cream-of-chicken-soup",
+    "label": "Condensed cream of chicken soup",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "condensed-cream-of-mushroom-soup",
+    "label": "Condensed cream of mushroom soup",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "condensed-french-onion-soup",
+    "label": "Condensed French onion soup",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "condensed-tomato-soup",
+    "label": "Condensed tomato soup",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "cooked-ham",
+    "label": "Cooked ham",
+    "aliases": ["Ham"],
+    "preparation": "cooked"
+  },
+  {
+    "id": "corn-kernels",
+    "label": "Corn kernels",
+    "aliases": ["Corn", "Frozen corn", "Frozen corn kernels"],
+    "preparation": "raw"
+  },
+  {
+    "id": "corn-tortillas",
+    "label": "Corn tortillas",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "cornmeal",
+    "label": "Cornmeal",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "cornstarch",
+    "label": "Cornstarch",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "cream-cheese",
+    "label": "Cream cheese",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "creamed-corn",
+    "label": "Creamed corn",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "crispy-fried-onions",
+    "label": "Crispy fried onions",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "crushed-red-pepper",
+    "label": "Crushed red pepper",
+    "aliases": ["Red pepper flakes"],
+    "preparation": "plain"
+  },
+  {
+    "id": "crushed-tomatoes",
+    "label": "Crushed tomatoes",
+    "aliases": [],
+    "preparation": "canned",
+    "parent": "tomatoes"
+  },
+  {
+    "id": "cucumber",
+    "label": "Cucumber",
+    "aliases": ["Cucumbers"],
+    "preparation": "raw"
+  },
+  {
+    "id": "cumin",
+    "label": "Cumin",
+    "aliases": ["Ground cumin"],
+    "preparation": "plain"
+  },
+  {
+    "id": "curry-powder",
+    "label": "Curry powder",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "diced-tomatoes",
+    "label": "Diced tomatoes",
+    "aliases": ["Canned diced tomatoes", "Canned petite diced tomatoes", "Petite diced tomatoes"],
+    "preparation": "canned",
+    "parent": "tomatoes"
+  },
+  {
+    "id": "diced-tomatoes-with-chilies",
+    "label": "Diced tomatoes with chilies",
+    "aliases": ["Canned diced tomatoes with chilies"],
+    "preparation": "canned"
+  },
+  {
+    "id": "dijon-mustard",
+    "label": "Dijon mustard",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "dill",
+    "label": "Dill",
+    "aliases": ["Dried dill"],
+    "preparation": "raw"
+  },
+  {
+    "id": "dill-pickle-juice",
+    "label": "Dill pickle juice",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "dill-pickles",
+    "label": "Dill pickles",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "dried-cranberries",
+    "label": "Dried cranberries",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "dry-mustard-powder",
+    "label": "Dry mustard powder",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "dry-white-wine",
+    "label": "Dry white wine",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "eggs",
+    "label": "Eggs",
+    "aliases": ["Egg"],
+    "preparation": "plain"
+  },
+  {
+    "id": "elbow-macaroni",
+    "label": "Elbow macaroni",
+    "aliases": ["Macaroni"],
+    "parent": "pasta",
+    "preparation": "dry"
+  },
+  {
+    "id": "english-cucumber",
+    "label": "English cucumber",
+    "aliases": [],
+    "parent": "cucumber",
+    "preparation": "raw"
+  },
+  {
+    "id": "evaporated-milk",
+    "label": "Evaporated milk",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "feta",
+    "label": "Feta",
+    "aliases": ["Feta cheese"],
+    "preparation": "plain"
+  },
+  {
+    "id": "fingerling-potatoes",
+    "label": "Fingerling potatoes",
+    "aliases": ["Fingerling potato"],
+    "parent": "potatoes",
+    "preparation": "raw"
+  },
+  {
+    "id": "fire-roasted-diced-tomatoes",
+    "label": "Fire roasted diced tomatoes",
+    "aliases": [],
+    "preparation": "canned",
+    "parent": "tomatoes"
+  },
+  {
+    "id": "flour-tortillas",
+    "label": "Flour tortillas",
+    "aliases": ["8-inch flour tortillas"],
+    "preparation": "plain"
+  },
+  {
+    "id": "frozen-green-beans",
+    "label": "Frozen green beans",
+    "aliases": [],
+    "preparation": "frozen"
+  },
+  {
+    "id": "fusilli",
+    "label": "Fusilli",
+    "aliases": [],
+    "parent": "pasta",
+    "preparation": "dry"
+  },
+  {
+    "id": "garlic",
+    "label": "Garlic",
+    "aliases": ["Garlic cloves", "Garlic clove"],
+    "preparation": "raw"
+  },
+  {
+    "id": "garlic-bulb",
+    "label": "Garlic bulb",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "garlic-powder",
+    "label": "Garlic powder",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "ginger",
+    "label": "Ginger",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "gluten-free-pasta",
+    "label": "Gluten-free pasta",
+    "aliases": [],
+    "parent": "pasta",
+    "preparation": "dry"
+  },
+  {
+    "id": "granulated-sugar",
+    "label": "Granulated sugar",
+    "aliases": ["Sugar"],
+    "preparation": "plain"
+  },
+  {
+    "id": "grape-tomatoes",
+    "label": "Grape tomatoes",
+    "aliases": ["Grape tomato"],
+    "parent": "tomatoes",
+    "preparation": "raw"
+  },
+  {
+    "id": "green-beans",
+    "label": "Green beans",
+    "aliases": ["Frozen cut green beans", "Green bean"],
+    "preparation": "raw"
+  },
+  {
+    "id": "green-bell-pepper",
+    "label": "Green bell pepper",
+    "aliases": [],
+    "parent": "bell-peppers",
+    "preparation": "raw"
+  },
+  {
+    "id": "green-onions",
+    "label": "Green onions",
+    "aliases": ["Green onion", "Green onions sliced", "Scallions", "Scallion"],
+    "preparation": "raw"
+  },
+  {
+    "id": "ground-beef",
+    "label": "Ground beef",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "ground-pork",
+    "label": "Ground pork",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "ground-sage",
+    "label": "Ground sage",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "gruyere-cheese",
+    "label": "Gruyere cheese",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "half-and-half",
+    "label": "Half-and-half",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "hamburger-buns",
+    "label": "Hamburger buns",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "hash-browns",
+    "label": "Hash browns",
+    "aliases": [],
+    "preparation": "frozen"
+  },
+  {
+    "id": "heavy-cream",
+    "label": "Heavy cream",
+    "aliases": ["Heavy whipping cream"],
+    "preparation": "plain"
+  },
+  {
+    "id": "herbs",
+    "label": "Herbs",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "honey",
+    "label": "Honey",
+    "aliases": ["Raw honey", "Unfiltered honey", "Raw unfiltered honey"],
+    "preparation": "plain"
+  },
+  {
+    "id": "honey-mustard-sauce",
+    "label": "Honey mustard sauce",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "italian-bread-crumbs",
+    "label": "Italian bread crumbs",
+    "aliases": ["Italian breadcrumbs"],
+    "preparation": "plain"
+  },
+  {
+    "id": "italian-sausage",
+    "label": "Italian sausage",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "italian-seasoning",
+    "label": "Italian seasoning",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "jalape-o",
+    "label": "Jalapeño",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "jasmine-rice",
+    "label": "Jasmine rice",
+    "aliases": [],
+    "parent": "rice",
+    "preparation": "dry"
+  },
+  {
+    "id": "jiffy-corn-muffin-mix",
+    "label": "Jiffy Corn Muffin Mix",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "kale",
+    "label": "Kale",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "ketchup",
+    "label": "Ketchup",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "kidney-beans",
+    "label": "Kidney beans",
+    "aliases": ["Kidney bean", "Red kidney beans", "Canned red kidney beans"],
+    "preparation": "unknown"
+  },
+  {
+    "id": "lasagna-noodles",
+    "label": "Lasagna noodles",
+    "aliases": [],
+    "parent": "pasta",
+    "preparation": "dry"
+  },
+  {
+    "id": "lemon",
+    "label": "Lemon",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "lemon-juice",
+    "label": "Lemon juice",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "lemon-zest",
+    "label": "Lemon zest",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "lime",
+    "label": "Lime",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "long-grain-rice",
+    "label": "Long-grain rice",
+    "aliases": [],
+    "parent": "rice",
+    "preparation": "dry"
+  },
+  {
+    "id": "lump-crab-meat",
+    "label": "Lump crab meat",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "marinara-sauce",
+    "label": "Marinara sauce",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "mayonnaise",
+    "label": "Mayonnaise",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "milk",
+    "label": "Milk",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "miniature-marshmallows",
+    "label": "Miniature marshmallows",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "mint",
+    "label": "Mint",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "mixed-vegetables",
+    "label": "Mixed vegetables",
+    "aliases": ["Frozen mixed vegetables"],
+    "preparation": "raw"
+  },
+  {
+    "id": "mozzarella-cheese",
+    "label": "Mozzarella cheese",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "mushrooms",
+    "label": "Mushrooms",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "old-bay-seasoning",
+    "label": "Old Bay seasoning",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "olive-oil",
+    "label": "Olive oil",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "onion-powder",
+    "label": "Onion powder",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "onions",
+    "label": "Onions",
+    "aliases": ["Onion"],
+    "preparation": "raw"
+  },
+  {
+    "id": "oregano",
+    "label": "Oregano",
+    "aliases": ["Dried oregano"],
+    "preparation": "raw"
+  },
+  {
+    "id": "orzo",
+    "label": "Orzo",
+    "aliases": [],
+    "parent": "pasta",
+    "preparation": "dry"
+  },
+  {
+    "id": "oyster-sauce",
+    "label": "Oyster sauce",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "pancetta-slices",
+    "label": "Pancetta slices",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "panko-bread-crumbs",
+    "label": "Panko bread crumbs",
+    "aliases": ["Panko breadcrumbs"],
+    "preparation": "plain"
+  },
+  {
+    "id": "paprika",
+    "label": "Paprika",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "parmesan-cheese",
+    "label": "Parmesan cheese",
+    "aliases": ["Parmesan"],
+    "preparation": "plain"
+  },
+  {
+    "id": "parsley",
+    "label": "Parsley",
+    "aliases": ["Dried parsley"],
+    "preparation": "raw"
+  },
+  {
+    "id": "pasta",
+    "label": "Pasta",
+    "aliases": ["Dry pasta"],
+    "preparation": "dry"
+  },
+  {
+    "id": "pasta-sauce",
+    "label": "Pasta sauce",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "peanut-butter",
+    "label": "Peanut butter",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "peanuts",
+    "label": "Peanuts",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "peas",
+    "label": "Peas",
+    "aliases": ["Green peas", "Frozen green peas"],
+    "preparation": "raw"
+  },
+  {
+    "id": "pecans",
+    "label": "Pecans",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "penne-pasta",
+    "label": "Penne pasta",
+    "aliases": ["Penne"],
+    "parent": "pasta",
+    "preparation": "dry"
+  },
+  {
+    "id": "pepper-jack-cheese",
+    "label": "Pepper jack cheese",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "pickles",
+    "label": "Pickles",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "pie-crust",
+    "label": "Pie crust",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "pineapple-chunks",
+    "label": "Pineapple chunks",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "pineapple-juice",
+    "label": "Pineapple juice",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "pinto-beans",
+    "label": "Pinto beans",
+    "aliases": ["Pinto bean"],
+    "preparation": "unknown"
+  },
+  {
+    "id": "pork-chops",
+    "label": "Pork chops",
+    "aliases": ["Pork chop"],
+    "preparation": "raw"
+  },
+  {
+    "id": "pork-sausage",
+    "label": "Pork sausage",
+    "aliases": ["Cooked pork sausage"],
+    "preparation": "raw"
+  },
+  {
+    "id": "pork-tenderloin",
+    "label": "Pork tenderloin",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "potatoes",
+    "label": "Potatoes",
+    "aliases": ["Potato"],
+    "preparation": "raw"
+  },
+  {
+    "id": "poultry-seasoning",
+    "label": "Poultry seasoning",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "raisins",
+    "label": "Raisins",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "ramen-noodles",
+    "label": "Ramen noodles",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "red-bell-pepper",
+    "label": "Red bell pepper",
+    "aliases": [],
+    "parent": "bell-peppers",
+    "preparation": "raw"
+  },
+  {
+    "id": "red-cabbage",
+    "label": "Red cabbage",
+    "aliases": [],
+    "parent": "cabbage",
+    "preparation": "raw"
+  },
+  {
+    "id": "red-lentils",
+    "label": "Red lentils",
+    "aliases": [],
+    "preparation": "dry"
+  },
+  {
+    "id": "red-onions",
+    "label": "Red onions",
+    "aliases": ["Red onion"],
+    "parent": "onions",
+    "preparation": "raw"
+  },
+  {
+    "id": "red-potatoes",
+    "label": "Red potatoes",
+    "aliases": ["Red potato"],
+    "parent": "potatoes",
+    "preparation": "raw"
+  },
+  {
+    "id": "red-wine",
+    "label": "Red wine",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "red-wine-vinegar",
+    "label": "Red wine vinegar",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "rice",
+    "label": "Rice",
+    "aliases": ["Cooked rice", "Microwaveable rice", "Microwavable rice", "Ready rice"],
+    "preparation": "dry"
+  },
+  {
+    "id": "rice-vinegar",
+    "label": "Rice vinegar",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "ricotta-cheese",
+    "label": "Ricotta cheese",
+    "aliases": ["Ricotta"],
+    "preparation": "plain"
+  },
+  {
+    "id": "roma-tomatoes",
+    "label": "Roma tomatoes",
+    "aliases": ["Roma tomato"],
+    "parent": "tomatoes",
+    "preparation": "raw"
+  },
+  {
+    "id": "romaine-lettuce",
+    "label": "Romaine lettuce",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "rosemary",
+    "label": "Rosemary",
+    "aliases": ["Dried rosemary"],
+    "preparation": "raw"
+  },
+  {
+    "id": "russet-potatoes",
+    "label": "Russet potatoes",
+    "aliases": ["Baking potatoes", "Russet potato"],
+    "parent": "potatoes",
+    "preparation": "raw"
+  },
+  {
+    "id": "salsa",
+    "label": "Salsa",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "salt",
+    "label": "Salt",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "seasoned-bread-crumbs",
+    "label": "Seasoned bread crumbs",
+    "aliases": ["Seasoned breadcrumbs"],
+    "preparation": "plain"
+  },
+  {
+    "id": "seasoned-salt",
+    "label": "Seasoned salt",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "shells",
+    "label": "Shells",
+    "aliases": [],
+    "parent": "pasta",
+    "preparation": "dry"
+  },
+  {
+    "id": "short-grain-rice",
+    "label": "Short-grain rice",
+    "aliases": [],
+    "parent": "rice",
+    "preparation": "dry"
+  },
+  {
+    "id": "shrimp",
+    "label": "Shrimp",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "smoked-paprika",
+    "label": "Smoked paprika",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "sour-cream",
+    "label": "Sour cream",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "soy-sauce",
+    "label": "Soy sauce",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "spaghetti",
+    "label": "Spaghetti",
+    "aliases": [],
+    "parent": "pasta",
+    "preparation": "dry"
+  },
+  {
+    "id": "spaghetti-squash",
+    "label": "Spaghetti squash",
+    "aliases": ["Cooked spaghetti squash"],
+    "preparation": "raw"
+  },
+  {
+    "id": "spinach",
+    "label": "Spinach",
+    "aliases": ["Baby spinach"],
+    "preparation": "raw"
+  },
+  {
+    "id": "sriracha",
+    "label": "Sriracha",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "stewing-beef",
+    "label": "Stewing beef",
+    "aliases": [],
+    "preparation": "raw"
+  },
+  {
+    "id": "stuffing-mix",
+    "label": "Stuffing mix",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "sun-dried-tomatoes",
+    "label": "Sun dried tomatoes",
+    "aliases": [],
+    "preparation": "dry",
+    "parent": "tomatoes"
+  },
+  {
+    "id": "sunflower-seeds",
+    "label": "Sunflower seeds",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "sweet-potatoes",
+    "label": "Sweet potatoes",
+    "aliases": ["Sweet potato"],
+    "preparation": "raw"
+  },
+  {
+    "id": "sweet-relish",
+    "label": "Sweet relish",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "taco-seasoning",
+    "label": "Taco seasoning",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "tahini",
+    "label": "Tahini",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "thyme",
+    "label": "Thyme",
+    "aliases": ["Dried thyme", "Dried thyme leaves"],
+    "preparation": "raw"
+  },
+  {
+    "id": "tilapia-filets",
+    "label": "Tilapia filets",
+    "aliases": ["Tilapia fillets"],
+    "preparation": "raw"
+  },
+  {
+    "id": "toasted-sesame-oil",
+    "label": "Toasted sesame oil",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "tomato-paste",
+    "label": "Tomato paste",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "tomato-sauce",
+    "label": "Tomato sauce",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "tomatoes",
+    "label": "Tomatoes",
+    "aliases": ["Tomato", "Ripe tomatoes"],
+    "preparation": "raw"
+  },
+  {
+    "id": "tortilla-chips",
+    "label": "Tortilla chips",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "vanilla-extract",
+    "label": "Vanilla extract",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "vegetable-broth",
+    "label": "Vegetable broth",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "vegetable-oil",
+    "label": "Vegetable oil",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "white-onions",
+    "label": "White onions",
+    "aliases": ["White onion"],
+    "parent": "onions",
+    "preparation": "raw"
+  },
+  {
+    "id": "white-rice",
+    "label": "White rice",
+    "aliases": ["Cooked white rice"],
+    "parent": "rice",
+    "preparation": "dry"
+  },
+  {
+    "id": "white-vinegar",
+    "label": "White vinegar",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "white-wine",
+    "label": "White wine",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "whole-chicken",
+    "label": "Whole chicken",
+    "aliases": [],
+    "parent": "chicken",
+    "preparation": "raw"
+  },
+  {
+    "id": "whole-milk",
+    "label": "Whole milk",
+    "aliases": [],
+    "preparation": "plain",
+    "parent": "milk"
+  },
+  {
+    "id": "whole-tomatoes",
+    "label": "Whole tomatoes",
+    "aliases": ["Canned tomatoes"],
+    "preparation": "canned",
+    "parent": "tomatoes"
+  },
+  {
+    "id": "whole-wheat-pasta",
+    "label": "Whole wheat pasta",
+    "aliases": [],
+    "parent": "pasta",
+    "preparation": "dry"
+  },
+  {
+    "id": "whole-wheat-spaghetti",
+    "label": "Whole wheat spaghetti",
+    "aliases": [],
+    "parent": "pasta",
+    "preparation": "dry"
+  },
+  {
+    "id": "wild-rice",
+    "label": "Wild rice",
+    "aliases": [],
+    "preparation": "dry"
+  },
+  {
+    "id": "worcestershire-sauce",
+    "label": "Worcestershire sauce",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "yellow-bell-pepper",
+    "label": "Yellow bell pepper",
+    "aliases": [],
+    "parent": "bell-peppers",
+    "preparation": "raw"
+  },
+  {
+    "id": "yellow-mustard",
+    "label": "Yellow mustard",
+    "aliases": [],
+    "preparation": "plain"
+  },
+  {
+    "id": "yellow-onions",
+    "label": "Yellow onions",
+    "aliases": ["Yellow onion"],
+    "parent": "onions",
+    "preparation": "raw"
+  },
+  {
+    "id": "yukon-gold-potatoes",
+    "label": "Yukon gold potatoes",
+    "aliases": ["Yukon gold potato"],
+    "parent": "potatoes",
+    "preparation": "raw"
+  },
+  {
+    "id": "ziti",
+    "label": "Ziti",
+    "aliases": [],
+    "parent": "pasta",
+    "preparation": "dry"
+  },
+  {
+    "id": "zucchini",
+    "label": "Zucchini",
+    "aliases": [],
+    "preparation": "raw"
+  }
+]
