@@ -3,8 +3,9 @@ import { cloudRequest, syncAllowed } from './sync-request';
 import { syncBatch } from './sync-batch';
 import { reconcile } from './reconcile';
 import { getAccount, getKitchen, updateKitchen } from './store';
+import { localTesting } from '../local-testing';
 
-const api = import.meta.env.VITE_API_URL as string | undefined;
+const api = localTesting ? undefined : (import.meta.env.VITE_API_URL as string | undefined);
 let running: Promise<void> | null = null;
 export type SyncStatus = 'local' | 'offline' | 'syncing' | 'synced' | 'error' | 'signin';
 let status: SyncStatus = api ? 'signin' : 'local';

@@ -30,6 +30,35 @@ export const suggestionOutputSchema = z.strictObject({
     .max(3),
 });
 export type SuggestionOutput = z.infer<typeof suggestionOutputSchema>;
+export function generationSchema(inventoryNames: string[]) {
+  const additions = [
+    'Salt',
+    'Black pepper',
+    'Olive oil',
+    'Garlic',
+    'Onion',
+    'Tomatoes',
+    'Cheese',
+    'Lemon juice',
+    'Vegetable broth',
+    'Cumin',
+    'Paprika',
+  ];
+  const allowed = [...new Set([...inventoryNames, ...additions.filter(isRecipeFoodName)])];
+  const recipe = suggestionOutputSchema.shape.recipes.element;
+  return suggestionOutputSchema.extend({
+    recipes: z
+      .array(
+        recipe.extend({
+          ingredients: z
+            .array(ingredient.extend({ name: z.enum(allowed) }))
+            .min(1)
+            .max(8),
+        }),
+      )
+      .max(1),
+  });
+}
 const unsafeText =
   /(?:https?:|www\.|[<>]|\b(?:bleach|detergent|soap|shampoo|disinfectant|pesticide|batter(?:y|ies)|tobacco|medicine|medication|toilet|napkins|paper towels|cleaning|antifreeze|poison|cure|calories|nutrition|diabet(?:es|ic)|allergen[- ]free)\b)/i;
 const stockClaims =

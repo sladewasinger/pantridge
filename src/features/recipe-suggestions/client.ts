@@ -1,5 +1,6 @@
 import { getToken } from '../../auth/session';
 import { getAccount } from '../../data/store';
+import { localTesting } from '../../local-testing';
 import {
   recipeSuggestionRequestSchema,
   recipeSuggestionResultSchema,
@@ -7,7 +8,7 @@ import {
 } from '../../domain/recipe-suggestions/model';
 
 function requireAccount(account: string) {
-  if (account === 'local' || account !== getAccount())
+  if ((account === 'local' && !localTesting) || account !== getAccount())
     throw new Error('Sign in with Google to suggest recipes.');
 }
 export async function requestRecipeSuggestions(

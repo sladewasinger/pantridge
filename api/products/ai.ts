@@ -40,7 +40,7 @@ export async function requestStructured(
     instructions: string;
     input: unknown;
     // Server-only recipe allowance; callers cannot select a provider or raise shared quotas.
-    maxOutputTokens?: 2048;
+    maxOutputTokens?: 1536 | 2048;
   },
 ): Promise<unknown> {
   if (process.env.CLASSIFIER_PROVIDER !== 'openai') return null;

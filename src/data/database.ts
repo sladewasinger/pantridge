@@ -1,6 +1,7 @@
 import { openDB, type DBSchema } from 'idb';
 import type { Mutation } from '../domain/commands';
 import { emptySnapshot, type Snapshot } from '../domain/model';
+import { localTesting } from '../local-testing';
 
 export interface StoredKitchen {
   data: Snapshot;
@@ -12,7 +13,7 @@ interface KitchenDatabase extends DBSchema {
   kitchens: { key: string; value: StoredKitchen };
 }
 const database = () =>
-  openDB<KitchenDatabase>('pantridge-v1', 1, {
+  openDB<KitchenDatabase>(localTesting ? 'pantridge-local-test-v1' : 'pantridge-v1', 1, {
     upgrade(db) {
       db.createObjectStore('kitchens');
     },

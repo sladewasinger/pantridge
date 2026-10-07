@@ -8,6 +8,7 @@ import { Modal } from '../../ui/Modal';
 import { RecipeEditor } from '../cookbook/RecipeEditor';
 import { recipeMeta, todayLocal } from '../cookbook/presentation';
 import { useRecipeSuggestions } from './useRecipeSuggestions';
+import { requiresSignIn } from '../../local-testing';
 
 export function RecipeSuggestions({ onClose }: { onClose: () => void }) {
   const { data } = useKitchen();
@@ -46,7 +47,7 @@ export function RecipeSuggestions({ onClose }: { onClose: () => void }) {
         <p className="muted">
           {request.inventory.length} ingredient types included. Dates do not guarantee freshness.
         </p>
-        {suggestions.account === 'local' && (
+        {requiresSignIn(suggestions.account) && (
           <p className="muted">Sign in with Google from Settings to suggest recipes.</p>
         )}
         {suggestions.error && (
@@ -57,7 +58,7 @@ export function RecipeSuggestions({ onClose }: { onClose: () => void }) {
         <button
           className="primary full"
           disabled={
-            suggestions.busy || suggestions.account === 'local' || !request.inventory.length
+            suggestions.busy || requiresSignIn(suggestions.account) || !request.inventory.length
           }
           onClick={() => void suggestions.generate()}
         >

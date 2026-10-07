@@ -3,9 +3,10 @@ import { getAccount, getKitchen } from '../../data/store';
 import { normalizeBarcode } from '../../domain/products/barcode';
 import { rememberedProduct } from '../../domain/products/variants';
 import { lookupSchema, type Lookup } from '../../domain/products/lookup';
+import { localTesting } from '../../local-testing';
 
 export function requireScanAccount(account: string) {
-  if (account === 'local' || getAccount() !== account)
+  if ((account === 'local' && !localTesting) || getAccount() !== account)
     throw new Error('Sign in with Google to scan food.');
 }
 export async function resolveBarcode(
