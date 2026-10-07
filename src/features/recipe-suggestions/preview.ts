@@ -5,7 +5,7 @@ import { getRecipeAvailability } from '../../domain/recipes/availability';
 
 export function suggestionHint(data: Snapshot, recipe: Recipe, today: string) {
   if (ingredientChoices(data, recipe, today).length)
-    return 'Choose your ingredients during review.';
+    return 'Choose your stocked ingredients when saving.';
   const match = getRecipeAvailability(data, recipe, recipe.servings, today);
   if (match.pastDate > 0) return 'Check past-date ingredients before using matching stock.';
   if (match.status === 'confirmed') return 'Ingredient amounts match your stock.';

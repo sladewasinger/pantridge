@@ -98,30 +98,50 @@ test('generic recipe ingredients require a compatible stock choice before saving
   await page.getByRole('button', { name: 'Open cookbook', exact: true }).click();
   await page.getByRole('button', { name: 'Suggest with AI', exact: true }).click();
   await page.getByRole('button', { name: 'Suggest recipes', exact: true }).click();
-  await page.getByRole('button', { name: 'Review recipe', exact: true }).click();
+  await page.getByRole('button', { name: 'View recipe', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: idea.title, exact: true })).toBeVisible();
+  await expect(
+    page.getByRole('dialog', { name: idea.title, exact: true }).getByRole('combobox'),
+  ).toHaveCount(0);
+  await expect(page.getByRole('region', { name: 'Recipe ingredients', exact: true })).toContainText(
+    'Canned beans',
+  );
+  await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
   await expect(page.getByRole('dialog', { name: 'Choose ingredients' })).toBeVisible();
-  await page.getByRole('button', { name: 'Review recipe', exact: true }).click();
+  await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('Choose a stocked food');
   const choice = page.getByRole('combobox', { name: 'Food for Canned beans' });
   await expect(choice.locator('option')).toHaveCount(3);
   await choice.selectOption('Canned pinto beans');
+  await expect(choice).toHaveValue('Canned pinto beans');
   await expect(page.getByRole('alert')).toHaveCount(0);
-  await page.getByRole('button', { name: 'Review recipe', exact: true }).click();
-  await expect(page.getByRole('textbox', { name: 'Name', exact: true })).toHaveValue(
-    'Canned pinto beans',
-  );
-  await page.getByRole('button', { name: 'Cancel', exact: true }).click();
+  await page.getByRole('button', { name: 'Back to recipe', exact: true }).click();
+  await page.getByRole('button', { name: 'Close', exact: true }).click();
   await expect(page.getByRole('dialog', { name: 'Suggest with AI' })).toBeVisible();
   expect((await readKitchen(page, owner)).recipes).toEqual(data.recipes);
-  await page.getByRole('button', { name: 'Review recipe', exact: true }).click();
+  await page.getByRole('button', { name: 'View recipe', exact: true }).click();
+  await page.getByRole('button', { name: 'Edit recipe', exact: true }).click();
+  await expect(page.getByRole('textbox', { name: 'Name', exact: true })).toHaveValue(
+    'Canned beans',
+  );
+  await page
+    .getByRole('textbox', { name: 'Recipe name', exact: true })
+    .fill('My flexible bean bowl');
+  await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: 'Choose ingredients' })).toBeVisible();
   await page
     .getByRole('combobox', { name: 'Food for Canned beans' })
     .selectOption('Canned black beans');
-  await page.getByRole('button', { name: 'Review recipe', exact: true }).click();
   await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
-  const saved = await readKitchen(page, owner);
-  expect(saved.recipes?.find((recipe) => recipe.title === idea.title)?.ingredients[0]!.name).toBe(
+  await expect(
+    page.getByRole('dialog', { name: 'My flexible bean bowl', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Recipe ingredients', exact: true })).toContainText(
     'Canned black beans',
   );
+  const saved = await readKitchen(page, owner);
+  expect(
+    saved.recipes?.find((recipe) => recipe.title === 'My flexible bean bowl')?.ingredients[0]!.name,
+  ).toBe('Canned black beans');
   expect(saved.stock).toEqual(data.stock);
 });

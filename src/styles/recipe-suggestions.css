@@ -28,3 +28,55 @@
   font-size: 11px;
   margin-top: 5px;
 }
+.suggestion-preview .recipe-meta {
+  margin-top: 0;
+}
+.suggestion-preview h3 {
+  font-size: 22px;
+  margin: 18px 0 10px;
+}
+.suggestion-preview-ingredients {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.suggestion-preview-ingredients li {
+  padding: 8px 0;
+  border-top: 1px solid #e1dacb;
+}
+.suggestion-preview-ingredients li > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+}
+.suggestion-preview-ingredients li > div > span:first-child {
+  overflow-wrap: anywhere;
+}
+.suggestion-preview-ingredients li > div > span:last-child {
+  flex-shrink: 0;
+  color: #52644c;
+  font-variant-numeric: tabular-nums;
+}
+.suggestion-preview-ingredients small {
+  font-size: 12px;
+  color: #626b58;
+}
+.suggestion-preview-ingredients li > small {
+  display: block;
+}
+.suggestion-preview-details summary {
+  min-height: 44px;
+}
+.suggestion-preview-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.suggestion-preview-actions .primary {
+  flex: 1;
+}
+.suggestion-preview-footer > p {
+  font-size: 12px;
+  margin: 0 0 8px;
+}

@@ -169,9 +169,9 @@ food-name check; grouping never guesses brands or classifies a supply as edible.
 New requests send grouped names, cooking details and optional use-soon flags. Exact amounts,
 IDs, brands, dates, nutrition, shopping lists and account identity stay local. Presence does
 not assert enough stock. Original food names and package metadata remain unchanged. Generic
-AI ingredients require choosing a compatible stocked food before editor review/save; cooking
-then uses the existing exact-name and exact-lot checks. Changed stock is checked again when
-proceeding from the choice screen. Cancelling choices or review changes no inventory.
+AI ingredients require choosing a compatible stocked food when saving; cooking then uses the
+existing exact-name and exact-lot checks. Changed stock is checked again when proceeding from
+the choice screen. Cancelling choices or review changes no inventory.
 
 The request accepts at most 600 entries, matching snapshot food capacity, and retains the
 16,384-byte API body bound. Oversized lists are rejected with a visible error instead of
@@ -186,7 +186,13 @@ configuration. No new credentials, infrastructure permissions, or external tools
 
 Structured output is bounded, validated, and labeled AI-generated. The server creates IDs and
 never accepts model-supplied source URLs, inventory changes, or external actions. Preview
-results do not save themselves; users review a recipe in the editor and explicitly save it.
+results do not save themselves. View recipe opens a read-only recipe first: compact ingredient
+amounts, preparation notes and numbered cooking steps. Kitchen matches and substitutions are
+behind a disclosure. Save recipe and a secondary Edit action remain visible in a fixed footer.
+Saving retains the recipe view; editing is an explicit choice and returns to the view afterward.
+Generic ingredient choices appear only when needed to save, including optional edits; they cannot
+be bypassed through the editor. No stock is deducted by viewing, editing or saving. Slow save
+completion cannot dismiss a newer preview or editing session.
 Frontend requests abort on dismissal and verify the active account around token refresh and
 network completion. Kitchen matching always uses the current local inventory.
 

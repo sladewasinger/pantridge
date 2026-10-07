@@ -84,3 +84,27 @@ Publisher nutrition has incomplete coverage: one new chicken recipe omits carboh
 four original authored starters have no publisher nutrition. Unknown values are not invented.
 The bundled catalog adds client code/data and triggers Vite's existing 500 kB chunk-size warning;
 the limit was not raised. No application deployment or infrastructure change was performed.
+
+## AI recipe preview verification on October 6, 2026
+
+AI ideas now open as a read-only recipe instead of an editor or initial ingredient chooser.
+The preview has compact ingredients and preparation notes, numbered steps, a collapsed kitchen
+match/substitution section, and a fixed Save/Edit footer. Required generic-food choices occur
+when saving. Optional editing retains that choice validation and returns to view mode.
+
+`pnpm check` passed with 294 unit tests; the production-build Chromium suite passed 62 tests with
+one intentional skip. Updated browser assertions cover no visible input controls on initial
+preview, accessible disclosure, saving without editing, later editing, generic choice validation
+through either save path, unchanged stock, and two delayed-save/draft-preservation cases.
+
+A real request through the isolated local API returned Spinach, Mushroom, and Feta Frittata;
+Tomato, Bean, and Egg Skillet; and Lemon Salmon with Couscous and Asparagus. At 390×844, manual
+clicks opened the salmon recipe in the new view, expanded/collapsed kitchen matches, saved
+directly, then explicitly edited its title to Weeknight lemon salmon and returned to view.
+Displayed salmon and couscous stock remained 750 g, and asparagus remained 1,000 g.
+At 1280×900, the frittata opened in view mode before its Eggs/Egg choice appeared on Save;
+selecting Eggs saved it and returned to the read-only recipe. Existing shopping still had six
+unchecked rows. No cooking deduction or shopping addition was submitted. Grouping, request
+limits, timeout, authentication, credentials and deployment settings are unchanged.
+Reload preserved both newly saved recipes; search opened Weeknight lemon salmon in the normal
+saved-recipe view. Screenshots supplement these manual interactions rather than replacing them.

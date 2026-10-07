@@ -90,7 +90,7 @@ export function RecipeSuggestions({ onClose }: { onClose: () => void }) {
                 disabled={saved.has(recipe.id)}
                 onClick={() => setReview(recipe)}
               >
-                {saved.has(recipe.id) ? 'Saved' : 'Review recipe'}
+                {saved.has(recipe.id) ? 'Saved' : 'View recipe'}
               </button>
             </article>
           ))}

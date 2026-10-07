@@ -7,7 +7,15 @@ import { useMounted } from '../../ui/useMounted';
 import { IngredientEditor } from './IngredientEditor';
 import { parseRecipeDraft, recipeDraft, type RecipeDraft } from './editorState';
 
-export function RecipeEditor({ recipe, onClose }: { recipe?: Recipe; onClose: () => void }) {
+export function RecipeEditor({
+  recipe,
+  onClose,
+  onSave,
+}: {
+  recipe?: Recipe;
+  onClose: () => void;
+  onSave?: (recipe: Recipe) => Promise<void>;
+}) {
   const isMounted = useMounted();
   const [account] = useState(getAccount);
   const [draft, setDraft] = useState(() => recipeDraft(recipe));
@@ -25,8 +33,11 @@ export function RecipeEditor({ recipe, onClose }: { recipe?: Recipe; onClose: ()
             if (getAccount() !== account)
               throw new Error('Your kitchen changed. Reopen this recipe before saving.');
             const next = parseRecipeDraft(draft, recipe, id);
-            await dispatch({ type: 'recipe.save', recipe: next });
-            if (isMounted() && getAccount() === account) onClose();
+            if (onSave) await onSave(next);
+            else {
+              await dispatch({ type: 'recipe.save', recipe: next });
+              if (isMounted() && getAccount() === account) onClose();
+            }
           });
         }}
       >
