@@ -79,7 +79,7 @@ test('AI previews disclose transmission, require review/save and leave stock unc
     return route.fulfill({ json: { recipes: [result] } });
   });
   const initial = await signedKitchen(page);
-  await expect(page.getByText(/Sends up to 40 recognized food names/)).toBeVisible();
+  await expect(page.getByText(/Sends grouped food names, cooking details/)).toBeVisible();
   await page.getByRole('button', { name: 'Suggest recipes', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'AI egg supper', exact: true })).toBeVisible();
   expect((await recipes(page)).recipes?.some((recipe) => recipe.title === 'AI egg supper')).toBe(

@@ -76,15 +76,15 @@ export async function seedKitchen(page: Page, data = cookbookFixture()): Promise
   await page.reload();
   return data;
 }
-export async function readKitchen(page: Page): Promise<Snapshot> {
+export async function readKitchen(page: Page, account = 'local'): Promise<Snapshot> {
   return page.evaluate(
-    () =>
+    (subject) =>
       new Promise<Snapshot>((resolve, reject) => {
         const request = indexedDB.open('pantridge-v1', 1);
         request.onerror = () => reject(request.error);
         request.onsuccess = () => {
           const db = request.result;
-          const read = db.transaction('kitchens').objectStore('kitchens').get('local');
+          const read = db.transaction('kitchens').objectStore('kitchens').get(subject);
           read.onsuccess = () => {
             db.close();
             resolve((read.result as { data: Snapshot }).data);
@@ -95,6 +95,7 @@ export async function readKitchen(page: Page): Promise<Snapshot> {
           };
         };
       }),
+    account,
   );
 }
 export async function openRecipe(page: Page): Promise<void> {

@@ -64,10 +64,18 @@ const extraFoods = [
   'white rice',
   'basmati rice',
   'jasmine rice',
+  'long-grain rice',
+  'short-grain rice',
   'wild rice',
   'spaghetti',
   'penne',
   'macaroni',
+  'linguine',
+  'fettuccine',
+  'fusilli',
+  'rigatoni',
+  'gluten-free pasta',
+  'whole wheat pasta',
   'noodles',
   'couscous',
   'barley',
@@ -140,7 +148,7 @@ const names = new Set(
     .map(normalizeIngredientName),
 );
 const preparations =
-  /\b(fresh|frozen|canned|dried|cooked|raw|chopped|diced|sliced|grated|shredded|peeled|boneless|skinless|organic|unsalted|salted|drained|rinsed)\b/g;
+  /\b(fresh|frozen|canned|dried|dry|cooked|raw|uncooked|chopped|diced|sliced|grated|shredded|peeled|boneless|skinless|organic|unsalted|salted|drained|rinsed)\b/g;
 
 // Deliberately conservative: artwork or a food flag alone does not make a name edible.
 // Unknown brands, ambiguous custom labels, and nonfood text stay out of AI suggestions.

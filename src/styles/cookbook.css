@@ -49,11 +49,43 @@
   margin-bottom: 0;
 }
 .cookbook-modes {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   padding: 4px;
   border-radius: 12px;
   background: #e9e5d7;
   gap: 3px;
+}
+.recipe-index-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 56px;
+  padding: 12px 0;
+  border-top: 1px solid #dcd6c6;
+  background: transparent;
+  text-align: left;
+}
+.recipe-index-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.recipe-index-copy strong {
+  font:
+    18px/1.2 Georgia,
+    serif;
+}
+.recipe-index-copy > span {
+  color: #626b58;
+  font-size: 12px;
+}
+.recipe-index-row > svg {
+  flex-shrink: 0;
 }
 .cookbook-modes button {
   flex: 1;

@@ -4,6 +4,7 @@ import { useKitchen } from '../../data/store';
 import { getCookbookRecipes, getRecipes } from '../../domain/recipes/selectors';
 import { getRecipeAvailability } from '../../domain/recipes/availability';
 import { RecipeCard } from './RecipeCard';
+import { RecipeIndex } from './RecipeIndex';
 import { MealPlanList } from './MealPlanList';
 import { todayLocal } from './presentation';
 
@@ -21,11 +22,12 @@ export function Cookbook({
   onSuggest: () => void;
 }) {
   const { data } = useKitchen();
-  const [mode, setMode] = useState<'inventory' | 'use-up' | 'saved'>('inventory');
+  const [mode, setMode] = useState<'inventory' | 'use-up' | 'saved' | 'all'>('inventory');
   const saved = new Set(getRecipes(data).map((recipe) => recipe.id));
-  const matches = getCookbookRecipes(data)
+  const recipes = getCookbookRecipes(data)
     .filter((recipe) => recipe.title.toLowerCase().includes(query.trim().toLowerCase()))
-    .filter((recipe) => mode !== 'saved' || saved.has(recipe.id))
+    .filter((recipe) => mode !== 'saved' || saved.has(recipe.id));
+  const matches = (mode === 'all' ? [] : recipes)
     .map((recipe) => getRecipeAvailability(data, recipe, recipe.servings, todayLocal()))
     .sort((left, right) => {
       if (mode === 'use-up' && left.expiringSoon !== right.expiringSoon)
@@ -43,14 +45,19 @@ export function Cookbook({
     });
   return (
     <section className="cookbook-page" aria-label="Your cookbook">
-      <div className="cookbook-intro">
-        <img src="/art/cookbook.svg" alt="" />
-        <div>
-          <h2>What’s for dinner?</h2>
-          <p>Recipes for what you have.</p>
+      {mode !== 'all' && (
+        <div className="cookbook-intro">
+          <img src="/art/cookbook.svg" alt="" />
+          <div>
+            <h2>What’s for dinner?</h2>
+            <p>Recipes for what you have.</p>
+          </div>
         </div>
-      </div>
+      )}
       <div className="cookbook-modes" role="group" aria-label="Recipe order">
+        <button aria-pressed={mode === 'all'} onClick={() => setMode('all')}>
+          All recipes
+        </button>
         <button aria-pressed={mode === 'inventory'} onClick={() => setMode('inventory')}>
           Your kitchen
         </button>
@@ -80,15 +87,19 @@ export function Cookbook({
         </button>
       </div>
       <div className="recipe-list" aria-live="polite">
-        {matches.map((match) => (
-          <RecipeCard
-            key={match.recipe.id}
-            match={match}
-            saved={saved.has(match.recipe.id)}
-            onOpen={onOpen}
-          />
-        ))}
-        {!matches.length && (
+        {mode === 'all' ? (
+          <RecipeIndex recipes={recipes} onOpen={onOpen} />
+        ) : (
+          matches.map((match) => (
+            <RecipeCard
+              key={match.recipe.id}
+              match={match}
+              saved={saved.has(match.recipe.id)}
+              onOpen={onOpen}
+            />
+          ))
+        )}
+        {!recipes.length && (
           <div className="empty-state">
             <BookOpen size={30} />
             <h3>{query ? 'No recipes found' : 'Your pages are ready'}</h3>

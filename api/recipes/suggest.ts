@@ -21,9 +21,12 @@ const instructions = [
   'Return an empty recipes array if the foods are unclear, nonfood, or insufficient for a useful idea.',
   'Keep the description to one sentence, notes brief, and the method to three or four concise steps.',
   'Use exact inventory food names for ingredients drawn from it; preparation belongs in the ingredient note.',
+  'Inventory entries may represent food families. Details list available cooking styles, not exact quantities or interchangeable ingredients.',
+  'Use flexible recipes for rice and pasta families, following the chosen package cooking directions. Time may vary for brown rice or different pasta.',
+  'Canned, dried, cooked, raw and frozen forms remain distinct. Never treat dried beans as ready-to-eat beans; state preparation assumptions for unspecified forms.',
   'Include every food ingredient needed by the method, including oil, salt and seasonings. Water may be omitted.',
   'You may add common food ingredients, but never claim any ingredient is on hand or sufficient. The app checks availability separately.',
-  'Inventory quantities are declared amounts only. Unit package means an unknown-sized package, not a serving or known weight.',
+  'Entries without quantities mean presence only. Never infer enough stock or combine quantities across forms or units. Legacy quantities are declared amounts only; package size may be unknown.',
   'Do not infer conversions between mass, volume and counts, or assume a package size. Recipe amounts should use explicit recipe measures, never packages.',
   'Use mass or teaspoon/tablespoon measures for salt, seasonings, oils and butter; never use count for these ingredients.',
   'Propose modest quantities for 1 to 6 servings. State raw, cooked or canned ingredient assumptions in notes when important.',
@@ -39,7 +42,7 @@ function cacheKey(owner: string, request: RecipeSuggestionRequest) {
     JSON.stringify(left).localeCompare(JSON.stringify(right)),
   );
   return (
-    'private-recipes#v1#' +
+    'private-recipes#v2#' +
     createHash('sha256')
       .update(
         JSON.stringify([

@@ -5,6 +5,11 @@ kitchen isolation. Curated recipes are suggestions, separate from saved recipes 
 Opening a recipe, viewing a substitution, or adding a dated meal never changes stock. No paid
 AI/API call is required by these domain commands.
 
+The four built-in starters are authored in `src/domain/recipes/starters.ts`, not fetched from
+an external recipe service. **All recipes** is a compact alphabetical index of those starters
+and saved, written, imported and AI recipes, with source labels and the existing title search.
+Saving an edited starter replaces that starter's displayed entry rather than duplicating it.
+
 ## Backward-compatible data
 
 Snapshot version 1 now accepts optional `recipes` (100), `mealPlan` (180), and `cookingHistory`
@@ -118,14 +123,28 @@ only. Full release checks and application publication remain the separate main-b
 
 ## Optional AI recipe ideas
 
-Suggest with AI sends up to forty recognized food names, declared quantities and use-soon
-flags to the existing OpenAI service. It excludes supplies, unrecognized labels, zero stock,
-and lots past their recorded date. IDs, brands, exact dates, nutrition, shopping lists, and
-account identity are not included in the model input. An unknown package size stays unknown.
+Suggest with AI groups every eligible food record locally, without a forty-item alphabetical
+cutoff. Compatible bean and rice varieties and pasta shapes share family names. Canned,
+dried, cooked, raw, frozen and fresh names remain distinct; rice color/grain, pasta shape and
+freezer details are bounded enum flags. Different vegetables, tomato products, dietary pasta
+identities and milk types are not collapsed. Unknown labels still fail the existing conservative
+food-name check; grouping never guesses brands or classifies a supply as edible.
+
+New requests send grouped names, cooking details and optional use-soon flags. Exact amounts,
+IDs, brands, dates, nutrition, shopping lists and account identity stay local. Presence does
+not assert enough stock. Original food names and package metadata remain unchanged. Generic
+AI ingredients require choosing a compatible stocked food before editor review/save; cooking
+then uses the existing exact-name and exact-lot checks. Changed stock is checked again when
+proceeding from the choice screen. Cancelling choices or review changes no inventory.
+
+The request accepts at most 600 entries, matching snapshot food capacity, and retains the
+16,384-byte API body bound. Oversized lists are rejected with a visible error instead of
+silently dropping foods. Older clients' declared quantity/unit entries remain accepted.
 
 The request uses the existing authenticated product endpoint, SSM-held key, configured model,
-reasoning setting, per-user/global daily limits, and eight-second provider timeout. Recipes
-have a server-only 2,048-token output cap; existing product/nutrition request defaults remain
+reasoning setting and per-user/global daily limits. Recipes have a fifteen-second provider
+deadline and request up to three concise, distinct ideas within a server-only 2,048-token cap;
+product/nutrition requests retain their eight-second deadline and configured defaults. They remain
 unchanged. Cache entries are private to the account, inventory, use-up preference, and model
 configuration. No new credentials, infrastructure permissions, or external tools are added.
 
@@ -135,9 +154,13 @@ results do not save themselves; users review a recipe in the editor and explicit
 Frontend requests abort on dismissal and verify the active account around token refresh and
 network completion. Kitchen matching always uses the current local inventory.
 
-Provider behavior and authenticated browser flows are covered with mocks. Live provider
-latency/quality and a real Google callback remain separate release checks; no paid calls or
-production inventory changes are part of the local test suite.
+Provider behavior and authenticated browser flows are covered with mocks. The explicit
+`node scripts/local/benchmark.mjs` command requires the isolated local API and makes three paid
+calls under its normal quotas, using synthetic kitchens with 10, 40 and 200 distinct recognized
+food names. `--dry` validates/counts the fixtures without any API call. Results are written only
+under ignored `artifacts/local`. See `local-testing.md` for observed latency and manual evidence.
+A real Google callback remains a separate release check; the automated test suite uses mocks
+and never changes production inventory.
 
 ## Required manual release review
 
