@@ -1,6 +1,14 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+// Native Windows WebKit disables compositing by default. Enable it for this
+// storage-rendering file; other tests retain Playwright's stable defaults.
+test.use({
+  launchOptions:
+    process.platform === 'win32'
+      ? { ignoreDefaultArgs: ['--disable-accelerated-compositing'] }
+      : undefined,
+});
 test('hinged doors project in 3D without expanding the viewport and honor reduced motion', async ({
   page,
 }) => {

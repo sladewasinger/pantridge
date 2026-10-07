@@ -127,8 +127,8 @@ Ground beef stock after anonymous-to-signed-in navigation. Both failures repeate
 rerun and in an isolated archive of the unchanged `17df489` committed baseline using the same
 pinned dependencies. They predate these customization changes on this local WebKit runtime.
 Their causes remain unresolved; this is not a claim that the entire WebKit suite passed
-or that the change is release-ready. Chromium passed both assertions. Release remains blocked
-until the WebKit failures are understood and resolved.
+or that the change was release-ready at that point. Chromium passed both assertions. That run
+blocked release verification; the follow-up below records the causes and resolution.
 
 Four real requests used the loopback API and existing server-managed key with synthetic foods
 and preferences. Every request retained 200 eligible exact names inside 177 compatible groups:
@@ -178,3 +178,40 @@ was taste-tested, and ingredient-name screening cannot certify allergy/celiac sa
 bundle is about 734 kB minified / 192 kB gzip and retains Vite's existing chunk-size warning.
 No Google sign-in, live account synchronization, application deployment or Terraform apply was
 performed by this isolated local test. Preferences do not sync to cloud kitchens.
+
+## WebKit failure investigation and resolution on October 6, 2026
+
+Both failures came from the test environment. The app's door CSS, optional Google sign-in,
+nutrition logic and production service worker were not changed.
+
+Native Windows WebKit is launched with `--disable-accelerated-compositing` by Playwright's
+[default argument handling](https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/server/webkit/webkit.ts).
+A minimal page independent of Pantridge reproduced the missing parent perspective and reported
+`(-webkit-transform-3d)` false, despite parsing the perspective property. The app's paused door
+had a 137 px height instead of the projected 193.104 px height. Removing that graphics flag
+restored actual perspective and backface rendering and passed the unchanged geometry,
+viewport-width, animation-duration and reduced-motion assertions.
+
+The graphics override is limited to the storage-rendering test file on Windows. Enabling it
+globally exposed an additional Windows WebKit keyboard interaction failure in the shopping test;
+scoping it retains Playwright's default environment for other cases. macOS WebKit configuration
+and the production browser gate remain unchanged. No geometry assertion was removed or skipped.
+
+The nutrition case first visited anonymously, then navigated with a simulated signed-in session.
+After the service worker claimed that page, WebKit bypassed its page-level kitchen mock and
+attempted to resolve `api.pantridge.test`. Instrumentation recorded zero mock calls and
+"Could not resolve hostname"; Chromium intercepted the same fixture successfully. This is a
+[documented routing limitation](https://playwright.dev/docs/network#missing-network-events-and-service-workers).
+Only this auth/package-label test now blocks service workers in its isolated context. Its
+anonymous sign-in requirement and signed-in package-label precedence assertions are unchanged;
+the separate offline/cache and origin-outage tests retain service workers and passed.
+
+Final verification: `pnpm check` passed with 311 unit tests; the production-build WebKit suite
+passed 54 tests with one intentional camera skip, and Chromium passed 65 with one intentional
+origin-outage skip. The two identified failures are resolved. Manual local clicks additionally
+opened the fridge using Enter, inspected the nutrition tab at phone width and navigated to the
+separate freezer. These manual checks made no inventory write; no paid AI request was made in
+this follow-up. Native
+Windows WebKit testing is still not a claim of manual testing in actual Apple Safari.
+
+The changes remain in draft PR #29. No merge, deployment or Terraform operation was performed.

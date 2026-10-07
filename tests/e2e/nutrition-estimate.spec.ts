@@ -134,18 +134,23 @@ test('manual-food nutrition estimates require review, persist offline, and suppo
   await page.getByRole('dialog').getByRole('button', { name: 'Undo', exact: true }).click();
   await expect(page.locator('.estimate-note')).toContainText('Saved');
 });
-test('nutrition estimation requires sign-in and never replaces package nutrition', async ({
-  page,
-}) => {
-  await page.goto('/');
-  await page.getByRole('button', { name: 'Open fridge', exact: true }).click();
-  await page.getByRole('button', { name: /^Eggs,/ }).click();
-  await page.getByRole('tab', { name: 'Nutrition', exact: true }).click();
-  await expect(estimateButton(page)).toBeDisabled();
-  await expect(page.getByText('Sign in with Google to estimate nutrition.')).toBeVisible();
-  await setup(page, true);
-  await expect(page.getByRole('heading', { name: 'Nutrition Facts', exact: true })).toBeVisible();
-  await expect(estimateButton(page)).toHaveCount(0);
+test.describe('signed-in package labels', () => {
+  // WebKit cannot route the API mock after the PWA worker claims this page.
+  // This case tests auth/label precedence; separate cases retain PWA coverage.
+  test.use({ serviceWorkers: 'block' });
+  test('nutrition estimation requires sign-in and never replaces package nutrition', async ({
+    page,
+  }) => {
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Open fridge', exact: true }).click();
+    await page.getByRole('button', { name: /^Eggs,/ }).click();
+    await page.getByRole('tab', { name: 'Nutrition', exact: true }).click();
+    await expect(estimateButton(page)).toBeDisabled();
+    await expect(page.getByText('Sign in with Google to estimate nutrition.')).toBeVisible();
+    await setup(page, true);
+    await expect(page.getByRole('heading', { name: 'Nutrition Facts', exact: true })).toBeVisible();
+    await expect(estimateButton(page)).toHaveCount(0);
+  });
 });
 test('closing an in-flight estimate discards late results and provider errors remain retryable', async ({
   page,
