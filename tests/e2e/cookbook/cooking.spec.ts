@@ -57,6 +57,7 @@ test('a second tab changing stock requires a fresh review', async ({ page, conte
   await other.getByRole('button', { name: 'Open fridge', exact: true }).click();
   await other.getByRole('button', { name: /^Eggs,/ }).click();
   await other.getByRole('button', { name: 'Use one', exact: true }).click();
+  await page.bringToFront();
   await expect(page.getByText('Your stock changed while this review was open.')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Confirm cooked & update stock' })).toBeDisabled();
   await page.getByRole('button', { name: 'Refresh amounts' }).click();

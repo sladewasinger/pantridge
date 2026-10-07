@@ -101,5 +101,8 @@ preparation notes produced confirmed cooked-rice and canned-bean amounts immedia
 existing single platform-specific skip. An independent adversarial review found and verified regressions
 for overlapping shopping quantities, crossed variety/preparation capacities, stale descriptors, ambiguous
 counts, package-unit review and cooked/dry nutrition.
-The existing local WebKit configuration passed 56 tests with its Windows camera skip; its simulated-offline
+The local WebKit configuration passed 57 tests with its Windows camera skip; its simulated-offline
 exclusions are unchanged. The macOS WebKit release gate additionally runs after merging to main.
+Reload tests wait for dismissed dialogs' asynchronous history transitions before reloading, and the
+cross-tab cooking test returns focus to the review tab. These synchronization checks preserve all
+behavior assertions and existing timeouts; three affected tests also passed three repetitions each.
