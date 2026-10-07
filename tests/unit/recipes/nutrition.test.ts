@@ -9,6 +9,41 @@ import { emptyPreferences } from '../../../src/domain/recipe-preferences/model';
 import { egg, kitchen } from '../fixtures';
 import { recipe } from './fixtures';
 
+it('uses reviewed ingredient preparation for nutrition rather than the displayed name', () => {
+  const input = {
+    ...recipe,
+    servings: 1,
+    ingredients: [
+      {
+        ...recipe.ingredients[0]!,
+        name: 'Rice',
+        quantity: 100,
+        unit: 'g' as const,
+        ingredient: { id: 'rice', preparation: 'cooked' as const, basis: 'as-sold' as const },
+      },
+    ],
+  };
+  const cooked = calculateRecipeNutrition(emptySnapshot(), input)!;
+  expect(cooked.calories).toBe(130);
+  expect(
+    calculateRecipeNutrition(emptySnapshot(), {
+      ...input,
+      ingredients: [{ ...input.ingredients[0]!, name: 'Cooked rice' }],
+    })!.calories,
+  ).toBe(130);
+  const drained = calculateRecipeNutrition(emptySnapshot(), {
+    ...input,
+    ingredients: [
+      {
+        ...input.ingredients[0]!,
+        ingredient: { ...input.ingredients[0]!.ingredient, basis: 'drained' },
+      },
+    ],
+  })!;
+  expect(drained.calories).toBeUndefined();
+  expect(drained.missing).toEqual(['Rice']);
+});
+
 it('calculates USDA large-egg portions without modifying stock or guessing macros', () => {
   const data = kitchen();
   const before = structuredClone(data);
@@ -38,7 +73,9 @@ it('prefers matching package nutrition and explicitly uses USDA only for the por
       per100: { calories: 150, protein: 13, fat: 10, carbohydrates: 1, sodium: 200, fiber: 0 },
     },
   };
-  const nutrition = calculateRecipeNutrition(data, recipe)!;
+  expect(calculateRecipeNutrition(data, recipe)!.evidence![0]!.source).toBe('usda');
+  data.stock[0]!.ingredient = { id: 'eggs', preparation: 'plain', basis: 'as-sold' };
+  const nutrition = calculateRecipeNutrition({ ...data }, recipe)!;
   expect(nutrition).toMatchObject({ calories: 225, protein: 19.5, sodium: 300, missing: [] });
   expect(nutrition.evidence![0]!.source).toBe('package');
   expect(nutrition.evidence![0]!.assumption).toContain('USDA large');

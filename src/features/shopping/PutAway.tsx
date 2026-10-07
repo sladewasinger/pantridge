@@ -39,6 +39,7 @@ function PutAwayItem({ item, count }: { item: ShoppingItem; count: number }) {
         unit: item.unit,
         packageSize: item.packageSize ?? '',
         size: parseSize(item.packageSize ?? ''),
+        ingredient: item.ingredient,
         art: item.art ?? matchArtwork(item.name) ?? 'generic',
       },
     ),

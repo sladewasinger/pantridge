@@ -2,12 +2,34 @@ import { describe, expect, it } from 'vitest';
 import { commandSchema } from '../../../src/domain/commands';
 import { stockSchema } from '../../../src/domain/model';
 import { reduceChecked } from '../../../src/domain/reducer';
-import { foodCookingSignature, previewCooking } from '../../../src/domain/recipes/cooking';
+import {
+  foodCookingSignature,
+  lotCookingSignature,
+  previewCooking,
+} from '../../../src/domain/recipes/cooking';
 import { cookingRecordSchema } from '../../../src/domain/recipes/model';
 import { lotId, newLotId, egg, kitchen } from '../fixtures';
 import { recipe, stockedKitchen, record } from './fixtures';
 
 describe('explicit reviewed cooking', () => {
+  it('requires current lot metadata review for branded stock while accepting plain legacy reviews', () => {
+    const data = stockedKitchen();
+    const legacy = previewCooking(data, recipe).deductions.map(
+      ({ expectedLotSignature: _signature, ...deduction }) => deduction,
+    );
+    const command = {
+      type: 'recipe.cook' as const,
+      reviewed: true as const,
+      record: record(legacy),
+    };
+    expect(reduceChecked(data, command).stock[0]?.quantity).toBe(1.75);
+    const branded = {
+      ...data,
+      stock: [{ ...data.stock[0]!, product: { barcode: '12345670', name: 'Eggs', brand: 'Test' } }],
+    };
+    expect(() => reduceChecked(branded, command)).toThrow('Product preparation changed');
+    expect(branded.stock[0]?.quantity).toBe(2);
+  });
   it('previews exact fractional package use and records before/after atomically', () => {
     const data = stockedKitchen();
     const preview = previewCooking(data, recipe);
@@ -18,6 +40,7 @@ describe('explicit reviewed cooking', () => {
         quantity: 0.25,
         expectedQuantity: 2,
         expectedFoodSignature: foodCookingSignature(data.foods[0]!),
+        expectedLotSignature: lotCookingSignature(data.foods[0]!, data.stock[0]!),
         remainingQuantity: 1.75,
       },
     ]);

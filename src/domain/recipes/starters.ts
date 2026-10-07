@@ -1,5 +1,6 @@
 import type { Recipe } from './model';
 import { curatedRecipes } from './collection';
+import { classifyRecipeIngredient } from '../ingredient-matching/classification';
 
 const ingredient = (
   recipe: number,
@@ -13,7 +14,7 @@ const ingredient = (
   unit,
 });
 // Recipe ideas only. These never create food identities or inventory lots.
-export const starterRecipes: Recipe[] = [
+const ideas: Recipe[] = [
   {
     id: 'cb000000-0000-4000-8000-000000000001',
     title: 'Simple scrambled eggs',
@@ -89,3 +90,7 @@ export const starterRecipes: Recipe[] = [
   },
   ...curatedRecipes,
 ];
+export const starterRecipes: Recipe[] = ideas.map((recipe) => ({
+  ...recipe,
+  ingredients: recipe.ingredients.map(classifyRecipeIngredient),
+}));

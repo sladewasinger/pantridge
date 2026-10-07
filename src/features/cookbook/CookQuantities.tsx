@@ -18,6 +18,11 @@ export function CookQuantities({
             {row.food.name} · package row {index + 1}
           </legend>
           <p>{row.food.packageSize || sizeLabel(row.food.size) || 'Package size unknown'}</p>
+          {row.stock.ingredientSize && (
+            <p className="muted">
+              Recipe amount: {sizeLabel(row.stock.ingredientSize)} · {row.stock.ingredientSizeBasis}
+            </p>
+          )}
           <p className="muted">
             {amountLabel(row.stock.quantity, row.food.unit)} on hand
             {row.stock.expires ? ` · dated ${dateLabel(row.stock.expires)}` : ' · no date'}

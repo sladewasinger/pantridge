@@ -1,4 +1,6 @@
-import type { Food, Snapshot } from '../model';
+import type { Food, Snapshot, Stock } from '../model';
+import { matchHash } from '../ingredient-matching/context';
+import { lotMatch } from '../ingredient-matching/resolver';
 import { isSupply } from '../supplies';
 import { roundQuantity } from '../quantity';
 import { matchingLots } from './availability';
@@ -21,8 +23,17 @@ export function foodCookingSignature(food: Food): string {
     size: food.size ?? null,
     kind: food.kind ?? null,
     art: food.art,
+    ...(food.ingredient && { ingredient: food.ingredient }),
   });
 }
+export const lotCookingSignature = (food: Food, lot: Stock) =>
+  matchHash([
+    food.ingredient ?? null,
+    lot.ingredient ?? null,
+    lot.ingredientSize ?? null,
+    lot.ingredientSizeBasis ?? null,
+    lot.product ?? null,
+  ]);
 
 export interface CookingPreview {
   deductions: CookingDeduction[];
@@ -33,12 +44,13 @@ function previewIngredient(
   data: Snapshot,
   ingredient: RecipeIngredient,
   required: number,
-  used: Map<string, number>,
+  { used, recipe }: { used: Map<string, number>; recipe: Recipe },
 ): boolean {
   let left = required;
-  for (const lot of matchingLots(data, ingredient)) {
+  for (const lot of matchingLots(data, ingredient, recipe)) {
     const food = data.foods.find((item) => item.id === lot.foodId)!;
-    const amount = packageAmount(food, ingredient.unit);
+    if (lotMatch(data, ingredient, { food, lot, recipe }) !== 'compatible') continue;
+    const amount = packageAmount(food, ingredient.unit, lot);
     if (amount === undefined) continue;
     const already = used.get(lot.id) ?? 0;
     const quantity = Math.min(lot.quantity - already, left / amount);
@@ -62,7 +74,7 @@ export function previewCooking(
       data,
       ingredient,
       (ingredient.quantity * servings) / recipe.servings,
-      used,
+      { used, recipe },
     );
     if (!complete)
       notes.push(
@@ -76,6 +88,10 @@ export function previewCooking(
       foodId: lot.foodId,
       quantity,
       expectedQuantity: lot.quantity,
+      expectedLotSignature: lotCookingSignature(
+        data.foods.find((food) => food.id === lot.foodId)!,
+        lot,
+      ),
       expectedFoodSignature: foodCookingSignature(
         data.foods.find((food) => food.id === lot.foodId)!,
       ),
@@ -95,6 +111,12 @@ function validateDeduction(data: Snapshot, deduction: CookingDeduction): void {
     throw new Error('Kitchen supplies cannot be used as recipe ingredients.');
   if (deduction.expectedFoodSignature !== foodCookingSignature(food))
     throw new Error('Food or package details changed. Review cooking again.');
+  if (
+    (deduction.expectedLotSignature &&
+      deduction.expectedLotSignature !== lotCookingSignature(food, lot)) ||
+    (!deduction.expectedLotSignature && (lot.ingredient || lot.ingredientSize || lot.product))
+  )
+    throw new Error('Product preparation changed. Review cooking again.');
   if (lot.quantity !== deduction.expectedQuantity)
     throw new Error('Package quantity changed. Review cooking again.');
   if (

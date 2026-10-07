@@ -9,6 +9,7 @@ import beef from './08.json' with { type: 'json' };
 import fishAndPork from './09.json' with { type: 'json' };
 import sides from './10.json' with { type: 'json' };
 import { recipeSchema } from '../model';
+import { classifyRecipeIngredient } from '../../ingredient-matching/classification';
 
 // Stable IDs let saved copies override bundled recipes without changing old plans.
 export const curatedRecipes = [
@@ -22,4 +23,7 @@ export const curatedRecipes = [
   ...beef,
   ...fishAndPork,
   ...sides,
-].map((recipe) => recipeSchema.parse(recipe));
+].map((input) => {
+  const recipe = recipeSchema.parse(input);
+  return { ...recipe, ingredients: recipe.ingredients.map(classifyRecipeIngredient) };
+});

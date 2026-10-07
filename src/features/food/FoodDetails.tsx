@@ -43,7 +43,7 @@ export function FoodDetails({ foodId, onClose }: { foodId: string; onClose: () =
           <StockLot
             key={stock.id}
             stock={stock}
-            unit={food.unit}
+            food={food}
             index={index}
             busy={busy}
             supply={isSupply(food)}

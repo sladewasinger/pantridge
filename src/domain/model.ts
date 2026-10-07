@@ -7,6 +7,7 @@ import { sizeSchema } from './products/size';
 import { productSchema } from './products/barcode';
 import { artIds } from './artwork/catalog';
 import { nutritionEstimateSchema } from './products/nutrition-estimate';
+import { ingredientIdentitySchema } from './ingredient-matching/model';
 
 export const id = z.uuid();
 export const locationSchema = z.enum(['fridge', 'pantry', 'unspecified']);
@@ -38,6 +39,7 @@ export const foodSchema = z.object({
   shelf: z.number().int().min(0).max(2),
   frozen: z.boolean(),
   nutritionEstimate: nutritionEstimateSchema.optional(),
+  ingredient: ingredientIdentitySchema.optional(),
 });
 export const stockSchema = z.object({
   id,
@@ -46,6 +48,9 @@ export const stockSchema = z.object({
   expires: dateSchema.optional(),
   expirySource: z.enum(['estimate', 'ai']).optional(),
   product: productSchema.optional(),
+  ingredient: ingredientIdentitySchema.optional(),
+  ingredientSize: sizeSchema.optional(),
+  ingredientSizeBasis: z.enum(['as-sold', 'drained', 'edible', 'unknown']).optional(),
 });
 export const shoppingSchema = z.object({
   id,
@@ -57,6 +62,7 @@ export const shoppingSchema = z.object({
   recipeNote: z.string().trim().max(160).optional(),
   packageSize: z.string().trim().max(80).optional(),
   art: artSchema.optional(),
+  ingredient: ingredientIdentitySchema.optional(),
 });
 export const snapshotSchema = z
   .object({

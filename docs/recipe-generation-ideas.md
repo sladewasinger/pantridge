@@ -1,6 +1,6 @@
 # Recipe generation and customization
 
-Implemented on `codex/local-api-testing`; not released to production. The cookbook keeps its
+The cookbook customization keeps its
 single primary list, use-soon default, optional built-in collection and view-first AI previews.
 
 ## Optional meal direction
@@ -99,7 +99,8 @@ viewed or saved. Saved estimates remain usable offline.
 The existing recipe request accepts optional `inventory[].members`, `preferences` and `bases`.
 Version-one recipes accept optional `generation` attribution and calculated nutrition with
 missing-data/source evidence. Old snapshots keep their existing shapes; legacy request forms
-remain accepted. Deploy the matching API before a frontend that writes these new fields.
+remain accepted. Deploy the corresponding recipe-generation API before a frontend that writes these new fields.
+Ingredient-to-recipe matching is entirely local; see [shared ingredient identities](cookbook-matching.md).
 
 No route, Google admission policy, CORS exposure, IAM privilege, model, paid quota or timeout
 was broadened. Existing limits remain 15 seconds provider / 20 seconds client and 2,048 output
@@ -114,4 +115,5 @@ three in 10.007 seconds. Subsequent quick requests returned three in 12.060 and
 not latency guarantees.
 
 Local automated and manual verification is recorded in [local testing](local-testing.md).
-No merge, production deployment or Terraform apply is authorized by this implementation.
+Changes use the feature-to-develop-to-main release flow. Application deployment requires the owner's
+instruction; Terraform applies remain manual.

@@ -28,6 +28,7 @@
     "@aws-sdk/client-dynamodb": "3.1127.0",
     "@aws-sdk/client-ssm": "3.1128.0",
     "@aws-sdk/lib-dynamodb": "3.1127.0",
+    "@noble/hashes": "1.8.0",
     "@zxing/browser": "0.2.1",
     "@zxing/library": "0.23.0",
     "idb": "8.0.3",
