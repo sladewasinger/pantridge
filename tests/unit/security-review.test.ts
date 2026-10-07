@@ -44,9 +44,9 @@ describe('inventory integrity', () => {
   });
   it('labels dates by the local calendar day without making food-safety claims', () => {
     const today = new Date(2026, 8, 8, 23, 50);
-    expect(expirationBadge('2026-09-08', today).label).toBe('Today');
-    expect(expirationBadge('2026-09-09', today).label).toBe('Tomorrow');
-    expect(expirationBadge('2026-09-07', today).tone).toBe('past');
-    expect(expirationBadge('2026-09-12', today).tone).toBe('later');
+    expect(expirationBadge('2026-09-08', today)).toMatchObject({ label: 'Today' });
+    expect(expirationBadge('2026-09-09', today)).toMatchObject({ label: 'Tomorrow' });
+    expect(expirationBadge('2026-09-07', today)).toMatchObject({ tone: 'past' });
+    expect(expirationBadge('2026-09-12', today)).toMatchObject({ tone: 'later' });
   });
 });

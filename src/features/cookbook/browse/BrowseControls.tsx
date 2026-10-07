@@ -45,6 +45,14 @@ export function BrowseControls({
           <label className="cookbook-view-toggle">
             <input
               type="checkbox"
+              checked={value.includeUnmatched}
+              onChange={(event) => onChange({ ...value, includeUnmatched: event.target.checked })}
+            />
+            Show recipes without matches
+          </label>
+          <label className="cookbook-view-toggle">
+            <input
+              type="checkbox"
               checked={value.quickOnly}
               onChange={(event) => onChange({ ...value, quickOnly: event.target.checked })}
             />

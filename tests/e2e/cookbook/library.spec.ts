@@ -18,6 +18,9 @@ test('manual recipe validation, editing, search and import stay reviewable', asy
   await page.getByLabel('Steps', { exact: true }).fill('Toast the bread.');
   await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
+  await page.getByText('View', { exact: true }).click();
+  await page.getByRole('checkbox', { name: 'Show recipes without matches' }).check();
+  await page.getByText('View', { exact: true }).click();
   await page.getByRole('searchbox', { name: 'Find a recipe' }).fill('toast');
   await page.getByRole('button', { name: /My toast/ }).click();
   await page.getByRole('button', { name: 'Edit', exact: true }).click();

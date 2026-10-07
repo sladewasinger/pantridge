@@ -14,6 +14,10 @@ test('recipe browsing defaults to use soon and keeps sources, search and saved-o
   await page.getByRole('button', { name: 'Close', exact: true }).click();
   await page.getByRole('button', { name: 'Open cookbook', exact: true }).click();
   const index = page.locator('.recipe-list');
+  await expect(index).not.toContainText('Applesauce');
+  await page.getByText('View', { exact: true }).click();
+  await page.getByRole('checkbox', { name: 'Show recipes without matches' }).check();
+  await page.getByText('View', { exact: true }).click();
   await expect(index.locator('.recipe-card')).toHaveCount(24);
   await expect(page.getByRole('status').filter({ hasText: '105 recipes' })).toContainText(
     'Use soon first',

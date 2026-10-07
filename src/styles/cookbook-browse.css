@@ -73,6 +73,13 @@
   font-size: 12px;
   margin: 4px 0 12px;
 }
+.recipe-section-heading {
+  padding-top: 18px;
+  margin: 20px 0 4px;
+  border-top: 1px solid #c6bdab;
+  color: var(--green);
+  font-size: 20px;
+}
 .recipe-match.use-soon {
   color: #6b4d20;
   background: #f0e4c9;
