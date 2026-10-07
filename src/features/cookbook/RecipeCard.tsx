@@ -1,20 +1,24 @@
 import { Bookmark, ChevronRight } from 'lucide-react';
-import type { getRecipeAvailability } from '../../domain/recipes/availability';
+import type { RecipeBrowseMatch } from '../../domain/recipes/ranking';
 import { dateLabel, recipeMeta } from './presentation';
 
-type Availability = ReturnType<typeof getRecipeAvailability>;
-const matchLabels = {
-  confirmed: 'Ingredients on hand',
-  'needs-review': 'Check amounts',
-  missing: 'Ingredients to get',
-};
+function matchLabel(match: RecipeBrowseMatch) {
+  const { coverage } = match;
+  if (coverage.section === 'unmatched') return 'No ingredients on hand';
+  if (coverage.section === 'partial')
+    return `${coverage.onHand} of ${coverage.required} on hand${coverage.possible ? ` · ${coverage.possible} possible` : ''}`;
+  if (match.status === 'needs-review') return 'Check amounts';
+  return match.recipe.untrackedIngredients?.length
+    ? 'Check extra ingredients'
+    : 'Ingredients on hand';
+}
 export function RecipeCard({
   match,
   saved,
   useSoon,
   onOpen,
 }: {
-  match: Availability;
+  match: RecipeBrowseMatch;
   saved: boolean;
   useSoon?: string;
   onOpen: (id: string) => void;
@@ -34,7 +38,7 @@ export function RecipeCard({
         <span className="recipe-card-title">{match.recipe.title}</span>
         <span className="recipe-meta">{recipeMeta(match.recipe)}</span>
         <span className={`recipe-match ${useSoon ? 'use-soon' : match.status}`}>
-          {useSoon ? `Use soon · ${dateLabel(useSoon)}` : matchLabels[match.status]}
+          {useSoon ? `Use soon · ${dateLabel(useSoon)}` : matchLabel(match)}
         </span>
         {match.pastDate > 0 && <span className="recipe-use-up">Check past-date ingredients</span>}
       </span>

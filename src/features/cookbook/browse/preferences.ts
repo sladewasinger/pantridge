@@ -6,11 +6,13 @@ export interface BrowsePreferences {
   order: RecipeOrder;
   builtIns: boolean;
   quickOnly: boolean;
+  includeUnmatched: boolean;
 }
 export const defaultPreferences: BrowsePreferences = {
   order: 'use-soon',
   builtIns: true,
   quickOnly: false,
+  includeUnmatched: false,
 };
 const key = () => `pantridge.cookbook.${localTesting ? 'local-test' : 'standard'}.${getAccount()}`;
 export function readPreferences(): BrowsePreferences {
@@ -24,6 +26,7 @@ export function readPreferences(): BrowsePreferences {
         : 'use-soon',
       builtIns: preference.builtIns !== false,
       quickOnly: preference.quickOnly === true,
+      includeUnmatched: preference.includeUnmatched === true,
     };
   } catch {
     return { ...defaultPreferences };

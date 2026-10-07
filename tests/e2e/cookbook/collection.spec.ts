@@ -13,6 +13,7 @@ test('dated ingredients lead browsing and sourced recipes retain estimates when 
   await page.getByRole('button', { name: 'Open cookbook', exact: true }).click();
   await expect(page.locator('.recipe-card').first()).toContainText('Use soon');
   await page.getByText('View', { exact: true }).click();
+  await page.getByRole('checkbox', { name: 'Show recipes without matches' }).check();
   await page.getByRole('checkbox', { name: '30 minutes or less' }).check();
   await expect(page.getByRole('heading', { name: 'What’s for dinner?' })).toBeVisible();
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
