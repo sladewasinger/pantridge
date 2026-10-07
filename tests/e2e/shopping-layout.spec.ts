@@ -82,6 +82,7 @@ test('compact shopping rows show sizes and new artwork, and mouse/keyboard order
   await page.getByRole('spinbutton', { name: 'Quantity', exact: true }).fill('2');
   await page.getByRole('button', { name: 'Save changes', exact: true }).click();
   await expect(rows.nth(2)).toContainText('Beef chuck brisket');
+  await expect.poll(() => page.evaluate(() => history.state.pantridge.overlay)).toBeNull();
   await page.evaluate(async () => {
     await navigator.serviceWorker.ready;
   });
@@ -91,6 +92,8 @@ test('compact shopping rows show sizes and new artwork, and mouse/keyboard order
   await expect(
     page.getByRole('button', { name: 'Buy 2 × 3 lb of Beef chuck brisket' }),
   ).toBeVisible();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Reorder Beef chuck brisket' })).toBeEnabled();
   await page.getByRole('button', { name: 'Reorder Beef chuck brisket' }).press('Home');
   await expect(rows.first()).toContainText('Beef chuck brisket');
   await page.getByRole('checkbox', { name: 'Mark Red onion purchased' }).click();

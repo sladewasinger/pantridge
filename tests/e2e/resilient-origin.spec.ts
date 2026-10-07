@@ -19,6 +19,7 @@ test('cached kitchen and shopping survive reloads when the origin is unavailable
     await page.getByLabel('Item name').fill('Eggs');
     await page.getByRole('button', { name: 'Add to list', exact: true }).click();
     await expect(page.getByRole('dialog')).toHaveCount(0);
+    await expect.poll(() => page.evaluate(() => history.state.pantridge.overlay)).toBeNull();
     await server.stop();
     await page.reload();
     await page.getByRole('checkbox', { name: 'Mark Eggs purchased' }).click();
