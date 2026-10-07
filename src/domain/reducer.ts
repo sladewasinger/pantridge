@@ -7,6 +7,7 @@ import { saveFood, removeFood, normalizeShopping, restoreFood } from './food-com
 import { addScannedStock } from './products/scan-command';
 import { moveShopping, restoreShopping } from './shopping-commands';
 import { saveNutrition } from './products/nutrition-command';
+import { classifyStock, measureStock } from './ingredient-matching/stock-commands';
 
 function replace<T extends { id: string }>(list: T[], value: T): T[] {
   return list.some((item) => item.id === value.id)
@@ -69,6 +70,10 @@ export function applyCommand(data: Snapshot, command: Command): Snapshot {
       return addScannedStock(data, command.food, command.stock);
     case 'stock.remove':
       return { ...data, stock: data.stock.filter((stock) => stock.id !== command.stockId) };
+    case 'stock.classify':
+      return classifyStock(data, command);
+    case 'stock.recipeAmount':
+      return measureStock(data, command);
     case 'stock.adjust':
       return {
         ...data,

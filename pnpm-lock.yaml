@@ -17,6 +17,9 @@ importers:
       '@aws-sdk/lib-dynamodb':
         specifier: 3.1127.0
         version: 3.1127.0(@aws-sdk/client-dynamodb@3.1127.0)
+      '@noble/hashes':
+        specifier: 1.8.0
+        version: 1.8.0
       '@zxing/browser':
         specifier: 0.2.1
         version: 0.2.1(@zxing/library@0.23.0)
@@ -968,6 +971,10 @@ packages:
     cpu: [x64]
     os: [linux]
     libc: [glibc]
+
+  '@noble/hashes@1.8.0':
+    resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
+    engines: {node: ^14.21.3 || >=16}
 
   '@oxc-project/types@0.148.0':
     resolution: {integrity: sha512-Nm4s/jB+4FpFsPhWGEC4h7rzksesmtnMXomo6rCMcg/b8zLQuOziRgkCS1fxDCXOlJB/6Q8oABOZ/OP6RIPj9A==}
@@ -3890,6 +3897,8 @@ snapshots:
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     optional: true
+
+  '@noble/hashes@1.8.0': {}
 
   '@oxc-project/types@0.148.0': {}
 

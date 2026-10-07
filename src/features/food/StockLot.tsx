@@ -1,11 +1,14 @@
 import { Minus, Plus, Trash2 } from 'lucide-react';
-import type { Stock, Unit } from '../../domain/model';
+import type { Stock, Food } from '../../domain/model';
 import type { Command } from '../../domain/commands';
 import { units } from '../../domain/selectors';
+import { IngredientIdentity } from './IngredientIdentity';
+import { stockIdentity } from '../../domain/ingredient-matching/classification';
+import { StockRecipeAmount } from './StockRecipeAmount';
 
 export function StockLot({
   stock,
-  unit,
+  food,
   index,
   busy,
   supply = false,
@@ -13,7 +16,7 @@ export function StockLot({
   onRemove,
 }: {
   stock: Stock;
-  unit: Unit;
+  food: Food;
   index: number;
   busy: boolean;
   supply?: boolean;
@@ -47,7 +50,7 @@ export function StockLot({
         >
           <Minus />
         </button>
-        <span>{units(stock.quantity, unit)}</span>
+        <span>{units(stock.quantity, food.unit)}</span>
         <button
           className="round"
           aria-label="Add one"
@@ -66,6 +69,18 @@ export function StockLot({
           <Trash2 size={18} />
         </button>
       </div>
+      {!supply && (
+        <IngredientIdentity
+          name={food.name}
+          inferred={stockIdentity(food, stock) ?? null}
+          value={stock.ingredient}
+          disabled={busy}
+          onChange={(ingredient) =>
+            onChange({ type: 'stock.classify', stockId: stock.id, ingredient: ingredient ?? null })
+          }
+        />
+      )}
+      {!supply && <StockRecipeAmount stock={stock} disabled={busy} onChange={onChange} />}
       {!supply && (
         <label>
           Expiration {stock.expirySource && <span className="optional">estimated</span>}

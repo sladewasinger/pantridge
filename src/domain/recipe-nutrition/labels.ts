@@ -1,21 +1,35 @@
 import type { Snapshot } from '../model';
-import type { RecipeIngredient } from '../recipes/model';
-import { normalizeIngredientName } from '../recipes/names';
+import type { RecipeIngredient, Recipe } from '../recipes/model';
+import { matchingLots } from '../recipes/availability';
+import { lotMatch } from '../ingredient-matching/resolver';
+import { stockIdentity } from '../ingredient-matching/classification';
 import { convertRecipeAmount } from '../recipes/units';
-import { isSupply } from '../supplies';
 import { profileAmount } from './profiles';
 
-export function labelAmount(data: Snapshot, ingredient: RecipeIngredient) {
-  const ids = new Set(
-    data.foods
-      .filter(
-        (food) =>
-          !isSupply(food) &&
-          normalizeIngredientName(food.name) === normalizeIngredientName(ingredient.name),
-      )
-      .map((food) => food.id),
-  );
-  const lots = data.stock.filter((lot) => ids.has(lot.foodId) && lot.quantity > 0);
+export function labelAmount(data: Snapshot, ingredient: RecipeIngredient, recipe?: Recipe) {
+  const lots = matchingLots(data, ingredient, recipe);
+  if (
+    lots.some(
+      (lot) =>
+        lot.ingredientSize ||
+        stockIdentity(
+          data.foods.find((food) => food.id === lot.foodId)!,
+          lot,
+        )?.basis !== 'as-sold',
+    )
+  )
+    return undefined;
+  if (
+    lots.some(
+      (lot) =>
+        lotMatch(data, ingredient, {
+          food: data.foods.find((f) => f.id === lot.foodId)!,
+          lot,
+          recipe,
+        }) !== 'compatible',
+    )
+  )
+    return undefined;
   const labels = lots
     .map((lot) => lot.product?.nutrition)
     .filter((label) => label?.basis && Object.keys(label.per100).length);

@@ -5,6 +5,7 @@ import { useArtworkMatch } from './useArtworkMatch';
 import type { ReactNode } from 'react';
 import { isSupply, normalizeSupply } from '../../domain/supplies';
 import { storagePlace } from '../../domain/selectors';
+import { IngredientIdentity } from './IngredientIdentity';
 export function FoodFields({
   food,
   onChange,
@@ -49,6 +50,13 @@ export function FoodFields({
         />
       </label>
       {quantityControl}
+      {!supply && (
+        <IngredientIdentity
+          name={food.name}
+          value={food.ingredient}
+          onChange={(ingredient) => patch({ ingredient })}
+        />
+      )}
       <label>
         Item type
         <select

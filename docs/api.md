@@ -34,6 +34,8 @@ Snapshots reject duplicate IDs and missing food references. `food.restore` accep
 | `stock.remove`       | Remove one lot by stockId, retaining food and shopping identity  |
 | `stock.adjust`       | Increment/decrement a lot, clamped to 0–9,999                    |
 | `stock.date`         | Set or clear a lot’s expiration                                  |
+| `stock.classify`     | Review a lot's local ingredient identity, preparation and basis  |
+| `stock.recipeAmount` | Save/clear a measured usable recipe amount per package           |
 | `shopping.save`      | Add/update a linked or one-time shopping entry                   |
 | `shopping.move`      | Move an entry before another ID, or to its group's end           |
 | `shopping.purchase`  | Mark/unmark purchased without changing inventory                 |
@@ -62,7 +64,15 @@ Nutrition estimates use an additive request kind on the existing product-resolut
 Recipe requests now optionally include exact `inventory[].members`, bounded cooking `preferences`
 and up to three measured recipe `bases`. Recipe snapshots optionally include `generation`
 attribution and calculated nutrition with missing-data/source evidence. Older request forms and
-version-one snapshots remain accepted. The matching API must precede a frontend that writes
+version-one snapshots remain accepted. The updated recipe-generation API must precede a frontend that writes
 these fields; no database migration, new endpoint or authentication change is needed. Preferences
 remain device-local and are sent only on explicit generation. See [recipe customization](recipe-generation-ideas.md)
 for bounds, cache inputs, dietary review and nutrition assumptions.
+
+Cookbook ingredient matching runs entirely in the shared local domain resolver. No inventory-to-cookbook
+matching request, background job or paid matching cache exists. Optional ingredient descriptors on foods,
+lots, recipe ingredients and one-time shopping entries use the same append-only local registry. Lot
+measurements include their reviewed basis. The API validates and persists these fields through normal
+mutations; it does not classify them using OpenAI. Clients must update before sending the two additive
+stock commands. Unsigned legacy cooking reviews cannot deduct classified, measured or branded lots.
+See [local ingredient identities](cookbook-matching.md) for quantity and compatibility limits.

@@ -16,12 +16,12 @@ afterEach(async () => {
 });
 it('enforces a durable shared AI quota under concurrent requests and across module restarts', async () => {
   const results = await Promise.allSettled(
-    Array.from({ length: 8 }, () => takeQuota('ai-user#local-development', 3)),
+    Array.from({ length: 55 }, () => takeQuota('ai-user#local-development', 20)),
   );
-  expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(3);
+  expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(50);
   vi.resetModules();
   const restarted = await import('../../../api/development/cache');
-  await expect(restarted.takeQuota('ai-user#local-development', 3)).rejects.toMatchObject({
+  await expect(restarted.takeQuota('ai-user#local-development', 20)).rejects.toMatchObject({
     status: 429,
   });
 });

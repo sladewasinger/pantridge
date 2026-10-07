@@ -1,5 +1,6 @@
 import type { Food, ShoppingItem, Snapshot } from './model';
 import { packageLabel } from './products/variants';
+import { stockIdentity } from './ingredient-matching/classification';
 
 export function restoreFood(data: Snapshot, food: Food): Snapshot {
   if (data.foods.some((item) => item.id === food.id)) throw new Error('Food already exists.');
@@ -7,9 +8,16 @@ export function restoreFood(data: Snapshot, food: Food): Snapshot {
 }
 
 export function saveFood(data: Snapshot, food: Food): Snapshot {
+  const previous = data.foods.find((item) => item.id === food.id);
   return {
     ...data,
     foods: [...data.foods.filter((item) => item.id !== food.id), food],
+    stock: data.stock.map((lot) => {
+      if (!previous || lot.foodId !== food.id || !lot.ingredientSize) return lot;
+      const changed =
+        JSON.stringify(stockIdentity(previous, lot)) !== JSON.stringify(stockIdentity(food, lot));
+      return changed ? { ...lot, ingredientSize: undefined, ingredientSizeBasis: undefined } : lot;
+    }),
     shopping: data.shopping.map((item) =>
       item.foodId === food.id
         ? { ...item, name: food.name, unit: food.unit, packageSize: packageLabel(food) }

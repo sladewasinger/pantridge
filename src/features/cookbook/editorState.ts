@@ -1,4 +1,5 @@
 import { recipeSchema, type Recipe, type RecipeUnit } from '../../domain/recipes/model';
+import type { IngredientIdentity } from '../../domain/ingredient-matching/model';
 
 export interface IngredientDraft {
   id: string;
@@ -7,6 +8,7 @@ export interface IngredientDraft {
   unit: RecipeUnit;
   optional: boolean;
   note?: string;
+  ingredient?: IngredientIdentity;
 }
 export interface RecipeDraft {
   title: string;

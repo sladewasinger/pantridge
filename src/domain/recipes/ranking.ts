@@ -1,7 +1,6 @@
 import type { Snapshot } from '../model';
 import { matchingLots, type RecipeAvailability } from './availability';
-import { possibleIngredientFoods } from './discovery';
-import { normalizeIngredientName } from './names';
+import { requirementKey } from '../ingredient-matching/context';
 
 export interface RecipeCoverage {
   required: number;
@@ -14,14 +13,13 @@ export function recipeCoverage(data: Snapshot, match: RecipeAvailability): Recip
     ...new Map(
       match.ingredients
         .filter((item) => !item.ingredient.optional)
-        .map((item) => [normalizeIngredientName(item.ingredient.name), item.ingredient]),
+        .map((item) => [requirementKey(match.recipe, item.ingredient), item.ingredient]),
     ).values(),
   ];
-  const onHand = required.filter((item) => matchingLots(data, item).length > 0).length;
-  const possible = required.filter(
-    (item) =>
-      matchingLots(data, item).length === 0 && possibleIngredientFoods(data, item.name).length > 0,
+  const onHand = required.filter(
+    (item) => matchingLots(data, item, match.recipe).length > 0,
   ).length;
+  const possible = 0;
   const section =
     onHand + possible === 0
       ? 'unmatched'
@@ -35,7 +33,9 @@ export function coverageOrder(left: RecipeBrowseMatch, right: RecipeBrowseMatch)
   const score = (value: RecipeCoverage) =>
     value.required ? (value.onHand + value.possible * 0.5) / value.required : 0;
   return (
-    score(right.coverage) - score(left.coverage) || right.coverage.onHand - left.coverage.onHand
+    Number(left.status !== 'confirmed') - Number(right.status !== 'confirmed') ||
+    score(right.coverage) - score(left.coverage) ||
+    right.coverage.onHand - left.coverage.onHand
   );
 }
 export function sectionOrder(left: RecipeBrowseMatch, right: RecipeBrowseMatch) {
