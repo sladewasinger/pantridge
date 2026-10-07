@@ -2,6 +2,49 @@ import { randomUUID } from 'node:crypto';
 import { expect, test } from '@playwright/test';
 import { cookbookFixture, seedKitchen, readKitchen } from './fixtures';
 
+test('specific and generic rice requirements share stock without a false shopping shortfall', async ({
+  page,
+}) => {
+  const data = cookbookFixture();
+  data.foods = data.foods.map((food, index) => ({
+    ...food,
+    name: index ? 'White rice' : 'Brown rice',
+    unit: 'bags',
+    packageSize: '500 g',
+    size: { amount: 500, measure: 'g', packs: 1 },
+  }));
+  data.stock = data.foods.map((food, index) => ({
+    id: randomUUID(),
+    foodId: food.id,
+    quantity: 1,
+    expires: index ? '2026-12-01' : '2026-10-08',
+  }));
+  data.recipes![0]!.title = 'Two rice test';
+  data.recipes![0]!.ingredients = ['Rice', 'Brown rice'].map((name) => ({
+    id: randomUUID(),
+    name,
+    quantity: 500,
+    unit: 'g',
+  }));
+  await seedKitchen(page, data);
+  await page.getByRole('button', { name: 'Open cookbook', exact: true }).click();
+  await page.getByRole('searchbox', { name: 'Find a recipe' }).fill('Two rice test');
+  await page.getByRole('button', { name: /Two rice test/ }).click();
+  await expect(page.getByRole('dialog').getByText('500 g on hand', { exact: true })).toHaveCount(2);
+  await page.getByText('Add missing to shopping', { exact: true }).click();
+  await expect(page.getByRole('dialog')).toContainText('Nothing to add.');
+  await expect(page.getByRole('button', { name: 'Add 0 shopping items' })).toBeDisabled();
+  await page.getByRole('button', { name: 'Review cooked meal', exact: true }).click();
+  await expect(page.getByRole('spinbutton', { name: 'Amount used (bags)' }).nth(0)).toHaveValue(
+    '1',
+  );
+  await expect(page.getByRole('spinbutton', { name: 'Amount used (bags)' }).nth(1)).toHaveValue(
+    '1',
+  );
+  await page.getByRole('button', { name: 'Cancel without changes' }).click();
+  expect((await readKitchen(page)).stock).toEqual(data.stock);
+});
+
 test('ready rice and canned beans match locally and editing preparation survives offline reload', async ({
   page,
   context,

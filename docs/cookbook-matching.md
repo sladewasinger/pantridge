@@ -55,6 +55,10 @@ drained/edible amounts create explicit quantity-review entries rather than inven
 from future purchased net weights. One-time ingredient descriptors survive put-away review.
 Shopping packages are reserved across overlapping generic/specific requirements, so the same purchased
 amount cannot satisfy two different recipe rows. Changes in descriptors invalidate a stale shopping review.
+Shared residual-capacity allocation can reassign an earlier broad requirement to other compatible lots
+when a narrower requirement needs that stock. Mass, volume and count stay separate; required ingredients
+allocate before optional ones. Source lots follow global expiry/id order. Package units remain review-only;
+crossed measurement dimensions with unresolved shared capacity require review rather than invented conversions.
 
 ## Persistence and presentation
 
@@ -76,10 +80,10 @@ Local matching benchmark, one cold and one warm calculation over all 104 built-i
 
 | Stocked foods | Cold calculation | Warm calculation |
 | ------------- | ---------------- | ---------------- |
-| 10            | 12.18 ms         | 4.01 ms          |
-| 40            | 6.34 ms          | 4.99 ms          |
-| 200           | 14.64 ms         | 7.13 ms          |
-| 600           | 48.01 ms         | 26.39 ms         |
+| 10            | 14.46 ms         | 3.77 ms          |
+| 40            | 10.99 ms         | 5.97 ms          |
+| 200           | 30.40 ms         | 14.11 ms         |
+| 600           | 84.04 ms         | 38.61 ms         |
 
 These desktop Node measurements exclude rendering and are not phone latency guarantees.
 All calculations used zero matching API calls. No quota counters were reset.
@@ -93,8 +97,9 @@ weights, stale review, semantic shopping aggregation, offline recipe editing and
 requests. No live Google sign-in or cross-device sync claim is made by these local tests.
 Manual shopping review added only the missing soy-sauce row, with no stock increase. Editing primary
 preparation notes produced confirmed cooked-rice and canned-bean amounts immediately and after reload.
-`pnpm check` passed with 358 unit tests; the production-build Chromium suite passed 68 tests with its
+`pnpm check` passed with 365 unit tests; the production-build Chromium suite passed 69 tests with its
 existing single platform-specific skip. An independent adversarial review found and verified regressions
-for overlapping shopping quantities, stale descriptors, ambiguous counts and cooked/dry nutrition.
+for overlapping shopping quantities, crossed variety/preparation capacities, stale descriptors, ambiguous
+counts, package-unit review and cooked/dry nutrition.
 The existing local WebKit configuration passed 56 tests with its Windows camera skip; its simulated-offline
 exclusions are unchanged. The macOS WebKit release gate additionally runs after merging to main.
