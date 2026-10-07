@@ -1,0 +1,1005 @@
+[
+  {
+    "id": "cb000000-0000-4000-8000-000000000085",
+    "title": "Shrimp Scampi",
+    "servings": 4,
+    "minutes": 17,
+    "cuisine": "Fish and pork",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-shrimp-scampi-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Kellie Hemmerly",
+      "rating": 4.98,
+      "ratingCount": 282,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 243,
+      "protein": 16,
+      "carbohydrate": 3,
+      "fat": 16,
+      "sodium": 742,
+      "fiber": 0.4,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000008501",
+        "quantity": 4,
+        "unit": "tbsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008502",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008503",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008504",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Red pepper flakes",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008505",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Shrimp",
+        "note": "peeled and deveined; peeled"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008506",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Dry white wine"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008507",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Parsley",
+        "note": "chopped"
+      }
+    ],
+    "untrackedIngredients": ["salt and black pepper (to taste )"],
+    "steps": [
+      "Warm butter and olive oil over medium heat; cook garlic and red pepper flakes a minute.",
+      "Add peeled shrimp and toss; cook about 2–3 minutes until flesh is opaque and pearly. Transfer to a clean plate.",
+      "Simmer wine in the pan 2–3 minutes; turn off heat. Return shrimp, fold in parsley, adjust salt and pepper and serve promptly."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000086",
+    "title": "Baked Tilapia",
+    "servings": 4,
+    "minutes": 20,
+    "cuisine": "Fish and pork",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-baked-tilapia/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 5,
+      "ratingCount": 154,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 240,
+      "protein": 35,
+      "carbohydrate": 4,
+      "fat": 9,
+      "sodium": 203,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000008601",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Tilapia filets"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008602",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "name": "Butter",
+        "note": "melted"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008603",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Lemon"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008604",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Panko bread crumbs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008605",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Parmesan cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008606",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Parsley",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008607",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Butter",
+        "note": "melted"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008608",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008609",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Paprika"
+      }
+    ],
+    "steps": [
+      "Heat oven to 400°F; grease a baking pan. Combine breadcrumbs, Parmesan, parsley, 1 teaspoon melted butter, garlic powder and paprika.",
+      "Pat fish dry; place on pan. Drizzle with the remaining melted butter and lemon juice; distribute crumb mixture on top.",
+      "Bake about 15 minutes, until fish flakes and reaches 145°F. Optionally broil the topping briefly, watching closely."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000087",
+    "title": "Tuna Salad",
+    "servings": 4,
+    "minutes": 15,
+    "cuisine": "Fish and pork",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/classic-tuna-salad/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.94,
+      "ratingCount": 145,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 369,
+      "protein": 17,
+      "carbohydrate": 2,
+      "fat": 32,
+      "sodium": 738,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000008701",
+        "quantity": 10,
+        "unit": "oz",
+        "name": "Canned tuna",
+        "note": "5 ounce each) cans tuna (well-drained"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008702",
+        "quantity": 0.75,
+        "unit": "cup",
+        "name": "Mayonnaise"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008703",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Dill pickles",
+        "note": "or sweet pickles, or 2 tablespoons sweet pickle relish; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008704",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Celery ribs",
+        "note": "finely diced; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008705",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Green onions",
+        "note": "thinly sliced; sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008706",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Dijon mustard",
+        "note": "or prepared mustard"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008707",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Lemon juice"
+      }
+    ],
+    "untrackedIngredients": ["salt and black pepper (to taste)"],
+    "steps": [
+      "Drain tuna thoroughly. Mix mayonnaise, chopped pickles, diced celery, sliced green onion, mustard and lemon juice.",
+      "Gently flake tuna into the dressing; fold to combine. Season to taste. Serve chilled with separately supplied bread, greens or pasta."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000088",
+    "title": "Crab cakes",
+    "servings": 8,
+    "minutes": 100,
+    "cuisine": "Fish and pork",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/crab-cake-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.94,
+      "ratingCount": 119,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 232,
+      "protein": 11,
+      "carbohydrate": 3,
+      "fat": 18,
+      "sodium": 938,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000008801",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Lump crab meat"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008802",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Mayonnaise"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008803",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Eggs",
+        "note": "beaten"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008804",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Dijon mustard"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008805",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Worcestershire sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008806",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Old Bay seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008807",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Panko bread crumbs",
+        "note": "unflavored"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008808",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "name": "Parsley",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008809",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Lemon zest"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008810",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008811",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008812",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Canola oil"
+      }
+    ],
+    "untrackedIngredients": ["lemon wedges (for serving)"],
+    "steps": [
+      "Inspect crab and discard shell or cartilage. Whisk mayonnaise, egg, mustard, Worcestershire sauce and Old Bay; gently fold in crab, crumbs, parsley, zest, salt and pepper.",
+      "Shape into 6–8 cakes, using about ⅓ cup each. Cover and refrigerate at least an hour.",
+      "Heat oil over medium heat in a nonstick skillet. Fry cakes about 3–5 minutes per side until browned and centers reach 160°F. Serve with lemon wedges; tartar sauce is optional and additional."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000089",
+    "title": "Pork Tenderloin",
+    "servings": 4,
+    "minutes": 45,
+    "cuisine": "Fish and pork",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/cook-pork-tenderloin/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 234,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 286,
+      "protein": 26,
+      "carbohydrate": 7,
+      "fat": 14,
+      "sodium": 494,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000008901",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Pork tenderloin",
+        "note": "1 tenderloin"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008902",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008903",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008904",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008905",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008906",
+        "quantity": 12,
+        "unit": "oz",
+        "name": "Mushrooms",
+        "note": "cremini or white; sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008907",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008908",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Dried thyme leaves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008909",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "White wine",
+        "note": "or chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008910",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Worcestershire sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008911",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Butter",
+        "note": "softened"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008912",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008913",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008915",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Parsley",
+        "note": "optional garnish; chopped",
+        "optional": true
+      }
+    ],
+    "untrackedIngredients": ["salt and pepper to taste"],
+    "steps": [
+      "Heat oven to 400°F. Season tenderloin with salt and pepper; brown all sides in 1 tablespoon oil. Transfer to a lined sheet; roast 18–20 minutes to 145°F and rest at least 5 minutes.",
+      "Meanwhile, brown mushrooms in remaining oil about 5 minutes. Add onion and thyme; cook over medium heat 5 minutes. Add wine and Worcestershire sauce; reduce 2–3 minutes.",
+      "Stir in butter, then flour for 1–2 minutes. Gradually whisk in broth; bring to a boil and simmer 4–5 minutes to thicken. Adjust seasoning and serve over sliced pork."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000090",
+    "title": "Pork Stir Fry",
+    "servings": 4,
+    "minutes": 45,
+    "cuisine": "Fish and pork",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/pork-stir-fry/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.94,
+      "ratingCount": 152,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 393,
+      "protein": 26,
+      "carbohydrate": 43,
+      "fat": 15,
+      "sodium": 675,
+      "fiber": 8,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000009001",
+        "quantity": 12,
+        "unit": "oz",
+        "name": "Pork chops",
+        "note": "or pork tenderloin, cut into ½-inch strips"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009002",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Cornstarch"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009003",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Vegetable oil",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009004",
+        "quantity": 4,
+        "unit": "cup",
+        "name": "Mixed vegetables"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009005",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009006",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Ginger",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009007",
+        "quantity": 0.666667,
+        "unit": "cup",
+        "name": "Pineapple chunks",
+        "note": "reserve juice for sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009009",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Pineapple juice",
+        "note": "from pineapple chunks above, or orange juice"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009010",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Soy sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009011",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Brown sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009012",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Sriracha",
+        "note": "optional",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009013",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Toasted sesame oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009014",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Cornstarch",
+        "note": "for slurry"
+      }
+    ],
+    "untrackedIngredients": ["⅓ cup water"],
+    "steps": [
+      "Season pork strips; coat in 1 tablespoon cornstarch and refrigerate 15 minutes. Mix water, pineapple juice, soy sauce, sugar, optional sriracha and sesame oil.",
+      "Brown pork in batches in 1 tablespoon oil; reserve. Stir-fry vegetables in remaining oil 3–4 minutes; add garlic and ginger for 30 seconds, then reserve vegetables.",
+      "Bring sauce to a simmer. Mix remaining cornstarch with 2 tablespoons water; add gradually to thicken. Return pork, pineapple and vegetables; simmer about 2 minutes, until pork reaches 145°F. Rest 3 minutes before serving."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000091",
+    "title": "Baked Pork Chops",
+    "servings": 4,
+    "minutes": 60,
+    "cuisine": "Fish and pork",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/juicy-baked-pork-chops/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.95,
+      "ratingCount": 308,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 234,
+      "protein": 29,
+      "carbohydrate": 6,
+      "fat": 9,
+      "sodium": 66,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 pork chop"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000009101",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Pork chops",
+        "note": "¾-inch thick"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009103",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009104",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Brown sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009105",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Black peppercorns"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009107",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Brown sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009108",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009109",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dry mustard powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009110",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Paprika"
+      }
+    ],
+    "untrackedIngredients": ["2 cups water", "2 cups ice"],
+    "steps": [
+      "Boil water, kosher salt, first 2 tablespoons sugar and peppercorns until dissolved. Add ice and cool completely. Refrigerate chops in this brine 30 minutes to 2 hours.",
+      "Heat oven to 400°F; line a baking sheet. Drain chops, discard brine and pat dry. Coat with remaining sugar, garlic powder, mustard powder and paprika.",
+      "Bake 16 minutes; broil 4–6 inches from heat about 2–4 minutes as needed. Verify pork reaches 145°F; rest 5 minutes on a clean plate before serving."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000092",
+    "title": "Easy Taco Salad",
+    "servings": 8,
+    "minutes": 30,
+    "cuisine": "Fish and pork",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-taco-salad/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 115,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 360,
+      "protein": 19,
+      "carbohydrate": 20,
+      "fat": 23,
+      "sodium": 328,
+      "fiber": 6,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000009201",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009202",
+        "quantity": 1,
+        "unit": "oz",
+        "name": "Taco seasoning",
+        "note": "1 packet, or 2 tablespoons homemade"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009203",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Canned black beans",
+        "note": "drained and rinsed, optional",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009204",
+        "quantity": 6,
+        "unit": "cup",
+        "name": "Romaine lettuce",
+        "note": "or iceberg lettuce, chopped; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009205",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Tomatoes",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009206",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009207",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Avocado",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009208",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Tortilla chips"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009209",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Salsa"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009210",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Sour cream"
+      }
+    ],
+    "untrackedIngredients": [
+      "toppings as desired (olives, bell peppers, jalapenos, red or green onion)"
+    ],
+    "steps": [
+      "Brown beef over medium-high heat to 160°F; drain. Add taco seasoning and ½ cup water; simmer uncovered 5 minutes until thickened. Stir in optional canned beans.",
+      "Divide lettuce between bowls. Top with seasoned beef, tomato, cheddar and avocado.",
+      "Add tortilla chips, salsa and sour cream just before eating. Other chosen toppings are additional ingredients."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000093",
+    "title": "Macaroni Salad",
+    "servings": 6,
+    "minutes": 95,
+    "cuisine": "Fish and pork",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/classic-macaroni-salad/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 356,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 432,
+      "protein": 6,
+      "carbohydrate": 37,
+      "fat": 29,
+      "sodium": 408,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000009301",
+        "quantity": 8,
+        "unit": "oz",
+        "name": "Elbow macaroni",
+        "note": "approx. 2 cups dry, or any short pasta"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009302",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Celery",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009303",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Carrots",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009304",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Red bell pepper",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009305",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Red onions",
+        "note": "or thinly sliced green onion; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009306",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Mayonnaise"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009307",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Apple cider vinegar",
+        "note": "or white vinegar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009308",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Granulated sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009309",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Sweet relish"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009310",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Yellow mustard",
+        "note": "or Dijon mustard"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009311",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009312",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      }
+    ],
+    "steps": [
+      "Cook macaroni in salted water according to package directions. Drain and rinse cold.",
+      "Mix mayonnaise, vinegar, sugar, relish, mustard, salt and pepper in a large bowl. Fold in pasta, celery, carrot, red pepper and onion.",
+      "Adjust seasoning; cover and refrigerate at least an hour before serving."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000094",
+    "title": "Dill Pickle Pasta Salad",
+    "servings": 8,
+    "minutes": 20,
+    "cuisine": "Fish and pork",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/dill-pickle-pasta-salad/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 933,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 296,
+      "protein": 6,
+      "carbohydrate": 23,
+      "fat": 19,
+      "sodium": 636,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000009401",
+        "quantity": 0.5,
+        "unit": "lb",
+        "name": "Shells",
+        "note": "about 3 cups"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009402",
+        "quantity": 0.75,
+        "unit": "cup",
+        "name": "Pickles",
+        "note": "sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009403",
+        "quantity": 0.666667,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009404",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Onions",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009405",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Dill",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009406",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Dill pickle juice"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009407",
+        "quantity": 0.666667,
+        "unit": "cup",
+        "name": "Mayonnaise"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009408",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Sour cream"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009409",
+        "quantity": 0.125,
+        "unit": "tsp",
+        "name": "Cayenne pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009410",
+        "quantity": 4,
+        "unit": "tbsp",
+        "name": "Dill pickle juice"
+      }
+    ],
+    "untrackedIngredients": ["salt and black pepper (to taste)"],
+    "steps": [
+      "Cook shells al dente; drain and rinse cold. Toss with the first ½ cup pickle juice; stand 5 minutes, then drain and discard that juice.",
+      "Mix mayonnaise, sour cream, cayenne and remaining 4 tablespoons pickle juice; season to taste.",
+      "Combine pasta, pickles, cheddar, onion and dill with dressing. Cover and refrigerate at least an hour."
+    ]
+  }
+]

@@ -1,0 +1,1139 @@
+[
+  {
+    "id": "cb000000-0000-4000-8000-000000000055",
+    "title": "Chicken Parmesan",
+    "servings": 4,
+    "minutes": 50,
+    "cuisine": "Chicken dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/chicken-parmesan-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 427,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 647,
+      "protein": 46,
+      "carbohydrate": 44,
+      "fat": 32,
+      "sodium": 2318,
+      "fiber": 5,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000005501",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Chicken breasts",
+        "note": "about 5oz each"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005502",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005503",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Eggs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005504",
+        "quantity": 0.666667,
+        "unit": "cup",
+        "name": "Panko bread crumbs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005505",
+        "quantity": 0.666667,
+        "unit": "cup",
+        "name": "Seasoned bread crumbs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005506",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "grated"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005507",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Parsley",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005508",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005509",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005510",
+        "quantity": 4,
+        "unit": "tbsp",
+        "name": "Olive oil",
+        "note": "or as needed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005511",
+        "quantity": 24,
+        "unit": "oz",
+        "name": "Marinara sauce",
+        "note": "homemade or jarred"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005512",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Mozzarella cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005513",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005514",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Basil",
+        "note": "for garnish; chopped",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005515",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Parsley",
+        "note": "for garnish; chopped",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Heat oven to 425°F. Flatten chicken to ½ inch; season with half the salt and pepper. Set out flour, beaten eggs, and a mixture of both breadcrumbs, grated Parmesan, 2 tablespoons parsley and remaining seasoning.",
+      "Coat chicken in flour, eggs, then crumbs. Brown in olive oil about 2 minutes per side. Spread 1½ cups marinara in a 9×13-inch dish; add chicken, remaining sauce, mozzarella and shredded Parmesan.",
+      "Bake 20–25 minutes, until chicken reaches 165°F. Finish with basil and remaining parsley."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000056",
+    "title": "Chicken Pot Pie",
+    "servings": 6,
+    "minutes": 90,
+    "cuisine": "Chicken dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/homemade-chicken-pot-pie/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.97,
+      "ratingCount": 185,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 573,
+      "protein": 22,
+      "carbohydrate": 46,
+      "fat": 33,
+      "sodium": 606,
+      "fiber": 4,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000005601",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Potatoes",
+        "note": "peeled and diced ½-inch; peeled"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005602",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005603",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Onions",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005604",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005605",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Poultry seasoning",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005606",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Dried thyme leaves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005607",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Carrots",
+        "note": "peeled and chopped; peeled"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005608",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Celery ribs",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005609",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Corn kernels",
+        "note": "thawed if frozen; thawed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005610",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005611",
+        "quantity": 1.25,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005612",
+        "quantity": 0.666667,
+        "unit": "cup",
+        "name": "Half-and-half"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005613",
+        "quantity": 2.5,
+        "unit": "cup",
+        "name": "Cooked chicken",
+        "note": "or rotisserie chicken; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005614",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Frozen green peas",
+        "note": "thawed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005615",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Parsley",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005616",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Pie crust",
+        "note": "homemade or store-bought"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005617",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Eggs"
+      }
+    ],
+    "steps": [
+      "Heat oven to 400°F. Boil diced potato in water about 10 minutes; drain. Soften onion, garlic and herbs in butter 3–4 minutes; add carrot and celery for 5–6 minutes. Add corn and flour; cook a minute.",
+      "Gradually whisk in broth and half-and-half. Boil, stirring, a minute; add potatoes, cooked chicken, peas and parsley. Heat through and season.",
+      "Line a deep 9-inch pie pan with one crust; fill and seal with the second. Brush with yolk mixed with 1 tablespoon water; slit top. Bake 35–40 minutes, shielding edges if needed. Rest 10–15 minutes."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000057",
+    "title": "Roast Chicken",
+    "servings": 6,
+    "minutes": 85,
+    "cuisine": "Chicken dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/roast-chicken-vegetables/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 186,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 382,
+      "protein": 24,
+      "carbohydrate": 6,
+      "fat": 28,
+      "sodium": 133,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000005701",
+        "quantity": 4,
+        "unit": "lb",
+        "name": "Whole chicken"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005702",
+        "quantity": 4,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005703",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Italian seasoning",
+        "note": "or 1 tablespoon fresh chopped herbs; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005705",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005706",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Carrots",
+        "note": "cut into 1-inch pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005707",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Potatoes",
+        "note": "cut into 1-inch pieces"
+      }
+    ],
+    "untrackedIngredients": ["chicken seasoning (see notes)", "salt and black pepper"],
+    "steps": [
+      "Heat oven to 450°F. Toss chopped vegetables in a shallow baking dish with 2 tablespoons oil, Italian seasoning, and ¼ teaspoon each salt and pepper.",
+      "Remove any giblets; pat chicken dry. Rub with remaining oil and chicken seasoning. Set breast-up over vegetables; roast uncovered 12 minutes.",
+      "Reduce oven to 350°F. Continue about 20 minutes per pound, until chicken reaches 165°F in the breast and inner thigh. Rest 15 minutes. Roast vegetables longer separately if needed."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000058",
+    "title": "Braised Chicken Thighs with Mushrooms",
+    "servings": 4,
+    "minutes": 61,
+    "cuisine": "Chicken dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/braised-chicken-thighs-with-mushrooms/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 234,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 384,
+      "protein": 48,
+      "carbohydrate": 6,
+      "fat": 16,
+      "sodium": 836,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000005801",
+        "quantity": 2,
+        "unit": "lb",
+        "name": "Chicken thighs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005802",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Seasoned salt",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005804",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005805",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005806",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Mushrooms",
+        "note": "sliced ½\" thick; sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005807",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Soy sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005808",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005809",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried thyme leaves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005810",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried rosemary",
+        "note": "slightly crushed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005811",
+        "quantity": 0.666667,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005812",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "White wine",
+        "note": "optional",
+        "optional": true
+      }
+    ],
+    "untrackedIngredients": ["black pepper (to taste)"],
+    "steps": [
+      "Heat oven to 425°F. Season thighs with seasoned salt and pepper. Heat oil and butter in an oven-safe skillet; brown chicken skin-down 4–5 minutes. Set aside.",
+      "Toss mushrooms with soy sauce. Cook mushrooms, garlic and herbs in the skillet about 5 minutes. Add broth and optional wine; simmer 2 minutes.",
+      "Set chicken skin-up over mushrooms. Bake 35–40 minutes, until chicken reaches 165°F. Optionally broil a minute; spoon mushrooms and sauce over each serving."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000059",
+    "title": "Chicken Divan",
+    "servings": 6,
+    "minutes": 35,
+    "cuisine": "Chicken dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/quick-simple-chicken-broccoli-divan/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.94,
+      "ratingCount": 322,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 399,
+      "protein": 32,
+      "carbohydrate": 17,
+      "fat": 23,
+      "sodium": 791,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000005901",
+        "quantity": 1.5,
+        "unit": "lb",
+        "name": "Broccoli florets",
+        "note": "cut into bite size pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005902",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "divided; shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005903",
+        "quantity": 10.5,
+        "unit": "oz",
+        "name": "Condensed cream of mushroom soup",
+        "note": "10.5 ounce) can condensed cream of mushroom soup (or condensed chicken soup"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005904",
+        "quantity": 0.666667,
+        "unit": "cup",
+        "name": "Sour cream"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005905",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005906",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005907",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Onion powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005908",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dry mustard powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005909",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005910",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Seasoned salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005911",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Cooked chicken",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005912",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Panko bread crumbs",
+        "note": "or seasoned bread crumbs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005913",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Butter",
+        "note": "melted"
+      }
+    ],
+    "steps": [
+      "Heat oven to 400°F. Boil broccoli 2–3 minutes until crisp-tender; drain thoroughly.",
+      "In a 9×13-inch dish, mix 1 cup cheddar with condensed soup, sour cream, milk and seasonings. Fold in broccoli and cooked chicken; top with remaining cheese.",
+      "Combine breadcrumbs and melted butter; scatter on top. Bake 18–20 minutes, until bubbling and hot throughout, reaching 165°F when reheating cooked chicken."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000060",
+    "title": "Chicken Stuffing Casserole",
+    "servings": 6,
+    "minutes": 35,
+    "cuisine": "Chicken dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/chicken-stuffing-casserole/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.94,
+      "ratingCount": 421,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 314,
+      "protein": 22,
+      "carbohydrate": 38,
+      "fat": 8,
+      "sodium": 837,
+      "fiber": 5,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000006001",
+        "quantity": 6,
+        "unit": "oz",
+        "name": "Stuffing mix",
+        "note": "or 3 to 4 cups homemade stuffing"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006003",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Frozen mixed vegetables",
+        "note": "thawed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006004",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Cooked chicken",
+        "note": "diced; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006005",
+        "quantity": 10.5,
+        "unit": "oz",
+        "name": "Condensed cream of chicken soup",
+        "note": "10.5 ounce) can condensed cream of chicken soup (or homemade condensed soup"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006006",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Sour cream"
+      }
+    ],
+    "untrackedIngredients": [
+      "1¼ cups hot water (or as needed)",
+      "salt and black pepper (to taste)"
+    ],
+    "steps": [
+      "Heat oven to 400°F. Prepare stuffing following its package directions, using hot water as needed; let stand 5 minutes.",
+      "Grease a 2½-quart baking dish. Mix thawed vegetables, cooked chicken, condensed soup and sour cream; season to taste.",
+      "Spread stuffing over filling. Bake 25–30 minutes until golden, bubbling and heated to 165°F."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000061",
+    "title": "Cheesy Chicken Casserole",
+    "servings": 6,
+    "minutes": 60,
+    "cuisine": "Chicken dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/cheesy-chicken-casserole/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.96,
+      "ratingCount": 393,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 649,
+      "protein": 40,
+      "carbohydrate": 32,
+      "fat": 39,
+      "sodium": 1197,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000006101",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Shells",
+        "note": "uncooked"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006102",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006103",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "finely diced; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006104",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Red bell pepper",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006105",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Chili powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006106",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Seasoned salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006107",
+        "quantity": 10.5,
+        "unit": "oz",
+        "name": "Condensed cream of chicken soup",
+        "note": "10.5 ounce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006108",
+        "quantity": 1.333333,
+        "unit": "cup",
+        "name": "Milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006109",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "divided; shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006110",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006111",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Cooked chicken",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006112",
+        "quantity": 4,
+        "unit": "oz",
+        "name": "Canned mild green chiles"
+      }
+    ],
+    "steps": [
+      "Heat oven to 375°F. Cook shells until just al dente; drain. Soften onion and red pepper in butter about 5 minutes; stir in chili powder and seasoned salt.",
+      "Combine condensed soup, milk, onion mixture, 2 cups cheddar and Parmesan. Fold in cooked chicken, green chiles and pasta.",
+      "Spread in a 9×13-inch dish; top with remaining cheddar. Bake 30–35 minutes until bubbling and heated through to 165°F."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000062",
+    "title": "Chicken Spaghetti",
+    "servings": 6,
+    "minutes": 60,
+    "cuisine": "Chicken dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/homemade-chicken-spaghetti/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 711,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 518,
+      "protein": 22,
+      "carbohydrate": 38,
+      "fat": 30,
+      "sodium": 606,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000006201",
+        "quantity": 8,
+        "unit": "oz",
+        "name": "Spaghetti"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006202",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Cooked chicken",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006203",
+        "quantity": 14,
+        "unit": "oz",
+        "name": "Canned diced tomatoes with chilies",
+        "note": "14 ounce) can canned diced tomatoes with chilies (such as Rotel, or petite diced tomatoes, lightly drained; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006204",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006205",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006206",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006207",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Green bell pepper",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006208",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006209",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006210",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006211",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Half-and-half",
+        "note": "or light cream"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006212",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006213",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "divided; shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006214",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "more to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006215",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper",
+        "note": "more to taste"
+      }
+    ],
+    "steps": [
+      "Heat oven to 375°F; grease a 9×13-inch dish. Cook spaghetti al dente and drain. Soften onion, garlic and pepper in butter; stir in flour and Italian seasoning for 1–2 minutes.",
+      "Gradually whisk in broth and half-and-half until smooth. Boil a minute to thicken. Remove from heat; stir in Parmesan, 1 cup cheddar, salt and pepper.",
+      "Combine sauce, spaghetti, cooked chicken and lightly drained tomatoes. Transfer to dish, top with remaining cheddar and bake 25–30 minutes, until bubbling and heated to 165°F."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000063",
+    "title": "One Pot Creamy Cajun Chicken Pasta",
+    "servings": 4,
+    "minutes": 30,
+    "cuisine": "Chicken dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/one-pot-creamy-cajun-chicken-pasta/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.65,
+      "ratingCount": 500,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 482.65,
+      "protein": 34.95,
+      "carbohydrate": 51.53,
+      "fat": 14.58,
+      "sodium": 847.23,
+      "fiber": 3.45,
+      "source": "publisher",
+      "portion": "1 Serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000006301",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Smoked paprika"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006302",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Oregano"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006303",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Thyme"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006304",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006305",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Onion powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006306",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Cayenne pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006307",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006308",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006309",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006310",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006311",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Chicken breast",
+        "note": "skinless chicken breast"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006312",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006313",
+        "quantity": 0.5,
+        "unit": "lb",
+        "name": "Penne pasta",
+        "note": "uncooked"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006314",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "Fire roasted diced tomatoes",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006315",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006316",
+        "quantity": 2,
+        "unit": "oz",
+        "name": "Cream cheese"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006317",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Green onions sliced",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      "Mix paprika, oregano, thyme, garlic powder, onion powder, cayenne, pepper and salt. Coat ½–¾-inch chicken cubes. Brown in oil and butter over medium-high heat, a few minutes per side; add onion for 2 minutes.",
+      "Stir in uncooked penne, tomatoes with juice and broth. Cover and bring to a boil; reduce to medium-low and simmer about 10 minutes, stirring every couple of minutes, until pasta is tender and chicken reaches 165°F.",
+      "Stir in cream cheese until melted. Finish with sliced green onions."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000064",
+    "title": "One Pot Creamy Pesto Chicken Pasta",
+    "servings": 4,
+    "minutes": 25,
+    "cuisine": "Chicken dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/one-pot-creamy-pesto-chicken-pasta/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.84,
+      "ratingCount": 254,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 748.68,
+      "protein": 41.75,
+      "carbohydrate": 52.55,
+      "fat": 41.53,
+      "sodium": 1099.28,
+      "fiber": 4.1,
+      "source": "publisher",
+      "portion": "1 Serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000006401",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Chicken breast",
+        "note": "skinless chicken breast"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006402",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006403",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006404",
+        "quantity": 0.5,
+        "unit": "lb",
+        "name": "Penne pasta"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006405",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006406",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006407",
+        "quantity": 3,
+        "unit": "oz",
+        "name": "Cream cheese"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006408",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Basil pesto"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006409",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "grated"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006412",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Spinach"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006413",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Sun dried tomatoes",
+        "note": "sliced"
+      }
+    ],
+    "untrackedIngredients": ["freshly cracked pepper", "1 pinch crushed red pepper"],
+    "steps": [
+      "Brown 1-inch chicken pieces in butter over medium heat; add minced garlic for a minute. Stir in dry penne and broth, loosening browned bits.",
+      "Cover and bring to a boil. Reduce to medium-low; simmer about 8 minutes, stirring every 2 minutes, until pasta is tender and chicken reaches 165°F.",
+      "Add milk, cream cheese and pesto; stir until creamy. Add Parmesan, then spinach and sun-dried tomatoes if using; stir until wilted. Finish with pepper and a pinch of crushed red pepper."
+    ]
+  }
+]

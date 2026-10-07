@@ -1,6 +1,6 @@
 import { Bookmark, ChevronRight } from 'lucide-react';
 import type { getRecipeAvailability } from '../../domain/recipes/availability';
-import { recipeMeta } from './presentation';
+import { dateLabel, recipeMeta } from './presentation';
 
 type Availability = ReturnType<typeof getRecipeAvailability>;
 const matchLabels = {
@@ -11,10 +11,12 @@ const matchLabels = {
 export function RecipeCard({
   match,
   saved,
+  useSoon,
   onOpen,
 }: {
   match: Availability;
   saved: boolean;
+  useSoon?: string;
   onOpen: (id: string) => void;
 }) {
   return (
@@ -26,13 +28,14 @@ export function RecipeCard({
               <Bookmark size={12} /> Saved recipe
             </>
           ) : (
-            'From the starter collection'
+            'Built-in'
           )}
         </span>
         <span className="recipe-card-title">{match.recipe.title}</span>
         <span className="recipe-meta">{recipeMeta(match.recipe)}</span>
-        <span className={`recipe-match ${match.status}`}>{matchLabels[match.status]}</span>
-        {match.expiringSoon > 0 && <span className="recipe-use-up">Uses dated ingredients</span>}
+        <span className={`recipe-match ${useSoon ? 'use-soon' : match.status}`}>
+          {useSoon ? `Use soon · ${dateLabel(useSoon)}` : matchLabels[match.status]}
+        </span>
         {match.pastDate > 0 && <span className="recipe-use-up">Check past-date ingredients</span>}
       </span>
       <ChevronRight size={19} />

@@ -5,10 +5,40 @@ kitchen isolation. Curated recipes are suggestions, separate from saved recipes 
 Opening a recipe, viewing a substitution, or adding a dated meal never changes stock. No paid
 AI/API call is required by these domain commands.
 
-The four built-in starters are authored in `src/domain/recipes/starters.ts`, not fetched from
-an external recipe service. **All recipes** is a compact alphabetical index of those starters
-and saved, written, imported and AI recipes, with source labels and the existing title search.
-Saving an edited starter replaces that starter's displayed entry rather than duplicating it.
+The cookbook opens as one compact recipe list. Recipes matching the nearest upcoming stocked
+ingredient date within seven days come first; availability and title break ties. Past dates and
+zero lots do not create urgency. The intro remains visible with every view. **View** contains
+sorting, a thirty-minute filter, the built-in collection toggle and text import. **Get ideas**
+opens the existing AI flow; the header's plus button writes a recipe. Search matches titles and
+ingredient names. Twenty-four rows render initially, with an accessible Show more button.
+
+There are 104 built-ins: the original four authored starters retain their IDs, and 100 additional
+recipes are adaptations of published recipes from Spend With Pennies and Budget Bytes. Each
+original had at least 4.5/5 and 100 ratings when checked on October 6, 2026. Recipe details link
+the original, identify its author/publisher and display its rating count and verification date.
+The ten category data files in `src/domain/recipes/collection/` contain measured ingredient facts
+and independently condensed methods, not copied articles or photographs. These adaptations have
+not all been cooked by the developer; ratings refer to the original publisher recipes.
+
+The collection is bundled for offline use and does not fill saved-recipe or inventory arrays.
+Turning built-ins off displays saved, written, imported and saved AI recipes, including any
+built-in deliberately saved by the user. Saving or editing a built-in overrides its displayed
+entry by stable ID. View preferences are stored on the device per active kitchen account, with
+separate keys for the isolated local test kitchen. Preferences do not sync or enter backups.
+
+Each of the 100 additions includes the publisher's estimated calories, protein, fat and sodium
+per stated portion; 99 also publish carbohydrate values. Missing carbohydrate is shown as
+"Not provided", never assumed zero. Fiber is optional. Estimates are for the published recipe;
+brands, portions and substitutions affect them. Changing the batch's servings scales ingredient
+quantities, not the estimate per stated portion. Editing a recipe drops its publisher rating and
+nutrition so modified ingredients cannot retain misleading estimates. Source links remain.
+
+Unmeasured seasoning, handfuls/bunches without a published measure, garnishes, water and ice
+remain visible under Additional ingredients. They are not automatically added to shopping or
+suggested stock deductions. Add measured recipe ingredients before recording their stock use.
+Known source equivalents are used where explicit; container sizes are multiplied by container
+count, and cooked, dried and frozen ingredient forms remain distinct. Prepared beans and other
+source preparation details still require label and suitability review. No density is invented.
 
 ## Backward-compatible data
 
@@ -17,6 +47,12 @@ Snapshot version 1 now accepts optional `recipes` (100), `mealPlan` (180), and `
 fields remain compatible. Restoring a backup recreates recipes, plans, and historical cooking
 records without replaying their deductions. Deleting a recipe removes its plans but retains
 cooking history; historical records do not require the original recipe or stock lot to remain.
+
+Recipes additionally accept optional `curation`, `nutrition` and `untrackedIngredients` fields.
+The shared schema validates these on the frontend and API. Existing snapshots and recipes that
+omit them remain valid. Deploy matching frontend/API versions together: an older schema may
+strip these new optional fields during sync. Saved-recipe limits and the snapshot byte budget
+are unchanged; bundled recipes do not consume saved capacity until deliberately saved.
 
 Stock quantities now accept up to six decimal places. Shopping quantities and normal +1/-1
 adjustment deltas remain integers; put-away still requires the exact purchased integer quantity.

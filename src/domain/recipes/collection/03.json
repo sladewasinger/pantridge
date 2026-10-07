@@ -1,0 +1,941 @@
+[
+  {
+    "id": "cb000000-0000-4000-8000-000000000025",
+    "title": "Baked Zucchini",
+    "servings": 4,
+    "minutes": 15,
+    "cuisine": "Vegetables and salads",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-baked-zucchini/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 441,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 80,
+      "protein": 4,
+      "carbohydrate": 3,
+      "fat": 5,
+      "sodium": 141,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000002501",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Zucchini",
+        "note": "about 1 pound"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002502",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002503",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002505",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "divided; shredded"
+      }
+    ],
+    "untrackedIngredients": ["salt and black pepper (to taste)"],
+    "steps": [
+      "Heat the oven to 425°F and line a rimmed sheet with parchment. Cut zucchini into ½-inch rounds.",
+      "Toss with oil, Italian seasoning, optional salt and pepper, and 2 tablespoons Parmesan. Spread on the sheet and add the remaining Parmesan.",
+      "Bake 5 minutes, then broil 4–6 inches below the element for 3–5 minutes. Watch closely; stop when browned and tender but still slightly firm."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000026",
+    "title": "Balsamic Roasted Brussels Sprouts",
+    "servings": 4,
+    "minutes": 35,
+    "cuisine": "Vegetables and salads",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/balsamic-roasted-brussels-sprouts/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 5,
+      "ratingCount": 119,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 144,
+      "protein": 6,
+      "carbohydrate": 17,
+      "fat": 8,
+      "sodium": 45,
+      "fiber": 6,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000002601",
+        "quantity": 1.5,
+        "unit": "lb",
+        "name": "Brussels sprouts"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002602",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002603",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Balsamic vinegar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002604",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      }
+    ],
+    "untrackedIngredients": ["salt and black pepper"],
+    "steps": [
+      "Heat the oven to 400°F. Trim the Brussels sprouts and halve larger ones.",
+      "Coat with olive oil, balsamic vinegar and minced garlic; season to taste. Spread cut-side down on a baking sheet.",
+      "Roast about 20–25 minutes until tender with browned edges."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000027",
+    "title": "Cucumber Tomato Salad",
+    "servings": 4,
+    "minutes": 30,
+    "cuisine": "Vegetables and salads",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/cucumber-tomato-salad/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 5,
+      "ratingCount": 667,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 104,
+      "protein": 2,
+      "carbohydrate": 7,
+      "fat": 8,
+      "sodium": 6,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000002701",
+        "quantity": 1,
+        "unit": "count",
+        "name": "English cucumber",
+        "note": "sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002702",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Ripe tomatoes",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002703",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Red onions",
+        "note": "thinly sliced; sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002704",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Herbs",
+        "note": "any combination of parsley, basil and/or dill, optional",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002705",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002706",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Red wine vinegar"
+      }
+    ],
+    "untrackedIngredients": ["salt and black pepper (to taste)"],
+    "steps": [
+      "Slice the cucumber and red onion; dice 2–3 ripe tomatoes. Combine with optional herbs in a bowl.",
+      "Toss with olive oil, red wine vinegar and seasoning to taste. Refrigerate at least 20 minutes before serving."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000028",
+    "title": "Oven Roasted Potatoes",
+    "servings": 6,
+    "minutes": 95,
+    "cuisine": "Vegetables and salads",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/simple-herb-oven-roasted-potatoes/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 1307,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 147,
+      "protein": 2,
+      "carbohydrate": 24,
+      "fat": 4,
+      "sodium": 27,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000002801",
+        "quantity": 2,
+        "unit": "lb",
+        "name": "Red potatoes",
+        "note": "or yellow or Yukon gold potatoes"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002802",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002803",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002804",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Herbs",
+        "note": "any combination of rosemary, parsley, thyme, or basil, or 2 teaspoons dried herbs; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002805",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Paprika"
+      }
+    ],
+    "untrackedIngredients": ["kosher salt (to taste)", "black pepper (to taste)"],
+    "steps": [
+      "Heat the oven to 425°F. Scrub potatoes and cut into 1-inch chunks. For an optional fluffier result, soak 20–60 minutes in cold water, then drain and dry thoroughly.",
+      "Toss with oil, garlic powder, herbs and paprika; season as desired. Spread in a single layer on a baking sheet.",
+      "Roast 30–35 minutes until browned and tender inside."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000029",
+    "title": "Roasted Beets",
+    "servings": 6,
+    "minutes": 70,
+    "cuisine": "Vegetables and salads",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/simple-roasted-beets/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 5,
+      "ratingCount": 217,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 56,
+      "protein": 1,
+      "carbohydrate": 8,
+      "fat": 2,
+      "sodium": 64,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000002901",
+        "quantity": 6,
+        "unit": "count",
+        "name": "Beets",
+        "note": "or as many as desired"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002902",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil",
+        "note": "about 1 tablespoon for every 4-6 beets"
+      }
+    ],
+    "untrackedIngredients": ["salt and black pepper (to taste)"],
+    "steps": [
+      "Heat the oven to 375°F. Wash, trim and halve the beets, then coat with olive oil and seasoning.",
+      "Seal in parchment-lined foil, or cover a greased baking dish. Roast 60–75 minutes, testing for tenderness with a fork.",
+      "When comfortable to handle, use gloves or paper towels to rub off the skins. Serve warm or chill for salads."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000030",
+    "title": "The Best Broccoli Salad",
+    "servings": 8,
+    "minutes": 80,
+    "cuisine": "Vegetables and salads",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/broccoli-salad/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 1399,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 317,
+      "protein": 6,
+      "carbohydrate": 17,
+      "fat": 26,
+      "sodium": 330,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "1 cup"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000003001",
+        "quantity": 8,
+        "unit": "cup",
+        "name": "Broccoli florets",
+        "note": "cut into bite-sized pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003002",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Red onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003003",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Dried cranberries"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003004",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Sunflower seeds"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003005",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Bacon bits"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003006",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Mayonnaise"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003007",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Apple cider vinegar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003008",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Granulated sugar"
+      }
+    ],
+    "untrackedIngredients": ["salt and black pepper (to taste)"],
+    "steps": [
+      "Whisk mayonnaise, cider vinegar and sugar into a dressing; season to taste.",
+      "Combine small broccoli florets, red onion, cranberries, sunflower seeds and cooked bacon bits. Toss with the dressing.",
+      "Chill for at least 1 hour before serving."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000031",
+    "title": "Kale Salad",
+    "servings": 4,
+    "minutes": 20,
+    "cuisine": "Vegetables and salads",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-kale-salad-with-fresh-lemon-dressing/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Jennifer Laughlin",
+      "rating": 4.98,
+      "ratingCount": 344,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 334,
+      "protein": 9,
+      "carbohydrate": 19,
+      "fat": 26,
+      "sodium": 315,
+      "fiber": 4,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000003101",
+        "quantity": 5,
+        "unit": "cup",
+        "name": "Kale",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003102",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003103",
+        "quantity": 0.125,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003104",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Broccoli florets",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003105",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Almonds",
+        "note": "sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003106",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "shredded or diced, or crumbled feta, optional; shredded",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003107",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Carrots",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003108",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Red onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003109",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Sunflower seeds"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003110",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Dried cranberries"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003111",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003112",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Lemon juice"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003113",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Red wine vinegar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003114",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Dijon mustard"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003115",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Honey",
+        "note": "or sugar, adjust or add to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003116",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003117",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried oregano"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003118",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003119",
+        "quantity": 0.125,
+        "unit": "tsp",
+        "name": "Black pepper"
+      }
+    ],
+    "steps": [
+      "Shake the dressing ingredients together in a sealed jar. Massage chopped kale with 1–2 teaspoons oil and ⅛ teaspoon salt until softened.",
+      "Mix kale with broccoli, almonds, optional cheese, carrot, onion, seeds and cranberries.",
+      "Shake the dressing again. Toss about one-third through the salad and add more to your preference."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000032",
+    "title": "Roasted Cauliflower Salad",
+    "servings": 4,
+    "minutes": 50,
+    "cuisine": "Vegetables and salads",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/roasted-cauliflower-salad/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.68,
+      "ratingCount": 255,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 374,
+      "protein": 11.13,
+      "carbohydrate": 30.08,
+      "fat": 24,
+      "sodium": 620.8,
+      "fiber": 9.08,
+      "source": "publisher",
+      "portion": "1 Serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000003201",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Cauliflower head"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003202",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Red onions"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003203",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003206",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Tahini"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003208",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Lemon juice"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003209",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003210",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Cumin"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003211",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Cayenne"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003212",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003213",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "Chickpeas",
+        "note": "1 can × 15 oz"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003214",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003215",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Smoked paprika"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003216",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003217",
+        "quantity": 0.125,
+        "unit": "tsp",
+        "name": "Cayenne"
+      }
+    ],
+    "untrackedIngredients": [
+      "Salt and Pepper to taste",
+      "1/2 bunch parsley",
+      "1/3 cup water",
+      "Salt and Pepper to taste"
+    ],
+    "steps": [
+      "Heat the oven to 400°F. Toss cauliflower florets and sliced onion with 2 tablespoons oil and seasoning. Roast 20 minutes, stir, then roast another 10–15 minutes.",
+      "Blend tahini, ⅓ cup water, lemon juice, garlic, cumin, cayenne and salt into a dressing; chill.",
+      "Drain and rinse chickpeas. Fry in the remaining tablespoon oil with paprika, garlic powder, cayenne and seasoning about 5 minutes, until lightly crisp.",
+      "Combine slightly cooled vegetables, chickpeas and chopped parsley; toss with the dressing."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000033",
+    "title": "Cold Peanut Noodle Salad",
+    "servings": 4,
+    "minutes": 30,
+    "cuisine": "Vegetables and salads",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/cold-peanut-noodle-salad/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.84,
+      "ratingCount": 122,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 557,
+      "protein": 18,
+      "carbohydrate": 64,
+      "fat": 30,
+      "sodium": 276,
+      "fiber": 6,
+      "source": "publisher",
+      "portion": "2 cups"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000003301",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Peanut butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003302",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Brown sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003303",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003304",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Ginger",
+        "note": "grated"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003305",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Lime",
+        "note": "juiced, (2 Tbsp juice)"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003306",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Soy sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003307",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Vegetable oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003308",
+        "quantity": 8,
+        "unit": "oz",
+        "name": "Whole wheat spaghetti",
+        "note": "uncooked"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003309",
+        "quantity": 4,
+        "unit": "cup",
+        "name": "Red cabbage",
+        "note": "finely shredded, (about ¾-1 pound of cabbage) ; shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003310",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Carrots"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003311",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Cilantro",
+        "note": "Chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003312",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Green onions",
+        "note": "sliced (about ½ cup) ; sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003313",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Peanuts",
+        "note": "chopped"
+      }
+    ],
+    "steps": [
+      "Whisk peanut butter, brown sugar, garlic, ginger, lime juice, soy sauce and oil until smooth.",
+      "Break spaghetti in half, cook in boiling water to its package timing, then drain, briefly rinse cold and drain thoroughly.",
+      "Finely shred cabbage and carrots; chop cilantro and peanuts and slice green onions. Toss everything with the cooled pasta.",
+      "Add dressing just before serving. For later meals, keep the salad and dressing separately refrigerated."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000034",
+    "title": "Cabbage Soup",
+    "servings": 6,
+    "minutes": 70,
+    "cuisine": "Vegetables and salads",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/can-eat-cabbage-soup/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.86,
+      "ratingCount": 133,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 133,
+      "protein": 4,
+      "carbohydrate": 26,
+      "fat": 3,
+      "sodium": 1783,
+      "fiber": 7,
+      "source": "publisher",
+      "portion": "2 cups"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000003401",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Garlic cloves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003402",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003403",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Carrots"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003404",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Celery ribs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003405",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Green bell pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003406",
+        "quantity": 6,
+        "unit": "cup",
+        "name": "Cabbage",
+        "note": "½ head; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003407",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003408",
+        "quantity": 28,
+        "unit": "oz",
+        "name": "Tomatoes",
+        "note": "diced; 1 can × 28 oz"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003409",
+        "quantity": 8,
+        "unit": "oz",
+        "name": "Tomato sauce",
+        "note": "1 can × 8 oz"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003410",
+        "quantity": 0.5,
+        "unit": "lb",
+        "name": "Frozen green beans"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003411",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Parsley",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003412",
+        "quantity": 0.5,
+        "unit": "tbsp",
+        "name": "Smoked paprika"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003413",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Dried oregano"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003414",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried thyme"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003415",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003416",
+        "quantity": 6,
+        "unit": "cup",
+        "name": "Vegetable broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003417",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003418",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Lemon juice"
+      }
+    ],
+    "steps": [
+      "Chop garlic, onion, carrots, celery, pepper and cabbage. Soften all except cabbage in olive oil over medium heat.",
+      "Stir in tomatoes with their juice, tomato sauce, frozen green beans, parsley, paprika, oregano, thyme and pepper for 1–2 minutes.",
+      "Add cabbage and broth, cover and bring to a boil. Lower the heat and simmer about 40 minutes, stirring occasionally, until tender.",
+      "Season with salt to taste, beginning with ½ teaspoon; stir in lemon juice before serving."
+    ]
+  }
+]

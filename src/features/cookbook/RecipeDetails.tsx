@@ -16,6 +16,7 @@ import { MissingShopping } from './MissingShopping';
 import { initialServings, planReviewIsStale } from './cookDraft';
 import { RecipeSummary, RecipeServings } from './RecipeSummary';
 import { todayLocal } from './presentation';
+import { RecipeNutrition, RecipeExtras } from './RecipeNutrition';
 
 export function RecipeDetails({
   recipeId,
@@ -143,6 +144,7 @@ function RecipeContent({
           stale={planStale}
         />
         <RecipeIngredients ingredients={match.ingredients} />
+        <RecipeExtras recipe={recipe} />
         <section className="recipe-method" aria-label="Cooking steps">
           <h3>Method</h3>
           <ol>
@@ -151,6 +153,7 @@ function RecipeContent({
             ))}
           </ol>
         </section>
+        <RecipeNutrition recipe={recipe} />
         {validServings && (
           <>
             <MissingShopping key={`shopping-${servings}`} recipe={recipe} servings={servings} />

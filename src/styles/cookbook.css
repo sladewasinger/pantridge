@@ -31,7 +31,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 10px 0 20px;
+  padding: 10px 0 12px;
 }
 .cookbook-intro img {
   width: 86px;
@@ -47,57 +47,6 @@
   font-size: 13px;
   line-height: 1.5;
   margin-bottom: 0;
-}
-.cookbook-modes {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  padding: 4px;
-  border-radius: 12px;
-  background: #e9e5d7;
-  gap: 3px;
-}
-.recipe-index-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 56px;
-  padding: 12px 0;
-  border-top: 1px solid #dcd6c6;
-  background: transparent;
-  text-align: left;
-}
-.recipe-index-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-.recipe-index-copy strong {
-  font:
-    18px/1.2 Georgia,
-    serif;
-}
-.recipe-index-copy > span {
-  color: #626b58;
-  font-size: 12px;
-}
-.recipe-index-row > svg {
-  flex-shrink: 0;
-}
-.cookbook-modes button {
-  flex: 1;
-  min-height: 44px;
-  padding: 8px 4px;
-  border-radius: 9px;
-  background: transparent;
-  font-size: 13px;
-}
-.cookbook-modes button[aria-pressed='true'] {
-  background: #fffaf0;
-  box-shadow: 0 1px 4px #56462918;
 }
 .cookbook-tools,
 .recipe-detail-tools {
@@ -118,7 +67,7 @@
   justify-content: space-between;
   gap: 10px;
   width: 100%;
-  padding: 20px 0;
+  padding: 14px 0;
   border-top: 1px solid #dcd6c6;
   text-align: left;
   background: transparent;
@@ -127,7 +76,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 7px;
+  gap: 5px;
   min-width: 0;
 }
 .recipe-source,
@@ -141,7 +90,7 @@
 }
 .recipe-card-title {
   font:
-    23px/1.2 Georgia,
+    21px/1.2 Georgia,
     serif;
   overflow-wrap: anywhere;
 }

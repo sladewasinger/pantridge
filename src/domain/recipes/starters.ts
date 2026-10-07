@@ -1,4 +1,5 @@
 import type { Recipe } from './model';
+import { curatedRecipes } from './collection';
 
 const ingredient = (
   recipe: number,
@@ -86,4 +87,5 @@ export const starterRecipes: Recipe[] = [
       'Scramble the eggs in the pan until set, then add rice and soy sauce. Stir until steaming hot throughout.',
     ],
   },
+  ...curatedRecipes,
 ];

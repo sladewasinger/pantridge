@@ -53,3 +53,34 @@ The sample loader passed `pnpm check` with 289 unit tests and the production-bui
 Manual browser clicks loaded 193 missing foods alongside eight existing foods, yielding 201 stocked items. A repeated click added none; reload preserved the 201-item kitchen. Pantry layout was visually inspected at 1280×900 and 390×844, and search found a sample Cumin package. Existing recipes, six shopping rows and previously reviewed quantities remained visible. The cookbook recalculated availability, and a real local API suggestion request using 177 eligible food groups returned Lemon Salmon with Vegetable Rice, Red Lentil Tomato Soup and Creamy Spinach Mushroom Pasta. Closing the suggestions and reloading saved no recipe and deducted no inventory. These are synthetic test packages, not package-label or nutrition measurements.
 
 The earlier size experiment tested grouped requests only: even 200 source foods still sent 177 groups. Similar provider round-trip times do not establish a latency improvement from grouping or identify a particular generation phase as the bottleneck. A direct grouped/ungrouped comparison with repeated samples remains necessary to measure its speed or suggestion-quality benefit.
+
+## Cookbook browsing and sourced collection verification on October 6, 2026
+
+The new cookbook has 104 built-ins (100 attributed published-recipe adaptations plus the four
+original starters). Local checks passed 294 unit tests; the production-build Chromium suite
+passed 61 tests with one intentional skip. The dependency audit reported no known vulnerabilities.
+Tests cover catalog identities, rating thresholds, source container quantities, optional metadata,
+edited-estimate removal, upcoming-date ordering, ingredient search, quick filtering, saved-only
+preference persistence, attribution, per-portion nutrition and cooking cancellation.
+
+The real local browser was operated at 390×844 and 1280×900 using the existing 201-food sample
+kitchen. Manual actions hid/re-enabled the built-in collection, reloaded the saved-only view,
+changed sorting, filtered to thirty-minute recipes, searched and opened Hearty Black Bean
+Quesadillas, reviewed its original source/rating and nutrition, saved it, changed servings and
+opened its missing-ingredient shopping review. Cooking review showed unknown-size packages at
+zero use and required explicit confirmation; Cancel without changes returned to the recipe.
+The existing six shopping rows remained because the shopping-add button was not submitted.
+The quieter View control also opened the import dialog, which was cancelled without saving.
+
+A synthetic October 9 date was entered on the local eggs package and visibly persisted. Egg
+recipes then led the list with Use soon badges. The recipe intro stayed visible for every view.
+The AI entry point still opened the existing reviewable suggestion dialog with 177 eligible food
+groups; this UI/catalog change made no additional paid request and changed no grouping or timeout.
+Earlier real OpenAI timings and requests above remain the live-call evidence. Screenshots in
+ignored `artifacts/review/` supplement these manual actions; screenshots alone are not a usability
+test. This isolated mode does not verify Google sign-in or live AWS kitchen synchronization.
+
+Publisher nutrition has incomplete coverage: one new chicken recipe omits carbohydrate, and the
+four original authored starters have no publisher nutrition. Unknown values are not invented.
+The bundled catalog adds client code/data and triggers Vite's existing 500 kB chunk-size warning;
+the limit was not raised. No application deployment or infrastructure change was performed.

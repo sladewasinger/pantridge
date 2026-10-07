@@ -16,6 +16,7 @@ import './styles/polish.css';
 import './styles/scanning.css';
 import './styles/artwork.css';
 import './styles/cookbook.css';
+import './styles/cookbook-browse.css';
 import './styles/cookbook-forms.css';
 import './styles/recipe-suggestions.css';
 

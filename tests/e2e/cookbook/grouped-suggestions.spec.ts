@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { cookbookFixture, readKitchen, seedKitchen } from './fixtures';
 
-test('all recipes is a compact searchable index including starters and saved recipes', async ({
+test('recipe browsing defaults to use soon and keeps sources, search and saved-only view coherent', async ({
   page,
 }) => {
   const initial = await seedKitchen(page);
@@ -13,17 +13,31 @@ test('all recipes is a compact searchable index including starters and saved rec
   ).toHaveCount(0);
   await page.getByRole('button', { name: 'Close', exact: true }).click();
   await page.getByRole('button', { name: 'Open cookbook', exact: true }).click();
-  await page.getByRole('button', { name: 'All recipes', exact: true }).click();
-  const index = page.locator('.recipe-index');
-  await expect(index.locator('.recipe-index-row')).toHaveCount(5);
-  await expect(index).toContainText('Tomato pasta');
+  const index = page.locator('.recipe-list');
+  await expect(index.locator('.recipe-card')).toHaveCount(24);
+  await expect(page.getByRole('status').filter({ hasText: '105 recipes' })).toContainText(
+    'Use soon first',
+  );
+  await expect(page.getByRole('heading', { name: 'What’s for dinner?' })).toBeVisible();
   await expect(index).toContainText('Built-in');
   await expect(index).toContainText('Weeknight eggs');
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
-  await page.getByRole('searchbox', { name: 'Find a recipe' }).fill('tomato');
-  await expect(index.locator('.recipe-index-row')).toHaveCount(1);
+  await page.getByRole('button', { name: 'Show more recipes' }).click();
+  await expect(index.locator('.recipe-card')).toHaveCount(48);
+  await page.getByRole('searchbox', { name: 'Find a recipe' }).fill('Tomato pasta');
+  await expect(index.locator('.recipe-card')).toHaveCount(1);
   await index.getByRole('button', { name: /Tomato pasta/ }).click();
   await expect(page.getByRole('dialog', { name: 'Tomato pasta', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Close', exact: true }).click();
+  await page.getByRole('searchbox', { name: 'Find a recipe' }).fill('');
+  await page.getByText('View', { exact: true }).click();
+  await page.getByRole('checkbox', { name: 'Include built-in recipes' }).uncheck();
+  await expect(index.locator('.recipe-card')).toHaveCount(1);
+  await expect(index).toContainText('Weeknight eggs');
+  await expect(page.getByRole('heading', { name: 'What’s for dinner?' })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'Cookbook', exact: true })).toBeVisible();
+  await expect(index.locator('.recipe-card')).toHaveCount(1);
   expect((await readKitchen(page)).stock).toEqual(initial.stock);
 });
 

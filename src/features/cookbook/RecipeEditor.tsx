@@ -95,6 +95,15 @@ export function RecipeEditor({ recipe, onClose }: { recipe?: Recipe; onClose: ()
           <details>
             <summary>Recipe details</summary>
             <label>
+              Additional ingredients <span className="optional">optional</span>
+              <textarea
+                rows={3}
+                value={draft.extras}
+                onChange={(event) => patch({ extras: event.target.value })}
+                placeholder="Unmeasured seasoning or garnish, one per line"
+              />
+            </label>
+            <label>
               Cuisine <span className="optional">optional</span>
               <input
                 value={draft.cuisine}

@@ -1,0 +1,1044 @@
+[
+  {
+    "id": "cb000000-0000-4000-8000-000000000015",
+    "title": "Hearty Black Bean Quesadillas",
+    "servings": 10,
+    "minutes": 15,
+    "cuisine": "Beans and pantry",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/hearty-black-bean-quesadillas/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.74,
+      "ratingCount": 310,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 289.24,
+      "protein": 12.19,
+      "carbohydrate": 34.29,
+      "fat": 11.58,
+      "sodium": 833.43,
+      "fiber": 5.29,
+      "source": "publisher",
+      "portion": "1 quesadilla"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000001501",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "Black beans",
+        "note": "1 can × 15 oz"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001502",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Frozen corn"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001503",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Red onions"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001504",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Garlic cloves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001505",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Cilantro",
+        "note": "Chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001506",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001507",
+        "quantity": 1,
+        "unit": "package",
+        "name": "Taco seasoning",
+        "note": "One store-bought seasoning packet, an option in the original recipe notes."
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001508",
+        "quantity": 10,
+        "unit": "count",
+        "name": "Flour tortillas",
+        "note": "7-inch diameter"
+      }
+    ],
+    "steps": [
+      "Drain the canned black beans. Finely chop the red onion, garlic and cilantro; combine with the beans, frozen corn, cheddar and taco seasoning.",
+      "Put ½ cup filling onto half of each tortilla, then fold the empty half over it.",
+      "Cook in a dry skillet over medium heat, turning once, until both sides are crisp and the filling is hot and the cheese melted. Cut into wedges."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000016",
+    "title": "Creamy White Bean and Spinach Quesadillas",
+    "servings": 4,
+    "minutes": 20,
+    "cuisine": "Beans and pantry",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/creamy-white-bean-and-spinach-quesadillas/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.93,
+      "ratingCount": 120,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 462.35,
+      "protein": 17.83,
+      "carbohydrate": 51.08,
+      "fat": 20.03,
+      "sodium": 929.9,
+      "fiber": 9,
+      "source": "publisher",
+      "portion": "1 Serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000001601",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "Cannellini beans",
+        "note": "1 can × 15 oz"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001602",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "name": "Chili powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001603",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Cumin"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001604",
+        "quantity": 0.125,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001605",
+        "quantity": 0.125,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001606",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Spinach"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001607",
+        "quantity": 4,
+        "unit": "oz",
+        "name": "Pepper jack cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001608",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Sour cream"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001609",
+        "quantity": 4,
+        "unit": "count",
+        "name": "8-inch flour tortillas"
+      }
+    ],
+    "steps": [
+      "Rinse and drain the canned cannellini beans thoroughly. Toss them with chili powder, cumin, garlic powder and salt.",
+      "Chop the spinach; mix it into the beans with pepper jack and sour cream. Share the filling among four tortillas and fold each in half.",
+      "Cook over medium heat for about 3–5 minutes on each side, until browned and the middle is hot and melted. Halve and serve."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000017",
+    "title": "Slow Cooker Vegetarian Lentil Chili",
+    "servings": 6,
+    "minutes": 250,
+    "cuisine": "Beans and pantry",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/slow-cooker-vegetarian-lentil-chili/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.86,
+      "ratingCount": 115,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 368.75,
+      "protein": 19.72,
+      "carbohydrate": 60.85,
+      "fat": 6.75,
+      "sodium": 1169.77,
+      "fiber": 14.28,
+      "source": "publisher",
+      "portion": "1.5 Cups"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000001701",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001702",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001703",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "Petite diced tomatoes",
+        "note": "with juices; diced; 1 can × 15 oz"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001704",
+        "quantity": 6,
+        "unit": "oz",
+        "name": "Tomato paste",
+        "note": "1 can × 6 oz"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001705",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "Black beans",
+        "note": "drained; 1 can × 15 oz"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001706",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "Kidney beans",
+        "note": "drained; 1 can × 15 oz"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001707",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Dry brown lentils",
+        "note": "uncooked"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001708",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Chili powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001709",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Smoked paprika"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001710",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Cumin"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001711",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Onion powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001712",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001713",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Cayenne pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001714",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001716",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Coconut oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001717",
+        "quantity": 4,
+        "unit": "cup",
+        "name": "Vegetable broth"
+      }
+    ],
+    "untrackedIngredients": ["freshly cracked black pepper"],
+    "steps": [
+      "Chop the onion and garlic. Combine them with the tomatoes and their juice, drained canned beans, dry lentils, tomato paste, spices, coconut oil and broth in a slow cooker.",
+      "Cover and cook 4 hours on high or 8 hours on low. Check that the lentils are fully tender before serving.",
+      "Stir and taste; adjust seasoning if desired. Serve hot with optional toppings of your choice."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000018",
+    "title": "Creamy Coconut Curry Lentils with Spinach",
+    "servings": 4,
+    "minutes": 45,
+    "cuisine": "Beans and pantry",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/creamy-coconut-curry-lentils-with-spinach/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.98,
+      "ratingCount": 126,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 494.13,
+      "protein": 17.83,
+      "carbohydrate": 83.93,
+      "fat": 8.18,
+      "sodium": 844.08,
+      "fiber": 8,
+      "source": "publisher",
+      "portion": "1.25 Cups"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000001801",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001802",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001803",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Ginger",
+        "note": "grated"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001804",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001805",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Curry powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001806",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Dry brown lentils",
+        "note": "dry"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001807",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Vegetable broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001808",
+        "quantity": 13,
+        "unit": "oz",
+        "name": "Coconut milk",
+        "note": "1 can × 13 oz"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001809",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Baby spinach"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001810",
+        "quantity": 4,
+        "unit": "cup",
+        "name": "Cooked rice"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001811",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Cilantro",
+        "note": "chopped"
+      }
+    ],
+    "steps": [
+      "Soften minced garlic and grated ginger in olive oil over medium heat for 1 minute. Add diced onion and cook until translucent; stir in curry powder for another minute.",
+      "Add dry brown lentils and broth. Cover, bring to a boil, then lower the heat and simmer about 20 minutes, stirring occasionally, until tender.",
+      "Stir in coconut milk and simmer uncovered about 10 minutes to thicken. Remove from heat and fold in spinach until wilted.",
+      "Serve over the cooked rice and finish with cilantro."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000019",
+    "title": "Easy Rosemary Garlic White Bean Soup",
+    "servings": 4,
+    "minutes": 30,
+    "cuisine": "Beans and pantry",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/easy-rosemary-garlic-white-bean-soup/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.78,
+      "ratingCount": 186,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 380.03,
+      "protein": 14.28,
+      "carbohydrate": 61.91,
+      "fat": 8.2,
+      "sodium": 1417.45,
+      "fiber": 17.05,
+      "source": "publisher",
+      "portion": "1.25 Cups"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000001901",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001902",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Garlic cloves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001903",
+        "quantity": 45,
+        "unit": "oz",
+        "name": "Cannellini beans",
+        "note": "3 cans × 15 oz"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001904",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Vegetable broth",
+        "note": "or chicken"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001905",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried rosemary"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001906",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Dried thyme"
+      }
+    ],
+    "untrackedIngredients": ["1 pinch crushed red pepper", "freshly cracked black pepper to taste"],
+    "steps": [
+      "Blend one can of cannellini beans together with its liquid. Drain the other two cans.",
+      "Gently fry minced garlic in olive oil for about 1 minute. Add blended beans, drained beans, broth, rosemary and thyme, plus optional red pepper and black pepper.",
+      "Bring to a boil covered, then uncover and simmer gently 15 minutes, stirring occasionally. Mash a few beans in the pot for a thicker soup."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000020",
+    "title": "Cowboy Caviar",
+    "servings": 10,
+    "minutes": 20,
+    "cuisine": "Beans and pantry",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/cowboy-caviar/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.53,
+      "ratingCount": 104,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 140,
+      "protein": 7,
+      "carbohydrate": 21,
+      "fat": 3,
+      "sodium": 122,
+      "fiber": 7,
+      "source": "publisher",
+      "portion": "0.5 cup (without avocado or corn)"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000002001",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002002",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Lime",
+        "note": "2 Tbsp juice"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002003",
+        "quantity": 0.5,
+        "unit": "tbsp",
+        "name": "Balsamic vinegar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002004",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Chili powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002005",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Cumin"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002006",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002007",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Granulated sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002008",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "Black beans",
+        "note": "drained and rinsed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002009",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "Black-eyed peas",
+        "note": "drained and rinsed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002010",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Bell peppers",
+        "note": "any color & small diced, (250g, about 2 cups) ; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002011",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Roma tomatoes",
+        "note": "small diced, (160g, 1 cup) ; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002012",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Jalapeño",
+        "note": "small diced, (50g, ¼ cup) ; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002013",
+        "quantity": 0.25,
+        "unit": "count",
+        "name": "Red onions",
+        "note": "small diced, (100g, 1 cup) ; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002014",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Cilantro",
+        "note": "Chopped"
+      }
+    ],
+    "untrackedIngredients": ["corn kernels (fresh or frozen & thawed)", "avocado (diced)"],
+    "steps": [
+      "Whisk olive oil with 2 tablespoons lime juice, balsamic vinegar, chili powder, cumin, salt and sugar. Rinse and drain both canned legumes.",
+      "Dice pepper, tomatoes, jalapeño and onion into small, bean-sized pieces. Remove jalapeño seeds for less heat; chop cilantro.",
+      "Mix the vegetables and herbs with the beans and optional corn, then toss with the dressing. Serve now or refrigerate at least 30 minutes for a fuller flavor; add optional avocado just before serving."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000021",
+    "title": "Chickpea Salad",
+    "servings": 6,
+    "minutes": 85,
+    "cuisine": "Beans and pantry",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/chickpea-salad/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 376,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 160,
+      "protein": 2,
+      "carbohydrate": 9,
+      "fat": 14,
+      "sodium": 107,
+      "fiber": 4,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000002101",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Grape tomatoes",
+        "note": "halved"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002102",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Cucumber",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002103",
+        "quantity": 15.5,
+        "unit": "oz",
+        "name": "Chickpeas",
+        "note": "15.5 ounce) can chickpeas (drained and rinsed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002104",
+        "quantity": 0.75,
+        "unit": "cup",
+        "name": "Green bell pepper",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002105",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Parsley",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002106",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Red onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002107",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Avocado",
+        "note": "optional",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002108",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Lemon",
+        "note": "juiced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002109",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002110",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Red wine vinegar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002111",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Cumin"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002112",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002113",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      }
+    ],
+    "steps": [
+      "Mix halved grape tomatoes, diced cucumber, drained chickpeas, green pepper, parsley and red onion.",
+      "Dress with olive oil, vinegar, cumin, salt and pepper. If adding avocado, cube it and toss with juice from half a lemon before folding it in. Otherwise add 1–2 tablespoons lemon juice to the salad.",
+      "Refrigerate for at least an hour, then stir before serving."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000022",
+    "title": "Marinated Lentil Salad",
+    "servings": 6,
+    "minutes": 30,
+    "cuisine": "Beans and pantry",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/lentil-salad/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.67,
+      "ratingCount": 106,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 234,
+      "protein": 10,
+      "carbohydrate": 23,
+      "fat": 12,
+      "sodium": 309,
+      "fiber": 11,
+      "source": "publisher",
+      "portion": "1 serving (1 cup)"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000002201",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Lemon",
+        "note": "juice and zest"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002202",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Olive oil",
+        "note": "2oz."
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002203",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced, (1 Tbsp) ; minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002204",
+        "quantity": 0.5,
+        "unit": "tbsp",
+        "name": "Dried oregano"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002205",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002206",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper",
+        "note": "freshly cracked"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002207",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Dry brown lentils",
+        "note": "uncooked, (200g)"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002208",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Parsley",
+        "note": "Chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002209",
+        "quantity": 10,
+        "unit": "oz",
+        "name": "Grape tomatoes",
+        "note": "halved"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002210",
+        "quantity": 0.25,
+        "unit": "count",
+        "name": "Red onions",
+        "note": "small dice, (80g, about ¼ cup)"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002211",
+        "quantity": 2,
+        "unit": "oz",
+        "name": "Feta",
+        "note": "crumbled"
+      }
+    ],
+    "steps": [
+      "Cook the dry brown lentils according to their package; the source uses about 3 cups boiling water and 20 minutes. Drain, rinse briefly under cool water and drain well again.",
+      "Zest the lemon, setting aside about 1 tablespoon zest. Whisk ¼ cup lemon juice with oil, minced garlic, oregano, salt and pepper.",
+      "Mix cooled lentils with chopped parsley, halved tomatoes, diced red onion, feta and lemon zest. Fold in the dressing; serve or refrigerate. Stir again before serving."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000023",
+    "title": "Vegan Creamy Mushroom Ramen",
+    "servings": 1,
+    "minutes": 15,
+    "cuisine": "Beans and pantry",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/vegan-creamy-mushroom-ramen/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.8,
+      "ratingCount": 167,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 714,
+      "protein": 16,
+      "carbohydrate": 67,
+      "fat": 45,
+      "sodium": 1543,
+      "fiber": 4,
+      "source": "publisher",
+      "portion": "1 recipe"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000002301",
+        "quantity": 0.5,
+        "unit": "tbsp",
+        "name": "Vegetable oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002302",
+        "quantity": 4,
+        "unit": "oz",
+        "name": "Baby bella mushrooms"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002303",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Vegetable broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002305",
+        "quantity": 1,
+        "unit": "package",
+        "name": "Ramen noodles",
+        "note": "discard seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002306",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Coconut milk",
+        "note": "canned"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002307",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Green onions",
+        "note": "sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002308",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Chili garlic sauce"
+      }
+    ],
+    "untrackedIngredients": ["1 handful fresh spinach"],
+    "steps": [
+      "Slice the mushrooms and fry in oil over medium heat until browned and their released moisture has cooked away.",
+      "Bring the broth to a boil in the same pot. Add ramen noodles without their seasoning packet and cook about 3 minutes, or as the noodle package directs.",
+      "Remove from heat; stir in spinach until wilted, then coconut milk. Top with green onion and optional chili garlic sauce."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000024",
+    "title": "Creamy Tomato and Spinach Pasta",
+    "servings": 4,
+    "minutes": 25,
+    "cuisine": "Beans and pantry",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/creamy-tomato-spinach-pasta/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Beth Moncel",
+      "rating": 4.67,
+      "ratingCount": 651,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 363,
+      "protein": 13,
+      "carbohydrate": 54,
+      "fat": 11,
+      "sodium": 685,
+      "fiber": 5,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000002401",
+        "quantity": 0.5,
+        "unit": "lb",
+        "name": "Penne pasta"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002402",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "small dice, 340g, 1.5 cups"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002403",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced, 1 Tbsp; minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002404",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002405",
+        "quantity": 14.5,
+        "unit": "oz",
+        "name": "Tomatoes",
+        "note": "1 can; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002406",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried oregano"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002407",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried basil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002408",
+        "quantity": 0.125,
+        "unit": "tsp",
+        "name": "Crushed red pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002409",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002410",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002411",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Tomato paste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002413",
+        "quantity": 2,
+        "unit": "oz",
+        "name": "Cream cheese"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002414",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "30g; grated"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000002415",
+        "quantity": 4,
+        "unit": "oz",
+        "name": "Spinach"
+      }
+    ],
+    "untrackedIngredients": ["½ cup water"],
+    "steps": [
+      "Boil penne until tender, about 7–10 minutes or according to its package, then drain.",
+      "Meanwhile soften diced onion and minced garlic in olive oil for 3–5 minutes. Add canned tomatoes with juice, herbs, red pepper, salt and black pepper.",
+      "Mix in tomato paste and ½ cup water. Lower the heat, add pieces of cream cheese and stir until smooth; melt in Parmesan.",
+      "Fold in spinach for 2–3 minutes until wilted, then toss the drained pasta through the sauce."
+    ]
+  }
+]
