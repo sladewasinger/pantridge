@@ -2,7 +2,12 @@ import type { ShoppingItem, Snapshot } from '../model';
 import { packageLabel } from '../products/variants';
 import { getRecipeAvailability, matchingFoods, type IngredientAvailability } from './availability';
 import type { Recipe } from './model';
-import { matchingShopping, amountOnList, reserveShopping } from './shopping-amounts';
+import {
+  matchingShopping,
+  amountOnList,
+  reserveShopping,
+  shoppingAllocation,
+} from './shopping-amounts';
 import { convertRecipeAmount, packageAmount } from './units';
 import { foodAmountCompatible } from '../ingredient-matching/resolver';
 import { requirementKey } from '../ingredient-matching/context';
@@ -29,7 +34,7 @@ function shoppingCandidate(
   data: Snapshot,
   assessment: IngredientAvailability,
   newId: () => string,
-  reserved: Map<string, number>,
+  { reserved, allocated }: { reserved: Map<string, number>; allocated: number },
 ): ShoppingItem | undefined {
   const { ingredient, status, required } = assessment;
   if (status === 'needs-review' && assessment.lotIds.length) return undefined;
@@ -40,7 +45,7 @@ function shoppingCandidate(
   const noteAmount = Number(missing.toFixed(3));
   const recipeNote = `Recipe needs ${noteAmount} ${ingredient.unit}. ${amount ? 'Package count rounded up.' : 'Check package size and quantity.'}`;
   if (!amount || !food) return unknownCandidate(existing, assessment, recipeNote, newId);
-  const remaining = missing - amountOnList(data, assessment, reserved);
+  const remaining = missing - allocated - amountOnList(data, assessment, reserved);
   if (remaining <= 1e-9) return undefined;
   // A standalone amount-review row already represents this ingredient; never duplicate it.
   if (existing.some((item) => !item.foodId)) return undefined;
@@ -117,18 +122,18 @@ export function buildMissingShopping(
   servings: number,
   newId: () => string,
 ): ShoppingItem[] {
-  const missing = getRecipeAvailability(
-    data,
-    mergedRequirements(recipe),
-    servings,
-  ).ingredients.filter((item) => !item.ingredient.optional);
+  const merged = mergedRequirements(recipe);
+  const assessments = getRecipeAvailability(data, merged, servings).ingredients;
+  const missing = assessments.filter((item) => !item.ingredient.optional);
   const result: ShoppingItem[] = [];
-  const reserved = new Map<string, number>();
+  const { reserved, amounts, uncertain } = shoppingAllocation(data, missing);
   let next = data;
   for (const ingredient of missing) {
-    const candidate = shoppingCandidate(next, ingredient, newId, reserved);
+    if (uncertain.has(ingredient)) continue;
+    const allocated = amounts.get(ingredient) ?? 0;
+    const candidate = shoppingCandidate(next, ingredient, newId, { reserved, allocated });
     if (!candidate) {
-      reserveShopping(next, ingredient, reserved);
+      reserveShopping(next, ingredient, reserved, allocated);
       continue;
     }
     const previous = result.findIndex((item) => item.id === candidate.id);
@@ -138,7 +143,7 @@ export function buildMissingShopping(
       ...next,
       shopping: [...next.shopping.filter((item) => item.id !== candidate.id), candidate],
     };
-    reserveShopping(next, ingredient, reserved);
+    reserveShopping(next, ingredient, reserved, allocated);
   }
   return result;
 }

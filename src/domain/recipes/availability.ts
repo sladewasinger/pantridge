@@ -6,6 +6,7 @@ import { packageAmount } from './units';
 import { lotMatch, resolvedLots } from '../ingredient-matching/resolver';
 import { foodIdentity, recipeIdentity } from '../ingredient-matching/classification';
 import { acceptsIdentity } from '../ingredient-matching/identity';
+import { allocateIngredients, availableForIngredient } from '../ingredient-matching/allocation';
 
 type AvailabilityStatus = 'confirmed' | 'needs-review' | 'missing';
 export interface IngredientAvailability {
@@ -77,40 +78,28 @@ function getAmounts(
   );
   return { ...amount, earliestExpiry: lots.find((lot) => lot.expires)?.expires };
 }
-function reserveAmount(
-  data: Snapshot,
-  ingredient: RecipeIngredient,
-  { needed, remaining, recipe }: { needed: number; remaining: Map<string, number>; recipe: Recipe },
-) {
-  let left = needed;
-  for (const lot of matchingLots(data, ingredient, recipe)) {
-    const food = data.foods.find((item) => item.id === lot.foodId)!;
-    if (lotMatch(data, ingredient, { food, lot, recipe }) !== 'compatible') continue;
-    const amount = packageAmount(food, ingredient.unit, lot);
-    if (amount === undefined) continue;
-    const packages = remaining.get(lot.id) ?? lot.quantity;
-    const used = Math.min(packages, left / amount);
-    remaining.set(lot.id, Math.max(0, packages - used));
-    left = Math.max(0, left - used * amount);
-  }
-}
 function ingredientAvailability(
   data: Snapshot,
   ingredient: RecipeIngredient,
-  { scale, remaining, recipe }: { scale: number; remaining: Map<string, number>; recipe: Recipe },
+  {
+    scale,
+    remaining,
+    recipe,
+    crossed,
+  }: { scale: number; remaining: Map<string, number>; recipe: Recipe; crossed: boolean },
 ): IngredientAvailability {
   const required = ingredient.quantity * scale;
   const amount = getAmounts(data, ingredient, remaining, recipe);
   const sufficient = amount.available + 1e-9 >= required;
-  const status = sufficient ? 'confirmed' : amount.unknown ? 'needs-review' : 'missing';
-  reserveAmount(data, ingredient, { needed: required, remaining, recipe });
+  const uncertain = amount.unknown || crossed;
+  const status = sufficient ? 'confirmed' : uncertain ? 'needs-review' : 'missing';
   const lots = matchingLots(data, ingredient, recipe);
   return {
     ingredient,
     required,
     status,
-    available: amount.unknown && !sufficient ? undefined : amount.available,
-    missing: amount.unknown && !sufficient ? undefined : Math.max(0, required - amount.available),
+    available: uncertain && !sufficient ? undefined : amount.available,
+    missing: uncertain && !sufficient ? undefined : Math.max(0, required - amount.available),
     foodIds: [...new Set(lots.map((lot) => lot.foodId))],
     lotIds: lots.map((lot) => lot.id),
     earliestExpiry: amount.earliestExpiry,
@@ -122,20 +111,14 @@ export function getRecipeAvailability(
   servings = recipe.servings,
   today = new Date().toISOString().slice(0, 10),
 ): RecipeAvailability {
-  const remaining = new Map<string, number>();
-  // Required rows claim stock first; optional ingredients never mask a required shortfall.
-  const ordered = [...recipe.ingredients].sort(
-    (a, b) => Number(Boolean(a.optional)) - Number(Boolean(b.optional)),
-  );
-  const assessed = ordered.map((ingredient) =>
+  const allocation = allocateIngredients(data, recipe, servings);
+  const ingredients = recipe.ingredients.map((ingredient) =>
     ingredientAvailability(data, ingredient, {
       scale: servings / recipe.servings,
-      remaining,
+      remaining: availableForIngredient(allocation, ingredient),
       recipe,
+      crossed: allocation.crossed.has(ingredient),
     }),
-  );
-  const ingredients = recipe.ingredients.map((ingredient) =>
-    assessed.find((item) => item.ingredient.id === ingredient.id)!,
   );
   const required = ingredients.filter((item) => !item.ingredient.optional);
   const status = required.some((item) => item.status === 'missing')

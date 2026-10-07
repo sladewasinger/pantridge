@@ -5,6 +5,45 @@ import { packageAmount } from './units';
 import { foodAmountCompatible } from '../ingredient-matching/resolver';
 import { acceptsIdentity, identifyIngredient } from '../ingredient-matching/identity';
 import { recipeIdentity, foodIdentity } from '../ingredient-matching/classification';
+import { allocateIngredients } from '../ingredient-matching/allocation';
+
+export function shoppingAllocation(data: Snapshot, assessments: IngredientAvailability[]) {
+  const stock = data.shopping
+    .filter((item) => !item.purchased && item.foodId)
+    .map((item) => ({ id: item.id, foodId: item.foodId!, quantity: item.quantity }));
+  const virtual = { ...data, stock };
+  const ingredients = assessments.map((row) => ({
+    ...row.ingredient,
+    optional: false,
+    quantity:
+      row.status === 'needs-review' && row.lotIds.length ? 0 : (row.missing ?? row.required),
+  }));
+  const recipe = {
+    id: ingredients[0]?.id ?? '',
+    title: 'Shopping requirements',
+    source: 'manual' as const,
+    servings: 1,
+    ingredients,
+    steps: ['Review the packages to buy.'],
+  };
+  const allocation = allocateIngredients(virtual, recipe);
+  const reserved = new Map<string, number>();
+  const amounts = new Map<IngredientAvailability, number>();
+  const uncertain = new Set<IngredientAvailability>();
+  ingredients.forEach((ingredient, index) => {
+    let amount = 0;
+    for (const [id, packages] of allocation.used.get(ingredient)!) {
+      const lot = stock.find((row) => row.id === id)!;
+      const food = data.foods.find((row) => row.id === lot.foodId)!;
+      amount += packages * packageAmount(food, ingredient.unit)!;
+      reserved.set(id, (reserved.get(id) ?? 0) + packages);
+    }
+    amounts.set(assessments[index]!, amount);
+    if (allocation.crossed.has(ingredient) && amount + 1e-9 < ingredient.quantity)
+      uncertain.add(assessments[index]!);
+  });
+  return { reserved, amounts, uncertain };
+}
 
 export function matchingShopping(
   data: Snapshot,
@@ -59,8 +98,9 @@ export function reserveShopping(
   data: Snapshot,
   assessment: IngredientAvailability,
   reserved: Map<string, number>,
+  alreadyAllocated: number,
 ): void {
-  let needed = assessment.missing ?? assessment.required;
+  let needed = Math.max(0, (assessment.missing ?? assessment.required) - alreadyAllocated);
   for (const item of matchingShopping(data, assessment)) {
     const food = data.foods.find((value) => value.id === item.foodId);
     const amount =

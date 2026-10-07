@@ -99,10 +99,10 @@ describe('recipe browsing', () => {
     ]);
     expect(data).toEqual(before);
     data.stock[0]!.expires = '2026-10-05';
-    expect(browseRecipes(data, '', options, today)[0]?.recipe.title).toBe('Later rice');
+    expect(browseRecipes({ ...data }, '', options, today)[0]?.recipe.title).toBe('Later rice');
     data.stock[0]!.expires = '2026-10-06';
     data.stock[0]!.quantity = 0;
-    expect(browseRecipes(data, '', options, today)[0]?.recipe.title).toBe('Later rice');
+    expect(browseRecipes({ ...data }, '', options, today)[0]?.recipe.title).toBe('Later rice');
   });
   it('hides unsaved built-ins, retains saved copies and searches ingredients with quick filtering', () => {
     const data = stockedKitchen();
