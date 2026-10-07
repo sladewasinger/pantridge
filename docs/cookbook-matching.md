@@ -51,14 +51,32 @@ private to the kitchen. Automatic calls would need an explicit opt-in and the ex
 quotas. Closing the browser suspends client work; running scheduled jobs on AWS would be a
 separate infrastructure decision.
 
+## Shelf date reminders
+
+Shelf badges previously displayed every expiration date as month/day, including dates in the
+following year. The comparison itself retained the year; the label was misleading and noisy.
+Shelf reminders now appear only for dates within seven days or already past. The stored date
+remains available and editable in item details. Shared recipe/cooking/plan date labels include
+the year when it differs from the current local year. No date, stock or estimate is rewritten.
+
+Manual phone and desktop clicks verified September 2027 rice/beans dates remain in details
+and disappear from shelf badges, while an upcoming egg date remains visible. Unit coverage
+includes the seven/eight-day boundary and December/January rollover. A browser regression
+checks both cellar and fridge tiles, retained detail values, unchanged stock, and a reviewed
+date edit becoming a past-date reminder.
+
 ## Verification
 
-`pnpm check` passed: 319 unit tests plus static, structure, artwork, formatting and build checks.
-The production-build browser suites passed 66 Chromium and 55 Windows WebKit cases, each with
+`pnpm check` passed: 322 unit tests plus static, structure, artwork, formatting and build checks.
+The production-build browser suites passed 67 Chromium and 56 Windows WebKit cases, each with
 its existing intentional skip. The new browser regression exercises complete/partial sections,
 the screenshot fixture, variety notes, search, source/time/unmatched filters, preference reload,
 accessibility and unchanged inventory/recipes. Existing catalog tests now explicitly enable
 unmatched recipes instead of assuming the whole collection is the default view.
+The new date test initially reloaded before WebKit finished navigation; it now edits the date
+through the detail control and waits for persistence. One existing WebKit outage case also
+hit a transient modal-restoration failure; its standalone rerun and subsequent full suite
+passed without an application change or timeout increase.
 
 Manual clicks used the exact Vite preview URL `http://127.0.0.1:4176/`, an isolated disposable
 kitchen restored through the normal backup UI. At 390x844 and 1280x900, the reviewer opened

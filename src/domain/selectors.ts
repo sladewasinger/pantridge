@@ -37,10 +37,13 @@ export function units(quantity: number, unit: Unit): string {
   return `1 ${unit === 'boxes' ? 'box' : unit.slice(0, -1)}`;
 }
 
-export function dateLabel(date: string): string {
-  return new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' }).format(
-    new Date(`${date}T12:00:00`),
-  );
+export function dateLabel(date: string, today = new Date()): string {
+  const value = new Date(`${date}T12:00:00`);
+  return new Intl.DateTimeFormat(undefined, {
+    month: 'short',
+    day: 'numeric',
+    year: value.getFullYear() === today.getFullYear() ? undefined : 'numeric',
+  }).format(value);
 }
 
 export const newFood = (name = ''): Food => ({
