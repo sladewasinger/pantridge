@@ -8,6 +8,9 @@ import { SyncRecovery } from './SyncRecovery';
 import { Modal } from '../../ui/Modal';
 import { useAction } from '../../ui/useAction';
 import { localTesting } from '../../local-testing';
+import { LocalSample } from '../../development/LocalSample';
+
+const localTools = import.meta.env.DEV ? <LocalSample /> : null;
 
 export function Settings({ onClose }: { onClose: () => void }) {
   const { syncedAt, pending } = useKitchen();
@@ -54,6 +57,7 @@ export function Settings({ onClose }: { onClose: () => void }) {
         {syncStatus().detail && <p className="error">{syncStatus().detail}</p>}
         <SyncRecovery />
       </section>
+      {localTools}
       <section className="settings-section">
         <h3>Keep a backup</h3>
         <p className="muted">

@@ -7,6 +7,11 @@ test('all recipes is a compact searchable index including starters and saved rec
   page,
 }) => {
   const initial = await seedKitchen(page);
+  await page.getByRole('button', { name: 'Settings', exact: true }).click();
+  await expect(
+    page.getByRole('button', { name: 'Load 200 sample foods', exact: true }),
+  ).toHaveCount(0);
+  await page.getByRole('button', { name: 'Close', exact: true }).click();
   await page.getByRole('button', { name: 'Open cookbook', exact: true }).click();
   await page.getByRole('button', { name: 'All recipes', exact: true }).click();
   const index = page.locator('.recipe-index');
