@@ -174,7 +174,7 @@ function RecipeContent({
           plan={planned}
           stale={planStale}
         />
-        <RecipeIngredients ingredients={match.ingredients} />
+        <RecipeIngredients ingredients={match.ingredients} data={data} />
         <RecipeExtras recipe={recipe} />
         <section className="recipe-method" aria-label="Cooking steps">
           <h3>Method</h3>

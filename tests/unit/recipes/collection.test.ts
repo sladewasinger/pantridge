@@ -7,7 +7,12 @@ import { browseRecipes } from '../../../src/domain/recipes/browse';
 import { parseRecipeDraft, recipeDraft } from '../../../src/features/cookbook/editorState';
 import { recipe, stockedKitchen } from './fixtures';
 
-const options = { builtIns: false, quickOnly: false, order: 'use-soon' as const };
+const options = {
+  builtIns: false,
+  quickOnly: false,
+  includeUnmatched: true,
+  order: 'use-soon' as const,
+};
 const today = '2026-10-06';
 describe('curated cookbook', () => {
   it('adds 100 attributed, rated recipes without replacing the original four identities', () => {

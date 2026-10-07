@@ -1,9 +1,8 @@
 import { useMemo, useState } from 'react';
-import { BookOpen } from 'lucide-react';
 import { useKitchen } from '../../data/store';
 import { getRecipes } from '../../domain/recipes/selectors';
-import { browseRecipes, soonestDate } from '../../domain/recipes/browse';
-import { RecipeCard } from './RecipeCard';
+import { browseRecipes } from '../../domain/recipes/browse';
+import { RecipeList } from './browse/RecipeList';
 import { MealPlanList } from './MealPlanList';
 import { todayLocal } from './presentation';
 import { BrowseControls } from './browse/BrowseControls';
@@ -53,32 +52,29 @@ export function Cookbook({
         onSuggest={onSuggest}
       />
       <p className="muted cookbook-list-summary" role="status">
-        {matches.length} {matches.length === 1 ? 'recipe' : 'recipes'}
+        {matches.length}{' '}
+        {preferences.includeUnmatched
+          ? matches.length === 1
+            ? 'recipe'
+            : 'recipes'
+          : matches.length === 1
+            ? 'kitchen match'
+            : 'kitchen matches'}
         {preferences.order === 'use-soon' && <span> · Use soon first</span>}
         {!preferences.builtIns && <span> · Yours only</span>}
       </p>
-      <div className="recipe-list">
-        {matches.slice(0, visible).map((match) => (
-          <RecipeCard
-            key={match.recipe.id}
-            match={match}
-            saved={saved.has(match.recipe.id)}
-            useSoon={soonestDate(data, match, today)}
-            onOpen={onOpen}
-          />
-        ))}
-        {!matches.length && (
-          <div className="empty-state">
-            <BookOpen size={30} />
-            <h3>{query ? 'No recipes found' : 'Your pages are ready'}</h3>
-            <p>
-              {query
-                ? 'Try a recipe or ingredient name.'
-                : 'Save a recipe, or include built-in recipes from View.'}
-            </p>
-          </div>
-        )}
-      </div>
+      <RecipeList
+        matches={matches.slice(0, visible)}
+        saved={saved}
+        data={data}
+        today={today}
+        onOpen={onOpen}
+        empty={
+          preferences.includeUnmatched
+            ? 'Try another search or change the filters in View.'
+            : 'Add kitchen ingredients, or show recipes without matches from View.'
+        }
+      />
       {matches.length > visible && (
         <button
           className="text-button full"
