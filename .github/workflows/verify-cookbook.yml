@@ -1,16 +1,5 @@
 name: Cookbook verification
 on:
-  pull_request:
-    branches: [develop, main]
-    paths:
-      - 'src/domain/recipes/**'
-      - 'src/features/cookbook/**'
-      - 'src/domain/recipe-suggestions/**'
-      - 'src/features/recipe-suggestions/**'
-      - 'api/recipes/**'
-      - 'src/domain/supplies.ts'
-      - 'tests/e2e/cookbook/**'
-      - '.github/workflows/verify-cookbook.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -29,6 +18,7 @@ jobs:
           node-version: '24'
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm audit --audit-level=high
       - run: pnpm check
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e

@@ -39,7 +39,6 @@ export function Kitchen({
       </div>
       <button className="cookbook-book" onClick={onCookbook} aria-label="Open cookbook">
         <img src="/art/cookbook.svg" alt="" />
-        <span>Cookbook</span>
       </button>
       <button
         className="appliance pantry-button"

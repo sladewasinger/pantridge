@@ -111,9 +111,10 @@ frontend compilation, and Lambda startup. Cookbook browser tests cover cooking/c
 fractional amounts, stale cross-tab stock, repeated clicks, offline reload, Back/Forward,
 imports, aggregate planned groceries, accessibility, and narrow/wide layouts.
 
-A verification-only pull-request workflow runs full checks and Chromium regressions without
-AWS credentials or deployment permissions, preserving screenshots and failure traces as CI
-artifacts. Production publication remains the separate main-branch workflow.
+A manually dispatched verification workflow runs the dependency audit, full checks and Chromium
+regressions without AWS credentials or deployment permissions, preserving screenshots and failure
+traces as CI artifacts. Develop pushes and pull requests into develop run unit tests and a build
+only. Full release checks and application publication remain the separate main-branch workflow.
 
 ## Optional AI recipe ideas
 
