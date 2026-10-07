@@ -1,5 +1,6 @@
 import { getToken } from '../../auth/session';
 import { getAccount } from '../../data/store';
+import { localTesting } from '../../local-testing';
 import {
   nutritionRequestSchema,
   nutritionResultSchema,
@@ -7,7 +8,7 @@ import {
 } from '../../domain/products/nutrition-estimate';
 
 function requireAccount(account: string) {
-  if (account === 'local' || account !== getAccount())
+  if ((account === 'local' && !localTesting) || account !== getAccount())
     throw new Error('Sign in with Google to estimate nutrition.');
 }
 export async function requestNutrition(

@@ -1,16 +1,17 @@
-import { useState } from 'react';
-import { BookOpen, FileInput, Plus } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { BookOpen } from 'lucide-react';
 import { useKitchen } from '../../data/store';
-import { getCookbookRecipes, getRecipes } from '../../domain/recipes/selectors';
-import { getRecipeAvailability } from '../../domain/recipes/availability';
+import { getRecipes } from '../../domain/recipes/selectors';
+import { browseRecipes, soonestDate } from '../../domain/recipes/browse';
 import { RecipeCard } from './RecipeCard';
 import { MealPlanList } from './MealPlanList';
 import { todayLocal } from './presentation';
+import { BrowseControls } from './browse/BrowseControls';
+import { readPreferences, storePreferences, type BrowsePreferences } from './browse/preferences';
 
 export function Cookbook({
   query,
   onOpen,
-  onAdd,
   onImport,
   onSuggest,
 }: {
@@ -21,26 +22,21 @@ export function Cookbook({
   onSuggest: () => void;
 }) {
   const { data } = useKitchen();
-  const [mode, setMode] = useState<'inventory' | 'use-up' | 'saved'>('inventory');
+  const [preferences, setPreferences] = useState(readPreferences);
+  const [extraRows, setExtraRows] = useState(0);
+  const [browseKey, setBrowseKey] = useState('');
+  const currentKey = JSON.stringify([query, preferences]);
   const saved = new Set(getRecipes(data).map((recipe) => recipe.id));
-  const matches = getCookbookRecipes(data)
-    .filter((recipe) => recipe.title.toLowerCase().includes(query.trim().toLowerCase()))
-    .filter((recipe) => mode !== 'saved' || saved.has(recipe.id))
-    .map((recipe) => getRecipeAvailability(data, recipe, recipe.servings, todayLocal()))
-    .sort((left, right) => {
-      if (mode === 'use-up' && left.expiringSoon !== right.expiringSoon)
-        return right.expiringSoon - left.expiringSoon;
-      const rank = { confirmed: 0, 'needs-review': 1, missing: 2 };
-      return (
-        rank[left.status] - rank[right.status] ||
-        right.expiringSoon - left.expiringSoon ||
-        left.ingredients.filter((item) => !item.ingredient.optional && item.status === 'missing')
-          .length -
-          right.ingredients.filter((item) => !item.ingredient.optional && item.status === 'missing')
-            .length ||
-        left.recipe.title.localeCompare(right.recipe.title)
-      );
-    });
+  const today = todayLocal();
+  const matches = useMemo(
+    () => browseRecipes(data, query, preferences, today),
+    [data, query, preferences, today],
+  );
+  const visible = 24 + (browseKey === currentKey ? extraRows : 0);
+  const change = (value: BrowsePreferences) => {
+    setPreferences(value);
+    storePreferences(value);
+  };
   return (
     <section className="cookbook-page" aria-label="Your cookbook">
       <div className="cookbook-intro">
@@ -50,41 +46,24 @@ export function Cookbook({
           <p>Recipes for what you have.</p>
         </div>
       </div>
-      <div className="cookbook-modes" role="group" aria-label="Recipe order">
-        <button aria-pressed={mode === 'inventory'} onClick={() => setMode('inventory')}>
-          Your kitchen
-        </button>
-        <button aria-pressed={mode === 'use-up'} onClick={() => setMode('use-up')}>
-          Use it up
-        </button>
-        <button aria-pressed={mode === 'saved'} onClick={() => setMode('saved')}>
-          Saved
-        </button>
-      </div>
-      <button className="secondary full" onClick={onSuggest}>
-        Suggest with AI
-      </button>
-      {mode === 'use-up' && (
-        <p className="muted cookbook-note">
-          Ingredients dated within the next 7 days come first. Check their condition before cooking.
-        </p>
-      )}
-      <div className="cookbook-tools">
-        <button className="text-button" onClick={onAdd}>
-          <Plus size={17} />
-          Write a recipe
-        </button>
-        <button className="text-button" onClick={onImport}>
-          <FileInput size={17} />
-          Import
-        </button>
-      </div>
-      <div className="recipe-list" aria-live="polite">
-        {matches.map((match) => (
+      <BrowseControls
+        value={preferences}
+        onChange={change}
+        onImport={onImport}
+        onSuggest={onSuggest}
+      />
+      <p className="muted cookbook-list-summary" role="status">
+        {matches.length} {matches.length === 1 ? 'recipe' : 'recipes'}
+        {preferences.order === 'use-soon' && <span> · Use soon first</span>}
+        {!preferences.builtIns && <span> · Yours only</span>}
+      </p>
+      <div className="recipe-list">
+        {matches.slice(0, visible).map((match) => (
           <RecipeCard
             key={match.recipe.id}
             match={match}
             saved={saved.has(match.recipe.id)}
+            useSoon={soonestDate(data, match, today)}
             onOpen={onOpen}
           />
         ))}
@@ -92,10 +71,25 @@ export function Cookbook({
           <div className="empty-state">
             <BookOpen size={30} />
             <h3>{query ? 'No recipes found' : 'Your pages are ready'}</h3>
-            <p>{query ? 'Try another recipe name.' : 'Save a recipe or write one of your own.'}</p>
+            <p>
+              {query
+                ? 'Try a recipe or ingredient name.'
+                : 'Save a recipe, or include built-in recipes from View.'}
+            </p>
           </div>
         )}
       </div>
+      {matches.length > visible && (
+        <button
+          className="text-button full"
+          onClick={() => {
+            setBrowseKey(currentKey);
+            setExtraRows(visible);
+          }}
+        >
+          Show more recipes
+        </button>
+      )}
       <MealPlanList onOpen={onOpen} />
     </section>
   );

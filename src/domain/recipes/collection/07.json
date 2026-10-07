@@ -1,0 +1,1061 @@
+[
+  {
+    "id": "cb000000-0000-4000-8000-000000000065",
+    "title": "Spaghetti Carbonara",
+    "servings": 6,
+    "minutes": 30,
+    "cuisine": "Pasta and grains",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/spaghetti-carbonara/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 501,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 441,
+      "protein": 21,
+      "carbohydrate": 58,
+      "fat": 13,
+      "sodium": 400,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000006501",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Spaghetti"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006502",
+        "quantity": 6,
+        "unit": "count",
+        "name": "Pancetta slices",
+        "note": "or guanciale or bacon, chopped; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006503",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006504",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Eggs",
+        "note": "room temperature"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006505",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "or pecarino ramano; shredded"
+      }
+    ],
+    "untrackedIngredients": ["black pepper (to taste)"],
+    "steps": [
+      "Whisk eggs with Parmesan and pepper. Crisp chopped pancetta over medium heat; remove it, leaving drippings. Cook garlic in drippings for a minute.",
+      "Cook spaghetti al dente in salted water; reserve a cup of cooking water before draining. Toss hot pasta with garlic in the skillet.",
+      "Take skillet off heat. Immediately toss with egg mixture, adding reserved water gradually for a creamy coating; fold in pancetta. Use pasteurized eggs for this residual-heat method and serve immediately."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000066",
+    "title": "Baked Ziti",
+    "servings": 8,
+    "minutes": 70,
+    "cuisine": "Pasta and grains",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/baked-ziti/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.97,
+      "ratingCount": 609,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 642,
+      "protein": 31,
+      "carbohydrate": 54,
+      "fat": 34,
+      "sodium": 1243,
+      "fiber": 4,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000006601",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Italian sausage"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006602",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006603",
+        "quantity": 28,
+        "unit": "oz",
+        "name": "Pasta sauce",
+        "note": "28 ounce) jar pasta sauce (or marinara sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006604",
+        "quantity": 14.5,
+        "unit": "oz",
+        "name": "Tomatoes",
+        "note": "14.5 ounce) can diced tomatoes (with juices; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006606",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006607",
+        "quantity": 16,
+        "unit": "oz",
+        "name": "Ziti"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006608",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "Ricotta cheese"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006609",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Eggs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006610",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Parsley",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006611",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Mozzarella cheese",
+        "note": "divided; shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006612",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "shredded"
+      }
+    ],
+    "untrackedIngredients": [
+      "½ cup water",
+      "thinly sliced fresh basil leaves (or chopped fresh parsley for garnish, optional)"
+    ],
+    "steps": [
+      "Heat oven to 375°F; grease a 9×13-inch dish. Brown sausage and onion, cooking ground meat to 160°F; drain. Add sauce, tomatoes, water and Italian seasoning; simmer uncovered 12 minutes.",
+      "Cook ziti al dente and drain. Combine ricotta, egg, parsley, 1 cup mozzarella and Parmesan.",
+      "Spread a cup of sauce in dish, then layer half the pasta, all the ricotta mixture and half the remaining sauce. Add remaining pasta, sauce and mozzarella. Bake 25–30 minutes, until bubbling and filling reaches 160°F."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000067",
+    "title": "Baked Spaghetti",
+    "servings": 8,
+    "minutes": 55,
+    "cuisine": "Pasta and grains",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/baked-spaghetti-casserole/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 513,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 413,
+      "protein": 28,
+      "carbohydrate": 53,
+      "fat": 10,
+      "sodium": 1054,
+      "fiber": 5,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000006701",
+        "quantity": 16,
+        "unit": "oz",
+        "name": "Spaghetti"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006702",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Parsley",
+        "note": "or 2 tablespoons dried; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006703",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Mozzarella cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006704",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006705",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground beef",
+        "note": "or Italian sausage"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006706",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Green bell pepper",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006707",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006708",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006709",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006710",
+        "quantity": 32,
+        "unit": "oz",
+        "name": "Pasta sauce",
+        "note": "or marinara sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006711",
+        "quantity": 14.5,
+        "unit": "oz",
+        "name": "Tomatoes",
+        "note": "14.5 ounces) can diced tomatoes (with juices; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006712",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      }
+    ],
+    "steps": [
+      "Heat oven to 375°F; grease a 9×13-inch dish. Cook spaghetti al dente in salted water; drain.",
+      "Brown beef with pepper, onion, garlic and salt; cook ground meat to 160°F and drain. Add sauce, tomatoes and Italian seasoning; simmer uncovered 5–10 minutes.",
+      "Fold in spaghetti and parsley. Transfer to dish, top with cheeses and bake 25–30 minutes until bubbling and browned."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000068",
+    "title": "Easy Homemade Lasagna",
+    "servings": 12,
+    "minutes": 105,
+    "cuisine": "Pasta and grains",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-homemade-lasagna/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.96,
+      "ratingCount": 3426,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 377,
+      "protein": 29,
+      "carbohydrate": 28,
+      "fat": 16,
+      "sodium": 857,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000006801",
+        "quantity": 12,
+        "unit": "count",
+        "name": "Lasagna noodles",
+        "note": "uncooked"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006802",
+        "quantity": 2.5,
+        "unit": "cup",
+        "name": "Mozzarella cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006803",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006804",
+        "quantity": 0.5,
+        "unit": "lb",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006805",
+        "quantity": 0.5,
+        "unit": "lb",
+        "name": "Italian sausage"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006806",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006807",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006808",
+        "quantity": 36,
+        "unit": "oz",
+        "name": "Pasta sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006809",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Tomato paste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006810",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006811",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "more to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006812",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Ricotta cheese",
+        "note": "or cottage cheese"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006813",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Parsley",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006814",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Eggs",
+        "note": "beaten"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006815",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Mozzarella cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006816",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006817",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Salt"
+      }
+    ],
+    "steps": [
+      "Heat oven to 350°F. Cook noodles al dente; drain and cool. Brown beef, sausage, onion and garlic to 160°F; drain. Add sauce, paste, Italian seasoning, ½ teaspoon salt and ¼ teaspoon pepper; simmer 5 minutes.",
+      "Combine ricotta, parsley, egg, 1½ cups mozzarella, ¼ cup Parmesan and remaining salt. Spread a cup of meat sauce in a 9×13-inch dish. Layer 3 noodles, a cup of ricotta mixture and a cup of sauce; repeat twice. Finish with noodles and remaining sauce.",
+      "Cover; bake 45 minutes. Add remaining cheeses; bake uncovered 15 minutes. Rest 15 minutes."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000069",
+    "title": "Homemade Mac and Cheese Casserole",
+    "servings": 8,
+    "minutes": 45,
+    "cuisine": "Pasta and grains",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/creamy-macaroni-and-cheese-casserole/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.97,
+      "ratingCount": 1288,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 539,
+      "protein": 24,
+      "carbohydrate": 39,
+      "fat": 32,
+      "sodium": 529,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000006901",
+        "quantity": 12,
+        "unit": "oz",
+        "name": "Elbow macaroni"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006902",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006903",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006904",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006905",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Half-and-half",
+        "note": "or light cream"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006906",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dry mustard powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006907",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Onion powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006908",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006909",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006910",
+        "quantity": 10.75,
+        "unit": "oz",
+        "name": "Condensed cheddar cheese soup",
+        "note": "1 can, optional",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006911",
+        "quantity": 4,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "divided; shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000006912",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "shredded"
+      }
+    ],
+    "steps": [
+      "Heat oven to 425°F. Cook macaroni al dente; drain and rinse cold. Melt butter over medium heat; whisk in flour and cook 2 minutes.",
+      "Gradually whisk in milk, half-and-half and seasonings. Stir until thickened; remove from heat. Melt in Parmesan and 3 cups cheddar; add condensed cheese soup if using.",
+      "Combine sauce and macaroni in a greased 9×13-inch dish. Top with remaining cheddar; bake 18–24 minutes until bubbling. Cool 10–15 minutes."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000070",
+    "title": "Homemade Bolognese Sauce",
+    "servings": 6,
+    "minutes": 80,
+    "cuisine": "Pasta and grains",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/homemade-bolognese-sauce/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.94,
+      "ratingCount": 723,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 359,
+      "protein": 26,
+      "carbohydrate": 14,
+      "fat": 18,
+      "sodium": 571,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000007001",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007002",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "finely diced; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007003",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "crushed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007004",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Carrots",
+        "note": "finely diced; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007005",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Celery ribs",
+        "note": "finely diced; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007006",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007007",
+        "quantity": 0.5,
+        "unit": "lb",
+        "name": "Ground pork"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007008",
+        "quantity": 1.25,
+        "unit": "cup",
+        "name": "Red wine",
+        "note": "or beef broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007009",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Whole milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007010",
+        "quantity": 28,
+        "unit": "oz",
+        "name": "Whole tomatoes",
+        "note": "with juices, 28 ounces each"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007011",
+        "quantity": 4,
+        "unit": "tbsp",
+        "name": "Tomato paste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007012",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007013",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Bay leaf"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007014",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "more to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007015",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      }
+    ],
+    "untrackedIngredients": ["pappardelle (or long pasta, for serving)"],
+    "steps": [
+      "Soften onion in oil 3–4 minutes; add garlic, carrot and celery for 5 minutes. Brown beef and pork to 160°F, breaking up meat; drain.",
+      "Add wine and simmer uncovered about 10 minutes until reduced. Add milk and reduce about 8 minutes. Stir in tomatoes with juice, paste, herbs and bay leaf; break up tomatoes.",
+      "Cover and simmer 30 minutes until thickened. Remove bay leaf; season. If serving with pasta, cook separately and loosen sauce with reserved cooking water as needed."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000071",
+    "title": "Lemon Orzo",
+    "servings": 4,
+    "minutes": 25,
+    "cuisine": "Pasta and grains",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/lemon-orzo/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.95,
+      "ratingCount": 125,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 168,
+      "protein": 6,
+      "carbohydrate": 31,
+      "fat": 2,
+      "sodium": 553,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000007101",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Lemon",
+        "note": "for juice and zesting"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007102",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Orzo"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007103",
+        "quantity": 2.5,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007104",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried oregano"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007105",
+        "quantity": 0.5,
+        "unit": "tbsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007106",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Mint",
+        "note": "or 1 tablespoon of chopped fresh parsley; chopped"
+      }
+    ],
+    "steps": [
+      "Peel two broad strips of zest from the lemon. Combine orzo, broth, oregano and zest in a saucepan; bring to a boil.",
+      "Simmer uncovered 13–15 minutes until orzo is tender. Remove from heat and discard zest; stir in butter and rest uncovered 5 minutes.",
+      "Add juice from half the lemon and chopped mint or parsley. Adjust salt and pepper."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000072",
+    "title": "Creamy Mushroom Risotto",
+    "servings": 4,
+    "minutes": 50,
+    "cuisine": "Pasta and grains",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/creamy-mushroom-risotto/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 174,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 358,
+      "protein": 11,
+      "carbohydrate": 46,
+      "fat": 13,
+      "sodium": 831,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000007201",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007202",
+        "quantity": 12,
+        "unit": "oz",
+        "name": "Mushrooms",
+        "note": "any variety, thinly sliced; sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007203",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007204",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007205",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Arborio rice"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007206",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "White wine",
+        "note": "or extra broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007207",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Chicken broth",
+        "note": "or mushroom broth, divided; divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007208",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "shredded"
+      }
+    ],
+    "untrackedIngredients": ["chopped fresh parsley (for garnish, optional)"],
+    "steps": [
+      "Keep broth warm. Soften sliced mushrooms in olive oil over medium-high heat about 5 minutes; reserve with their juices. In a saucepan, soften onion in butter 3–4 minutes.",
+      "Add arborio rice and stir about 5 minutes until lightly toasted. Add wine and stir until absorbed. Add warm broth in ½-cup portions, stirring and allowing each to absorb before adding more, about 20 minutes overall.",
+      "When rice is tender, fold in mushrooms, juices and Parmesan. Season to taste and garnish with parsley if desired."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000073",
+    "title": "Homemade Cheeseburger Macaroni",
+    "servings": 4,
+    "minutes": 25,
+    "cuisine": "Pasta and grains",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/cheeseburger-macaroni-stove-top-youll-never-buy-the-boxed-kind-again/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.83,
+      "ratingCount": 159,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 766,
+      "protein": 43,
+      "carbohydrate": 53,
+      "fat": 42,
+      "sodium": 1305,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000007301",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007302",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Onions",
+        "note": "or 1 teaspoon onion powder; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007303",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007304",
+        "quantity": 1.25,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007305",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Elbow macaroni"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007306",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Cornstarch"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007307",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007308",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Granulated sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007309",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007310",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Paprika"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007311",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007312",
+        "quantity": 1.75,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "shredded"
+      }
+    ],
+    "steps": [
+      "Combine cornstarch, garlic powder, sugar, salt, paprika and pepper. Brown beef and onion over medium-high heat to 160°F; drain excess fat.",
+      "Add milk, broth, dry macaroni and seasoning mixture. Bring to a boil; cover and gently boil 9–12 minutes, stirring occasionally, until pasta is tender. Add a little water or broth if needed.",
+      "Remove from heat and stir in cheddar until melted."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000074",
+    "title": "Spaghetti Pie",
+    "servings": 6,
+    "minutes": 60,
+    "cuisine": "Pasta and grains",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/spaghetti-pie/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 5,
+      "ratingCount": 174,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 428,
+      "protein": 37,
+      "carbohydrate": 31,
+      "fat": 17,
+      "sodium": 849,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000007401",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Mozzarella cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007402",
+        "quantity": 6,
+        "unit": "oz",
+        "name": "Spaghetti"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007403",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007404",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Eggs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007405",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "grated"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007406",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Ricotta cheese"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007407",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Parsley",
+        "note": "or 2 teaspoons dried parsley; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007408",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried basil",
+        "note": "or 1 tablespoon fresh"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007409",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground beef",
+        "note": "or Italian sausage"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007410",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007411",
+        "quantity": 14.5,
+        "unit": "oz",
+        "name": "diced tomatoes",
+        "note": "drained; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007412",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Pasta sauce",
+        "note": "or marinara sauce"
+      }
+    ],
+    "steps": [
+      "Heat oven to 350°F; grease a deep pie plate. Brown beef to 160°F; drain. Add onion for 3 minutes, then tomatoes and sauce; simmer uncovered 10 minutes.",
+      "Cook spaghetti al dente and drain. Toss in pie plate with butter, then eggs and Parmesan; press into a crust. Mix ricotta, parsley and basil; spread over pasta and top with meat sauce.",
+      "Bake uncovered 20–25 minutes. Add mozzarella and bake 5 minutes more, until filling reaches 160°F and cheese bubbles. Rest 10 minutes."
+    ]
+  }
+]

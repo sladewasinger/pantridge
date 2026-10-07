@@ -2,6 +2,7 @@ import { fridgeArt } from '../artwork/fridge';
 import { pantryArt } from '../artwork/pantry';
 import { freezerArt } from '../artwork/freezer';
 import { normalizeIngredientName } from '../recipes/names';
+import curatedFoods from './curated-foods.json';
 
 const extraFoods = [
   'kosher salt',
@@ -64,10 +65,18 @@ const extraFoods = [
   'white rice',
   'basmati rice',
   'jasmine rice',
+  'long-grain rice',
+  'short-grain rice',
   'wild rice',
   'spaghetti',
   'penne',
   'macaroni',
+  'linguine',
+  'fettuccine',
+  'fusilli',
+  'rigatoni',
+  'gluten-free pasta',
+  'whole wheat pasta',
   'noodles',
   'couscous',
   'barley',
@@ -136,16 +145,16 @@ const extraFoods = [
 const names = new Set(
   [...fridgeArt, ...pantryArt, ...freezerArt]
     .map(([, label]) => label.replace(/\b(carton|cup|can|box|bag|tub|bottle)\b/gi, '').trim())
-    .concat(extraFoods)
+    .concat(extraFoods, curatedFoods)
     .map(normalizeIngredientName),
 );
 const preparations =
-  /\b(fresh|frozen|canned|dried|cooked|raw|chopped|diced|sliced|grated|shredded|peeled|boneless|skinless|organic|unsalted|salted|drained|rinsed)\b/g;
+  /\b(fresh|frozen|canned|dried|dry|cooked|raw|uncooked|chopped|diced|sliced|grated|shredded|peeled|boneless|skinless|organic|unsalted|salted|drained|rinsed)\b/g;
 
 // Deliberately conservative: artwork or a food flag alone does not make a name edible.
 // Unknown brands, ambiguous custom labels, and nonfood text stay out of AI suggestions.
 export function isRecipeFoodName(name: string): boolean {
-  if (!/^[a-z][a-z '-]*$/i.test(name) || name.length > 80) return false;
+  if (!/^[\p{L}\d][\p{L}\d '-]*$/u.test(name) || name.length > 80) return false;
   const normalized = normalizeIngredientName(name);
   if (names.has(normalized)) return true;
   return names.has(normalizeIngredientName(normalized.replace(preparations, '').trim()));

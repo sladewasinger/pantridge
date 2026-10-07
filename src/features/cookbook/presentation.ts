@@ -6,7 +6,7 @@ export function amountLabel(quantity: number, unit: string): string {
 export function recipeMeta(recipe: Recipe): string {
   return [
     recipe.minutes ? `${recipe.minutes} min` : '',
-    `${recipe.servings} servings`,
+    `${recipe.servings} ${recipe.servings === 1 ? 'serving' : 'servings'}`,
     recipe.cuisine,
   ]
     .filter(Boolean)

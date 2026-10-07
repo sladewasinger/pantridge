@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
 import { cookbookFixture } from './fixtures';
 const owner = 'recipe-suggestions-browser-test';
 async function signedKitchen(page: Page, data = cookbookFixture()) {
@@ -73,25 +74,47 @@ test('AI previews disclose transmission, require review/save and leave stock unc
     calls++;
     const request = route.request().postDataJSON();
     expect(request.kind).toBe('recipe');
-    expect(request.useUp).toBe(false);
+    expect(request.useUp).toBe(true);
     expect(JSON.stringify(request)).not.toContain(owner);
     expect(request.inventory.map((item: { name: string }) => item.name)).toContain('Eggs');
     return route.fulfill({ json: { recipes: [result] } });
   });
   const initial = await signedKitchen(page);
-  await expect(page.getByText(/Sends up to 40 recognized food names/)).toBeVisible();
+  await page.getByText('What gets sent?', { exact: true }).click();
+  await expect(page.getByText(/exact food names in/)).toBeVisible();
   await page.getByRole('button', { name: 'Suggest recipes', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'AI egg supper', exact: true })).toBeVisible();
   expect((await recipes(page)).recipes?.some((recipe) => recipe.title === 'AI egg supper')).toBe(
     false,
   );
-  await page.getByRole('button', { name: 'Review recipe', exact: true }).click();
-  await page.getByRole('button', { name: 'Cancel', exact: true }).click();
+  await page.getByRole('button', { name: 'View recipe', exact: true }).click();
+  const preview = page.getByRole('dialog', { name: 'AI egg supper', exact: true });
+  await expect(preview).toBeVisible();
+  await expect(preview.getByRole('textbox')).toHaveCount(0);
+  await expect(preview.getByRole('spinbutton')).toHaveCount(0);
+  await expect(preview.getByRole('combobox')).toHaveCount(0);
+  await expect(preview.getByRole('region', { name: 'Cooking steps' })).toContainText(
+    result.steps[0]!,
+  );
+  await expect(preview.getByRole('region', { name: 'Ingredients and kitchen match' })).toBeHidden();
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  await page.getByRole('button', { name: 'Close', exact: true }).click();
   expect((await recipes(page)).recipes?.some((recipe) => recipe.title === 'AI egg supper')).toBe(
     false,
   );
-  await page.getByRole('button', { name: 'Review recipe', exact: true }).click();
+  await page.getByRole('button', { name: 'View recipe', exact: true }).click();
   await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
+  await expect(preview.getByRole('status')).toHaveText('Saved to your cookbook.');
+  await expect(preview.getByRole('button', { name: 'Saved', exact: true })).toBeDisabled();
+  await page.getByRole('button', { name: 'Edit recipe', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: 'Edit recipe', exact: true })).toBeVisible();
+  await page
+    .getByRole('textbox', { name: 'Description optional', exact: true })
+    .fill('My saved supper.');
+  await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
+  await expect(preview).toContainText('My saved supper.');
+  await expect(preview.getByRole('textbox')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Close', exact: true }).click();
   await expect(
     page
       .getByRole('dialog', { name: 'Suggest with AI', exact: true })
@@ -193,7 +216,7 @@ test('finishing a dismissed AI recipe save cannot close a newer review draft', a
   await page
     .locator('.suggestion-result')
     .filter({ hasText: 'Idea A' })
-    .getByRole('button', { name: 'Review recipe' })
+    .getByRole('button', { name: 'View recipe' })
     .click();
   await holdKitchenWrites(page);
   await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
@@ -202,8 +225,9 @@ test('finishing a dismissed AI recipe save cannot close a newer review draft', a
   await page
     .locator('.suggestion-result')
     .filter({ hasText: 'Idea B' })
-    .getByRole('button', { name: 'Review recipe' })
+    .getByRole('button', { name: 'View recipe' })
     .click();
+  await page.getByRole('button', { name: 'Edit recipe', exact: true }).click();
   await page
     .getByRole('textbox', { name: 'Recipe name', exact: true })
     .fill('Idea B unsaved draft');
@@ -219,4 +243,38 @@ test('finishing a dismissed AI recipe save cannot close a newer review draft', a
   expect((await recipes(page)).recipes?.some((item) => item.title === 'Idea B unsaved draft')).toBe(
     false,
   );
+});
+
+test('a delayed editor save does not dismiss a newer edit of the same preview', async ({
+  page,
+}) => {
+  const idea = { ...cookbookFixture().recipes![0]!, title: 'Slow saved idea', source: 'ai' };
+  await page.route('https://api.pantridge.test/v1/products/resolve', (route) =>
+    route.fulfill({ json: { recipes: [idea] } }),
+  );
+  const initial = await signedKitchen(page);
+  await page.getByRole('button', { name: 'Suggest recipes', exact: true }).click();
+  await page.getByRole('button', { name: 'View recipe', exact: true }).click();
+  await page.getByRole('button', { name: 'Edit recipe', exact: true }).click();
+  await holdKitchenWrites(page);
+  await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Saving…', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Close', exact: true }).click();
+  await page.getByRole('button', { name: 'Edit recipe', exact: true }).click();
+  await page
+    .getByRole('textbox', { name: 'Recipe name', exact: true })
+    .fill('Keep this newer draft');
+  await page.evaluate(() => {
+    (window as typeof window & { releaseCookbookWrites?: boolean }).releaseCookbookWrites = true;
+  });
+  await expect
+    .poll(async () => (await recipes(page)).recipes?.some((item) => item.title === idea.title))
+    .toBe(true);
+  await expect(page.getByRole('textbox', { name: 'Recipe name', exact: true })).toHaveValue(
+    'Keep this newer draft',
+  );
+  expect(
+    (await recipes(page)).recipes?.some((item) => item.title === 'Keep this newer draft'),
+  ).toBe(false);
+  expect((await recipes(page)).stock).toEqual(initial.stock);
 });

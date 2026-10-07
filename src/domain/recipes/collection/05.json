@@ -1,0 +1,1016 @@
+[
+  {
+    "id": "cb000000-0000-4000-8000-000000000045",
+    "title": "Easy Chicken Fajitas",
+    "servings": 4,
+    "minutes": 30,
+    "cuisine": "Quick chicken",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-chicken-fajitas/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.97,
+      "ratingCount": 612,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 334,
+      "protein": 37,
+      "carbohydrate": 10,
+      "fat": 15,
+      "sodium": 210,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000004501",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Chicken breasts",
+        "note": "approximately 1 pound"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004502",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004503",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Lime"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004504",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Bell peppers",
+        "note": "red, yellow, green or orange"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004505",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Olive oil",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004506",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Chili powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004507",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "divided, more to taste; divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004508",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Smoked paprika"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004509",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Onion powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004510",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004511",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Cumin",
+        "note": "optional",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Slice onion and peppers; cut chicken into strips. Toss chicken with 1 tablespoon oil, juice of half the lime, chili powder, paprika, onion powder, pepper, optional cumin and ½ teaspoon salt.",
+      "Brown chicken in two batches over medium-high heat, using 1 tablespoon oil, about 3–5 minutes per batch; cook to 165°F. Set aside.",
+      "Heat remaining oil; cook onion 2 minutes, then peppers and remaining salt 2 minutes. Return chicken and heat through. Finish with remaining lime juice; tortillas are optional."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000046",
+    "title": "Chicken and Broccoli Stir Fry",
+    "servings": 4,
+    "minutes": 25,
+    "cuisine": "Quick chicken",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/chicken-and-broccoli-stir-fry/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 5,
+      "ratingCount": 121,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 336,
+      "protein": 36,
+      "carbohydrate": 20,
+      "fat": 12,
+      "sodium": 885,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000004601",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "name": "Olive oil",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004602",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "sliced into thin strips, about 1 ½ cups; sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004603",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004604",
+        "quantity": 1.5,
+        "unit": "lb",
+        "name": "Chicken thighs",
+        "note": "cut into 2 inch pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004605",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "name": "Cornstarch"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004606",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Soy sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004607",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Honey"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004608",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Chili paste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004609",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Broccoli florets",
+        "note": "bite size pieces"
+      }
+    ],
+    "untrackedIngredients": ["cooked white rice (for serving, optional)"],
+    "steps": [
+      "Heat ½ tablespoon oil over medium-high heat. Cook sliced onion 2 minutes, add garlic, then move vegetables to the edge.",
+      "Add remaining oil and chicken. Sprinkle with cornstarch; brown 2 minutes, turn and cook a minute more. Stir together soy sauce, honey and chili paste; add to pan.",
+      "Place broccoli on top, cover for 2 minutes, then stir and simmer about a minute to thicken. Continue as needed until chicken reaches 165°F. Serve with rice if desired."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000047",
+    "title": "Easy Pepper Chicken Stir Fry",
+    "servings": 4,
+    "minutes": 30,
+    "cuisine": "Quick chicken",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-pepper-chicken-stir-fry/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Richa Gupta",
+      "rating": 4.8,
+      "ratingCount": 134,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 460,
+      "protein": 51,
+      "carbohydrate": 16,
+      "fat": 20,
+      "sodium": 1670,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000004701",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Chicken breasts",
+        "note": "cut into 1 inch pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004702",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Soy sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004703",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Garlic",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004704",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Toasted sesame oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004705",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004706",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Oyster sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004707",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Soy sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004708",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Rice vinegar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004709",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004711",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Cornstarch",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004712",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Vegetable oil",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004713",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "cut into 1 inch pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004714",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Green bell pepper",
+        "note": "cut into 1 inch pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004715",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Red bell pepper",
+        "note": "cut into 1 inch pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004716",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004717",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Ginger",
+        "note": "minced"
+      }
+    ],
+    "untrackedIngredients": ["½ cup water"],
+    "steps": [
+      "Marinate diced chicken 15 minutes in the first 2 tablespoons soy sauce, minced garlic, sesame oil and first teaspoon pepper. Separately whisk oyster sauce, remaining soy sauce, vinegar, remaining pepper, water and 1 tablespoon cornstarch.",
+      "Coat chicken with remaining cornstarch. Brown in 2 tablespoons oil, in uncrowded batches, about 3 minutes per side; set aside.",
+      "Cook onion and peppers in remaining oil 1–2 minutes; add ginger and garlic for a minute. Return chicken with sauce and simmer 1–2 minutes until thickened, cooking chicken to 165°F."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000048",
+    "title": "Chicken Fried Rice",
+    "servings": 4,
+    "minutes": 22,
+    "cuisine": "Quick chicken",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-fried-rice-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 109,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 460,
+      "protein": 23,
+      "carbohydrate": 59,
+      "fat": 15,
+      "sodium": 1026,
+      "fiber": 5,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000004801",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Vegetable oil",
+        "note": "or peanut oil, divided; divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004802",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Eggs",
+        "note": "beaten"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004803",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004804",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004805",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Ginger",
+        "note": "grated"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004806",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Green onions",
+        "note": "thinly sliced, green and white parts separated; sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004807",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Frozen mixed vegetables"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004808",
+        "quantity": 4,
+        "unit": "cup",
+        "name": "Cooked white rice",
+        "note": "cold"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004809",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Cooked chicken",
+        "note": "or pork or shrimp, optional; chopped",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004810",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Soy sauce",
+        "note": "or more to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004811",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Toasted sesame oil"
+      }
+    ],
+    "untrackedIngredients": ["sesame seeds (optional, for garnish)"],
+    "steps": [
+      "Scramble beaten eggs with salt in 1 teaspoon oil; set aside. Heat 2 teaspoons oil and cook garlic, ginger and white portions of green onions for a minute.",
+      "Add frozen vegetables and heat 2–3 minutes. Increase to medium-high; add remaining tablespoon oil and cold cooked rice. Fry about 7 minutes, allowing rice to brown between stirs.",
+      "Add eggs, cooked chicken, soy sauce, sesame oil and half the green onion tops. Heat thoroughly to 165°F if using leftovers. Finish with remaining onions and optional sesame seeds."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000049",
+    "title": "Chicken Piccata",
+    "servings": 4,
+    "minutes": 50,
+    "cuisine": "Quick chicken",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/chicken-piccata/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.95,
+      "ratingCount": 442,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 530,
+      "protein": 51,
+      "carbohydrate": 19,
+      "fat": 25,
+      "sodium": 741,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000004901",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Chicken breasts",
+        "note": "6 ounces each, about 1 ½ lbs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004902",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004903",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Lemon zest"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004904",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Olive oil",
+        "note": "more as needed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004906",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004907",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004908",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Chicken broth",
+        "note": "or chicken stock"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004909",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Lemon",
+        "note": "juiced, about 1 ½ tablespoons"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004910",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Dry white wine",
+        "note": "or chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004911",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Capers",
+        "note": "drained"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004912",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Parsley",
+        "note": "additional for garnish; chopped",
+        "optional": true
+      }
+    ],
+    "untrackedIngredients": [
+      "salt and black pepper (to taste)",
+      "shredded Parmesan cheese (for garnish, optional)"
+    ],
+    "steps": [
+      "Flatten chicken to ½ inch. Combine ½ cup flour with lemon zest, salt and pepper; lightly coat chicken. Brown in olive oil over medium-high heat, 4–5 minutes per side, to 165°F. Keep warm.",
+      "Melt butter over medium heat in the same pan. Whisk in remaining flour and cook 2 minutes. Slowly whisk in broth until smooth.",
+      "Add lemon juice, wine and capers; simmer 3 minutes. Return chicken for 2–3 minutes. Adjust seasoning and stir in parsley."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000050",
+    "title": "Baked Chicken Breast",
+    "servings": 4,
+    "minutes": 32,
+    "cuisine": "Quick chicken",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/oven-baked-chicken-breasts/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.97,
+      "ratingCount": 481,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 236,
+      "protein": 40,
+      "fat": 7,
+      "sodium": 412,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000005001",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Chicken breasts",
+        "note": "about 6 oz each"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005002",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005003",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005004",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Seasoned salt",
+        "note": "or table salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005005",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Paprika"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005006",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      }
+    ],
+    "steps": [
+      "Heat oven to 400°F; prepare a lightly greased or parchment-lined rimmed pan.",
+      "Coat chicken with olive oil, Italian seasoning, seasoned salt, paprika and pepper. Place on pan and bake uncovered about 21–26 minutes, until centers reach 165°F.",
+      "Rest chicken 5 minutes; slice and spoon pan juices over it."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000051",
+    "title": "Grilled Chicken Breasts",
+    "servings": 4,
+    "minutes": 25,
+    "cuisine": "Quick chicken",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-grilled-chicken-breast/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.97,
+      "ratingCount": 379,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 238,
+      "protein": 24,
+      "carbohydrate": 2,
+      "fat": 14,
+      "sodium": 618,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000005101",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Olive oil",
+        "note": "or vegetable oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005102",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Apple cider vinegar",
+        "note": "or red wine vinegar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005103",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Worcestershire sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005104",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Dijon mustard"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005105",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Lemon juice"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005106",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005107",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005108",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005109",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Granulated sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005110",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005111",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Chicken breasts"
+      }
+    ],
+    "steps": [
+      "Mix oil, vinegar, Worcestershire sauce, mustard, lemon juice, Italian seasoning, salt, pepper, sugar and garlic powder. Coat chicken and refrigerate covered 30 minutes to 4 hours.",
+      "Heat grill to medium-high. Drain chicken and discard used marinade. Grill about 7–8 minutes per side, until chicken reaches 165°F.",
+      "Rest on a clean plate 3–5 minutes before slicing."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000052",
+    "title": "Grilled Chicken Sandwich",
+    "servings": 4,
+    "minutes": 60,
+    "cuisine": "Quick chicken",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/grilled-chicken-sandwich/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 5,
+      "ratingCount": 140,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 452,
+      "protein": 41,
+      "carbohydrate": 31,
+      "fat": 17,
+      "sodium": 823,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000005201",
+        "quantity": 1.5,
+        "unit": "lb",
+        "name": "Chicken breasts",
+        "note": "about 4 small breasts"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005202",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Hamburger buns",
+        "note": "or brioche rolls"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005203",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Honey mustard sauce",
+        "note": "or mayonnaise"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005205",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Vegetable oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005206",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Apple cider vinegar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005207",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Dijon mustard"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005208",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Brown sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005209",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005210",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005211",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper"
+      }
+    ],
+    "untrackedIngredients": ["toppings as desired (see notes)"],
+    "steps": [
+      "Pound chicken to ½ inch. Combine oil, vinegar, mustard, brown sugar, garlic powder, salt and pepper; marinate chicken in the refrigerator 30 minutes to 4 hours.",
+      "Heat grill to medium-high, about 375°F. Drain chicken, discard marinade and grill 5–6 minutes per side, until centers reach 165°F. Toast buns cut-side down.",
+      "Spread buns with honey mustard. Add chicken and optional lettuce, tomato or onion toppings."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000053",
+    "title": "Classic Chicken Salad",
+    "servings": 6,
+    "minutes": 15,
+    "cuisine": "Quick chicken",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/classic-chicken-salad-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 2360,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 206,
+      "protein": 15,
+      "carbohydrate": 1,
+      "fat": 16,
+      "sodium": 362,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000005301",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Cooked chicken",
+        "note": "or shredded chicken; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005302",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Mayonnaise"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005303",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Celery ribs",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005304",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Green onions",
+        "note": "thinly sliced; sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005305",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Dijon mustard"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005306",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Seasoned salt",
+        "note": "more to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005307",
+        "quantity": 0.125,
+        "unit": "tsp",
+        "name": "Black pepper",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005308",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Dill",
+        "note": "or ¼ teaspoon dried dill, optional; chopped",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Dice or shred cooked chicken. Combine with mayonnaise, diced celery, sliced green onion, Dijon mustard, seasoned salt, pepper and optional dill.",
+      "Taste and adjust seasoning. Serve chilled in a sandwich or over salad; serving bread or greens are additional ingredients."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000054",
+    "title": "Creamy Garlic Chicken",
+    "servings": 4,
+    "minutes": 40,
+    "cuisine": "Quick chicken",
+    "source": "starter",
+    "sourceUrl": "https://www.budgetbytes.com/creamy-garlic-chicken/",
+    "curation": {
+      "publisher": "Budget Bytes",
+      "author": "Marsha McDougal",
+      "rating": 4.78,
+      "ratingCount": 196,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 518,
+      "protein": 34,
+      "carbohydrate": 9,
+      "fat": 38,
+      "sodium": 741,
+      "fiber": 0.4,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000005401",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Chicken breasts",
+        "note": "about 1.3 lbs/600g total"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005402",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005403",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005404",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005405",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005406",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005407",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Butter",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005408",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Garlic bulb",
+        "note": "about 8-9 garlic cloves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005409",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005410",
+        "quantity": 0.75,
+        "unit": "cup",
+        "name": "Heavy cream"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000005411",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      }
+    ],
+    "untrackedIngredients": ["Salt and Pepper to taste"],
+    "steps": [
+      "Split chicken breasts into thin cutlets. Season with Italian seasoning, salt and pepper; coat lightly with flour. Brown in olive oil and 1 tablespoon butter over medium heat, about 4 minutes per side, to 165°F. Keep warm.",
+      "Peel and lightly crush garlic cloves. Cook in remaining butter over medium-low heat about 3 minutes, stirring to avoid burning.",
+      "Add broth, cream and garlic powder; loosen browned bits. Simmer 8–10 minutes until sauce reduces roughly by half. Adjust seasoning, return chicken and heat through."
+    ]
+  }
+]

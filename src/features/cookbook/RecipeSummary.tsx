@@ -2,7 +2,7 @@ import type { MealPlanEntry, Recipe } from '../../domain/recipes/model';
 import { dateLabel, recipeMeta } from './presentation';
 
 const sourceLabels: Record<Recipe['source'], string> = {
-  starter: 'Curated starter recipe',
+  starter: 'Built-in recipe',
   manual: 'Your recipe',
   import: 'Imported recipe',
   ai: 'AI-generated recipe · review before cooking',
@@ -14,6 +14,18 @@ export function RecipeSummary({ recipe }: { recipe: Recipe }) {
       {recipe.description && <p>{recipe.description}</p>}
       <p className="recipe-provenance">
         {sourceLabels[recipe.source]}
+        {recipe.generation?.baseTitle && (
+          <span>
+            {' '}
+            · Cookbook foundation: {recipe.generation.baseTitle}; original ratings do not apply
+          </span>
+        )}
+        {recipe.curation && (
+          <span>
+            {' '}
+            · Adapted from {recipe.curation.author}, {recipe.curation.publisher}
+          </span>
+        )}
         {recipe.sourceUrl && (
           <>
             {' '}
@@ -24,6 +36,13 @@ export function RecipeSummary({ recipe }: { recipe: Recipe }) {
           </>
         )}
       </p>
+      {recipe.curation && (
+        <p className="recipe-provenance">
+          Original recipe: {recipe.curation.rating}/5 ·{' '}
+          {recipe.curation.ratingCount.toLocaleString()} ratings · checked{' '}
+          {recipe.curation.checkedAt}
+        </p>
+      )}
     </>
   );
 }

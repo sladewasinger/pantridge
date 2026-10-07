@@ -28,3 +28,124 @@
   font-size: 11px;
   margin-top: 5px;
 }
+.suggestion-preview .recipe-meta {
+  margin-top: 0;
+}
+.suggestion-preview h3 {
+  font-size: 22px;
+  margin: 18px 0 10px;
+}
+.suggestion-preview-ingredients {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.suggestion-preview-ingredients li {
+  padding: 8px 0;
+  border-top: 1px solid #e1dacb;
+}
+.suggestion-preview-ingredients li > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+}
+.suggestion-preview-ingredients li > div > span:first-child {
+  overflow-wrap: anywhere;
+}
+.suggestion-preview-ingredients li > div > span:last-child {
+  flex-shrink: 0;
+  color: #52644c;
+  font-variant-numeric: tabular-nums;
+}
+.suggestion-preview-ingredients small {
+  font-size: 12px;
+  color: #626b58;
+}
+.suggestion-preview-ingredients li > small {
+  display: block;
+}
+.suggestion-preview-details summary {
+  min-height: 44px;
+}
+.suggestion-preview-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.suggestion-preview-actions .primary {
+  flex: 1;
+}
+.suggestion-preview-footer > p {
+  font-size: 12px;
+  margin: 0 0 8px;
+}
+.recipe-preferences {
+  border: 0;
+  margin: 18px 0;
+  padding: 0;
+  min-width: 0;
+}
+.recipe-preferences legend {
+  margin-bottom: 10px;
+}
+.recipe-direction-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.recipe-direction-chips button {
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 22px;
+  font-size: 13px;
+}
+.recipe-direction-chips button[aria-pressed='true'] {
+  background: #507354;
+  border-color: #507354;
+  color: #fff;
+}
+.recipe-preference-options {
+  display: grid;
+  gap: 12px;
+  margin-top: 10px;
+}
+.recipe-preference-options label {
+  min-width: 0;
+}
+.recipe-diet-options {
+  display: grid;
+  gap: 4px;
+}
+.recipe-preferences summary,
+.recipe-suggestions > details > summary,
+.recipe-variations > summary,
+.recipe-diet-review > summary,
+.recipe-nutrition summary {
+  min-height: 44px;
+  padding: 12px 0;
+  cursor: pointer;
+}
+.recipe-variation {
+  padding: 12px 0;
+  border-top: 1px solid #e1dacb;
+}
+.recipe-variation > span {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+}
+.recipe-variation p {
+  margin: 8px 0;
+}
+.recipe-diet-review .check-label {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 44px;
+}
+.recipe-diet-review input {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}

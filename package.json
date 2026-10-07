@@ -9,6 +9,7 @@
   },
   "scripts": {
     "dev": "vite --host 127.0.0.1",
+    "dev:connected": "node scripts/local/start.mjs",
     "build": "tsc --noEmit && vite build && node scripts/build-api.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",

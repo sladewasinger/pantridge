@@ -17,6 +17,7 @@ export interface RecipeDraft {
   sourceUrl: string;
   ingredients: IngredientDraft[];
   steps: string;
+  extras: string;
 }
 export const emptyIngredient = (): IngredientDraft => ({
   id: crypto.randomUUID(),
@@ -36,6 +37,7 @@ export function recipeDraft(recipe?: Recipe): RecipeDraft {
       sourceUrl: '',
       ingredients: [emptyIngredient()],
       steps: '',
+      extras: '',
     };
   return {
     title: recipe.title,
@@ -50,6 +52,7 @@ export function recipeDraft(recipe?: Recipe): RecipeDraft {
       optional: item.optional ?? false,
     })),
     steps: recipe.steps.join('\n'),
+    extras: recipe.untrackedIngredients?.join('\n') ?? '',
   };
 }
 export function parseRecipeDraft(
@@ -66,6 +69,12 @@ export function parseRecipeDraft(
     minutes: draft.minutes ? Number(draft.minutes) : undefined,
     cuisine: draft.cuisine.trim() || undefined,
     sourceUrl: draft.sourceUrl.trim() || undefined,
+    untrackedIngredients: draft.extras.trim()
+      ? draft.extras
+          .split('\n')
+          .map((line) => line.trim())
+          .filter(Boolean)
+      : undefined,
     ingredients: draft.ingredients.map((item) => ({ ...item, quantity: Number(item.quantity) })),
     steps: draft.steps
       .split('\n')

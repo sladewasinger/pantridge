@@ -3,6 +3,18 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  server:
+    process.env.PANTRIDGE_LOCAL_CONNECTED === 'true'
+      ? {
+          proxy: {
+            '/api': {
+              target: 'http://127.0.0.1:4175',
+              changeOrigin: true,
+              rewrite: (path) => path.replace(/^\/api/, ''),
+            },
+          },
+        }
+      : undefined,
   plugins: [
     react(),
     VitePWA({

@@ -1,0 +1,1193 @@
+[
+  {
+    "id": "cb000000-0000-4000-8000-000000000075",
+    "title": "Homemade meatballs",
+    "servings": 12,
+    "minutes": 40,
+    "cuisine": "Beef dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-meatball-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 587,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 235,
+      "protein": 15,
+      "carbohydrate": 5,
+      "fat": 17,
+      "sodium": 256,
+      "fiber": 0.4,
+      "source": "publisher",
+      "portion": "4 meatballs"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000007501",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007502",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground pork",
+        "note": "or additional ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007503",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Seasoned bread crumbs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007504",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007505",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Onions",
+        "note": ", or ½ teaspoon onion powder; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007506",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Parsley",
+        "note": "or 1 tablespoon dried parsley; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007507",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "grated"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007508",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Eggs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007509",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Italian seasoning",
+        "note": "optional",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007510",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007511",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "more to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007512",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper"
+      }
+    ],
+    "steps": [
+      "Heat oven to 400°F; line a 9×13-inch pan with parchment. Gently combine beef, pork, breadcrumbs, milk, onion, parsley, Parmesan, egg and seasonings without overworking.",
+      "Shape into 48 meatballs, about 1½ tablespoons each. Arrange on pan and bake 18–20 minutes, until centers reach 160°F.",
+      "Serve as desired; tomato sauce is an additional serving ingredient."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000076",
+    "title": "The Best Chili",
+    "servings": 8,
+    "minutes": 65,
+    "cuisine": "Beef dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/the-best-chili-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.95,
+      "ratingCount": 3094,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 395,
+      "protein": 29,
+      "carbohydrate": 27,
+      "fat": 17,
+      "sodium": 283,
+      "fiber": 7,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000007601",
+        "quantity": 2,
+        "unit": "lb",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007602",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007603",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Jalapeño",
+        "note": "seeded and finely diced; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007604",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007605",
+        "quantity": 2.5,
+        "unit": "tbsp",
+        "name": "Chili powder",
+        "note": "divided, or to taste; divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007606",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Cumin"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007607",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Green bell pepper",
+        "note": "seeded and diced; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007608",
+        "quantity": 14.5,
+        "unit": "oz",
+        "name": "Crushed tomatoes",
+        "note": "14.5 ounce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007609",
+        "quantity": 19,
+        "unit": "oz",
+        "name": "Canned red kidney beans",
+        "note": "19 ounce) can canned red kidney beans (drained and rinsed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007610",
+        "quantity": 14.5,
+        "unit": "oz",
+        "name": "Canned diced tomatoes",
+        "note": "14.5 ounce) can canned diced tomatoes (with juices; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007611",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Beef broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007612",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Beer"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007613",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Tomato paste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007614",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Brown sugar",
+        "note": "optional",
+        "optional": true
+      }
+    ],
+    "untrackedIngredients": ["salt and black pepper (to taste)"],
+    "steps": [
+      "Mix beef with 1½ tablespoons chili powder. Brown with onion, jalapeño and garlic in a large pot, cooking beef to 160°F; drain.",
+      "Add remaining chili powder, cumin, bell pepper, tomatoes, canned beans, broth, beer, paste and optional sugar. Bring to a boil; simmer uncovered 45–60 minutes until thickened.",
+      "Adjust salt and pepper. Optional cheese, green onions and cilantro are additional toppings."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000077",
+    "title": "The Best Meatloaf",
+    "servings": 8,
+    "minutes": 85,
+    "cuisine": "Beef dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/best-meatloaf-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.95,
+      "ratingCount": 2980,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 403,
+      "protein": 23,
+      "carbohydrate": 21,
+      "fat": 25,
+      "sodium": 633,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000007701",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007702",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007703",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Eggs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007704",
+        "quantity": 0.75,
+        "unit": "cup",
+        "name": "Milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007705",
+        "quantity": 0.75,
+        "unit": "cup",
+        "name": "Italian bread crumbs",
+        "note": "or seasoned breadcrumbs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007706",
+        "quantity": 2,
+        "unit": "lb",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007707",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Ketchup",
+        "note": "or chili sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007708",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007709",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Parsley",
+        "note": "or 2 teaspoons dried parsley; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007710",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "more to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007711",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007712",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Chili sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007713",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Ketchup"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007714",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Brown sugar",
+        "note": "optional",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Heat oven to 350°F; line and grease a rimmed pan. Soften onion in butter and cool. Mix eggs, milk and crumbs; stand 5–10 minutes.",
+      "Gently combine crumb mixture, beef, onion, tablespoon ketchup, herbs, salt and pepper. Form an 8×4-inch loaf on pan; bake 40 minutes.",
+      "Mix chili sauce, remaining ketchup and optional sugar. Spread over loaf; bake another 15–30 minutes, until center reaches 160°F. Rest 10 minutes before slicing."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000078",
+    "title": "Ground Beef Stroganoff",
+    "servings": 4,
+    "minutes": 30,
+    "cuisine": "Beef dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/ground-beef-stroganoff-hamburger/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.87,
+      "ratingCount": 628,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 432,
+      "protein": 25,
+      "carbohydrate": 12,
+      "fat": 32,
+      "sodium": 581,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000007801",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007802",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007803",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007804",
+        "quantity": 12,
+        "unit": "oz",
+        "name": "Mushrooms",
+        "note": "sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007805",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007806",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Beef broth",
+        "note": ", not low sodium"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007807",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Worcestershire sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007808",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Beef bouillon cube",
+        "note": "optional",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007811",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Sour cream"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007812",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Parsley",
+        "note": "for garnish, optional; chopped",
+        "optional": true
+      }
+    ],
+    "untrackedIngredients": ["⅛ salt (or to taste)", "⅛ black pepper (or to taste)"],
+    "steps": [
+      "Brown beef, onion and garlic over medium-high heat, cooking ground meat to 160°F; drain. Add mushrooms for 3 minutes, then flour for a minute.",
+      "Stir in broth, Worcestershire sauce, optional bouillon and seasoning. Bring to a boil; gently boil uncovered about 10 minutes to thicken.",
+      "Take off heat and stir in sour cream. Add optional parsley. Egg noodles may be cooked separately for serving."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000079",
+    "title": "Sloppy Joe",
+    "servings": 6,
+    "minutes": 35,
+    "cuisine": "Beef dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-sloppy-joes/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.92,
+      "ratingCount": 101,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 392,
+      "protein": 18,
+      "carbohydrate": 33,
+      "fat": 21,
+      "sodium": 763,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000007901",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007902",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Onions",
+        "note": "finely diced; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007903",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Garlic powder",
+        "note": "or 2 cloves garlic, minced; minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007905",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Butter",
+        "note": "or olive oil for brushing"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007907",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Tomato sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007908",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Green bell pepper",
+        "note": "finely diced; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007909",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Ketchup"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007910",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Tomato paste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007911",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Brown sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007912",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "name": "Apple cider vinegar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007913",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Worcestershire sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007914",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Yellow mustard"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007915",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "more to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000007916",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      }
+    ],
+    "untrackedIngredients": ["hamburger buns", "⅔ cup water"],
+    "steps": [
+      "Brown beef, onion and garlic powder over medium-high heat to 160°F, breaking up meat; drain.",
+      "Add water, tomato sauce, diced pepper, ketchup, paste, brown sugar, vinegar, Worcestershire sauce, mustard, salt and pepper. Bring to a boil; simmer uncovered about 15 minutes to thicken.",
+      "If using buns, brush cut sides with butter and broil 2–3 minutes, watching closely. Spoon about ½ cup filling onto each bun."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000080",
+    "title": "Stuffed Peppers",
+    "servings": 6,
+    "minutes": 85,
+    "cuisine": "Beef dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/stuffed-peppers/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 835,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 397,
+      "protein": 19,
+      "carbohydrate": 32,
+      "fat": 22,
+      "sodium": 980,
+      "fiber": 6,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000008001",
+        "quantity": 6,
+        "unit": "count",
+        "name": "Bell peppers",
+        "note": "any color"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008002",
+        "quantity": 8,
+        "unit": "oz",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008003",
+        "quantity": 8,
+        "unit": "oz",
+        "name": "Italian sausage"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008004",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008005",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008006",
+        "quantity": 14.5,
+        "unit": "oz",
+        "name": "Canned petite diced tomatoes",
+        "note": "14.5 ounce) can canned petite diced tomatoes (with juice; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008008",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Worcestershire sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008009",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "White rice",
+        "note": "uncooked"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008010",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008011",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008012",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008013",
+        "quantity": 2.5,
+        "unit": "cup",
+        "name": "Marinara sauce",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008014",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Mozzarella cheese",
+        "note": "or cheddar cheese, optional; shredded",
+        "optional": true
+      }
+    ],
+    "untrackedIngredients": ["1 ¼ cups water"],
+    "steps": [
+      "Heat oven to 350°F; grease a 9×13-inch dish. Remove pepper tops, seeds and membranes; chop tops. Boil peppers 5 minutes; drain.",
+      "Brown beef, sausage, onion and garlic to 160°F; drain. Add tomatoes, water, Worcestershire sauce, dry rice, chopped pepper tops and seasonings. Cover and simmer 15–20 minutes until rice is tender; stir in ½ cup marinara.",
+      "Spread 1½ cups marinara in dish. Fill peppers and stand them in sauce; spoon remaining marinara on top. Cover and bake 35 minutes. Add optional cheese; bake uncovered 10–12 minutes. Rest 5 minutes."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000081",
+    "title": "Beef Tips",
+    "servings": 4,
+    "minutes": 125,
+    "cuisine": "Beef dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/beef-tips-gravy/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 677,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 527,
+      "protein": 45,
+      "carbohydrate": 11,
+      "fat": 34,
+      "sodium": 1001,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000008101",
+        "quantity": 2,
+        "unit": "lb",
+        "name": "Beef chuck roast",
+        "note": "cubed or stew meat"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008102",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008103",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008104",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008105",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008106",
+        "quantity": 10.5,
+        "unit": "oz",
+        "name": "Beef broth",
+        "note": "10.5 ounce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008107",
+        "quantity": 10.5,
+        "unit": "oz",
+        "name": "Condensed French onion soup",
+        "note": "10.5 ounce) can condensed French onion soup (or condensed onion soup"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008108",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Worcestershire sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008109",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Bay leaf"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008111",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Cornstarch"
+      }
+    ],
+    "untrackedIngredients": ["chopped fresh parsley (for garnish, optional)", "⅓ cup water"],
+    "steps": [
+      "Season cubed beef with salt and pepper. Brown in batches in 1 tablespoon oil over medium-high heat; set aside. Soften onion in remaining oil 5–7 minutes.",
+      "Return beef with broth, condensed onion soup, Worcestershire sauce and bay leaf. Bring to a boil; cover and simmer gently 1½–2 hours until fork-tender.",
+      "Mix cornstarch with ⅓ cup cold water; stir gradually into simmering sauce until thickened. Adjust seasoning and discard bay leaf."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000082",
+    "title": "Hungarian Goulash",
+    "servings": 6,
+    "minutes": 120,
+    "cuisine": "Beef dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/hungarian-goulash/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.97,
+      "ratingCount": 792,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 411,
+      "protein": 23,
+      "carbohydrate": 24,
+      "fat": 25,
+      "sodium": 858,
+      "fiber": 4,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000008201",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Butter",
+        "note": "oil, or lard (preferred)"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008202",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Yellow onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008203",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Caraway seeds"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008204",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Paprika"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008205",
+        "quantity": 1.5,
+        "unit": "lb",
+        "name": "Stewing beef",
+        "note": "or chuck, trimmed and cut into 1-inch cubes"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008206",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008207",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Beef broth",
+        "note": "or water, divided; divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008208",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "diced tomatoes",
+        "note": "drained; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008209",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008210",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008211",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Potatoes",
+        "note": "peeled and diced, optional; peeled",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008212",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Carrots",
+        "note": "diced, optional; diced",
+        "optional": true
+      }
+    ],
+    "untrackedIngredients": ["chopped fresh parsley (and sour cream for serving, optional)"],
+    "steps": [
+      "Soften onion in butter over medium-low heat about 5 minutes. Stir in caraway and paprika. Coat beef lightly with flour; add to pot and cook 2–3 minutes.",
+      "Add ¼ cup broth and loosen browned bits. Add remaining broth, tomatoes, seasonings and optional potatoes and carrots.",
+      "Bring to a boil; cover and simmer gently 1½–2 hours until beef is fork-tender. Optional parsley and sour cream are additional serving ingredients."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000083",
+    "title": "Beef Stew",
+    "servings": 8,
+    "minutes": 90,
+    "cuisine": "Beef dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/beef-stew-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.95,
+      "ratingCount": 2746,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 444,
+      "protein": 25,
+      "carbohydrate": 22,
+      "fat": 28,
+      "sodium": 383,
+      "fiber": 4,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000008301",
+        "quantity": 2,
+        "unit": "lb",
+        "name": "Stewing beef",
+        "note": "trimmed and cubed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008302",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008303",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008304",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008305",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008306",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Olive oil",
+        "note": "more as needed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008307",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008308",
+        "quantity": 6,
+        "unit": "cup",
+        "name": "Beef broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008309",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Red wine",
+        "note": "optional",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008310",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Potatoes",
+        "note": "peeled and cubed; peeled"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008311",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Carrots",
+        "note": "cut into 1 inch pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008312",
+        "quantity": 4,
+        "unit": "count",
+        "name": "Celery ribs",
+        "note": "cut into 1 inch pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008313",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Tomato paste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008314",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Dried rosemary",
+        "note": "or 1 sprig fresh"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008315",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Cornstarch",
+        "note": "or as needed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008317",
+        "quantity": 0.75,
+        "unit": "cup",
+        "name": "Peas"
+      }
+    ],
+    "untrackedIngredients": ["2 tablespoons water (or as needed)"],
+    "steps": [
+      "Combine flour, garlic powder, salt and pepper; lightly coat beef. Brown in oil in small batches over medium-high heat; set aside. Soften onion about 3 minutes.",
+      "Add broth and optional wine, loosening browned bits. Return beef; add potatoes, carrots, celery, paste and rosemary. Cover and simmer gently 60–90 minutes until beef is tender.",
+      "Mix cornstarch with equal water; gradually stir into boiling stew to thicken as desired. Add peas and simmer 5–10 minutes. Adjust seasoning."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000084",
+    "title": "American Goulash",
+    "servings": 8,
+    "minutes": 45,
+    "cuisine": "Beef dinners",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/grandmas-goulash/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 742,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 270,
+      "protein": 19,
+      "carbohydrate": 29,
+      "fat": 9,
+      "sodium": 793,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "2 cups"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000008401",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008402",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008403",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008404",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Marinara sauce",
+        "note": "or tomato based pasta sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008405",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Beef broth",
+        "note": "or water, more as needed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008406",
+        "quantity": 14,
+        "unit": "oz",
+        "name": "Tomatoes",
+        "note": "14 ounce) can diced tomatoes (with juices; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008407",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Tomato paste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008408",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Green bell pepper",
+        "note": "diced, optional; diced",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008409",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008410",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Bay leaf",
+        "note": "2 if they are small"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008411",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008412",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008413",
+        "quantity": 8,
+        "unit": "oz",
+        "name": "Elbow macaroni",
+        "note": "uncooked"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000008414",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "or mozzarella cheese, optional; shredded",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Brown beef with onion and garlic over medium-high heat to 160°F; drain. Add marinara, broth, tomatoes with juice, paste, optional pepper, herbs, bay leaf, salt and pepper; boil.",
+      "Stir in dry macaroni. Cover and simmer gently 10 minutes, stirring occasionally; uncover and cook 5–10 minutes more until tender.",
+      "Discard bay leaf. Add optional cheese, cover and rest 5 minutes to thicken and melt cheese."
+    ]
+  }
+]
