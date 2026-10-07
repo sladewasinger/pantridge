@@ -9,5 +9,6 @@ export default defineConfig({
   // CDP gestures are Chromium-only. WebKit's simulated offline mode bypasses
   // service workers; resilient-origin.spec.ts verifies an actual server outage.
   grepInvert: /touch dragging|offline/,
-  workers: 3,
+  // Dense artwork accessibility scans contend for CPU on the macOS release runner.
+  workers: process.platform === 'darwin' ? 2 : 3,
 });

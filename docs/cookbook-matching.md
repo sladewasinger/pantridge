@@ -97,12 +97,18 @@ weights, stale review, semantic shopping aggregation, offline recipe editing and
 requests. No live Google sign-in or cross-device sync claim is made by these local tests.
 Manual shopping review added only the missing soy-sauce row, with no stock increase. Editing primary
 preparation notes produced confirmed cooked-rice and canned-bean amounts immediately and after reload.
-`pnpm check` passed with 365 unit tests; the production-build Chromium suite passed 69 tests with its
+`pnpm check` passed with 365 unit tests; the production-build Chromium suite passed 71 tests with its
 existing single platform-specific skip. An independent adversarial review found and verified regressions
 for overlapping shopping quantities, crossed variety/preparation capacities, stale descriptors, ambiguous
 counts, package-unit review and cooked/dry nutrition.
-The local WebKit configuration passed 57 tests with its Windows camera skip; its simulated-offline
+The local WebKit configuration passed 59 tests with its Windows camera skip; its simulated-offline
 exclusions are unchanged. The macOS WebKit release gate additionally runs after merging to main.
 Reload tests wait for dismissed dialogs' asynchronous history transitions before reloading, and the
 cross-tab cooking test returns focus to the review tab. These synchronization checks preserve all
 behavior assertions and existing timeouts; three affected tests also passed three repetitions each.
+The first macOS gate exhausted the total test budget on combined artwork decoding, dense whole-page
+accessibility scans and interaction checks. Accessibility scans now have focused tests with the same
+form state and scope; selected artwork rendering and persistence checks remain. The owner requested
+removing the blanket catalog decode test; generated artwork validation remains in `pnpm check`.
+Collapsed ingredient selectors mount their catalog only when opened, preserving controlled draft values.
+The macOS WebKit runner uses two workers to reduce competing scans, with all timeouts unchanged.
