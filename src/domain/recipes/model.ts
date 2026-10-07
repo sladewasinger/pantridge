@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { roundQuantity, stockQuantitySchema } from '../quantity';
+import { recipeCurationSchema, recipeNutritionSchema } from './metadata';
 
 export const recipeUnitSchema = z.enum([
   'count',
@@ -33,8 +34,18 @@ export const recipeSchema = z
     minutes: z.number().int().min(1).max(1440).optional(),
     cuisine: z.string().trim().max(60).optional(),
     ingredients: z.array(ingredientSchema).min(1).max(40),
+    untrackedIngredients: z.array(z.string().trim().min(1).max(240)).max(20).optional(),
     steps: z.array(z.string().trim().min(1).max(1000)).min(1).max(30),
     source: z.enum(['starter', 'manual', 'import', 'ai']),
+    generation: z
+      .object({
+        basisKey: z.string().regex(/^(none|base-[1-3])$/),
+        reason: z.string().trim().max(160),
+        baseTitle: z.string().trim().max(120).optional(),
+      })
+      .optional(),
+    curation: recipeCurationSchema.optional(),
+    nutrition: recipeNutritionSchema.optional(),
     sourceUrl: z
       .url()
       .max(500)

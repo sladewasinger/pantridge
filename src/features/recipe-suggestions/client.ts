@@ -1,5 +1,6 @@
 import { getToken } from '../../auth/session';
 import { getAccount } from '../../data/store';
+import { localTesting } from '../../local-testing';
 import {
   recipeSuggestionRequestSchema,
   recipeSuggestionResultSchema,
@@ -7,7 +8,7 @@ import {
 } from '../../domain/recipe-suggestions/model';
 
 function requireAccount(account: string) {
-  if (account === 'local' || account !== getAccount())
+  if ((account === 'local' && !localTesting) || account !== getAccount())
     throw new Error('Sign in with Google to suggest recipes.');
 }
 export async function requestRecipeSuggestions(
@@ -19,7 +20,12 @@ export async function requestRecipeSuggestions(
   if (!navigator.onLine) throw new Error('Connect to the internet to suggest recipes.');
   const api = import.meta.env.VITE_API_URL as string | undefined;
   if (!api) throw new Error('Recipe suggestions are not configured yet.');
-  const input = recipeSuggestionRequestSchema.parse(request);
+  const parsed = recipeSuggestionRequestSchema.safeParse(request);
+  if (!parsed.success)
+    throw new Error(
+      parsed.error.issues[0]?.message ?? 'Review your ingredients before suggesting recipes.',
+    );
+  const input = parsed.data;
   const token = await getToken(account);
   signal.throwIfAborted();
   requireAccount(account);

@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Bookmark, Pencil } from 'lucide-react';
+import { useRef, useState } from 'react';
 import { dispatch, getAccount, useKitchen } from '../../data/store';
 import { getCookbookRecipes, getMealPlan, getRecipes } from '../../domain/recipes/selectors';
 import { getRecipeAvailability } from '../../domain/recipes/availability';
@@ -16,6 +15,11 @@ import { MissingShopping } from './MissingShopping';
 import { initialServings, planReviewIsStale } from './cookDraft';
 import { RecipeSummary, RecipeServings } from './RecipeSummary';
 import { todayLocal } from './presentation';
+import { RecipeNutrition, RecipeExtras } from './RecipeNutrition';
+import { useVariations } from '../recipe-enhancements/useVariations';
+import { RecipeVariations } from '../recipe-enhancements/RecipeVariations';
+import { DietReview } from '../recipe-enhancements/DietReview';
+import { RecipeSaveTools } from '../recipe-enhancements/RecipeSaveTools';
 
 export function RecipeDetails({
   recipeId,
@@ -67,7 +71,7 @@ export function RecipeDetails({
   );
 }
 function RecipeContent({
-  recipe,
+  recipe: original,
   plan,
   onClose,
 }: {
@@ -76,10 +80,19 @@ function RecipeContent({
   onClose: () => void;
 }) {
   const { data } = useKitchen();
+  const variations = useVariations(original);
+  const { recipe, preferences, diet } = variations;
+  const [account] = useState(getAccount);
+  const isMounted = useMounted();
   const [planned, setPlanned] = useState(plan);
   const [servingsInput, setServingsInput] = useState(() => initialServings(recipe, plan));
   const planStale = planReviewIsStale(data, planned);
   const [mode, setMode] = useState<'read' | 'edit' | 'cook'>('read');
+  const navigation = useRef(0);
+  const show = (next: typeof mode) => {
+    navigation.current++;
+    setMode(next);
+  };
   const [cooked, setCooked] = useState(false);
   const { run, busy, error } = useAction();
   const servings = Number(servingsInput);
@@ -91,19 +104,34 @@ function RecipeContent({
     todayLocal(),
   );
   const saved = getRecipes(data).some((item) => item.id === recipe.id);
-  if (mode === 'edit') return <RecipeEditor recipe={recipe} onClose={() => setMode('read')} />;
+  const saveRecipe = async (next: Recipe) => {
+    if (getAccount() !== account) throw new Error('Your kitchen changed. Reopen this recipe.');
+    if (!diet.check(next)) {
+      variations.onChange(next);
+      show('read');
+      return;
+    }
+    const startedAt = navigation.current;
+    await dispatch({ type: 'recipe.save', recipe: next });
+    if (isMounted() && getAccount() === account && navigation.current === startedAt) {
+      variations.onUndo();
+      show('read');
+    }
+  };
+  if (mode === 'edit')
+    return <RecipeEditor recipe={recipe} onSave={saveRecipe} onClose={() => show('read')} />;
   if (mode === 'cook')
     return (
       <CookReview
         recipe={recipe}
         servings={servings}
         expectedPlan={planned}
-        onCancel={() => setMode('read')}
+        onCancel={() => show('read')}
         onDone={() => {
           if (planned) onClose();
           else {
             setCooked(true);
-            setMode('read');
+            show('read');
           }
         }}
       />
@@ -112,25 +140,29 @@ function RecipeContent({
     <Modal title={recipe.title} onClose={onClose}>
       <div className="recipe-detail">
         <RecipeSummary recipe={recipe} />
-        <div className="recipe-detail-tools">
-          <button
-            className="text-button"
-            disabled={busy || saved}
-            onClick={() => void run(() => dispatch({ type: 'recipe.save', recipe }))}
-          >
-            <Bookmark size={17} />
-            {saved ? 'Saved' : 'Save recipe'}
-          </button>
-          <button className="text-button" onClick={() => setMode('edit')}>
-            <Pencil size={17} />
-            Edit
-          </button>
-        </div>
+        <RecipeSaveTools
+          busy={busy}
+          saved={saved}
+          changed={variations.changed}
+          onSave={() => void run(() => saveRecipe(recipe))}
+          onEdit={() => show('edit')}
+        />
         {error && (
           <p className="error" role="alert">
             {error}
           </p>
         )}
+        {diet.required && (
+          <p className="error" role="alert">
+            Open Diet check and review ingredients, labels and preparation first.
+          </p>
+        )}
+        <DietReview
+          recipe={recipe}
+          preferences={preferences}
+          checked={diet.checked}
+          onChange={diet.onChange}
+        />
         {cooked && (
           <p className="recipe-success" role="status">
             Meal recorded. Your reviewed stock changes are saved.
@@ -143,6 +175,7 @@ function RecipeContent({
           stale={planStale}
         />
         <RecipeIngredients ingredients={match.ingredients} />
+        <RecipeExtras recipe={recipe} />
         <section className="recipe-method" aria-label="Cooking steps">
           <h3>Method</h3>
           <ol>
@@ -151,28 +184,43 @@ function RecipeContent({
             ))}
           </ol>
         </section>
+        <RecipeNutrition recipe={recipe} />
+        <RecipeVariations
+          recipe={recipe}
+          preferences={preferences}
+          busy={busy}
+          changed={variations.changed}
+          onChange={variations.onChange}
+          onUndo={variations.onUndo}
+        />
         {validServings && (
           <>
             <MissingShopping key={`shopping-${servings}`} recipe={recipe} servings={servings} />
-            <MealPlanner
-              key={`plan-${servings}`}
-              recipe={recipe}
-              servings={servings}
-              entry={planned}
-              onUpdate={setPlanned}
-            />
+            {!variations.changed && (
+              <MealPlanner
+                key={`plan-${servings}`}
+                recipe={recipe}
+                servings={servings}
+                entry={planned}
+                onUpdate={setPlanned}
+              />
+            )}
           </>
         )}
         <button
           className="primary full"
-          disabled={!validServings || busy || planStale}
+          disabled={!validServings || busy || planStale || variations.changed}
           onClick={() => {
+            if (!diet.check(recipe)) return;
             setCooked(false);
-            setMode('cook');
+            show('cook');
           }}
         >
           Review cooked meal
         </button>
+        {variations.changed && (
+          <p className="muted">Save changes before planning or cooking this version.</p>
+        )}
         <RecipeRemove recipe={recipe} onRemoved={onClose} />
         <p className="muted cookbook-note">
           Opening a recipe never changes your stock. Confirm what you used after cooking.

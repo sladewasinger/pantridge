@@ -1,0 +1,150 @@
+import { randomUUID } from 'node:crypto';
+import { expect, test } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+import { cookbookFixture, readKitchen, seedKitchen } from './fixtures';
+
+test('recipe browsing defaults to use soon and keeps sources, search and saved-only view coherent', async ({
+  page,
+}) => {
+  const initial = await seedKitchen(page);
+  await page.getByRole('button', { name: 'Settings', exact: true }).click();
+  await expect(
+    page.getByRole('button', { name: 'Load 200 sample foods', exact: true }),
+  ).toHaveCount(0);
+  await page.getByRole('button', { name: 'Close', exact: true }).click();
+  await page.getByRole('button', { name: 'Open cookbook', exact: true }).click();
+  const index = page.locator('.recipe-list');
+  await expect(index.locator('.recipe-card')).toHaveCount(24);
+  await expect(page.getByRole('status').filter({ hasText: '105 recipes' })).toContainText(
+    'Use soon first',
+  );
+  await expect(page.getByRole('heading', { name: 'What’s for dinner?' })).toBeVisible();
+  await expect(index).toContainText('Built-in');
+  await expect(index).toContainText('Weeknight eggs');
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  await page.getByRole('button', { name: 'Show more recipes' }).click();
+  await expect(index.locator('.recipe-card')).toHaveCount(48);
+  await page.getByRole('searchbox', { name: 'Find a recipe' }).fill('Tomato pasta');
+  await expect(index.locator('.recipe-card')).toHaveCount(1);
+  await index.getByRole('button', { name: /Tomato pasta/ }).click();
+  await expect(page.getByRole('dialog', { name: 'Tomato pasta', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Close', exact: true }).click();
+  await page.getByRole('searchbox', { name: 'Find a recipe' }).fill('');
+  await page.getByText('View', { exact: true }).click();
+  await page.getByRole('checkbox', { name: 'Include built-in recipes' }).uncheck();
+  await expect(index.locator('.recipe-card')).toHaveCount(1);
+  await expect(index).toContainText('Weeknight eggs');
+  await expect(page.getByRole('heading', { name: 'What’s for dinner?' })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'Cookbook', exact: true })).toBeVisible();
+  await expect(index.locator('.recipe-card')).toHaveCount(1);
+  expect((await readKitchen(page)).stock).toEqual(initial.stock);
+});
+
+test('generic recipe ingredients require a compatible stock choice before saving', async ({
+  page,
+}) => {
+  const data = cookbookFixture();
+  data.foods = ['Canned black beans', 'Canned pinto beans', 'Dried beans'].map((name) => ({
+    ...data.foods[0]!,
+    id: randomUUID(),
+    name,
+    packageSize: '400 g',
+    unit: 'cans' as const,
+  }));
+  data.stock = data.foods.map((food) => ({ id: randomUUID(), foodId: food.id, quantity: 1 }));
+  const idea = {
+    ...data.recipes![0]!,
+    title: 'Flexible bean bowl',
+    source: 'ai',
+    ingredients: [
+      {
+        id: randomUUID(),
+        name: 'Canned beans',
+        quantity: 200,
+        unit: 'g',
+        note: 'Drain and rinse.',
+      },
+    ],
+    steps: ['Warm the canned beans.'],
+  };
+  const owner = 'grouped-recipes-test';
+  await page.addInitScript(
+    (subject) =>
+      localStorage.setItem(
+        'oidc.user:https://auth.pantridge.test:pantridge-test',
+        JSON.stringify({
+          access_token: 'test-token',
+          token_type: 'Bearer',
+          scope: 'openid',
+          profile: { sub: subject },
+          expires_at: Math.floor(Date.now() / 1000) + 3600,
+        }),
+      ),
+    owner,
+  );
+  await page.route('https://api.pantridge.test/v1/kitchen', (route) =>
+    route.fulfill({ json: { revision: 0, data } }),
+  );
+  await page.route('https://api.pantridge.test/v1/mutations', (route) =>
+    route.fulfill({ status: 503, json: {} }),
+  );
+  await page.route('https://api.pantridge.test/v1/products/resolve', (route) => {
+    const input = route.request().postDataJSON();
+    expect(input.inventory).toEqual([
+      { name: 'Canned beans', members: ['Canned black beans', 'Canned pinto beans'] },
+      { name: 'Dried beans', members: ['Dried beans'] },
+    ]);
+    return route.fulfill({ json: { recipes: [idea] } });
+  });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Open cookbook', exact: true }).click();
+  await page.getByRole('button', { name: 'Suggest with AI', exact: true }).click();
+  await page.getByRole('button', { name: 'Suggest recipes', exact: true }).click();
+  await page.getByRole('button', { name: 'View recipe', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: idea.title, exact: true })).toBeVisible();
+  await expect(
+    page.getByRole('dialog', { name: idea.title, exact: true }).getByRole('combobox'),
+  ).toHaveCount(0);
+  await expect(page.getByRole('region', { name: 'Recipe ingredients', exact: true })).toContainText(
+    'Canned beans',
+  );
+  await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: 'Choose ingredients' })).toBeVisible();
+  await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
+  await expect(page.getByRole('alert')).toContainText('Choose a stocked food');
+  const choice = page.getByRole('combobox', { name: 'Food for Canned beans' });
+  await expect(choice.locator('option')).toHaveCount(3);
+  await choice.selectOption('Canned pinto beans');
+  await expect(choice).toHaveValue('Canned pinto beans');
+  await expect(page.getByRole('alert')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Back to recipe', exact: true }).click();
+  await page.getByRole('button', { name: 'Close', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: 'Suggest with AI' })).toBeVisible();
+  expect((await readKitchen(page, owner)).recipes).toEqual(data.recipes);
+  await page.getByRole('button', { name: 'View recipe', exact: true }).click();
+  await page.getByRole('button', { name: 'Edit recipe', exact: true }).click();
+  await expect(page.getByRole('textbox', { name: 'Name', exact: true })).toHaveValue(
+    'Canned beans',
+  );
+  await page
+    .getByRole('textbox', { name: 'Recipe name', exact: true })
+    .fill('My flexible bean bowl');
+  await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: 'Choose ingredients' })).toBeVisible();
+  await page
+    .getByRole('combobox', { name: 'Food for Canned beans' })
+    .selectOption('Canned black beans');
+  await page.getByRole('button', { name: 'Save recipe', exact: true }).click();
+  await expect(
+    page.getByRole('dialog', { name: 'My flexible bean bowl', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Recipe ingredients', exact: true })).toContainText(
+    'Canned black beans',
+  );
+  const saved = await readKitchen(page, owner);
+  expect(
+    saved.recipes?.find((recipe) => recipe.title === 'My flexible bean bowl')?.ingredients[0]!.name,
+  ).toBe('Canned black beans');
+  expect(saved.stock).toEqual(data.stock);
+});

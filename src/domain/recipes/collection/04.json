@@ -1,0 +1,1236 @@
+[
+  {
+    "id": "cb000000-0000-4000-8000-000000000035",
+    "title": "Chicken Tortilla Soup",
+    "servings": 6,
+    "minutes": 30,
+    "cuisine": "Soups",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/chicken-tortilla-soup/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 791,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 278,
+      "protein": 18,
+      "carbohydrate": 27,
+      "fat": 11,
+      "sodium": 671,
+      "fiber": 6,
+      "source": "publisher",
+      "portion": "1.25 cup"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000003501",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003502",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003503",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003504",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Jalapeño",
+        "note": "seeded and diced; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003505",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003506",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "Canned black beans",
+        "note": "15 ounce) can canned black beans (drained and rinsed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003507",
+        "quantity": 14.5,
+        "unit": "oz",
+        "name": "Crushed tomatoes"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003508",
+        "quantity": 10,
+        "unit": "oz",
+        "name": "Canned diced tomatoes with chilies",
+        "note": "10 ounce) can canned diced tomatoes with chilies (with juices, such as Rotel; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003509",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Corn kernels",
+        "note": "drained if canned"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003510",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Lime",
+        "note": "juiced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003511",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Cilantro",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003512",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Cumin"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003513",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Chili powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003514",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Chicken breasts",
+        "note": "about 6 ounces each"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003515",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Avocado",
+        "note": "sliced, for garnish; sliced",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003516",
+        "quantity": 6,
+        "unit": "count",
+        "name": "Corn tortillas",
+        "note": "cut into ¼-inch strips"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003517",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Vegetable oil"
+      }
+    ],
+    "untrackedIngredients": ["salt"],
+    "steps": [
+      "Cut tortillas into strips. Fry in vegetable oil over medium-high heat, about a minute per side; drain and salt.",
+      "Soften onion, garlic and jalapeño in olive oil for 3–4 minutes. Add broth, beans, tomatoes, corn, lime juice, cilantro, cumin and chili powder.",
+      "Add chicken; bring to a boil, then simmer uncovered about 20 minutes, until chicken reaches 165°F. Shred chicken and return for 3 minutes. Serve with tortilla strips and avocado."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000036",
+    "title": "Chicken and Rice Soup",
+    "servings": 6,
+    "minutes": 45,
+    "cuisine": "Soups",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/chicken-rice-soup/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Ashley Fehr",
+      "rating": 4.94,
+      "ratingCount": 916,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 332,
+      "protein": 25,
+      "carbohydrate": 35,
+      "fat": 9,
+      "sodium": 607,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1.5 cups"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000003601",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003602",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003603",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Carrots",
+        "note": "peeled and diced; peeled"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003604",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Celery ribs",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003605",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003606",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Dried parsley"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003607",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried thyme leaves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003608",
+        "quantity": 5,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003609",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Chicken breasts",
+        "note": "uncooked"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003610",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Brown rice"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003611",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003612",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003613",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Evaporated milk",
+        "note": "or cream, optional",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Soften chopped onion, carrots and celery in oil for 3–4 minutes. Stir in garlic, parsley and thyme for a minute.",
+      "Add broth, raw chicken, brown rice, salt and pepper. Bring to a boil, cover and simmer gently about 30 minutes, until rice is tender and chicken reaches 165°F.",
+      "Shred chicken and return it to the soup. Stir in evaporated milk if using, then heat through."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000037",
+    "title": "Chicken and Mushroom Soup",
+    "servings": 6,
+    "minutes": 50,
+    "cuisine": "Soups",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/chicken-and-mushroom-soup/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 272,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 240,
+      "protein": 23,
+      "carbohydrate": 21,
+      "fat": 7,
+      "sodium": 602,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1.5 cups"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000003701",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003702",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003703",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Carrots",
+        "note": "peeled and diced; peeled"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003704",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Celery ribs",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003705",
+        "quantity": 8,
+        "unit": "oz",
+        "name": "Brown mushrooms",
+        "note": "or white mushrooms, sliced; sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003706",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Garlic",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003707",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003708",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Dried parsley"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003709",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried thyme leaves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003710",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Poultry seasoning",
+        "note": "or ¼ teaspoon ground sage"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003711",
+        "quantity": 0.125,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003712",
+        "quantity": 6,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003713",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Chicken breasts",
+        "note": "about 6 ounces each"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003714",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "White rice",
+        "note": "uncooked"
+      }
+    ],
+    "steps": [
+      "Cook onion, carrots, celery and sliced mushrooms in butter for 5 minutes. Stir in garlic and seasonings until fragrant.",
+      "Add broth, raw chicken and uncooked rice. Bring to a boil; cover and simmer gently 20–25 minutes, stirring halfway.",
+      "Once chicken reaches 165°F, remove and shred it. Return to the pot and finish simmering until rice is tender."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000038",
+    "title": "Chicken Stew",
+    "servings": 6,
+    "minutes": 55,
+    "cuisine": "Soups",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/chicken-stew/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 1146,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 611,
+      "protein": 32,
+      "carbohydrate": 30,
+      "fat": 39,
+      "sodium": 403,
+      "fiber": 4,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000003801",
+        "quantity": 1.5,
+        "unit": "lb",
+        "name": "Chicken thighs",
+        "note": "about 8 thighs, diced 1-inch; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003802",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003803",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Carrots",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003804",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003805",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Celery ribs",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003806",
+        "quantity": 5,
+        "unit": "tbsp",
+        "name": "All-purpose flour",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003807",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried rosemary"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003808",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried thyme leaves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003809",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Ground sage"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003811",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Potatoes",
+        "note": "peeled if using russets or baking potatoes; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003812",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Sweet potatoes",
+        "note": "peeled; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003813",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Red bell pepper",
+        "note": "finely diced; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003814",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "White wine"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003815",
+        "quantity": 4,
+        "unit": "cup",
+        "name": "Chicken broth",
+        "note": "or chicken stock"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003816",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Green beans",
+        "note": "cut into 1-inch pieces, or frozen peas, thawed; thawed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003817",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Heavy whipping cream"
+      }
+    ],
+    "untrackedIngredients": ["salt and black pepper (to taste)"],
+    "steps": [
+      "Brown diced chicken in 1 tablespoon oil; set aside. Soften onion, carrot and celery in remaining oil for 3 minutes. Stir in 3 tablespoons flour and seasonings for 2 minutes.",
+      "Add potatoes, sweet potatoes, pepper, wine, chicken and broth. Bring to a boil; cover and simmer 30 minutes. Add green beans and cream; simmer uncovered 10 minutes. Chicken must reach 165°F.",
+      "For a thicker stew, shake remaining flour with 1 cup cold water or broth. Gradually stir into boiling stew and cook a few minutes."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000039",
+    "title": "Vegetable Beef Soup",
+    "servings": 8,
+    "minutes": 100,
+    "cuisine": "Soups",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-vegetable-beef-soup/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 216,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 257,
+      "protein": 21,
+      "carbohydrate": 17,
+      "fat": 12,
+      "sodium": 909,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "2 cups"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000003901",
+        "quantity": 1.5,
+        "unit": "lb",
+        "name": "Beef chuck roast",
+        "note": "trimmed and cubed into ½\" pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003902",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003903",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003904",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003905",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003906",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003907",
+        "quantity": 6,
+        "unit": "cup",
+        "name": "Beef broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003908",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "Tomatoes",
+        "note": "15 ounce) can diced tomatoes (with juices; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003909",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003910",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Potatoes",
+        "note": "cubed ½-inch"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003911",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Carrots",
+        "note": "sliced ½-inch; sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003912",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Celery ribs",
+        "note": "sliced ½-inch; sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003913",
+        "quantity": 6,
+        "unit": "oz",
+        "name": "Green beans",
+        "note": "cut into 1-inch pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000003914",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Frozen corn kernels",
+        "note": "thawed ; thawed"
+      }
+    ],
+    "untrackedIngredients": ["chopped fresh parsley (for garnish, optional)"],
+    "steps": [
+      "Season cubed beef with salt and pepper. Brown in oil in small batches, about 2 minutes per side. Return beef and cook onion and garlic for 2 minutes.",
+      "Add broth, tomatoes and Italian seasoning, loosening browned bits. Bring to a boil; cover and simmer gently 45–65 minutes, until beef is fork-tender.",
+      "Add potatoes, carrots and celery; simmer 15 minutes. Add green beans and corn for another 10 minutes. Garnish with parsley if desired."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000040",
+    "title": "Easy Hamburger Soup",
+    "servings": 8,
+    "minutes": 35,
+    "cuisine": "Soups",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/hamburger-soup/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.96,
+      "ratingCount": 2008,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 245,
+      "protein": 16,
+      "carbohydrate": 25,
+      "fat": 9,
+      "sodium": 692,
+      "fiber": 5,
+      "source": "publisher",
+      "portion": "1.5 cup"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000004001",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004002",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004003",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004004",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Potatoes",
+        "note": "peeled and diced; peeled"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004005",
+        "quantity": 3.5,
+        "unit": "cup",
+        "name": "Beef broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004006",
+        "quantity": 28,
+        "unit": "oz",
+        "name": "diced tomatoes",
+        "note": "with juices, 1 can; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004007",
+        "quantity": 10.75,
+        "unit": "oz",
+        "name": "Condensed tomato soup",
+        "note": "1 can"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004008",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Worcestershire sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004009",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004010",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Bay leaf"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004012",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Frozen mixed vegetables",
+        "note": "or fresh chopped vegetables; chopped"
+      }
+    ],
+    "untrackedIngredients": ["salt and black pepper (to taste)"],
+    "steps": [
+      "Brown ground beef with chopped onion and garlic; drain excess fat. Cook beef to 160°F.",
+      "Stir in potatoes, broth, tomatoes, condensed tomato soup, Worcestershire sauce, herbs and bay leaf. Cover and simmer 10 minutes.",
+      "Add mixed vegetables and simmer 15–20 minutes, until potatoes are tender. Remove bay leaf; adjust salt and pepper."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000041",
+    "title": "20 Minute Broccoli Cheese Soup",
+    "servings": 6,
+    "minutes": 20,
+    "cuisine": "Soups",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/20-minute-broccoli-cheese-soup/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 338,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 333,
+      "protein": 10,
+      "carbohydrate": 11,
+      "fat": 28,
+      "sodium": 560,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000004101",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004102",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004103",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Carrots",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004104",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Broccoli florets"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004105",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004106",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried thyme leaves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004107",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004108",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004109",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004110",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004111",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Half-and-half",
+        "note": "or light cream"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004112",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004113",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Parmesan cheese",
+        "note": "shredded"
+      }
+    ],
+    "steps": [
+      "Soften onion and carrot in butter for 3 minutes. Add broccoli, broth, thyme, garlic powder, salt and pepper; simmer 8 minutes until tender.",
+      "Reserve a cup of vegetables and chop them. Blend the rest of the soup with an immersion blender. Whisk half-and-half into flour until smooth.",
+      "Bring soup to a boil; stir in the flour mixture and simmer 3–4 minutes until thickened. Remove from heat before stirring in cheeses and reserved vegetables."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000042",
+    "title": "Ham and Corn Chowder",
+    "servings": 6,
+    "minutes": 25,
+    "cuisine": "Soups",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/ham-and-corn-chowder/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.92,
+      "ratingCount": 105,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 214,
+      "protein": 12,
+      "carbohydrate": 27,
+      "fat": 7,
+      "sodium": 773,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000004201",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Bacon slices",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004202",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004203",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Potatoes",
+        "note": "peeled; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004204",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Red bell pepper",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004205",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Dried thyme leaves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004207",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004208",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Corn kernels",
+        "note": "fresh or frozen"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004209",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Cooked ham",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004210",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004211",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Milk",
+        "note": "or use ½ cream"
+      }
+    ],
+    "untrackedIngredients": ["black pepper (to taste)"],
+    "steps": [
+      "Cook chopped bacon and onion over medium-high heat until bacon is cooked and onion softened. Add potatoes, pepper, thyme, black pepper and broth; boil, then simmer 8 minutes.",
+      "Add corn and cooked ham; simmer 7 minutes, until potatoes are tender.",
+      "Whisk flour into milk until smooth; stir into soup. Bring back to a boil and simmer 2 minutes to thicken."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000043",
+    "title": "Quick Potato Corn Chowder",
+    "servings": 4,
+    "minutes": 35,
+    "cuisine": "Soups",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/quick-potato-corn-chowder/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 118,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 323,
+      "protein": 7,
+      "carbohydrate": 41,
+      "fat": 17,
+      "sodium": 1028,
+      "fiber": 4,
+      "source": "publisher",
+      "portion": "1.5 cups"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000004301",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004302",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004303",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Celery ribs",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004304",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Carrots",
+        "note": "finely chopped; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004305",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004306",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Baking potatoes",
+        "note": "peeled and diced; peeled"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004307",
+        "quantity": 3,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004308",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried thyme leaves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004309",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004310",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004311",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Bay leaf"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004312",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Corn kernels",
+        "note": "fresh or frozen"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004313",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Half-and-half",
+        "note": "or light cream"
+      }
+    ],
+    "steps": [
+      "Soften onion, celery, carrot and garlic in butter for 3–4 minutes. Add diced potatoes, broth, thyme, salt, pepper and bay leaf.",
+      "Bring to a boil; cover and simmer gently 8–10 minutes until potatoes are tender.",
+      "Add corn and half-and-half; simmer 4 minutes. Remove bay leaf. Mash some potatoes in the pot for a thicker soup."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000044",
+    "title": "Vegetable Soup",
+    "servings": 12,
+    "minutes": 40,
+    "cuisine": "Soups",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/weight-loss-vegetable-soup-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.95,
+      "ratingCount": 415,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 52,
+      "protein": 4,
+      "carbohydrate": 10,
+      "fat": 1,
+      "sodium": 268,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "1 cup"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000004401",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Olive oil",
+        "note": "or butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004402",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004403",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004404",
+        "quantity": 4,
+        "unit": "cup",
+        "name": "Green cabbage",
+        "note": "approximately ¼ head of cabbage; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004405",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Carrots",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004406",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Green beans",
+        "note": "cut into 1-inch pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004407",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Bell peppers",
+        "note": "red, yellow, or green, chopped; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004408",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Cauliflower florets",
+        "note": "or broccoli florets"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004409",
+        "quantity": 28,
+        "unit": "oz",
+        "name": "diced tomatoes",
+        "note": "with juices, 1 can; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004410",
+        "quantity": 6,
+        "unit": "cup",
+        "name": "Beef broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004411",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Tomato paste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004412",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Bay leaves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004413",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried thyme leaves"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004414",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried basil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000004416",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Zucchini",
+        "note": "sliced"
+      }
+    ],
+    "untrackedIngredients": ["black pepper (to taste)"],
+    "steps": [
+      "Cook onion and garlic in oil for 3 minutes. Add cabbage, carrots and green beans; cook 5 minutes.",
+      "Add peppers, cauliflower, tomatoes with their juice, broth, tomato paste, bay leaves, herbs and pepper. Bring to a boil; simmer 8–10 minutes.",
+      "Add zucchini and simmer 5 minutes more. Remove bay leaves before serving."
+    ]
+  }
+]

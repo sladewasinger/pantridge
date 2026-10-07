@@ -1,8 +1,9 @@
 import { LockKeyhole, ScanBarcode } from 'lucide-react';
 import { getAccount, useKitchen } from '../../data/store';
+import { localTesting } from '../../local-testing';
 export function ScanButton({ onClick }: { onClick: () => void }) {
   useKitchen();
-  const signedIn = getAccount() !== 'local';
+  const signedIn = getAccount() !== 'local' || localTesting;
   return (
     <span className="scan-entry">
       <button

@@ -58,3 +58,11 @@ The API and frontend do not import Walmart receipts yet. A future integration sh
 Shopping entries also accept optional art from the shared artwork enum. It records a manual shopping illustration override; missing art means automatic name/inventory matching. Existing snapshots without it remain valid. Clients with an older artwork enum need an app update to read newly added food artwork IDs. No database migration is required.
 
 Nutrition estimates use an additive request kind on the existing product-resolution endpoint and a `food.nutrition` mutation. See [nutrition estimates](nutrition-estimates.md) for request/response shapes, private caching, shared AI quotas, persistence and deployment compatibility.
+
+Recipe requests now optionally include exact `inventory[].members`, bounded cooking `preferences`
+and up to three measured recipe `bases`. Recipe snapshots optionally include `generation`
+attribution and calculated nutrition with missing-data/source evidence. Older request forms and
+version-one snapshots remain accepted. The matching API must precede a frontend that writes
+these fields; no database migration, new endpoint or authentication change is needed. Preferences
+remain device-local and are sent only on explicit generation. See [recipe customization](recipe-generation-ideas.md)
+for bounds, cache inputs, dietary review and nutrition assumptions.

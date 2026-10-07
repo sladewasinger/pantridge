@@ -7,6 +7,10 @@ import { syncKitchen, syncStatus } from '../../data/sync';
 import { SyncRecovery } from './SyncRecovery';
 import { Modal } from '../../ui/Modal';
 import { useAction } from '../../ui/useAction';
+import { localTesting } from '../../local-testing';
+import { LocalSample } from '../../development/LocalSample';
+
+const localTools = import.meta.env.DEV ? <LocalSample /> : null;
 
 export function Settings({ onClose }: { onClose: () => void }) {
   const { syncedAt, pending } = useKitchen();
@@ -17,6 +21,7 @@ export function Settings({ onClose }: { onClose: () => void }) {
   return (
     <Modal title="Your kitchen" onClose={onClose}>
       <section className="settings-section">
+        {localTesting && <p>Local test kitchen</p>}
         <h3>{local ? 'Saved on this device' : 'Your connected kitchen'}</h3>
         <p className="muted">
           Inventory, shopping, and putting groceries away work offline after the app’s first load.
@@ -52,6 +57,7 @@ export function Settings({ onClose }: { onClose: () => void }) {
         {syncStatus().detail && <p className="error">{syncStatus().detail}</p>}
         <SyncRecovery />
       </section>
+      {localTools}
       <section className="settings-section">
         <h3>Keep a backup</h3>
         <p className="muted">

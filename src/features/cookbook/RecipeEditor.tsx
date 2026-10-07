@@ -1,13 +1,22 @@
 import { useState } from 'react';
 import type { Recipe } from '../../domain/recipes/model';
-import { dispatch, getAccount } from '../../data/store';
+import { dispatch, getAccount, getKitchen } from '../../data/store';
+import { withCalculatedNutrition } from '../../domain/recipe-nutrition/calculate';
 import { Modal } from '../../ui/Modal';
 import { useAction } from '../../ui/useAction';
 import { useMounted } from '../../ui/useMounted';
 import { IngredientEditor } from './IngredientEditor';
 import { parseRecipeDraft, recipeDraft, type RecipeDraft } from './editorState';
 
-export function RecipeEditor({ recipe, onClose }: { recipe?: Recipe; onClose: () => void }) {
+export function RecipeEditor({
+  recipe,
+  onClose,
+  onSave,
+}: {
+  recipe?: Recipe;
+  onClose: () => void;
+  onSave?: (recipe: Recipe) => Promise<void>;
+}) {
   const isMounted = useMounted();
   const [account] = useState(getAccount);
   const [draft, setDraft] = useState(() => recipeDraft(recipe));
@@ -24,9 +33,15 @@ export function RecipeEditor({ recipe, onClose }: { recipe?: Recipe; onClose: ()
           void run(async () => {
             if (getAccount() !== account)
               throw new Error('Your kitchen changed. Reopen this recipe before saving.');
-            const next = parseRecipeDraft(draft, recipe, id);
-            await dispatch({ type: 'recipe.save', recipe: next });
-            if (isMounted() && getAccount() === account) onClose();
+            const next = withCalculatedNutrition(
+              getKitchen().data,
+              parseRecipeDraft(draft, recipe, id),
+            );
+            if (onSave) await onSave(next);
+            else {
+              await dispatch({ type: 'recipe.save', recipe: next });
+              if (isMounted() && getAccount() === account) onClose();
+            }
           });
         }}
       >
@@ -94,6 +109,15 @@ export function RecipeEditor({ recipe, onClose }: { recipe?: Recipe; onClose: ()
           </p>
           <details>
             <summary>Recipe details</summary>
+            <label>
+              Additional ingredients <span className="optional">optional</span>
+              <textarea
+                rows={3}
+                value={draft.extras}
+                onChange={(event) => patch({ extras: event.target.value })}
+                placeholder="Unmeasured seasoning or garnish, one per line"
+              />
+            </label>
             <label>
               Cuisine <span className="optional">optional</span>
               <input

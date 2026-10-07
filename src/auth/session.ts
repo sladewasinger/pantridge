@@ -1,5 +1,6 @@
 import { UserManager, WebStorageStateStore } from 'oidc-client-ts';
 import { revokeRefreshToken } from './revoke';
+import { localTesting, localToken } from '../local-testing';
 const authority = import.meta.env.VITE_AUTHORITY as string | undefined;
 const clientId = import.meta.env.VITE_CLIENT_ID as string | undefined;
 export const googleSignIn = import.meta.env.VITE_IDENTITY_PROVIDER === 'Google';
@@ -11,7 +12,10 @@ export const auth =
         redirect_uri: window.location.origin + '/',
         response_type: 'code',
         scope: 'openid email profile',
-        userStore: new WebStorageStateStore({ store: window.localStorage }),
+        userStore: new WebStorageStateStore({
+          store: window.localStorage,
+          prefix: localTesting ? 'oidc.local-test.' : 'oidc.',
+        }),
         automaticSilentRenew: true,
         extraQueryParams: googleSignIn ? { identity_provider: 'Google' } : {},
       })
@@ -32,6 +36,7 @@ export async function initializeSession(): Promise<string> {
 }
 
 export async function getToken(account: string): Promise<string | null> {
+  if (localTesting && account === 'local') return localToken();
   if (!auth) return null;
   let user = await auth.getUser();
   if (user && user.profile.sub !== account)

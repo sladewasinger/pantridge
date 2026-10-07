@@ -4,6 +4,7 @@ import type { PackageSize } from '../../domain/products/size';
 import { estimateNutrition } from '../../domain/products/nutrition-estimate';
 import { NutritionLabel } from './NutritionLabel';
 import { useNutritionEstimate } from './useNutritionEstimate';
+import { localTesting } from '../../local-testing';
 
 export function NutritionEstimateControl({ food, size }: { food: Food; size?: PackageSize }) {
   const state = useNutritionEstimate(food);
@@ -55,21 +56,21 @@ export function NutritionEstimateControl({ food, size }: { food: Food; size?: Pa
             <input
               value={state.details}
               maxLength={200}
-              disabled={state.busy || state.account === 'local'}
+              disabled={state.busy || (state.account === 'local' && !localTesting)}
               onChange={(event) => state.setDetails(event.target.value)}
               placeholder="e.g. 90% lean, raw"
             />
           </label>
           <button
             className="secondary full"
-            disabled={state.busy || state.account === 'local'}
+            disabled={state.busy || (state.account === 'local' && !localTesting)}
             onClick={() => void state.estimate()}
           >
             <Sparkles size={18} />
             {state.busy ? 'Estimating…' : 'Estimate nutrition info'}
           </button>
           <p className="muted">
-            {state.account === 'local'
+            {state.account === 'local' && !localTesting
               ? 'Sign in with Google to estimate nutrition.'
               : 'AI estimate, not a package label. Review before saving.'}
           </p>

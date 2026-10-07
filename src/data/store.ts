@@ -4,12 +4,16 @@ import { mutationSchema, type Command } from '../domain/commands';
 import { reduceChecked } from '../domain/reducer';
 import { blankKitchen, changeKitchen, readKitchen, type StoredKitchen } from './database';
 import { initializeStarter } from '../domain/starter';
+import { localTesting } from '../local-testing';
 
 let account = 'local';
 let current: StoredKitchen = blankKitchen();
 let ready = false;
 const listeners = new Set<() => void>();
-const channel = typeof BroadcastChannel === 'undefined' ? null : new BroadcastChannel('pantridge');
+const channel =
+  typeof BroadcastChannel === 'undefined'
+    ? null
+    : new BroadcastChannel(localTesting ? 'pantridge-local-test' : 'pantridge');
 function publish(next: StoredKitchen) {
   current = next;
   listeners.forEach((listener) => listener());

@@ -5,6 +5,41 @@ kitchen isolation. Curated recipes are suggestions, separate from saved recipes 
 Opening a recipe, viewing a substitution, or adding a dated meal never changes stock. No paid
 AI/API call is required by these domain commands.
 
+The cookbook opens as one compact recipe list. Recipes matching the nearest upcoming stocked
+ingredient date within seven days come first; availability and title break ties. Past dates and
+zero lots do not create urgency. The intro remains visible with every view. **View** contains
+sorting, a thirty-minute filter, the built-in collection toggle and text import. **Get ideas**
+opens the existing AI flow; the header's plus button writes a recipe. Search matches titles and
+ingredient names. Twenty-four rows render initially, with an accessible Show more button.
+
+There are 104 built-ins: the original four authored starters retain their IDs, and 100 additional
+recipes are adaptations of published recipes from Spend With Pennies and Budget Bytes. Each
+original had at least 4.5/5 and 100 ratings when checked on October 6, 2026. Recipe details link
+the original, identify its author/publisher and display its rating count and verification date.
+The ten category data files in `src/domain/recipes/collection/` contain measured ingredient facts
+and independently condensed methods, not copied articles or photographs. These adaptations have
+not all been cooked by the developer; ratings refer to the original publisher recipes.
+
+The collection is bundled for offline use and does not fill saved-recipe or inventory arrays.
+Turning built-ins off displays saved, written, imported and saved AI recipes, including any
+built-in deliberately saved by the user. Saving or editing a built-in overrides its displayed
+entry by stable ID. View preferences are stored on the device per active kitchen account, with
+separate keys for the isolated local test kitchen. Preferences do not sync or enter backups.
+
+Each of the 100 additions includes the publisher's estimated calories, protein, fat and sodium
+per stated portion; 99 also publish carbohydrate values. Missing carbohydrate is shown as
+"Not provided", never assumed zero. Fiber is optional. Estimates are for the published recipe;
+brands, portions and substitutions affect them. Changing the batch's servings scales ingredient
+quantities, not the estimate per stated portion. Editing a recipe drops its publisher rating and
+nutrition so modified ingredients cannot retain misleading estimates. Source links remain.
+
+Unmeasured seasoning, handfuls/bunches without a published measure, garnishes, water and ice
+remain visible under Additional ingredients. They are not automatically added to shopping or
+suggested stock deductions. Add measured recipe ingredients before recording their stock use.
+Known source equivalents are used where explicit; container sizes are multiplied by container
+count, and cooked, dried and frozen ingredient forms remain distinct. Prepared beans and other
+source preparation details still require label and suitability review. No density is invented.
+
 ## Backward-compatible data
 
 Snapshot version 1 now accepts optional `recipes` (100), `mealPlan` (180), and `cookingHistory`
@@ -12,6 +47,12 @@ Snapshot version 1 now accepts optional `recipes` (100), `mealPlan` (180), and `
 fields remain compatible. Restoring a backup recreates recipes, plans, and historical cooking
 records without replaying their deductions. Deleting a recipe removes its plans but retains
 cooking history; historical records do not require the original recipe or stock lot to remain.
+
+Recipes additionally accept optional `curation`, `nutrition` and `untrackedIngredients` fields.
+The shared schema validates these on the frontend and API. Existing snapshots and recipes that
+omit them remain valid. Deploy matching frontend/API versions together: an older schema may
+strip these new optional fields during sync. Saved-recipe limits and the snapshot byte budget
+are unchanged; bundled recipes do not consume saved capacity until deliberately saved.
 
 Stock quantities now accept up to six decimal places. Shopping quantities and normal +1/-1
 adjustment deltas remain integers; put-away still requires the exact purchased integer quantity.
@@ -118,26 +159,50 @@ only. Full release checks and application publication remain the separate main-b
 
 ## Optional AI recipe ideas
 
-Suggest with AI sends up to forty recognized food names, declared quantities and use-soon
-flags to the existing OpenAI service. It excludes supplies, unrecognized labels, zero stock,
-and lots past their recorded date. IDs, brands, exact dates, nutrition, shopping lists, and
-account identity are not included in the model input. An unknown package size stays unknown.
+Suggest with AI groups every eligible food record locally, without a forty-item alphabetical
+cutoff. Compatible bean and rice varieties and pasta shapes share family names. Canned,
+dried, cooked, raw, frozen and fresh names remain distinct; rice color/grain, pasta shape and
+freezer details are bounded enum flags. Different vegetables, tomato products, dietary pasta
+identities and milk types are not collapsed. Unknown labels still fail the existing conservative
+food-name check; grouping never guesses brands or classifies a supply as edible.
+
+New requests send grouped names, cooking details and optional use-soon flags. Exact amounts,
+IDs, brands, dates, nutrition, shopping lists and account identity stay local. Presence does
+not assert enough stock. Original food names and package metadata remain unchanged. Generic
+AI ingredients require choosing a compatible stocked food when saving; cooking then uses the
+existing exact-name and exact-lot checks. Changed stock is checked again when proceeding from
+the choice screen. Cancelling choices or review changes no inventory.
+
+The request accepts at most 600 entries, matching snapshot food capacity, and retains the
+16,384-byte API body bound. Oversized lists are rejected with a visible error instead of
+silently dropping foods. Older clients' declared quantity/unit entries remain accepted.
 
 The request uses the existing authenticated product endpoint, SSM-held key, configured model,
-reasoning setting, per-user/global daily limits, and eight-second provider timeout. Recipes
-have a server-only 2,048-token output cap; existing product/nutrition request defaults remain
+reasoning setting and per-user/global daily limits. Recipes have a fifteen-second provider
+deadline and request up to three concise, distinct ideas within a server-only 2,048-token cap;
+product/nutrition requests retain their eight-second deadline and configured defaults. They remain
 unchanged. Cache entries are private to the account, inventory, use-up preference, and model
 configuration. No new credentials, infrastructure permissions, or external tools are added.
 
 Structured output is bounded, validated, and labeled AI-generated. The server creates IDs and
 never accepts model-supplied source URLs, inventory changes, or external actions. Preview
-results do not save themselves; users review a recipe in the editor and explicitly save it.
+results do not save themselves. View recipe opens a read-only recipe first: compact ingredient
+amounts, preparation notes and numbered cooking steps. Kitchen matches and substitutions are
+behind a disclosure. Save recipe and a secondary Edit action remain visible in a fixed footer.
+Saving retains the recipe view; editing is an explicit choice and returns to the view afterward.
+Generic ingredient choices appear only when needed to save, including optional edits; they cannot
+be bypassed through the editor. No stock is deducted by viewing, editing or saving. Slow save
+completion cannot dismiss a newer preview or editing session.
 Frontend requests abort on dismissal and verify the active account around token refresh and
 network completion. Kitchen matching always uses the current local inventory.
 
-Provider behavior and authenticated browser flows are covered with mocks. Live provider
-latency/quality and a real Google callback remain separate release checks; no paid calls or
-production inventory changes are part of the local test suite.
+Provider behavior and authenticated browser flows are covered with mocks. The explicit
+`node scripts/local/benchmark.mjs` command requires the isolated local API and makes three paid
+calls under its normal quotas, using synthetic kitchens with 10, 40 and 200 distinct recognized
+food names. `--dry` validates/counts the fixtures without any API call. Results are written only
+under ignored `artifacts/local`. See `local-testing.md` for observed latency and manual evidence.
+A real Google callback remains a separate release check; the automated test suite uses mocks
+and never changes production inventory.
 
 ## Required manual release review
 

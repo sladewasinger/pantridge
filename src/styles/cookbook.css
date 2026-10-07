@@ -31,7 +31,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 10px 0 20px;
+  padding: 10px 0 12px;
 }
 .cookbook-intro img {
   width: 86px;
@@ -47,25 +47,6 @@
   font-size: 13px;
   line-height: 1.5;
   margin-bottom: 0;
-}
-.cookbook-modes {
-  display: flex;
-  padding: 4px;
-  border-radius: 12px;
-  background: #e9e5d7;
-  gap: 3px;
-}
-.cookbook-modes button {
-  flex: 1;
-  min-height: 44px;
-  padding: 8px 4px;
-  border-radius: 9px;
-  background: transparent;
-  font-size: 13px;
-}
-.cookbook-modes button[aria-pressed='true'] {
-  background: #fffaf0;
-  box-shadow: 0 1px 4px #56462918;
 }
 .cookbook-tools,
 .recipe-detail-tools {
@@ -86,7 +67,7 @@
   justify-content: space-between;
   gap: 10px;
   width: 100%;
-  padding: 20px 0;
+  padding: 14px 0;
   border-top: 1px solid #dcd6c6;
   text-align: left;
   background: transparent;
@@ -95,7 +76,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 7px;
+  gap: 5px;
   min-width: 0;
 }
 .recipe-source,
@@ -109,7 +90,7 @@
 }
 .recipe-card-title {
   font:
-    23px/1.2 Georgia,
+    21px/1.2 Georgia,
     serif;
   overflow-wrap: anywhere;
 }

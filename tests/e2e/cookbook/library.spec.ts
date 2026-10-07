@@ -28,7 +28,8 @@ test('manual recipe validation, editing, search and import stay reviewable', asy
     (await readKitchen(page)).recipes?.some((recipe) => recipe.title === 'Morning toast'),
   ).toBe(true);
   await page.keyboard.press('Escape');
-  await page.getByRole('button', { name: 'Import', exact: true }).click();
+  await page.getByText('View', { exact: true }).click();
+  await page.getByRole('button', { name: 'Import a recipe', exact: true }).click();
   await page
     .getByRole('textbox', { name: 'Recipe text', exact: true })
     .fill('Test soup\nServings: 2\nIngredients\n1 can tomatoes\nSteps\n1. Simmer the tomatoes.');

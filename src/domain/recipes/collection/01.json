@@ -1,0 +1,849 @@
+[
+  {
+    "id": "cb000000-0000-4000-8000-000000000005",
+    "title": "Hashbrown Breakfast Casserole",
+    "servings": 8,
+    "minutes": 90,
+    "cuisine": "Breakfast",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/hashbrown-breakfast-casserole/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 3082,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 474,
+      "protein": 25,
+      "carbohydrate": 19,
+      "fat": 33,
+      "sodium": 816,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000000501",
+        "quantity": 20,
+        "unit": "oz",
+        "name": "Hash browns",
+        "note": "thawed; shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000502",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Cooked pork sausage",
+        "note": "cooked, crumbled, and drained"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000503",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000504",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Red bell pepper",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000505",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Green bell pepper",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000506",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "divided; shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000507",
+        "quantity": 8,
+        "unit": "count",
+        "name": "Eggs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000508",
+        "quantity": 12,
+        "unit": "oz",
+        "name": "Evaporated milk",
+        "note": "1 can, or 1 ⅓ cups milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000509",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Italian seasoning",
+        "note": "or your favorite herbs and spices, optional",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000510",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000511",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      }
+    ],
+    "steps": [
+      "Use a greased 9×13-inch dish and heat the oven to 350°F. Brown and crumble the sausage in a skillet, then drain. Ground pork should reach 160°F.",
+      "Spread thawed hash browns, sausage, onion, peppers and 1½ cups cheddar in the dish.",
+      "Beat eggs with evaporated milk, herbs, salt and pepper. Pour over the filling; scatter the remaining cheddar on top.",
+      "Bake uncovered for 55–65 minutes, until the middle is set and reaches 160°F. The assembled dish may be covered and refrigerated overnight before baking."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000006",
+    "title": "Easy Quiche",
+    "servings": 6,
+    "minutes": 50,
+    "cuisine": "Breakfast",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-quiche-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Ashley Fehr",
+      "rating": 4.96,
+      "ratingCount": 1779,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 299,
+      "protein": 15,
+      "carbohydrate": 16,
+      "fat": 18,
+      "sodium": 705,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000000601",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Pie crust",
+        "note": "unbaked"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000602",
+        "quantity": 6,
+        "unit": "count",
+        "name": "Eggs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000603",
+        "quantity": 0.75,
+        "unit": "cup",
+        "name": "Milk",
+        "note": "or cream"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000604",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000605",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000606",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Cooked ham"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000607",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "divided; shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000608",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Green onions",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 375°F; fit the unbaked crust into a 9-inch pie dish.",
+      "Beat eggs with milk, salt and pepper. Put ham, green onions and 1 cup cheddar into the pastry; add the egg mixture and remaining cheese.",
+      "Bake 35–40 minutes until the filling is set, with an egg-dish temperature of 160°F. Rest 5–10 minutes before cutting."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000007",
+    "title": "Homemade waffles",
+    "servings": 6,
+    "minutes": 33,
+    "cuisine": "Breakfast",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/fluffy-homemade-waffle-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.97,
+      "ratingCount": 1356,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 313,
+      "protein": 9,
+      "carbohydrate": 40,
+      "fat": 13,
+      "sodium": 247,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000000701",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000702",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Granulated sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000703",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Baking powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000704",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000705",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Eggs",
+        "note": "yolks and whites divided, room temperature; divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000706",
+        "quantity": 1.666667,
+        "unit": "cup",
+        "name": "Milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000707",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Butter",
+        "note": "melted (or vegetable oil); melted"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000708",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Vanilla extract"
+      }
+    ],
+    "steps": [
+      "Warm the waffle maker as its instructions specify. Separate the eggs. Mix flour, sugar, baking powder and salt in one bowl.",
+      "Combine yolks, milk, melted butter and vanilla in another bowl. Beat the whites separately to stiff peaks.",
+      "Stir the yolk mixture into the flour mixture, then fold in the whipped whites without deflating them.",
+      "Lightly grease the iron and spoon in enough batter to cover most wells. Close and cook about 3–5 minutes per batch until browned."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000008",
+    "title": "Make Ahead Egg Muffins",
+    "servings": 12,
+    "minutes": 32,
+    "cuisine": "Breakfast",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/make-ahead-egg-muffins/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.97,
+      "ratingCount": 179,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 128,
+      "protein": 11,
+      "carbohydrate": 1,
+      "fat": 9,
+      "sodium": 379,
+      "fiber": 0.2,
+      "source": "publisher",
+      "portion": "1 egg muffin"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000000801",
+        "quantity": 10,
+        "unit": "count",
+        "name": "Eggs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000802",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000803",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000804",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Garlic powder",
+        "note": "optional",
+        "optional": true
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000805",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Cooked ham",
+        "note": "or 8 slices bacon, cooked & crumbled or ½ lb sausage, browned; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000806",
+        "quantity": 0.5,
+        "unit": "count",
+        "name": "Red bell pepper",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000807",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Onions",
+        "note": "minced, or 2 green onions, thinly sliced; minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000808",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "or your favorite blend of shredded cheese; shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000809",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Mozzarella cheese",
+        "note": "shredded"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 350°F. Thoroughly grease a 12-cup muffin tin or use silicone or parchment liners.",
+      "Beat the eggs with salt, pepper and optional garlic powder. Divide ham, diced pepper, onion and both cheeses among the cups.",
+      "Distribute the eggs over the fillings. Bake 22–25 minutes until set and the egg mixture reaches 160°F.",
+      "Leave in the tin for 3 minutes, loosen the edges and lift out. Serve warm; refrigerate cooled portions promptly."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000009",
+    "title": "Banana Bread",
+    "servings": 12,
+    "minutes": 75,
+    "cuisine": "Breakfast",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/classic-banana-bread/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.95,
+      "ratingCount": 778,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 221,
+      "protein": 3,
+      "carbohydrate": 33,
+      "fat": 9,
+      "sodium": 269,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000000901",
+        "quantity": 1.333333,
+        "unit": "cup",
+        "name": "Bananas",
+        "note": "about 4 small bananas; mashed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000902",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000903",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Baking soda"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000904",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000905",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Cinnamon"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000906",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Butter",
+        "note": "softened, or vegetable oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000907",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Brown sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000908",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Granulated sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000909",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Eggs",
+        "note": "room temperature"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000000910",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Vanilla extract"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 350°F and grease and flour a loaf pan. Mash enough bananas to measure 1⅓ cups.",
+      "Mix flour, baking soda, salt and cinnamon. In another bowl, beat softened butter with both sugars for about 2 minutes.",
+      "Beat eggs into the butter mixture one at a time; add vanilla and bananas. Fold in the dry mixture just until incorporated.",
+      "Bake 45–60 minutes, checking that a skewer comes out without wet batter. Leave in the pan 5 minutes, then transfer to a rack to cool."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000010",
+    "title": "Carrot Muffins",
+    "servings": 12,
+    "minutes": 45,
+    "cuisine": "Breakfast",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/soft-moist-carrot-muffins/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.93,
+      "ratingCount": 449,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 348,
+      "protein": 4,
+      "carbohydrate": 42,
+      "fat": 20,
+      "sodium": 266,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 muffin"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000001001",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001002",
+        "quantity": 3,
+        "unit": "tsp",
+        "name": "Baking powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001003",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Cinnamon"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001004",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001005",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Granulated sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001006",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Vegetable oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001007",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Eggs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001008",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Carrots",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001009",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Apple",
+        "note": "peeled and shredded; peeled"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001010",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Raisins"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 375°F; grease or line muffin cups. Mix flour, baking powder, cinnamon and salt.",
+      "Beat sugar, oil and eggs separately. Stir into the flour mixture only until the dry patches disappear.",
+      "Fold through shredded carrots, shredded apple and raisins. Divide the batter among the prepared cups.",
+      "Bake 25–29 minutes, until browned and a skewer inserted in a muffin comes out without wet batter."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000011",
+    "title": "Applesauce",
+    "servings": 8,
+    "minutes": 45,
+    "cuisine": "Breakfast",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/homemade-applesauce/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 5,
+      "ratingCount": 156,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 100,
+      "protein": 0.4,
+      "carbohydrate": 27,
+      "fat": 0.3,
+      "sodium": 2,
+      "fiber": 4,
+      "source": "publisher",
+      "portion": "0.5 cup"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000001101",
+        "quantity": 3,
+        "unit": "lb",
+        "name": "Apples",
+        "note": "peeled, cored, and chopped, about 6 medium; peeled"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001103",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Granulated sugar",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001104",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Cinnamon"
+      }
+    ],
+    "untrackedIngredients": ["⅓ cup water"],
+    "steps": [
+      "Place the peeled, cored, chopped apples in a saucepan with ⅓ cup water, sugar and cinnamon. Bring to a boil.",
+      "Cover and gently simmer 15–20 minutes until the pieces are very soft. Uncover and simmer another 5 minutes to reduce excess liquid.",
+      "Mash for a textured sauce or use an immersion blender for a smooth one. Serve warm or chill."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000012",
+    "title": "Deviled Eggs",
+    "servings": 12,
+    "minutes": 35,
+    "cuisine": "Breakfast",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/classic-deviled-eggs-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Rachael",
+      "rating": 4.98,
+      "ratingCount": 211,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 68,
+      "protein": 3,
+      "carbohydrate": 0.2,
+      "fat": 6,
+      "sodium": 94,
+      "fiber": 0.02,
+      "source": "publisher",
+      "portion": "1 egg"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000001201",
+        "quantity": 6,
+        "unit": "count",
+        "name": "Eggs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001202",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Mayonnaise"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001203",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "White vinegar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001204",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Yellow mustard"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001205",
+        "quantity": 0.125,
+        "unit": "tsp",
+        "name": "Salt"
+      }
+    ],
+    "untrackedIngredients": [
+      "1 dash black pepper (to taste)",
+      "smoked paprika (and fresh dill weed for garnish)"
+    ],
+    "steps": [
+      "Cover the eggs with water extending ½ inch above them. Bring to a full boil, cover and remove from the burner; leave covered for 15–17 minutes.",
+      "Move eggs into ice water for 5–10 minutes, then peel. Halve lengthwise and place the yolks in a bowl.",
+      "Mash the yolks and mix with mayonnaise, vinegar, mustard, salt and pepper until creamy.",
+      "Spoon or pipe the filling into the whites shortly before serving. Finish with optional paprika and dill."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000013",
+    "title": "Buttermilk Biscuits",
+    "servings": 10,
+    "minutes": 30,
+    "cuisine": "Breakfast",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-homemade-buttermilk-biscuits/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.97,
+      "ratingCount": 160,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 164,
+      "protein": 3,
+      "carbohydrate": 21,
+      "fat": 7,
+      "sodium": 224,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000001301",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001302",
+        "quantity": 4,
+        "unit": "tsp",
+        "name": "Baking powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001303",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Granulated sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001304",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Baking soda"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001305",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001306",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001307",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Buttermilk"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 450°F. Mix flour, baking powder, sugar, baking soda and salt.",
+      "Cut cold butter into the dry ingredients until pea-sized pieces remain. Add buttermilk gradually; stop mixing once the dough is moistened.",
+      "Gently gather on a floured surface, then flatten and fold 5–6 times. Pat to 1-inch thickness and cut biscuits; reshape scraps gently.",
+      "Transfer to an ungreased sheet and bake 10–12 minutes until browned."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000014",
+    "title": "Homemade Cornbread",
+    "servings": 9,
+    "minutes": 45,
+    "cuisine": "Breakfast",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/homemade-cornbread-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.88,
+      "ratingCount": 116,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 232,
+      "protein": 5,
+      "carbohydrate": 31,
+      "fat": 9,
+      "sodium": 233,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000001401",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001402",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Cornmeal"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001403",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Granulated sugar"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001404",
+        "quantity": 3,
+        "unit": "tsp",
+        "name": "Baking powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001405",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001406",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Eggs",
+        "note": "room temperature"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001407",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Buttermilk",
+        "note": "or soured milk,"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000001408",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Butter",
+        "note": "melted"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 350°F and grease an 8-inch square pan. Combine flour, cornmeal, sugar, baking powder and salt.",
+      "Beat eggs, buttermilk and melted butter separately, then stir into the dry mixture just until moistened.",
+      "Spread the batter in the pan and bake 30–35 minutes. Check that a skewer inserted centrally has no wet batter."
+    ]
+  }
+]

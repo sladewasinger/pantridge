@@ -1,0 +1,938 @@
+[
+  {
+    "id": "cb000000-0000-4000-8000-000000000095",
+    "title": "Seasoned Rice",
+    "servings": 4,
+    "minutes": 45,
+    "cuisine": "Vegetable mains and sides",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/seasoned-rice/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 5,
+      "ratingCount": 100,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 121,
+      "protein": 3,
+      "carbohydrate": 14,
+      "fat": 6,
+      "sodium": 1004,
+      "fiber": 1,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000009501",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "White rice"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009502",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Butter",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009503",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009504",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009505",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Beef broth",
+        "note": "or chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009506",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Soy sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009507",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Worcestershire sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009508",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Dried parsley"
+      }
+    ],
+    "steps": [
+      "Toast dry rice in 1 tablespoon butter over medium-high heat until lightly golden. Add onion and garlic; cook 2–3 minutes.",
+      "Add broth, soy sauce, Worcestershire sauce and parsley. Bring to a boil; cover, reduce to a simmer and cook 20 minutes without lifting the lid.",
+      "Take off heat and rest covered 5 minutes. Stir in remaining butter, fluff with a fork and adjust seasoning."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000096",
+    "title": "Broccoli Rice Casserole",
+    "servings": 8,
+    "minutes": 55,
+    "cuisine": "Vegetable mains and sides",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/broccoli-rice-casserole-scratch/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.93,
+      "ratingCount": 1050,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 287,
+      "protein": 13,
+      "carbohydrate": 23,
+      "fat": 17,
+      "sodium": 280,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000009601",
+        "quantity": 6,
+        "unit": "cup",
+        "name": "Broccoli florets",
+        "note": "cut into bite sized pieces"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009602",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Cooked white rice"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009603",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009604",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009605",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009606",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "name": "Garlic powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009607",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009608",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009609",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dry mustard powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009610",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Paprika"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009611",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "more to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009612",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Cream cheese"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009613",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "divided; shredded"
+      }
+    ],
+    "steps": [
+      "Heat oven to 350°F. Soften onion in butter over medium-low heat. Stir in flour, garlic powder and pepper for 2 minutes; gradually whisk in milk and cook until thickened.",
+      "Remove from heat; melt in mustard, paprika, cream cheese and 1½ cups cheddar. Adjust salt. Boil broccoli 1–2 minutes until crisp-tender; drain well.",
+      "Combine cooked rice, broccoli and sauce in a greased 2-quart dish. Top with remaining cheddar; bake about 35 minutes until bubbling and browned."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000097",
+    "title": "Scalloped Potatoes",
+    "servings": 6,
+    "minutes": 120,
+    "cuisine": "Vegetable mains and sides",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/scalloped-potatoes-recipe/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.95,
+      "ratingCount": 3695,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 286,
+      "protein": 9,
+      "carbohydrate": 39,
+      "fat": 11,
+      "sodium": 484,
+      "fiber": 6,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000009701",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009702",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009703",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009704",
+        "quantity": 0.25,
+        "unit": "cup",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009705",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009706",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Chicken broth"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009707",
+        "quantity": 1.25,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009708",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009709",
+        "quantity": 3,
+        "unit": "lb",
+        "name": "Yukon gold potatoes",
+        "note": "or red potatoes, , sliced about ⅛-inch thick; sliced"
+      }
+    ],
+    "steps": [
+      "Heat oven to 350°F; grease a casserole dish. Soften onion and garlic in butter 3–4 minutes; stir in flour for 2 minutes. Slowly whisk in milk and broth; boil a minute with ½ teaspoon salt and ⅛ teaspoon pepper.",
+      "Slice potatoes ⅛ inch thick. Layer one-third in dish, with ¼ teaspoon salt, ⅛ teaspoon pepper and one-third sauce; repeat twice.",
+      "Cover tightly; bake 45 minutes. Uncover and bake another 35–45 minutes until potatoes are tender and top is golden. Rest 20 minutes before serving."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000098",
+    "title": "Potatoes Au Gratin",
+    "servings": 8,
+    "minutes": 125,
+    "cuisine": "Vegetable mains and sides",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/au-gratin-potatoes/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.96,
+      "ratingCount": 1034,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 271,
+      "protein": 11,
+      "carbohydrate": 30,
+      "fat": 13,
+      "sodium": 452,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000009801",
+        "quantity": 2.5,
+        "unit": "lb",
+        "name": "Red potatoes"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009802",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "thinly sliced; sliced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009803",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Butter"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009804",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "All-purpose flour"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009805",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Dry mustard powder"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009806",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009807",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Cheddar cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009808",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Gruyere cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009809",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "name": "Salt",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009810",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper",
+        "note": "divided"
+      }
+    ],
+    "steps": [
+      "Heat oven to 400°F. Slice potatoes and onion ⅛ inch thin. Toss with ½ teaspoon salt and ¼ teaspoon pepper; arrange in small upright stacks in a greased 2½–3-quart dish.",
+      "Cook butter and flour 2–3 minutes. Add mustard, remaining salt and pepper, and milk; whisk over medium heat until thickened. Remove from heat and melt in cheeses.",
+      "Pour sauce between potato layers. Cover and bake 60 minutes; uncover for another 20–30 minutes until tender and browned. Rest 15 minutes."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000099",
+    "title": "Corn Casserole",
+    "servings": 8,
+    "minutes": 55,
+    "cuisine": "Vegetable mains and sides",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/corn-casserole/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.98,
+      "ratingCount": 330,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 329,
+      "protein": 5,
+      "carbohydrate": 28,
+      "fat": 22,
+      "sodium": 447,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000009901",
+        "quantity": 8,
+        "unit": "tbsp",
+        "name": "Butter",
+        "note": "melted"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009902",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Eggs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009903",
+        "quantity": 8.5,
+        "unit": "oz",
+        "name": "Jiffy Corn Muffin Mix",
+        "note": "8.5 ounce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009904",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Corn kernels",
+        "note": "canned or frozen, drained and/or thawed; thawed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009905",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "Creamed corn",
+        "note": "15 ounce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000009906",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Sour cream"
+      }
+    ],
+    "steps": [
+      "Heat oven to 350°F; grease a 2-quart dish. Stir melted butter, eggs, corn muffin mix, drained or thawed corn kernels, creamed corn and sour cream together.",
+      "Spread in dish. Bake 45–55 minutes until golden and set, with the egg-containing center reaching 160°F."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000100",
+    "title": "Green Bean Casserole",
+    "servings": 8,
+    "minutes": 50,
+    "cuisine": "Vegetable mains and sides",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/classic-green-bean-casserole/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 5,
+      "ratingCount": 2102,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 112,
+      "protein": 3,
+      "carbohydrate": 11,
+      "fat": 6,
+      "sodium": 475,
+      "fiber": 2,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000010001",
+        "quantity": 4,
+        "unit": "cup",
+        "name": "Frozen cut green beans",
+        "note": "for canned or fresh beans"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010002",
+        "quantity": 10.5,
+        "unit": "oz",
+        "name": "Condensed cream of mushroom soup",
+        "note": "10.5 ounce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010003",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Milk"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010004",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Soy sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010005",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Black pepper"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010006",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Seasoned salt",
+        "note": "more to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010007",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Crispy fried onions",
+        "note": "divided"
+      }
+    ],
+    "steps": [
+      "Heat oven to 350°F. Boil frozen green beans in salted water 2–3 minutes until crisp-tender; drain.",
+      "Mix beans, condensed soup, milk, soy sauce, pepper, seasoned salt and 1 cup crispy onions. Spread in a 2-quart dish; bake uncovered 30–35 minutes until bubbling.",
+      "Stir casserole, scatter remaining onions over top and bake 10 minutes more until golden."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000101",
+    "title": "Sweet Potato Casserole",
+    "servings": 16,
+    "minutes": 45,
+    "cuisine": "Vegetable mains and sides",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/sweet-potato-casserole/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 5,
+      "ratingCount": 2362,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 188,
+      "protein": 1,
+      "carbohydrate": 29,
+      "fat": 7,
+      "sodium": 87,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000010101",
+        "quantity": 3,
+        "unit": "lb",
+        "name": "Sweet potatoes",
+        "note": "peeled and cut into cubes; peeled"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010102",
+        "quantity": 0.5,
+        "unit": "cup",
+        "name": "Brown sugar",
+        "note": "packed"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010103",
+        "quantity": 0.333333,
+        "unit": "cup",
+        "name": "Butter",
+        "note": "softened"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010104",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Vanilla extract"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010105",
+        "quantity": 0.75,
+        "unit": "cup",
+        "name": "Pecans",
+        "note": "divided; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010106",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Cinnamon",
+        "note": "or to taste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010108",
+        "quantity": 2,
+        "unit": "cup",
+        "name": "Miniature marshmallows"
+      }
+    ],
+    "untrackedIngredients": ["salt and black pepper (to taste)"],
+    "steps": [
+      "Heat oven to 375°F; grease a 9×13-inch dish. Boil sweet potato cubes about 15 minutes until tender; drain.",
+      "Mash with brown sugar, butter, cinnamon and vanilla; season with salt and pepper. Fold in half the pecans and spread in dish.",
+      "Top with marshmallows and remaining pecans. Bake about 25 minutes until heated through and topping is golden."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000102",
+    "title": "Easy Cabbage Rolls",
+    "servings": 6,
+    "minutes": 120,
+    "cuisine": "Vegetable mains and sides",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/easy-cabbage-rolls/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.94,
+      "ratingCount": 936,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 488,
+      "protein": 25,
+      "carbohydrate": 40,
+      "fat": 24,
+      "sodium": 431,
+      "fiber": 5,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000010201",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Green cabbage head"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010202",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "White rice",
+        "note": "uncooked"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010203",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground pork",
+        "note": "or ground turkey"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010204",
+        "quantity": 0.5,
+        "unit": "lb",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010205",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Yellow onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010206",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010207",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "name": "Dried dill"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010208",
+        "quantity": 3,
+        "unit": "tbsp",
+        "name": "Parsley",
+        "note": "or, 1 tablespoons dried parsley; chopped"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010210",
+        "quantity": 14.5,
+        "unit": "oz",
+        "name": "Tomatoes",
+        "note": "14.5 ounce each) can diced tomatoes (with juices; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010211",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Eggs"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010212",
+        "quantity": 1.75,
+        "unit": "cup",
+        "name": "Tomato sauce",
+        "note": "divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010213",
+        "quantity": 10.75,
+        "unit": "oz",
+        "name": "Condensed tomato soup",
+        "note": "10.75 ounce each"
+      }
+    ],
+    "untrackedIngredients": ["salt and black pepper (to taste)"],
+    "steps": [
+      "Soften cabbage leaves in boiling water about 2 minutes; cool. Heat oven to 350°F. Cook rice following package directions, stopping 5 minutes early.",
+      "Brown pork, beef, onion, garlic and herbs to 160°F; drain. Add rice, tomatoes and ⅓ cup tomato sauce; stir in egg. Mix remaining sauce with condensed soup; spread a thin layer in a 9×13-inch dish.",
+      "Trim thick leaf stems; fill each leaf with ¼–⅓ cup filling, fold sides and roll. Arrange seam-down; cover with sauce and foil. Bake 75–90 minutes, until centers reach 160°F. Cool 15 minutes."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000103",
+    "title": "Easy Stuffed Zucchini Boats",
+    "servings": 6,
+    "minutes": 40,
+    "cuisine": "Vegetable mains and sides",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/saucy-stuffed-zucchini/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.99,
+      "ratingCount": 149,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 444,
+      "protein": 28,
+      "carbohydrate": 12,
+      "fat": 31,
+      "sodium": 582,
+      "fiber": 3,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000010301",
+        "quantity": 3,
+        "unit": "count",
+        "name": "Zucchini",
+        "note": "about 6 ounces each"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010302",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Olive oil"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010303",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Mozzarella cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010304",
+        "quantity": 2,
+        "unit": "tbsp",
+        "name": "Parmesan cheese",
+        "note": "shredded"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010305",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground beef",
+        "note": "or Italian sausage"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010306",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced ; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010307",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010308",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Red bell pepper",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010309",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Pasta sauce",
+        "note": "or marinara, divided; divided"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010310",
+        "quantity": 2,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010311",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "name": "Black pepper"
+      }
+    ],
+    "steps": [
+      "Heat oven to 400°F. Brown beef, onion and garlic to 160°F; drain. Add diced pepper for 2–3 minutes. Stir in 1 cup pasta sauce, herbs and seasoning; simmer 10 minutes.",
+      "Halve zucchini lengthwise and scoop centers, leaving ½-inch shells. Brush with oil and season; arrange in a baking dish. Fill with beef mixture and top with remaining sauce.",
+      "Bake 15 minutes. Add cheeses and bake 10–15 minutes more until zucchini is tender and cheese bubbles."
+    ]
+  },
+  {
+    "id": "cb000000-0000-4000-8000-000000000104",
+    "title": "Spaghetti Squash Casserole",
+    "servings": 6,
+    "minutes": 40,
+    "cuisine": "Vegetable mains and sides",
+    "source": "starter",
+    "sourceUrl": "https://www.spendwithpennies.com/spaghetti-squash-casserole/",
+    "curation": {
+      "publisher": "Spend With Pennies",
+      "author": "Holly Nilsson",
+      "rating": 4.94,
+      "ratingCount": 145,
+      "checkedAt": "2026-10-06"
+    },
+    "nutrition": {
+      "calories": 286,
+      "protein": 25,
+      "carbohydrate": 19,
+      "fat": 12,
+      "sodium": 530,
+      "fiber": 4,
+      "source": "publisher",
+      "portion": "1 serving"
+    },
+    "ingredients": [
+      {
+        "id": "cb010000-0000-4000-8000-000000010401",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Cooked spaghetti squash",
+        "note": "cooked"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010402",
+        "quantity": 1,
+        "unit": "lb",
+        "name": "Ground beef"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010403",
+        "quantity": 1,
+        "unit": "count",
+        "name": "Onions",
+        "note": "diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010404",
+        "quantity": 2,
+        "unit": "count",
+        "name": "Garlic cloves",
+        "note": "minced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010405",
+        "quantity": 15,
+        "unit": "oz",
+        "name": "diced tomatoes",
+        "note": "1 can; diced"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010406",
+        "quantity": 1,
+        "unit": "tbsp",
+        "name": "Tomato paste"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010407",
+        "quantity": 1,
+        "unit": "cup",
+        "name": "Marinara sauce",
+        "note": "or pasta sauce"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010408",
+        "quantity": 1,
+        "unit": "tsp",
+        "name": "Italian seasoning"
+      },
+      {
+        "id": "cb010000-0000-4000-8000-000000010409",
+        "quantity": 1.5,
+        "unit": "cup",
+        "name": "Mozzarella cheese",
+        "note": "shredded"
+      }
+    ],
+    "steps": [
+      "Start with tender, cooked spaghetti squash. Scrape out strands with a fork, discarding seeds and rind. Heat oven to 375°F.",
+      "Brown beef, onion and garlic to 160°F; drain. Add tomatoes, paste, marinara and Italian seasoning; simmer 5 minutes.",
+      "Fold squash strands into sauce. Transfer to a casserole dish or squash shells; top with mozzarella and bake about 20 minutes until hot and bubbling."
+    ]
+  }
+]
