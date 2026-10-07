@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 test('deletion can be undone and quantity can be cleared before typing', async ({ page }) => {
@@ -54,9 +54,7 @@ test('shopping search, progress, and large check targets work offline', async ({
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 });
 
-test('empty storage preselects its location and artwork buttons preview the saved item', async ({
-  page,
-}) => {
+async function prepareSalmon(page: Page) {
   await page.goto('/');
   await page.getByRole('button', { name: 'Open freezer', exact: true }).click();
   await page.getByRole('button', { name: 'Add food to freezer', exact: true }).click();
@@ -67,6 +65,12 @@ test('empty storage preselects its location and artwork buttons preview the save
     'aria-pressed',
     'true',
   );
+}
+
+test('food editor fits phone and desktop widths without accessibility violations', async ({
+  page,
+}) => {
+  await prepareSalmon(page);
   for (const width of [320, 390, 768]) {
     await page.setViewportSize({ width, height: 700 });
     expect(
@@ -74,9 +78,16 @@ test('empty storage preselects its location and artwork buttons preview the save
     ).toBe(true);
   }
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+});
+
+test('empty storage preselects its location and artwork buttons preview the saved item', async ({
+  page,
+}) => {
+  await prepareSalmon(page);
   await page.getByRole('button', { name: 'Add to freezer', exact: true }).click();
   await expect(page.locator('[data-shelf="0"] img')).toHaveAttribute('src', '/art/fish.svg');
   await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect.poll(() => page.evaluate(() => history.state.pantridge.overlay)).toBeNull();
   await page.getByRole('searchbox').fill(' salmon ');
   await expect(page.locator('.search-result')).toContainText('Freezer');
 });
