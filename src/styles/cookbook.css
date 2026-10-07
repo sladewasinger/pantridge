@@ -1,31 +1,28 @@
 .cookbook-book {
   position: absolute;
-  top: 2%;
-  left: 47%;
-  width: 28%;
-  min-height: 76px;
+  top: calc(100% * 13 / 450);
+  left: 64%;
+  width: 20.5%;
+  height: calc(100% * 60 / 450);
+  min-width: 44px;
+  min-height: 44px;
   padding: 0;
   background: transparent;
-  border-radius: 10px;
-  filter: drop-shadow(0 3px 2px #735c3020);
-  transition: transform 150ms;
+  border-radius: 3px;
+  transition: filter 150ms;
 }
 .cookbook-book:hover,
 .cookbook-book:focus-visible {
-  transform: rotate(-3deg) translateY(-2px);
+  filter: brightness(1.08);
+}
+.cookbook-book:focus-visible {
+  outline: 2px solid #496647;
+  outline-offset: 3px;
 }
 .cookbook-book img {
   display: block;
   width: 100%;
-}
-.cookbook-book span {
-  display: inline-block;
-  margin-top: -7px;
-  padding: 3px 8px;
-  border-radius: 5px;
-  color: #443d2e;
-  background: #fff6e3;
-  font-size: 11px;
+  height: 100%;
 }
 .cookbook-page {
   padding: 0 22px 28px;
