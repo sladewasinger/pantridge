@@ -14,6 +14,12 @@ export function RecipeSummary({ recipe }: { recipe: Recipe }) {
       {recipe.description && <p>{recipe.description}</p>}
       <p className="recipe-provenance">
         {sourceLabels[recipe.source]}
+        {recipe.generation?.baseTitle && (
+          <span>
+            {' '}
+            · Cookbook foundation: {recipe.generation.baseTitle}; original ratings do not apply
+          </span>
+        )}
         {recipe.curation && (
           <span>
             {' '}

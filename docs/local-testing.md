@@ -108,3 +108,73 @@ unchecked rows. No cooking deduction or shopping addition was submitted. Groupin
 limits, timeout, authentication, credentials and deployment settings are unchanged.
 Reload preserved both newly saved recipes; search opened Weeknight lemon salmon in the normal
 saved-recipe view. Screenshots supplement these manual interactions rather than replacing them.
+
+## Recipe customization verification on October 6, 2026
+
+Optional meal directions, device-scoped dietary preferences, exact-food family members,
+compatible cookbook foundations, measured variations and calculated nutrition are implemented.
+See [recipe customization](recipe-generation-ideas.md) for behavior, assumptions and API fields.
+
+`pnpm check` passed with 311 unit tests in 56 files. The production-build Chromium suite passed
+65 tests with one intentional skip. The high-severity dependency audit found no known
+vulnerabilities. No assertion, timeout, paid quota or security gate was weakened.
+
+The additional local Windows WebKit run passed 52 tests with one intentional skip and two
+failures. All cookbook cases, including the three new customization cases, passed. The
+fridge-animation case received equal original/transformed door heights instead of the asserted
+perspective expansion. The nutrition sign-in/package-label case did not receive its mocked
+Ground beef stock after anonymous-to-signed-in navigation. Both failures repeated in a focused
+rerun and in an isolated archive of the unchanged `17df489` committed baseline using the same
+pinned dependencies. They predate these customization changes on this local WebKit runtime.
+Their causes remain unresolved; this is not a claim that the entire WebKit suite passed
+or that the change is release-ready. Chromium passed both assertions. Release remains blocked
+until the WebKit failures are understood and resolved.
+
+Four real requests used the loopback API and existing server-managed key with synthetic foods
+and preferences. Every request retained 200 eligible exact names inside 177 compatible groups:
+
+| Request                                                      | Provider time | Input tokens | Output tokens | Ideas |
+| ------------------------------------------------------------ | ------------- | ------------ | ------------- | ----- |
+| Quick/high protein; synthetic celiac exclusion and equipment | 13.328 s      | 3,783        | 1,095         | 3     |
+| Quick; before legacy foundation eligibility was tightened    | 10.007 s      | 4,023        | 973           | 3     |
+| Quick; curated-food whitelist and foundation eligibility     | 12.060 s      | 4,042        | 1,034         | 3     |
+| Quick; restarted final API validation                        | 11.640 s      | 4,190        | 1,122         | 3     |
+
+The last result selected the saved Simple scrambled eggs variation as a cookbook foundation,
+retaining its four-step method and 4 eggs/0.75 tbsp olive oil ratio. The other ideas were tomato
+and pepper eggs and sesame egg fried rice. This verifies live saved-recipe grounding; it does
+not claim that a curated publisher foundation was selected in these requests. Provider timings
+are individual samples, not guarantees; the existing 15-second provider deadline remains.
+The first batch included 25-minute ideas despite Quick's 20-minute target and incomplete protein
+coverage. Fit details expose misses/unverified targets instead of asserting the goals were met.
+
+Manual clicks at 390×844 and 1280×900 exercised directions, advanced preference disclosures,
+diet choices, real generation, read-only preview, stock selection on Save, subsequent editing,
+substitution Apply/Undo, Spice it up, nutrition-before-Apply, explicit saving, shopping review,
+meal planning, cancellation and confirmation of a fractional cooking review. Reload preserved
+saved changes, shopping, plans and the exact deduction. Screenshots in ignored
+`artifacts/review/` supplement these interactions; screenshot inspection alone is not a manual
+usability test.
+
+The saved fried rice variation added 0.125 tsp cayenne and 100 g canned chickpeas explicitly.
+Its measured known nutrition subtotal was 494.8 kcal, 20.2 g protein, 66.4 g carbohydrate,
+16.1 g fat, 304.6 mg sodium and 6.9 g fiber per serving. Green onions had no supported count
+weight and remained missing; the UI marks these values partial and macro targets unverified.
+Previewing the chickpea addition and applying it produced the same subtotal. A cooked-rice
+swap initially inherited dry brown rice's extra cooking time; manual testing caught it, and
+the corrected cooked-grain rule adds no dry-rice cooking delay.
+
+Opening, applying, saving and planning did not deduct stock. Explicit Add 8 shopping items
+changed unchecked shopping rows from 6 to 14. A canceled 0.125-pack carrot deduction left its
+1-pack stock intact. A later acknowledged confirmation changed only carrots to 0.875 packs;
+all other reviewed lots were zero. Reopening after reload retained 0.875 and left Eggs at
+1 carton. No new deduction occurred on reopening. A synthetic milk exclusion prevented
+cooking and saving scrambled eggs with butter. Applying 0.75 tbsp olive oil removed the known
+conflict; saving still required explicit label/preparation acknowledgement.
+
+The 102 bundled USDA profiles and package labels calculate estimates; unknown foods or
+portions remain incomplete. No model-generated numeric nutrition is accepted, no real recipe
+was taste-tested, and ingredient-name screening cannot certify allergy/celiac safety. The main
+bundle is about 734 kB minified / 192 kB gzip and retains Vite's existing chunk-size warning.
+No Google sign-in, live account synchronization, application deployment or Terraform apply was
+performed by this isolated local test. Preferences do not sync to cloud kitchens.

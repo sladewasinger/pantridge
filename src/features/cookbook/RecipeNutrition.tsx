@@ -32,16 +32,25 @@ export function RecipeNutrition({ recipe }: { recipe: Recipe }) {
   return (
     <section className="recipe-nutrition" aria-label="Estimated nutrition">
       <h3>Estimated nutrition</h3>
-      <p className="muted">Per {nutrition.portion.toLowerCase()} · publisher’s estimate</p>
+      <p className="muted">
+        Per {nutrition.portion.toLowerCase()} ·{' '}
+        {nutrition.source === 'publisher'
+          ? 'publisher’s estimate'
+          : nutrition.missing?.length
+            ? 'partial estimate: known ingredients only'
+            : 'calculated estimate'}
+      </p>
       <dl>
         {values.map(
           ([label, value, unit]) =>
-            (value !== undefined || label === 'Carbs') && (
+            (value !== undefined || label === 'Carbs' || nutrition.source === 'calculated') && (
               <div key={label}>
                 <dt>{label}</dt>
                 <dd>
                   {value === undefined
-                    ? 'Not provided'
+                    ? nutrition.source === 'calculated'
+                      ? 'Unknown'
+                      : 'Not provided'
                     : `${new Intl.NumberFormat(undefined, { maximumFractionDigits: 1 }).format(value)} ${unit}`}
                 </dd>
               </div>
@@ -49,6 +58,36 @@ export function RecipeNutrition({ recipe }: { recipe: Recipe }) {
         )}
       </dl>
       <p className="muted">Brands, portions and substitutions change these values.</p>
+      {nutrition.missing?.length ? (
+        <p className="muted">
+          Missing: {nutrition.missing.join('; ')}. Totals exclude these amounts.
+        </p>
+      ) : null}
+      {nutrition.evidence?.length ? (
+        <details>
+          <summary>Nutrition sources &amp; assumptions</summary>
+          <ul>
+            {nutrition.evidence.map((item, index) => (
+              <li key={index}>
+                {item.ingredient}: {item.assumption}
+                {item.fdcId && (
+                  <>
+                    {' '}
+                    ·{' '}
+                    <a
+                      href="https://fdc.nal.usda.gov/download-datasets/"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      USDA SR Legacy (2018), FDC {item.fdcId}
+                    </a>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
+        </details>
+      ) : null}
     </section>
   );
 }

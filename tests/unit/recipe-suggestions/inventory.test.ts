@@ -28,7 +28,7 @@ it('sends food presence and reminders, omitting amounts, supplies and past-date 
   expect(buildRecipeSuggestionRequest(data, true, '2026-10-06')).toEqual({
     kind: 'recipe',
     useUp: true,
-    inventory: [{ name: 'Eggs', useSoon: true }],
+    inventory: [{ name: 'Eggs', members: ['Eggs'], useSoon: true }],
   });
   expect(data).toEqual(before);
 });
@@ -43,7 +43,10 @@ it('groups compatible names across the whole kitchen without an alphabetical cut
     ...(index === 199 ? { expires: '2026-10-08' } : {}),
   }));
   const request = buildRecipeSuggestionRequest(data, true, '2026-10-06');
-  expect(request.inventory).toEqual([{ name: 'Zucchini', useSoon: true }, { name: 'Eggs' }]);
+  expect(request.inventory).toEqual([
+    { name: 'Zucchini', members: ['Zucchini'], useSoon: true },
+    { name: 'Eggs', members: ['Eggs'] },
+  ]);
   expect(recipeSuggestionRequestSchema.safeParse(request).success).toBe(true);
 });
 it('preserves preparation, dietary identities and individual vegetables while grouping varieties', () => {
@@ -68,11 +71,22 @@ it('preserves preparation, dietary identities and individual vegetables while gr
   data.foods = names.map((name, index) => ({ ...egg, id: String(index), name }));
   data.stock = data.foods.map((food) => ({ id: food.id, foodId: food.id, quantity: 0.125 }));
   const inventory = buildRecipeSuggestionRequest(data, false).inventory;
-  expect(inventory).toContainEqual({ name: 'Canned beans' });
-  expect(inventory).toContainEqual({ name: 'Dried beans' });
-  expect(inventory).toContainEqual({ name: 'Cooked rice' });
-  expect(inventory).toContainEqual({ name: 'Rice', details: ['brown', 'white'] });
-  expect(inventory).toContainEqual({ name: 'Pasta', details: ['long', 'short'] });
+  expect(inventory).toContainEqual({
+    name: 'Canned beans',
+    members: ['Canned black beans', 'Canned pinto beans'],
+  });
+  expect(inventory).toContainEqual({ name: 'Dried beans', members: ['Dried kidney beans'] });
+  expect(inventory).toContainEqual({ name: 'Cooked rice', members: ['Cooked rice'] });
+  expect(inventory).toContainEqual({
+    name: 'Rice',
+    members: ['Brown rice', 'White rice'],
+    details: ['brown', 'white'],
+  });
+  expect(inventory).toContainEqual({
+    name: 'Pasta',
+    members: ['Penne', 'Spaghetti'],
+    details: ['long', 'short'],
+  });
   for (const name of [
     'Gluten-free pasta',
     'Frozen peas',
@@ -82,7 +96,7 @@ it('preserves preparation, dietary identities and individual vegetables while gr
     'Milk',
     'Oat milk',
   ])
-    expect(inventory).toContainEqual({ name });
+    expect(inventory).toContainEqual({ name, members: [name] });
   expect(inventory).toHaveLength(12);
   expect(
     recipeSuggestionRequestSchema.safeParse({ kind: 'recipe', inventory, useUp: false }).success,
@@ -92,7 +106,9 @@ it('keeps amounts local even with unknown sizes and hides zero stock', () => {
   const data = kitchen();
   data.foods[0] = { ...egg, size: { amount: 100000, packs: 1000, measure: 'g' } };
   data.stock[0] = { ...data.stock[0]!, quantity: 9999, expires: undefined };
-  expect(buildRecipeSuggestionRequest(data, true).inventory).toEqual([{ name: 'Eggs' }]);
+  expect(buildRecipeSuggestionRequest(data, true).inventory).toEqual([
+    { name: 'Eggs', members: ['Eggs'] },
+  ]);
   data.stock[0]!.quantity = 0;
   expect(buildRecipeSuggestionRequest(data, true).inventory).toEqual([]);
 });

@@ -82,7 +82,7 @@ it('uses existing configuration and shared budgets for bounded identity-free AI 
     ['ai-global', 100],
   ]);
   expect(mocks.cacheResult).toHaveBeenCalledWith(
-    expect.stringMatching(/^private-recipes#v2#/),
+    expect.stringMatching(/^private-recipes#v3#/),
     generated,
     1,
   );

@@ -1,0 +1,2431 @@
+[
+  {
+    "id": 171287,
+    "description": "Egg, whole, raw, fresh",
+    "aliases": ["eggs", "egg"],
+    "per100": {
+      "calories": 143,
+      "protein": 12.6,
+      "sodium": 142,
+      "fat": 9.51,
+      "carbohydrate": 0.72,
+      "fiber": 0
+    },
+    "portions": [
+      {
+        "grams": 243,
+        "measure": "cup",
+        "description": "cup (4.86 large eggs)"
+      },
+      {
+        "grams": 50,
+        "measure": "count",
+        "description": "large"
+      }
+    ]
+  },
+  {
+    "id": 173410,
+    "description": "Butter, salted",
+    "aliases": ["butter", "salted butter"],
+    "per100": {
+      "fiber": 0,
+      "sodium": 643,
+      "calories": 717,
+      "fat": 81.1,
+      "carbohydrate": 0.06,
+      "protein": 0.85
+    },
+    "portions": [
+      {
+        "grams": 227,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 14.2,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 173430,
+    "description": "Butter, without salt",
+    "aliases": ["unsalted butter"],
+    "per100": {
+      "calories": 717,
+      "fat": 81.1,
+      "carbohydrate": 0.06,
+      "protein": 0.85,
+      "fiber": 0,
+      "sodium": 11
+    },
+    "portions": [
+      {
+        "grams": 14.2,
+        "measure": "tbsp",
+        "description": "tbsp"
+      },
+      {
+        "grams": 227,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 171413,
+    "description": "Oil, olive, salad or cooking",
+    "aliases": ["olive oil"],
+    "per100": {
+      "fat": 100,
+      "carbohydrate": 0,
+      "calories": 884,
+      "sodium": 2,
+      "protein": 0,
+      "fiber": 0
+    },
+    "portions": [
+      {
+        "grams": 13.5,
+        "measure": "tbsp",
+        "description": "tablespoon"
+      },
+      {
+        "grams": 4.5,
+        "measure": "tsp",
+        "description": "tsp"
+      },
+      {
+        "grams": 216,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 172336,
+    "description": "Oil, canola",
+    "aliases": ["canola oil"],
+    "per100": {
+      "fat": 100,
+      "protein": 0,
+      "carbohydrate": 0,
+      "calories": 884,
+      "fiber": 0,
+      "sodium": 0
+    },
+    "portions": [
+      {
+        "grams": 4.5,
+        "measure": "tsp",
+        "description": "tsp"
+      },
+      {
+        "grams": 218,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 14,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 171412,
+    "description": "Oil, coconut",
+    "aliases": ["coconut oil"],
+    "per100": {
+      "protein": 0,
+      "fat": 99.1,
+      "calories": 892,
+      "carbohydrate": 0,
+      "fiber": 0,
+      "sodium": 0
+    },
+    "portions": [
+      {
+        "grams": 218,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 4.5,
+        "measure": "tsp",
+        "description": "tsp"
+      },
+      {
+        "grams": 13.6,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 173468,
+    "description": "Salt, table",
+    "aliases": ["salt", "table salt"],
+    "per100": {
+      "fiber": 0,
+      "sodium": 38800,
+      "protein": 0,
+      "fat": 0,
+      "carbohydrate": 0,
+      "calories": 0
+    },
+    "portions": [
+      {
+        "grams": 292,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 6,
+        "measure": "tsp",
+        "description": "tsp"
+      },
+      {
+        "grams": 18,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 171265,
+    "description": "Milk, whole, 3.25% milkfat, with added vitamin D",
+    "aliases": ["milk", "whole milk"],
+    "per100": {
+      "fat": 3.25,
+      "carbohydrate": 4.8,
+      "calories": 61,
+      "fiber": 0,
+      "sodium": 43,
+      "protein": 3.15
+    },
+    "portions": [
+      {
+        "grams": 244,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 15,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 173414,
+    "description": "Cheese, cheddar (Includes foods for USDA's Food Distribution Program)",
+    "aliases": ["cheddar", "cheddar cheese"],
+    "per100": {
+      "carbohydrate": 3.37,
+      "calories": 403,
+      "protein": 22.9,
+      "fat": 33.3,
+      "sodium": 653,
+      "fiber": 0
+    },
+    "portions": [
+      {
+        "grams": 244,
+        "measure": "cup",
+        "description": "cup, melted"
+      },
+      {
+        "grams": 113,
+        "measure": "cup",
+        "description": "cup, shredded"
+      },
+      {
+        "grams": 132,
+        "measure": "cup",
+        "description": "cup, diced"
+      }
+    ]
+  },
+  {
+    "id": 173420,
+    "description": "Cheese, feta",
+    "aliases": ["feta", "feta cheese"],
+    "per100": {
+      "fat": 21.5,
+      "carbohydrate": 3.88,
+      "calories": 265,
+      "sodium": 1140,
+      "protein": 14.2,
+      "fiber": 0
+    },
+    "portions": [
+      {
+        "grams": 150,
+        "measure": "cup",
+        "description": "cup, crumbled"
+      }
+    ]
+  },
+  {
+    "id": 171247,
+    "description": "Cheese, parmesan, grated",
+    "aliases": ["parmesan", "parmesan cheese"],
+    "per100": {
+      "fat": 27.8,
+      "carbohydrate": 13.9,
+      "calories": 420,
+      "protein": 28.4,
+      "sodium": 1800,
+      "fiber": 0
+    },
+    "portions": [
+      {
+        "grams": 100,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 5,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 170886,
+    "description": "Yogurt, plain, low fat",
+    "aliases": ["plain yogurt", "low-fat yogurt"],
+    "per100": {
+      "calories": 63,
+      "fat": 1.55,
+      "carbohydrate": 7.04,
+      "protein": 5.25,
+      "fiber": 0,
+      "sodium": 70
+    },
+    "portions": [
+      {
+        "grams": 245,
+        "measure": "cup",
+        "description": "cup (8 fl oz)"
+      }
+    ]
+  },
+  {
+    "id": 171077,
+    "description": "Chicken, broiler or fryers, breast, skinless, boneless, meat only, raw",
+    "aliases": ["chicken breast", "raw chicken breast"],
+    "per100": {
+      "fat": 2.62,
+      "calories": 120,
+      "sodium": 45,
+      "protein": 22.5,
+      "carbohydrate": 0,
+      "fiber": 0
+    },
+    "portions": []
+  },
+  {
+    "id": 173627,
+    "description": "Chicken, broilers or fryers, dark meat, thigh, meat only, raw",
+    "aliases": ["chicken thighs", "raw chicken thighs"],
+    "per100": {
+      "calories": 121,
+      "fat": 4.12,
+      "sodium": 95,
+      "protein": 19.7,
+      "carbohydrate": 0,
+      "fiber": 0
+    },
+    "portions": []
+  },
+  {
+    "id": 175167,
+    "description": "Fish, salmon, Atlantic, farmed, raw",
+    "aliases": ["salmon", "raw salmon"],
+    "per100": {
+      "calories": 208,
+      "fat": 13.4,
+      "protein": 20.4,
+      "sodium": 59,
+      "fiber": 0,
+      "carbohydrate": 0
+    },
+    "portions": []
+  },
+  {
+    "id": 175168,
+    "description": "Fish, salmon, Atlantic, farmed, cooked, dry heat",
+    "aliases": ["cooked salmon"],
+    "per100": {
+      "fat": 12.4,
+      "carbohydrate": 0,
+      "protein": 22.1,
+      "fiber": 0,
+      "sodium": 61,
+      "calories": 206
+    },
+    "portions": []
+  },
+  {
+    "id": 174030,
+    "description": "Beef, ground, 90% lean meat / 10% fat, raw",
+    "aliases": ["ground beef", "raw ground beef"],
+    "per100": {
+      "fat": 10,
+      "carbohydrate": 0,
+      "protein": 20,
+      "fiber": 0,
+      "sodium": 66,
+      "calories": 176
+    },
+    "portions": []
+  },
+  {
+    "id": 172850,
+    "description": "Turkey, ground, 93% lean, 7% fat, raw",
+    "aliases": ["ground turkey", "raw ground turkey"],
+    "per100": {
+      "fiber": 0,
+      "sodium": 69,
+      "protein": 18.7,
+      "fat": 8.34,
+      "carbohydrate": 0,
+      "calories": 150
+    },
+    "portions": []
+  },
+  {
+    "id": 173709,
+    "description": "Fish, tuna, light, canned in water, drained solids (Includes foods for USDA's Food Distribution Program)",
+    "aliases": ["canned tuna", "drained tuna"],
+    "per100": {
+      "fat": 0.96,
+      "calories": 86,
+      "protein": 19.4,
+      "sodium": 247,
+      "fiber": 0,
+      "carbohydrate": 0
+    },
+    "portions": [
+      {
+        "grams": 154,
+        "measure": "cup",
+        "description": "cup, solid or chunks"
+      }
+    ]
+  },
+  {
+    "id": 172475,
+    "description": "Tofu, raw, firm, prepared with calcium sulfate",
+    "aliases": ["tofu", "firm tofu"],
+    "per100": {
+      "fiber": 2.3,
+      "carbohydrate": 2.78,
+      "calories": 144,
+      "protein": 17.3,
+      "sodium": 14,
+      "fat": 8.72
+    },
+    "portions": [
+      {
+        "grams": 252,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 169756,
+    "description": "Rice, white, long-grain, regular, raw, unenriched",
+    "aliases": ["rice", "white rice", "raw rice", "dry rice", "dried rice"],
+    "per100": {
+      "protein": 7.13,
+      "fiber": 1.3,
+      "sodium": 5,
+      "fat": 0.66,
+      "carbohydrate": 80,
+      "calories": 365
+    },
+    "portions": [
+      {
+        "grams": 185,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 169757,
+    "description": "Rice, white, long-grain, regular, unenriched, cooked without salt",
+    "aliases": ["cooked rice", "cooked white rice"],
+    "per100": {
+      "fat": 0.28,
+      "carbohydrate": 28.2,
+      "calories": 130,
+      "protein": 2.69,
+      "fiber": 0.4,
+      "sodium": 1
+    },
+    "portions": [
+      {
+        "grams": 158,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 169703,
+    "description": "Rice, brown, long-grain, raw (Includes foods for USDA's Food Distribution Program)",
+    "aliases": ["brown rice", "raw brown rice", "dry brown rice"],
+    "per100": {
+      "fat": 3.2,
+      "carbohydrate": 76.2,
+      "calories": 367,
+      "fiber": 3.6,
+      "sodium": 5,
+      "protein": 7.54
+    },
+    "portions": [
+      {
+        "grams": 185,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 169704,
+    "description": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+    "aliases": ["cooked brown rice"],
+    "per100": {
+      "fiber": 1.6,
+      "sodium": 4,
+      "protein": 2.74,
+      "fat": 0.97,
+      "carbohydrate": 25.6,
+      "calories": 123
+    },
+    "portions": [
+      {
+        "grams": 202,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 168927,
+    "description": "Pasta, dry, unenriched",
+    "aliases": [
+      "pasta",
+      "spaghetti",
+      "penne",
+      "macaroni",
+      "linguine",
+      "fusilli",
+      "rigatoni",
+      "dry pasta",
+      "dried pasta"
+    ],
+    "per100": {
+      "protein": 13,
+      "fiber": 3.2,
+      "fat": 1.51,
+      "sodium": 6,
+      "carbohydrate": 74.7,
+      "calories": 371
+    },
+    "portions": [
+      {
+        "grams": 96,
+        "measure": "cup",
+        "description": "cup rotini"
+      },
+      {
+        "grams": 90,
+        "measure": "cup",
+        "description": "cup lasagna"
+      },
+      {
+        "grams": 81,
+        "measure": "cup",
+        "description": "cup farfalle"
+      },
+      {
+        "grams": 64,
+        "measure": "cup",
+        "description": "cup shells"
+      },
+      {
+        "grams": 122,
+        "measure": "cup",
+        "description": "cup elbows"
+      },
+      {
+        "grams": 91,
+        "measure": "cup",
+        "description": "cup spaghetti"
+      },
+      {
+        "grams": 95,
+        "measure": "cup",
+        "description": "cup penne"
+      }
+    ]
+  },
+  {
+    "id": 168928,
+    "description": "Pasta, cooked, unenriched, without added salt",
+    "aliases": ["cooked pasta", "cooked spaghetti"],
+    "per100": {
+      "fat": 0.93,
+      "protein": 5.8,
+      "fiber": 1.8,
+      "sodium": 1,
+      "carbohydrate": 30.9,
+      "calories": 158
+    },
+    "portions": [
+      {
+        "grams": 107,
+        "measure": "cup",
+        "description": "cup penne"
+      },
+      {
+        "grams": 107,
+        "measure": "cup",
+        "description": "cup farfalle"
+      },
+      {
+        "grams": 132,
+        "measure": "cup",
+        "description": "cup elbows packed"
+      },
+      {
+        "grams": 151,
+        "measure": "cup",
+        "description": "cup spaghetti packed"
+      },
+      {
+        "grams": 105,
+        "measure": "cup",
+        "description": "cup shells"
+      },
+      {
+        "grams": 107,
+        "measure": "cup",
+        "description": "cup rotini"
+      },
+      {
+        "grams": 120,
+        "measure": "cup",
+        "description": "cup elbows not packed"
+      },
+      {
+        "grams": 116,
+        "measure": "cup",
+        "description": "cup lasagne"
+      },
+      {
+        "grams": 124,
+        "measure": "cup",
+        "description": "cup spaghetti not packed"
+      }
+    ]
+  },
+  {
+    "id": 169705,
+    "description": "Oats (Includes foods for USDA's Food Distribution Program)",
+    "aliases": ["oats", "rolled oats"],
+    "per100": {
+      "fiber": 10.6,
+      "sodium": 2,
+      "protein": 16.9,
+      "fat": 6.9,
+      "carbohydrate": 66.3,
+      "calories": 389
+    },
+    "portions": [
+      {
+        "grams": 156,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 168874,
+    "description": "Quinoa, uncooked",
+    "aliases": ["quinoa", "uncooked quinoa"],
+    "per100": {
+      "fiber": 7,
+      "sodium": 5,
+      "protein": 14.1,
+      "fat": 6.07,
+      "carbohydrate": 64.2,
+      "calories": 368
+    },
+    "portions": [
+      {
+        "grams": 170,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 172420,
+    "description": "Lentils, raw",
+    "aliases": ["lentils", "dry lentils", "dried lentils"],
+    "per100": {
+      "fat": 1.06,
+      "sodium": 6,
+      "fiber": 10.7,
+      "protein": 24.6,
+      "carbohydrate": 63.4,
+      "calories": 352
+    },
+    "portions": [
+      {
+        "grams": 12,
+        "measure": "tbsp",
+        "description": "tablespoon"
+      },
+      {
+        "grams": 192,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 172421,
+    "description": "Lentils, mature seeds, cooked, boiled, without salt",
+    "aliases": ["cooked lentils"],
+    "per100": {
+      "carbohydrate": 20.1,
+      "calories": 116,
+      "protein": 9.02,
+      "fiber": 7.9,
+      "sodium": 2,
+      "fat": 0.38
+    },
+    "portions": [
+      {
+        "grams": 198,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 12.3,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 173734,
+    "description": "Beans, black, mature seeds, raw",
+    "aliases": ["dry black beans", "dried black beans"],
+    "per100": {
+      "fiber": 15.5,
+      "carbohydrate": 62.4,
+      "calories": 341,
+      "protein": 21.6,
+      "sodium": 5,
+      "fat": 1.42
+    },
+    "portions": [
+      {
+        "grams": 194,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 12.1,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 173735,
+    "description": "Beans, black, mature seeds, cooked, boiled, without salt",
+    "aliases": ["cooked black beans"],
+    "per100": {
+      "fat": 0.54,
+      "carbohydrate": 23.7,
+      "calories": 132,
+      "protein": 8.86,
+      "fiber": 8.7,
+      "sodium": 1
+    },
+    "portions": [
+      {
+        "grams": 172,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 173800,
+    "description": "Chickpeas (garbanzo beans, bengal gram), mature seeds, canned, drained solids",
+    "aliases": ["canned chickpeas", "drained chickpeas"],
+    "per100": {
+      "protein": 7.05,
+      "sodium": 246,
+      "fat": 2.77,
+      "carbohydrate": 22.5,
+      "calories": 139,
+      "fiber": 6.4
+    },
+    "portions": []
+  },
+  {
+    "id": 173757,
+    "description": "Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt",
+    "aliases": ["cooked chickpeas"],
+    "per100": {
+      "fiber": 7.6,
+      "carbohydrate": 27.4,
+      "calories": 164,
+      "fat": 2.59,
+      "sodium": 7,
+      "protein": 8.86
+    },
+    "portions": [
+      {
+        "grams": 164,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 175199,
+    "description": "Beans, pinto, mature seeds, raw (Includes foods for USDA's Food Distribution Program)",
+    "aliases": ["dry pinto beans", "dried pinto beans"],
+    "per100": {
+      "fiber": 15.5,
+      "protein": 21.4,
+      "sodium": 12,
+      "fat": 1.23,
+      "carbohydrate": 62.6,
+      "calories": 347
+    },
+    "portions": [
+      {
+        "grams": 12,
+        "measure": "tbsp",
+        "description": "tbsp"
+      },
+      {
+        "grams": 193,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 175200,
+    "description": "Beans, pinto, mature seeds, cooked, boiled, without salt",
+    "aliases": ["cooked pinto beans"],
+    "per100": {
+      "carbohydrate": 26.2,
+      "calories": 143,
+      "fat": 0.65,
+      "fiber": 9,
+      "sodium": 1,
+      "protein": 9.01
+    },
+    "portions": [
+      {
+        "grams": 10.6,
+        "measure": "tbsp",
+        "description": "tbsp"
+      },
+      {
+        "grams": 171,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 174286,
+    "description": "Beans, pinto, canned, drained solids",
+    "aliases": ["canned pinto beans", "drained pinto beans"],
+    "per100": {
+      "protein": 6.99,
+      "fiber": 5.5,
+      "sodium": 239,
+      "fat": 0.9,
+      "carbohydrate": 20.2,
+      "calories": 114
+    },
+    "portions": []
+  },
+  {
+    "id": 174285,
+    "description": "Beans, kidney, red, mature seeds, canned, drained solids",
+    "aliases": ["canned kidney beans", "drained kidney beans"],
+    "per100": {
+      "fat": 1.05,
+      "carbohydrate": 21.5,
+      "calories": 124,
+      "sodium": 231,
+      "protein": 7.98,
+      "fiber": 5.5
+    },
+    "portions": []
+  },
+  {
+    "id": 168462,
+    "description": "Spinach, raw",
+    "aliases": ["spinach", "raw spinach"],
+    "per100": {
+      "protein": 2.86,
+      "sodium": 79,
+      "fiber": 2.2,
+      "fat": 0.39,
+      "carbohydrate": 3.63,
+      "calories": 23
+    },
+    "portions": [
+      {
+        "grams": 30,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 170000,
+    "description": "Onions, raw",
+    "aliases": ["onions", "onion", "raw onions"],
+    "per100": {
+      "fat": 0.1,
+      "carbohydrate": 9.34,
+      "calories": 40,
+      "protein": 1.1,
+      "fiber": 1.7,
+      "sodium": 4
+    },
+    "portions": [
+      {
+        "grams": 160,
+        "measure": "cup",
+        "description": "cup, chopped"
+      },
+      {
+        "grams": 10,
+        "measure": "tbsp",
+        "description": "tbsp chopped"
+      },
+      {
+        "grams": 115,
+        "measure": "cup",
+        "description": "cup, sliced"
+      },
+      {
+        "grams": 110,
+        "measure": "count",
+        "description": "medium (2-1/2\" dia)"
+      }
+    ]
+  },
+  {
+    "id": 170379,
+    "description": "Broccoli, raw",
+    "aliases": ["broccoli", "raw broccoli"],
+    "per100": {
+      "carbohydrate": 6.64,
+      "calories": 34,
+      "fat": 0.37,
+      "protein": 2.82,
+      "fiber": 2.6,
+      "sodium": 33
+    },
+    "portions": [
+      {
+        "grams": 88,
+        "measure": "cup",
+        "description": "cup, chopped or diced"
+      },
+      {
+        "grams": 91,
+        "measure": "cup",
+        "description": "cup chopped"
+      }
+    ]
+  },
+  {
+    "id": 169968,
+    "description": "Broccoli, frozen, chopped, unprepared",
+    "aliases": ["frozen broccoli"],
+    "per100": {
+      "carbohydrate": 4.78,
+      "calories": 26,
+      "protein": 2.81,
+      "fiber": 3,
+      "sodium": 24,
+      "fat": 0.29
+    },
+    "portions": [
+      {
+        "grams": 156,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 170457,
+    "description": "Tomatoes, red, ripe, raw, year round average",
+    "aliases": ["tomatoes", "tomato", "raw tomatoes"],
+    "per100": {
+      "carbohydrate": 3.89,
+      "calories": 18,
+      "fat": 0.2,
+      "fiber": 1.2,
+      "sodium": 5,
+      "protein": 0.88
+    },
+    "portions": [
+      {
+        "grams": 180,
+        "measure": "cup",
+        "description": "cup, chopped or sliced"
+      },
+      {
+        "grams": 149,
+        "measure": "cup",
+        "description": "cup cherry tomatoes"
+      },
+      {
+        "grams": 123,
+        "measure": "count",
+        "description": "medium whole (2-3/5\" dia)"
+      }
+    ]
+  },
+  {
+    "id": 170051,
+    "description": "Tomatoes, red, ripe, canned, packed in tomato juice",
+    "aliases": ["canned tomatoes"],
+    "per100": {
+      "sodium": 115,
+      "fat": 0.25,
+      "carbohydrate": 3.47,
+      "calories": 16,
+      "fiber": 1.9,
+      "protein": 0.79
+    },
+    "portions": [
+      {
+        "grams": 240,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 15,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 170459,
+    "description": "Tomato products, canned, paste, without salt added (Includes foods for USDA's Food Distribution Program)",
+    "aliases": ["tomato paste"],
+    "per100": {
+      "carbohydrate": 18.9,
+      "calories": 82,
+      "sodium": 59,
+      "fat": 0.47,
+      "protein": 4.32,
+      "fiber": 4.1
+    },
+    "portions": [
+      {
+        "grams": 16,
+        "measure": "tbsp",
+        "description": "tbsp"
+      },
+      {
+        "grams": 264,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 262,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 169230,
+    "description": "Garlic, raw",
+    "aliases": ["garlic", "garlic cloves"],
+    "per100": {
+      "carbohydrate": 33.1,
+      "calories": 149,
+      "fiber": 2.1,
+      "sodium": 17,
+      "protein": 6.36,
+      "fat": 0.5
+    },
+    "portions": [
+      {
+        "grams": 2.8,
+        "measure": "tsp",
+        "description": "tsp"
+      },
+      {
+        "grams": 136,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 3,
+        "measure": "count",
+        "description": "clove"
+      }
+    ]
+  },
+  {
+    "id": 170393,
+    "description": "Carrots, raw",
+    "aliases": ["carrots", "carrot"],
+    "per100": {
+      "sodium": 69,
+      "protein": 0.93,
+      "fat": 0.24,
+      "carbohydrate": 9.58,
+      "calories": 41,
+      "fiber": 2.8
+    },
+    "portions": [
+      {
+        "grams": 110,
+        "measure": "cup",
+        "description": "cup grated"
+      },
+      {
+        "grams": 128,
+        "measure": "cup",
+        "description": "cup chopped"
+      },
+      {
+        "grams": 122,
+        "measure": "cup",
+        "description": "cup strips or slices"
+      },
+      {
+        "grams": 61,
+        "measure": "count",
+        "description": "medium"
+      }
+    ]
+  },
+  {
+    "id": 170026,
+    "description": "Potatoes, flesh and skin, raw",
+    "aliases": ["potatoes", "potato"],
+    "per100": {
+      "fat": 0.09,
+      "calories": 77,
+      "sodium": 6,
+      "protein": 2.05,
+      "fiber": 2.1,
+      "carbohydrate": 17.5
+    },
+    "portions": [
+      {
+        "grams": 150,
+        "measure": "cup",
+        "description": "cup, diced"
+      },
+      {
+        "grams": 213,
+        "measure": "count",
+        "description": "Potato medium (2-1/4\" to 3-1/4\" dia)"
+      }
+    ]
+  },
+  {
+    "id": 168409,
+    "description": "Cucumber, with peel, raw",
+    "aliases": ["cucumber", "cucumbers"],
+    "per100": {
+      "carbohydrate": 3.63,
+      "calories": 15,
+      "sodium": 2,
+      "fat": 0.11,
+      "fiber": 0.5,
+      "protein": 0.65
+    },
+    "portions": [
+      {
+        "grams": 104,
+        "measure": "cup",
+        "description": "cup slices"
+      }
+    ]
+  },
+  {
+    "id": 169291,
+    "description": "Squash, summer, zucchini, includes skin, raw",
+    "aliases": ["zucchini"],
+    "per100": {
+      "fat": 0.32,
+      "carbohydrate": 3.11,
+      "calories": 17,
+      "fiber": 1,
+      "sodium": 8,
+      "protein": 1.21
+    },
+    "portions": [
+      {
+        "grams": 124,
+        "measure": "cup",
+        "description": "cup, chopped"
+      },
+      {
+        "grams": 113,
+        "measure": "cup",
+        "description": "cup, sliced"
+      }
+    ]
+  },
+  {
+    "id": 169251,
+    "description": "Mushrooms, white, raw",
+    "aliases": ["mushrooms", "mushroom"],
+    "per100": {
+      "fiber": 1,
+      "fat": 0.34,
+      "sodium": 5,
+      "protein": 3.09,
+      "carbohydrate": 3.26,
+      "calories": 22
+    },
+    "portions": [
+      {
+        "grams": 70,
+        "measure": "cup",
+        "description": "cup, pieces or slices"
+      },
+      {
+        "grams": 96,
+        "measure": "cup",
+        "description": "cup, whole"
+      },
+      {
+        "grams": 70,
+        "measure": "cup",
+        "description": "cup pieces"
+      }
+    ]
+  },
+  {
+    "id": 170427,
+    "description": "Peppers, sweet, green, raw",
+    "aliases": ["green bell pepper", "green bell peppers"],
+    "per100": {
+      "fat": 0.17,
+      "protein": 0.86,
+      "fiber": 1.7,
+      "sodium": 3,
+      "carbohydrate": 4.64,
+      "calories": 20
+    },
+    "portions": [
+      {
+        "grams": 149,
+        "measure": "cup",
+        "description": "cup, chopped"
+      },
+      {
+        "grams": 92,
+        "measure": "cup",
+        "description": "cup, sliced"
+      },
+      {
+        "grams": 9.3,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 170108,
+    "description": "Peppers, sweet, red, raw",
+    "aliases": ["red bell pepper", "red bell peppers"],
+    "per100": {
+      "fiber": 2.1,
+      "calories": 26,
+      "sodium": 4,
+      "carbohydrate": 6.03,
+      "protein": 0.99,
+      "fat": 0.3
+    },
+    "portions": [
+      {
+        "grams": 9.3,
+        "measure": "tbsp",
+        "description": "tablespoon"
+      },
+      {
+        "grams": 92,
+        "measure": "cup",
+        "description": "cup, sliced"
+      },
+      {
+        "grams": 149,
+        "measure": "cup",
+        "description": "cup, chopped"
+      }
+    ]
+  },
+  {
+    "id": 171705,
+    "description": "Avocados, raw, all commercial varieties",
+    "aliases": ["avocado", "avocados"],
+    "per100": {
+      "protein": 2,
+      "fiber": 6.7,
+      "sodium": 7,
+      "fat": 14.7,
+      "carbohydrate": 8.53,
+      "calories": 160
+    },
+    "portions": [
+      {
+        "grams": 230,
+        "measure": "cup",
+        "description": "cup, pureed"
+      },
+      {
+        "grams": 150,
+        "measure": "cup",
+        "description": "cup, cubes"
+      },
+      {
+        "grams": 146,
+        "measure": "cup",
+        "description": "cup, sliced"
+      }
+    ]
+  },
+  {
+    "id": 173944,
+    "description": "Bananas, raw",
+    "aliases": ["banana", "bananas"],
+    "per100": {
+      "carbohydrate": 22.8,
+      "calories": 89,
+      "fiber": 2.6,
+      "sodium": 1,
+      "protein": 1.09,
+      "fat": 0.33
+    },
+    "portions": [
+      {
+        "grams": 150,
+        "measure": "cup",
+        "description": "cup, sliced"
+      },
+      {
+        "grams": 225,
+        "measure": "cup",
+        "description": "cup, mashed"
+      },
+      {
+        "grams": 118,
+        "measure": "count",
+        "description": "medium (7\" to 7-7/8\" long)"
+      }
+    ]
+  },
+  {
+    "id": 167747,
+    "description": "Lemon juice, raw",
+    "aliases": ["lemon juice"],
+    "per100": {
+      "protein": 0.35,
+      "fiber": 0.3,
+      "sodium": 1,
+      "fat": 0.24,
+      "carbohydrate": 6.9,
+      "calories": 22
+    },
+    "portions": [
+      {
+        "grams": 244,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 168155,
+    "description": "Limes, raw",
+    "aliases": ["lime", "limes"],
+    "per100": {
+      "fat": 0.2,
+      "carbohydrate": 10.5,
+      "protein": 0.7,
+      "sodium": 2,
+      "fiber": 2.8,
+      "calories": 30
+    },
+    "portions": [
+      {
+        "grams": 67,
+        "measure": "count",
+        "description": "fruit (2\" dia)"
+      }
+    ]
+  },
+  {
+    "id": 169998,
+    "description": "Corn, sweet, yellow, raw",
+    "aliases": ["corn", "raw corn"],
+    "per100": {
+      "fiber": 2,
+      "sodium": 15,
+      "protein": 3.27,
+      "fat": 1.35,
+      "carbohydrate": 18.7,
+      "calories": 86
+    },
+    "portions": [
+      {
+        "grams": 145,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 170419,
+    "description": "Peas, green, raw",
+    "aliases": ["peas", "green peas"],
+    "per100": {
+      "carbohydrate": 14.4,
+      "calories": 81,
+      "protein": 5.42,
+      "sodium": 5,
+      "fat": 0.4,
+      "fiber": 5.7
+    },
+    "portions": [
+      {
+        "grams": 145,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 171583,
+    "description": "Soup, vegetable broth, ready to serve",
+    "aliases": ["vegetable broth"],
+    "per100": {
+      "protein": 0.24,
+      "fiber": 0,
+      "sodium": 296,
+      "fat": 0.07,
+      "carbohydrate": 0.93,
+      "calories": 5
+    },
+    "portions": [
+      {
+        "grams": 221,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 174536,
+    "description": "Soup, chicken broth, ready-to-serve",
+    "aliases": ["chicken broth"],
+    "per100": {
+      "protein": 0.64,
+      "fiber": 0,
+      "sodium": 371,
+      "fat": 0.21,
+      "carbohydrate": 0.44,
+      "calories": 6
+    },
+    "portions": [
+      {
+        "grams": 249,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 170556,
+    "description": "Seeds, pumpkin and squash seed kernels, dried",
+    "aliases": ["pumpkin seeds"],
+    "per100": {
+      "carbohydrate": 10.7,
+      "calories": 559,
+      "protein": 30.2,
+      "fiber": 6,
+      "sodium": 7,
+      "fat": 49
+    },
+    "portions": [
+      {
+        "grams": 129,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 170567,
+    "description": "Nuts, almonds",
+    "aliases": ["almonds"],
+    "per100": {
+      "protein": 21.2,
+      "fiber": 12.5,
+      "fat": 49.9,
+      "carbohydrate": 21.6,
+      "calories": 579,
+      "sodium": 1
+    },
+    "portions": [
+      {
+        "grams": 143,
+        "measure": "cup",
+        "description": "cup, whole"
+      },
+      {
+        "grams": 108,
+        "measure": "cup",
+        "description": "cup, slivered"
+      },
+      {
+        "grams": 95,
+        "measure": "cup",
+        "description": "cup, ground"
+      },
+      {
+        "grams": 92,
+        "measure": "cup",
+        "description": "cup, sliced"
+      }
+    ]
+  },
+  {
+    "id": 168936,
+    "description": "Wheat flour, white, all-purpose, enriched, unbleached",
+    "aliases": ["all-purpose flour", "flour"],
+    "per100": {
+      "fiber": 2.7,
+      "fat": 0.98,
+      "carbohydrate": 76.3,
+      "calories": 364,
+      "protein": 10.3,
+      "sodium": 2
+    },
+    "portions": [
+      {
+        "grams": 125,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 169655,
+    "description": "Sugars, granulated",
+    "aliases": ["sugar", "granulated sugar"],
+    "per100": {
+      "protein": 0,
+      "sodium": 1,
+      "fat": 0,
+      "calories": 387,
+      "carbohydrate": 100,
+      "fiber": 0
+    },
+    "portions": [
+      {
+        "grams": 200,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 4.2,
+        "measure": "tsp",
+        "description": "tsp"
+      }
+    ]
+  },
+  {
+    "id": 169640,
+    "description": "Honey",
+    "aliases": ["honey"],
+    "per100": {
+      "protein": 0.3,
+      "fiber": 0.2,
+      "sodium": 4,
+      "fat": 0,
+      "carbohydrate": 82.4,
+      "calories": 304
+    },
+    "portions": [
+      {
+        "grams": 339,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 21,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 170931,
+    "description": "Spices, pepper, black",
+    "aliases": ["black pepper"],
+    "per100": {
+      "fat": 3.26,
+      "carbohydrate": 64,
+      "calories": 251,
+      "protein": 10.4,
+      "fiber": 25.3,
+      "sodium": 20
+    },
+    "portions": [
+      {
+        "grams": 6.9,
+        "measure": "tbsp",
+        "description": "tbsp, ground"
+      },
+      {
+        "grams": 2.3,
+        "measure": "tsp",
+        "description": "tsp, ground"
+      },
+      {
+        "grams": 2.9,
+        "measure": "tsp",
+        "description": "tsp, whole"
+      }
+    ]
+  },
+  {
+    "id": 170932,
+    "description": "Spices, pepper, red or cayenne",
+    "aliases": ["cayenne", "cayenne pepper"],
+    "per100": {
+      "fat": 17.3,
+      "carbohydrate": 56.6,
+      "calories": 318,
+      "protein": 12,
+      "sodium": 30,
+      "fiber": 27.2
+    },
+    "portions": [
+      {
+        "grams": 5.3,
+        "measure": "tbsp",
+        "description": "tbsp"
+      },
+      {
+        "grams": 1.8,
+        "measure": "tsp",
+        "description": "tsp"
+      }
+    ]
+  },
+  {
+    "id": 170923,
+    "description": "Spices, cumin seed",
+    "aliases": ["cumin", "cumin seeds"],
+    "per100": {
+      "protein": 17.8,
+      "fiber": 10.5,
+      "sodium": 168,
+      "fat": 22.3,
+      "carbohydrate": 44.2,
+      "calories": 375
+    },
+    "portions": [
+      {
+        "grams": 2.1,
+        "measure": "tsp",
+        "description": "tsp, whole"
+      },
+      {
+        "grams": 6,
+        "measure": "tbsp",
+        "description": "tbsp, whole"
+      }
+    ]
+  },
+  {
+    "id": 171319,
+    "description": "Spices, chili powder",
+    "aliases": ["chili powder"],
+    "per100": {
+      "sodium": 2870,
+      "fat": 14.3,
+      "carbohydrate": 49.7,
+      "calories": 282,
+      "protein": 13.5,
+      "fiber": 34.8
+    },
+    "portions": [
+      {
+        "grams": 8,
+        "measure": "tbsp",
+        "description": "tbsp"
+      },
+      {
+        "grams": 2.7,
+        "measure": "tsp",
+        "description": "tsp"
+      }
+    ]
+  },
+  {
+    "id": 171325,
+    "description": "Spices, garlic powder",
+    "aliases": ["garlic powder"],
+    "per100": {
+      "fiber": 9,
+      "sodium": 60,
+      "protein": 16.6,
+      "fat": 0.73,
+      "carbohydrate": 72.7,
+      "calories": 331
+    },
+    "portions": [
+      {
+        "grams": 9.7,
+        "measure": "tbsp",
+        "description": "tbsp"
+      },
+      {
+        "grams": 3.1,
+        "measure": "tsp",
+        "description": "tsp"
+      }
+    ]
+  },
+  {
+    "id": 171327,
+    "description": "Spices, onion powder",
+    "aliases": ["onion powder"],
+    "per100": {
+      "fat": 1.04,
+      "carbohydrate": 79.1,
+      "calories": 341,
+      "fiber": 15.2,
+      "sodium": 73,
+      "protein": 10.4
+    },
+    "portions": [
+      {
+        "grams": 6.9,
+        "measure": "tbsp",
+        "description": "tbsp"
+      },
+      {
+        "grams": 2.4,
+        "measure": "tsp",
+        "description": "tsp"
+      }
+    ]
+  },
+  {
+    "id": 171328,
+    "description": "Spices, oregano, dried",
+    "aliases": ["dried oregano", "oregano"],
+    "per100": {
+      "fat": 4.28,
+      "carbohydrate": 68.9,
+      "calories": 265,
+      "fiber": 42.5,
+      "sodium": 25,
+      "protein": 9
+    },
+    "portions": [
+      {
+        "grams": 1,
+        "measure": "tsp",
+        "description": "tsp, leaves"
+      },
+      {
+        "grams": 1.8,
+        "measure": "tsp",
+        "description": "tsp, ground"
+      }
+    ]
+  },
+  {
+    "id": 171329,
+    "description": "Spices, paprika",
+    "aliases": ["paprika"],
+    "per100": {
+      "fiber": 34.9,
+      "sodium": 68,
+      "protein": 14.1,
+      "fat": 12.9,
+      "carbohydrate": 54,
+      "calories": 282
+    },
+    "portions": [
+      {
+        "grams": 6.8,
+        "measure": "tbsp",
+        "description": "tbsp"
+      },
+      {
+        "grams": 2.3,
+        "measure": "tsp",
+        "description": "tsp"
+      }
+    ]
+  },
+  {
+    "id": 171320,
+    "description": "Spices, cinnamon, ground",
+    "aliases": ["cinnamon"],
+    "per100": {
+      "fiber": 53.1,
+      "protein": 3.99,
+      "sodium": 10,
+      "fat": 1.24,
+      "carbohydrate": 80.6,
+      "calories": 247
+    },
+    "portions": [
+      {
+        "grams": 2.6,
+        "measure": "tsp",
+        "description": "tsp"
+      },
+      {
+        "grams": 7.8,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 172232,
+    "description": "Basil, fresh",
+    "aliases": ["fresh basil", "basil"],
+    "per100": {
+      "fat": 0.64,
+      "carbohydrate": 2.65,
+      "calories": 23,
+      "fiber": 1.6,
+      "sodium": 4,
+      "protein": 3.15
+    },
+    "portions": [
+      {
+        "grams": 2.65,
+        "measure": "tbsp",
+        "description": "tbsp, chopped"
+      },
+      {
+        "grams": 24,
+        "measure": "cup",
+        "description": "cup leaves, whole"
+      }
+    ]
+  },
+  {
+    "id": 170416,
+    "description": "Parsley, fresh",
+    "aliases": ["parsley", "fresh parsley"],
+    "per100": {
+      "carbohydrate": 6.33,
+      "calories": 36,
+      "fat": 0.79,
+      "protein": 2.97,
+      "fiber": 3.3,
+      "sodium": 56
+    },
+    "portions": [
+      {
+        "grams": 60,
+        "measure": "cup",
+        "description": "cup chopped"
+      },
+      {
+        "grams": 3.8,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 169997,
+    "description": "Coriander (cilantro) leaves, raw",
+    "aliases": ["cilantro", "fresh cilantro"],
+    "per100": {
+      "protein": 2.13,
+      "carbohydrate": 3.67,
+      "calories": 23,
+      "fiber": 2.8,
+      "sodium": 46,
+      "fat": 0.52
+    },
+    "portions": [
+      {
+        "grams": 16,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 171052,
+    "description": "Chicken, broilers or fryers, meat only, raw",
+    "aliases": ["chicken", "raw chicken"],
+    "per100": {
+      "fat": 3.08,
+      "carbohydrate": 0,
+      "calories": 119,
+      "protein": 21.4,
+      "fiber": 0,
+      "sodium": 77
+    },
+    "portions": []
+  },
+  {
+    "id": 171480,
+    "description": "Turkey, whole, meat only, raw",
+    "aliases": ["turkey", "raw turkey"],
+    "per100": {
+      "calories": 115,
+      "carbohydrate": 0.14,
+      "protein": 22.6,
+      "fiber": 0,
+      "sodium": 118,
+      "fat": 1.93
+    },
+    "portions": []
+  },
+  {
+    "id": 169975,
+    "description": "Cabbage, raw",
+    "aliases": ["cabbage", "raw cabbage"],
+    "per100": {
+      "fat": 0.1,
+      "carbohydrate": 5.8,
+      "calories": 25,
+      "protein": 1.28,
+      "fiber": 2.5,
+      "sodium": 18
+    },
+    "portions": [
+      {
+        "grams": 89,
+        "measure": "cup",
+        "description": "cup, chopped"
+      },
+      {
+        "grams": 70,
+        "measure": "cup",
+        "description": "cup, shredded"
+      }
+    ]
+  },
+  {
+    "id": 170005,
+    "description": "Onions, spring or scallions (includes tops and bulb), raw",
+    "aliases": ["green onions", "spring onions", "scallions"],
+    "per100": {
+      "calories": 32,
+      "fat": 0.19,
+      "protein": 1.83,
+      "fiber": 2.6,
+      "sodium": 16,
+      "carbohydrate": 7.34
+    },
+    "portions": [
+      {
+        "grams": 6,
+        "measure": "tbsp",
+        "description": "tbsp chopped"
+      },
+      {
+        "grams": 100,
+        "measure": "cup",
+        "description": "cup, chopped"
+      }
+    ]
+  },
+  {
+    "id": 169231,
+    "description": "Ginger root, raw",
+    "aliases": ["ginger", "fresh ginger"],
+    "per100": {
+      "fat": 0.75,
+      "sodium": 13,
+      "protein": 1.82,
+      "carbohydrate": 17.8,
+      "calories": 80,
+      "fiber": 2
+    },
+    "portions": [
+      {
+        "grams": 96,
+        "measure": "cup",
+        "description": "cup slices (1\" dia)"
+      },
+      {
+        "grams": 2,
+        "measure": "tsp",
+        "description": "tsp"
+      }
+    ]
+  },
+  {
+    "id": 171016,
+    "description": "Oil, sesame, salad or cooking",
+    "aliases": ["sesame oil"],
+    "per100": {
+      "protein": 0,
+      "fiber": 0,
+      "sodium": 0,
+      "fat": 100,
+      "carbohydrate": 0,
+      "calories": 884
+    },
+    "portions": [
+      {
+        "grams": 13.6,
+        "measure": "tbsp",
+        "description": "tablespoon"
+      },
+      {
+        "grams": 4.5,
+        "measure": "tsp",
+        "description": "tsp"
+      },
+      {
+        "grams": 218,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 168389,
+    "description": "Asparagus, raw",
+    "aliases": ["asparagus"],
+    "per100": {
+      "protein": 2.2,
+      "sodium": 2,
+      "carbohydrate": 3.88,
+      "calories": 20,
+      "fiber": 2.1,
+      "fat": 0.12
+    },
+    "portions": [
+      {
+        "grams": 134,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 170383,
+    "description": "Brussels sprouts, raw",
+    "aliases": ["brussels sprouts"],
+    "per100": {
+      "fiber": 3.8,
+      "carbohydrate": 8.95,
+      "calories": 43,
+      "protein": 3.38,
+      "sodium": 25,
+      "fat": 0.3
+    },
+    "portions": [
+      {
+        "grams": 88,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 169986,
+    "description": "Cauliflower, raw",
+    "aliases": ["cauliflower"],
+    "per100": {
+      "carbohydrate": 4.97,
+      "calories": 25,
+      "protein": 1.92,
+      "fiber": 2,
+      "sodium": 30,
+      "fat": 0.28
+    },
+    "portions": [
+      {
+        "grams": 107,
+        "measure": "cup",
+        "description": "cup chopped (1/2\" pieces)"
+      }
+    ]
+  },
+  {
+    "id": 169988,
+    "description": "Celery, raw",
+    "aliases": ["celery"],
+    "per100": {
+      "calories": 14,
+      "carbohydrate": 2.97,
+      "fat": 0.17,
+      "sodium": 80,
+      "fiber": 1.6,
+      "protein": 0.69
+    },
+    "portions": [
+      {
+        "grams": 7.5,
+        "measure": "tbsp",
+        "description": "tbsp"
+      },
+      {
+        "grams": 101,
+        "measure": "cup",
+        "description": "cup chopped"
+      }
+    ]
+  },
+  {
+    "id": 168482,
+    "description": "Sweet potato, raw, unprepared (Includes foods for USDA's Food Distribution Program)",
+    "aliases": ["sweet potato", "sweet potatoes"],
+    "per100": {
+      "fiber": 3,
+      "carbohydrate": 20.1,
+      "calories": 86,
+      "sodium": 55,
+      "fat": 0.05,
+      "protein": 1.57
+    },
+    "portions": [
+      {
+        "grams": 133,
+        "measure": "cup",
+        "description": "cup, cubes"
+      }
+    ]
+  },
+  {
+    "id": 169228,
+    "description": "Eggplant, raw",
+    "aliases": ["eggplant"],
+    "per100": {
+      "fat": 0.18,
+      "carbohydrate": 5.88,
+      "calories": 25,
+      "fiber": 3,
+      "sodium": 2,
+      "protein": 0.98
+    },
+    "portions": [
+      {
+        "grams": 82,
+        "measure": "cup",
+        "description": "cup, cubes"
+      }
+    ]
+  },
+  {
+    "id": 169247,
+    "description": "Lettuce, cos or romaine, raw",
+    "aliases": ["romaine lettuce"],
+    "per100": {
+      "carbohydrate": 3.29,
+      "calories": 17,
+      "sodium": 8,
+      "fat": 0.3,
+      "fiber": 2.1,
+      "protein": 1.23
+    },
+    "portions": [
+      {
+        "grams": 47,
+        "measure": "cup",
+        "description": "cup shredded"
+      }
+    ]
+  },
+  {
+    "id": 169248,
+    "description": "Lettuce, iceberg (includes crisphead types), raw",
+    "aliases": ["lettuce", "iceberg lettuce"],
+    "per100": {
+      "carbohydrate": 2.97,
+      "calories": 14,
+      "fiber": 1.2,
+      "sodium": 10,
+      "protein": 0.9,
+      "fat": 0.14
+    },
+    "portions": [
+      {
+        "grams": 57,
+        "measure": "cup",
+        "description": "cup, chopped (1/2\" pieces, loosely packed)"
+      },
+      {
+        "grams": 72,
+        "measure": "cup",
+        "description": "cup shredded"
+      }
+    ]
+  },
+  {
+    "id": 171688,
+    "description": "Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",
+    "aliases": ["apple", "apples"],
+    "per100": {
+      "carbohydrate": 13.8,
+      "calories": 52,
+      "fat": 0.17,
+      "fiber": 2.4,
+      "sodium": 1,
+      "protein": 0.26
+    },
+    "portions": [
+      {
+        "grams": 109,
+        "measure": "cup",
+        "description": "cup slices"
+      },
+      {
+        "grams": 125,
+        "measure": "cup",
+        "description": "cup, quartered or chopped"
+      }
+    ]
+  },
+  {
+    "id": 169097,
+    "description": "Oranges, raw, all commercial varieties",
+    "aliases": ["orange", "oranges"],
+    "per100": {
+      "fat": 0.12,
+      "carbohydrate": 11.8,
+      "calories": 47,
+      "fiber": 2.4,
+      "sodium": 0,
+      "protein": 0.94
+    },
+    "portions": [
+      {
+        "grams": 180,
+        "measure": "cup",
+        "description": "cup, sections"
+      }
+    ]
+  },
+  {
+    "id": 168156,
+    "description": "Lime juice, raw",
+    "aliases": ["lime juice"],
+    "per100": {
+      "protein": 0.42,
+      "fiber": 0.4,
+      "sodium": 2,
+      "fat": 0.07,
+      "carbohydrate": 8.42,
+      "calories": 25
+    },
+    "portions": [
+      {
+        "grams": 242,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 170016,
+    "description": "Peas, green, frozen, unprepared (Includes foods for USDA's Food Distribution Program)",
+    "aliases": ["frozen peas"],
+    "per100": {
+      "fat": 0.4,
+      "carbohydrate": 13.6,
+      "calories": 77,
+      "protein": 5.22,
+      "fiber": 4.5,
+      "sodium": 108
+    },
+    "portions": [
+      {
+        "grams": 134,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 175203,
+    "description": "Beans, white, mature seeds, cooked, boiled, without salt",
+    "aliases": ["cooked white beans", "cooked cannellini beans"],
+    "per100": {
+      "carbohydrate": 25.1,
+      "calories": 139,
+      "fiber": 6.3,
+      "sodium": 6,
+      "protein": 9.73,
+      "fat": 0.35
+    },
+    "portions": [
+      {
+        "grams": 179,
+        "measure": "cup",
+        "description": "cup"
+      },
+      {
+        "grams": 11.2,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  },
+  {
+    "id": 175204,
+    "description": "Beans, white, mature seeds, canned",
+    "aliases": ["canned white beans", "canned cannellini beans"],
+    "per100": {
+      "carbohydrate": 21.2,
+      "calories": 114,
+      "sodium": 340,
+      "fat": 0.29,
+      "fiber": 4.8,
+      "protein": 7.26
+    },
+    "portions": [
+      {
+        "grams": 262,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 170845,
+    "description": "Cheese, mozzarella, whole milk",
+    "aliases": ["mozzarella", "mozzarella cheese"],
+    "per100": {
+      "protein": 22.2,
+      "sodium": 486,
+      "fat": 22.1,
+      "carbohydrate": 2.4,
+      "calories": 299,
+      "fiber": 0
+    },
+    "portions": [
+      {
+        "grams": 112,
+        "measure": "cup",
+        "description": "cup, shredded"
+      }
+    ]
+  },
+  {
+    "id": 169699,
+    "description": "Couscous, dry",
+    "aliases": ["couscous", "dry couscous", "dried couscous"],
+    "per100": {
+      "fiber": 5,
+      "sodium": 10,
+      "protein": 12.8,
+      "fat": 0.64,
+      "carbohydrate": 77.4,
+      "calories": 376
+    },
+    "portions": [
+      {
+        "grams": 173,
+        "measure": "cup",
+        "description": "cup"
+      }
+    ]
+  },
+  {
+    "id": 169700,
+    "description": "Couscous, cooked",
+    "aliases": ["cooked couscous"],
+    "per100": {
+      "fat": 0.16,
+      "carbohydrate": 23.2,
+      "calories": 112,
+      "fiber": 1.4,
+      "sodium": 5,
+      "protein": 3.79
+    },
+    "portions": [
+      {
+        "grams": 528,
+        "measure": "cup",
+        "description": "cup, dry, yields"
+      },
+      {
+        "grams": 157,
+        "measure": "cup",
+        "description": "cup, cooked"
+      }
+    ]
+  },
+  {
+    "id": 170427,
+    "description": "Peppers, sweet, green, raw",
+    "aliases": ["bell pepper", "bell peppers"],
+    "per100": {
+      "fat": 0.17,
+      "protein": 0.86,
+      "fiber": 1.7,
+      "sodium": 3,
+      "carbohydrate": 4.64,
+      "calories": 20
+    },
+    "portions": [
+      {
+        "grams": 149,
+        "measure": "cup",
+        "description": "cup, chopped"
+      },
+      {
+        "grams": 92,
+        "measure": "cup",
+        "description": "cup, sliced"
+      },
+      {
+        "grams": 9.3,
+        "measure": "tbsp",
+        "description": "tbsp"
+      }
+    ]
+  }
+]

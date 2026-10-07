@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { Recipe } from '../../domain/recipes/model';
-import { dispatch, getAccount } from '../../data/store';
+import { dispatch, getAccount, getKitchen } from '../../data/store';
+import { withCalculatedNutrition } from '../../domain/recipe-nutrition/calculate';
 import { Modal } from '../../ui/Modal';
 import { useAction } from '../../ui/useAction';
 import { useMounted } from '../../ui/useMounted';
@@ -32,7 +33,10 @@ export function RecipeEditor({
           void run(async () => {
             if (getAccount() !== account)
               throw new Error('Your kitchen changed. Reopen this recipe before saving.');
-            const next = parseRecipeDraft(draft, recipe, id);
+            const next = withCalculatedNutrition(
+              getKitchen().data,
+              parseRecipeDraft(draft, recipe, id),
+            );
             if (onSave) await onSave(next);
             else {
               await dispatch({ type: 'recipe.save', recipe: next });

@@ -9,14 +9,26 @@ import { RecipeEditor } from '../cookbook/RecipeEditor';
 import { todayLocal } from '../cookbook/presentation';
 import { IngredientChoices } from './IngredientChoices';
 import { SuggestionPreview } from './SuggestionPreview';
+import { emptyPreferences, type RecipePreferences } from '../../domain/recipe-preferences/model';
+import { withCalculatedNutrition } from '../../domain/recipe-nutrition/calculate';
+import { useDietReview } from '../recipe-enhancements/useDietReview';
 
-export function SuggestionReview({ recipe, onClose }: { recipe: Recipe; onClose: () => void }) {
+export function SuggestionReview({
+  recipe,
+  preferences = emptyPreferences(),
+  onClose,
+}: {
+  recipe: Recipe;
+  preferences?: RecipePreferences;
+  onClose: () => void;
+}) {
   const { data } = useKitchen();
   const [account] = useState(getAccount);
   const [originalChoices] = useState(() => ingredientChoices(data, recipe, todayLocal()));
   const [needed, setNeeded] = useState(originalChoices);
   const [pending, setPending] = useState<Recipe>();
   const [resolved, setResolved] = useState<Recipe>();
+  const [draft, setDraft] = useState<Recipe>();
   const [mode, setMode] = useState<'read' | 'choose' | 'edit'>('read');
   const navigation = useRef(0);
   const show = (next: typeof mode) => {
@@ -26,14 +38,22 @@ export function SuggestionReview({ recipe, onClose }: { recipe: Recipe; onClose:
   const { run, busy, error } = useAction();
   const isMounted = useMounted();
   const saved = getRecipes(data).find((item) => item.id === recipe.id);
-  const shown = pending ?? saved ?? resolved ?? recipe;
+  const shown = withCalculatedNutrition(data, pending ?? draft ?? saved ?? resolved ?? recipe);
+  const diet = useDietReview(shown, preferences);
   const persist = async (next: Recipe) => {
     if (getAccount() !== account) throw new Error('Your kitchen changed. Reopen this recipe.');
+    if (!diet.check(next)) {
+      setPending(next);
+      show('read');
+      return;
+    }
     const startedAt = navigation.current;
-    await dispatch({ type: 'recipe.save', recipe: next });
+    const calculated = withCalculatedNutrition(getKitchen().data, next);
+    await dispatch({ type: 'recipe.save', recipe: calculated });
     if (isMounted() && getAccount() === account && navigation.current === startedAt) {
       setPending(undefined);
-      setResolved(next);
+      setDraft(undefined);
+      setResolved(calculated);
       show('read');
     }
   };
@@ -69,8 +89,19 @@ export function SuggestionReview({ recipe, onClose }: { recipe: Recipe; onClose:
   return (
     <SuggestionPreview
       recipe={shown}
+      preferences={preferences}
+      diet={diet}
+      changed={Boolean(draft)}
+      onChange={(next) => {
+        setPending(undefined);
+        setDraft(next);
+      }}
+      onUndo={() => {
+        setDraft(undefined);
+        setPending(undefined);
+      }}
       busy={busy}
-      saved={Boolean(saved)}
+      saved={Boolean(saved && !draft && !pending)}
       error={error}
       onClose={onClose}
       onEdit={() => show('edit')}

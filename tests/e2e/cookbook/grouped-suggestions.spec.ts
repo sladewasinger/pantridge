@@ -91,7 +91,10 @@ test('generic recipe ingredients require a compatible stock choice before saving
   );
   await page.route('https://api.pantridge.test/v1/products/resolve', (route) => {
     const input = route.request().postDataJSON();
-    expect(input.inventory).toEqual([{ name: 'Canned beans' }, { name: 'Dried beans' }]);
+    expect(input.inventory).toEqual([
+      { name: 'Canned beans', members: ['Canned black beans', 'Canned pinto beans'] },
+      { name: 'Dried beans', members: ['Dried beans'] },
+    ]);
     return route.fulfill({ json: { recipes: [idea] } });
   });
   await page.goto('/');

@@ -7,6 +7,10 @@ import { RecipeSummary } from '../cookbook/RecipeSummary';
 import { RecipeIngredients } from '../cookbook/RecipeIngredients';
 import { RecipeExtras, RecipeNutrition } from '../cookbook/RecipeNutrition';
 import { amountLabel, todayLocal } from '../cookbook/presentation';
+import type { RecipePreferences } from '../../domain/recipe-preferences/model';
+import { RecipeVariations } from '../recipe-enhancements/RecipeVariations';
+import { DietReview } from '../recipe-enhancements/DietReview';
+import type { useDietReview } from '../recipe-enhancements/useDietReview';
 
 export function SuggestionPreview({
   recipe,
@@ -16,6 +20,11 @@ export function SuggestionPreview({
   onSave,
   onEdit,
   onClose,
+  preferences,
+  diet,
+  changed,
+  onChange,
+  onUndo,
 }: {
   recipe: Recipe;
   busy: boolean;
@@ -24,6 +33,11 @@ export function SuggestionPreview({
   onSave: () => void;
   onEdit: () => void;
   onClose: () => void;
+  preferences: RecipePreferences;
+  diet: ReturnType<typeof useDietReview>;
+  changed: boolean;
+  onChange: (next: Recipe) => void;
+  onUndo: () => void;
 }) {
   const { data } = useKitchen();
   const match = getRecipeAvailability(data, recipe, recipe.servings, todayLocal());
@@ -36,6 +50,11 @@ export function SuggestionPreview({
           {error && (
             <p className="error" role="alert">
               {error}
+            </p>
+          )}
+          {diet.required && (
+            <p className="error" role="alert">
+              Open Diet check and review ingredients, labels and preparation before saving.
             </p>
           )}
           {saved && (
@@ -61,6 +80,12 @@ export function SuggestionPreview({
     >
       <div className="recipe-detail suggestion-preview">
         <RecipeSummary recipe={recipe} />
+        <DietReview
+          recipe={recipe}
+          preferences={preferences}
+          checked={diet.checked}
+          onChange={diet.onChange}
+        />
         <section aria-label="Recipe ingredients">
           <h3>Ingredients</h3>
           <ul className="suggestion-preview-ingredients">
@@ -91,6 +116,14 @@ export function SuggestionPreview({
           <RecipeIngredients ingredients={match.ingredients} />
         </details>
         <RecipeExtras recipe={recipe} />
+        <RecipeVariations
+          recipe={recipe}
+          preferences={preferences}
+          busy={busy}
+          changed={changed}
+          onChange={onChange}
+          onUndo={onUndo}
+        />
         <RecipeNutrition recipe={recipe} />
       </div>
     </Modal>
