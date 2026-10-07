@@ -32,22 +32,16 @@ afterEach(() => {
   vi.unstubAllGlobals();
   vi.unstubAllEnvs();
 });
-it('retains the eight-second provider deadline for optimized recipes and estimates', async () => {
+it('allows fifteen seconds for recipes while estimates retain their eight-second deadline', async () => {
   const timeout = vi.spyOn(AbortSignal, 'timeout');
   vi.stubGlobal(
     'fetch',
     vi.fn().mockImplementation(() => output(generated)),
   );
   const { requestStructured } = await import('../../../api/products/ai');
-  const input = {
-    name: 'recipe',
-    schema: {},
-    instructions: 'test',
-    input: {},
-    maxOutputTokens: 1536 as const,
-  };
-  await requestStructured('owner', input);
-  expect(timeout).toHaveBeenCalledWith(8000);
+  const { resolveRecipeSuggestions } = await import('../../../api/recipes/suggest');
+  await resolveRecipeSuggestions('owner', request);
+  expect(timeout).toHaveBeenCalledWith(15000);
   timeout.mockClear();
   await requestStructured('owner', {
     name: 'estimate',
@@ -69,7 +63,7 @@ it('uses existing configuration and shared budgets for bounded identity-free AI 
   expect(body).toMatchObject({
     model: 'gpt-5.6-luna',
     reasoning: { effort: 'low' },
-    max_output_tokens: 1536,
+    max_output_tokens: 2048,
     store: false,
     text: { format: { strict: true } },
   });
@@ -77,12 +71,12 @@ it('uses existing configuration and shared budgets for bounded identity-free AI 
   expect(JSON.parse(body.input)).toEqual({ inventory: request.inventory, useUp: false });
   expect(JSON.stringify(body)).not.toContain('private-owner');
   expect(body.instructions).toContain('untrusted');
-  expect(body.text.format.schema.properties.recipes.maxItems).toBe(1);
+  expect(body.text.format.schema.properties.recipes.maxItems).toBe(3);
   expect(
     body.text.format.schema.properties.recipes.items.properties.ingredients.items.properties.name
       .enum,
   ).toContain('Eggs');
-  expect(body.instructions).toContain('one simple');
+  expect(body.instructions).toContain('up to three distinct');
   expect(mocks.takeQuota.mock.calls).toEqual([
     ['ai-user#private-owner', 20],
     ['ai-global', 100],

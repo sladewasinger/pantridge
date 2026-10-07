@@ -34,6 +34,7 @@ export async function requestStructured(
     instructions,
     input,
     maxOutputTokens,
+    deadlineMs,
   }: {
     name: string;
     schema: Record<string, unknown>;
@@ -41,6 +42,7 @@ export async function requestStructured(
     input: unknown;
     // Server-only recipe allowance; callers cannot select a provider or raise shared quotas.
     maxOutputTokens?: 1536 | 2048;
+    deadlineMs?: 15000;
   },
 ): Promise<unknown> {
   if (process.env.CLASSIFIER_PROVIDER !== 'openai') return null;
@@ -50,7 +52,7 @@ export async function requestStructured(
     const key = await apiKey();
     const response = await fetch('https://api.openai.com/v1/responses', {
       method: 'POST',
-      signal: AbortSignal.timeout(8000),
+      signal: AbortSignal.timeout(deadlineMs ?? 8000),
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: process.env.CLASSIFIER_MODEL ?? 'gpt-4.1-nano',

@@ -56,7 +56,7 @@ export function generationSchema(inventoryNames: string[]) {
             .max(8),
         }),
       )
-      .max(1),
+      .max(3),
   });
 }
 const unsafeText =
