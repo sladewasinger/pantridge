@@ -15,11 +15,17 @@ import { matchesPublicEvidence } from '../standardization/public-evidence';
 
 const client = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 const table = () => process.env.PRODUCT_TABLE;
-export async function cachedProduct(key: string): Promise<Lookup | null> {
-  return cachedResult(key, lookupSchema);
+export async function cachedProduct(key: string, signal?: AbortSignal): Promise<Lookup | null> {
+  return cachedResult(key, lookupSchema, signal);
 }
-export async function cachedResult<T>(key: string, schema: z.ZodType<T>): Promise<T | null> {
-  const { Item } = await client.send(new GetCommand({ TableName: table(), Key: { pk: key } }));
+export async function cachedResult<T>(
+  key: string,
+  schema: z.ZodType<T>,
+  signal?: AbortSignal,
+): Promise<T | null> {
+  const { Item } = await client.send(new GetCommand({ TableName: table(), Key: { pk: key } }), {
+    abortSignal: signal,
+  });
   if (!Item || Number(Item.ttl) <= Date.now() / 1000) return null;
   const result = schema.safeParse(Item.result);
   return result.success ? result.data : null;

@@ -8,10 +8,10 @@ export function accessTable() {
   return process.env.ACCESS_TABLE;
 }
 export const deadline = () => ({ abortSignal: AbortSignal.timeout(2000) });
-export async function getRecord(pk: string) {
+export async function getRecord(pk: string, signal?: AbortSignal) {
   const result = await accessDb.send(
     new GetCommand({ TableName: accessTable(), Key: { pk }, ConsistentRead: true }),
-    deadline(),
+    signal ? { abortSignal: signal } : deadline(),
   );
   return result.Item;
 }
@@ -25,8 +25,9 @@ export async function countRequest(
   pk: string,
   ttl: number,
   cap?: number,
-  weight = 1,
+  options: { weight?: number; signal?: AbortSignal } = {},
 ): Promise<number> {
+  const { weight = 1, signal } = options;
   if (cap && weight > cap) throw new AccessError(429, 'Daily cloud limit reached.', 86400);
   try {
     const result = await accessDb.send(
@@ -43,7 +44,7 @@ export async function countRequest(
         ...(cap ? { ConditionExpression: 'attribute_not_exists(used) OR used <= :cap' } : {}),
         ReturnValues: 'UPDATED_NEW',
       }),
-      deadline(),
+      signal ? { abortSignal: signal } : deadline(),
     );
     const used = Number(result.Attributes?.used);
     if (!Number.isSafeInteger(used) || used < 1) throw new Error('Invalid quota counter response.');

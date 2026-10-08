@@ -11,6 +11,7 @@ import {
 import { resolveStandardization } from './resolve';
 import { claimJob, finishJob, failJob } from './worker-state';
 import { classificationBatch, classificationRequest } from '../../src/domain/standardization/batch';
+import { classificationMetric, failureOutcome } from './metrics';
 
 export async function processKitchen(owner: string): Promise<boolean> {
   assertEnabled();
@@ -19,6 +20,7 @@ export async function processKitchen(owner: string): Promise<boolean> {
   const claimed = await changeStored(owner, (data) => claimJob(data, lease, Date.now()), identity);
   const job = claimed.data.classificationJob;
   if (job?.lease !== lease) return false;
+  const started = Date.now();
   try {
     const targets = classificationBatch(classificationTargets(claimed.data));
     const response = targets.length
@@ -41,10 +43,27 @@ export async function processKitchen(owner: string): Promise<boolean> {
       (data) => finishJob(data, { lease, generation: job.generation, results }, Date.now()),
       identity,
     );
+    classificationMetric({
+      event: 'worker',
+      source: 'worker',
+      outcome: 'success',
+      queueAgeMs: started - job.firstQueuedAt,
+      durationMs: Date.now() - started,
+      retries: job.attempts,
+      results: [...results.values()],
+    });
   } catch (error) {
-    await changeStored(owner, (data) =>
+    const failed = await changeStored(owner, (data) =>
       failJob(data, { lease, generation: job.generation }, error, Date.now()),
     );
+    classificationMetric({
+      event: 'worker',
+      source: 'worker',
+      outcome: failureOutcome(error),
+      queueAgeMs: started - job.firstQueuedAt,
+      durationMs: Date.now() - started,
+      retries: failed.data.classificationJob?.attempts,
+    });
   }
   return true;
 }
@@ -68,9 +87,7 @@ async function tryKitchen(key: unknown): Promise<boolean> {
   try {
     return await processKitchen(key.slice(5));
   } catch (error) {
-    console.error('Classification worker could not process a kitchen', {
-      type: error instanceof Error ? error.name : 'Unknown',
-    });
+    classificationMetric({ event: 'worker', source: 'worker', outcome: failureOutcome(error) });
     if (error instanceof AccessError && [401, 403].includes(error.status))
       await changeStored(key.slice(5), (data) =>
         data.classificationJob

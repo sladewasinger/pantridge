@@ -4,10 +4,20 @@ import { localTesting } from '../../local-testing';
 import { useAction } from '../../ui/useAction';
 import { batchSize } from '../../domain/standardization/model';
 import { classificationStatusCopy } from './status-copy';
+import { recognitionReviews } from '../../domain/standardization/review';
+import { RecognitionReviews } from './RecognitionReviews';
+import { useSyncStatus } from '../../data/useSyncStatus';
+import type { ClassificationJob } from '../../domain/standardization/job';
+
+function processBlocked(job: ClassificationJob | undefined, pending: number, offline: boolean) {
+  return !localTesting && (pending > 0 || job?.state === 'processing' || offline);
+}
 
 export function ClassificationStatus() {
   const { data, pending } = useKitchen();
   const targets = classificationTargets(data);
+  const reviews = recognitionReviews(data);
+  const sync = useSyncStatus();
   const job = data.classificationJob;
   const { run, error, busy } = useAction();
   const local = getAccount() === 'local' && !localTesting;
@@ -16,6 +26,7 @@ export function ClassificationStatus() {
       <details>
         <summary>
           Food recognition{targets.length > 0 ? ` · ${targets.length} awaiting recognition` : ''}
+          {reviews.length > 0 ? ` · ${reviews.length} need review` : ''}
         </summary>
         <p className="muted">
           Known foods match recipes on this device. Unfamiliar names use AI after syncing; amounts
@@ -26,8 +37,16 @@ export function ClassificationStatus() {
         ) : (
           <>
             <p role="status">
-              {classificationStatusCopy(job, pending.length, targets.length, { localTesting })}
+              {classificationStatusCopy(job, pending.length, targets.length, {
+                localTesting,
+                reviews: reviews.length,
+              })}
             </p>
+            {sync.status === 'offline' && (
+              <p className="muted">
+                Offline. Synced jobs continue; reconnect to see their results.
+              </p>
+            )}
             {targets.length > 0 && (
               <ul>
                 {targets.slice(0, 10).map((target) => (
@@ -39,7 +58,7 @@ export function ClassificationStatus() {
             {(job || localTesting) && targets.length > 0 && (
               <button
                 className="secondary"
-                disabled={busy}
+                disabled={busy || processBlocked(job, pending.length, sync.status === 'offline')}
                 onClick={() =>
                   void run(async () => {
                     if (localTesting) await (await import('./local-client')).classifyLocalBatch();
@@ -52,6 +71,7 @@ export function ClassificationStatus() {
             )}
           </>
         )}
+        <RecognitionReviews key={getAccount()} reviews={reviews} />
         {error && (
           <p role="alert" className="error">
             {error}

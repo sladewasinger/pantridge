@@ -52,10 +52,10 @@ test('real transactions preserve idempotency, account isolation, queued work and
     expect(after.calls).toBe(before.calls + 1);
     const { standardization: _saved, ...fresh } = recognized;
     const added = await alice.mutate({ type: 'food.save', food: { ...fresh, id: secondId } });
-    expect(added.data.foods.find((item) => item.id === secondId)?.standardization).toBeUndefined();
-    expect(added.data.classificationJob).toBeDefined();
-    await alice.mutate({ type: 'classification.retry' });
-    await alice.post('dev/tick', {});
+    expect(added.data.foods.find((item) => item.id === secondId)?.standardization?.identity).toBe(
+      'brown-rice',
+    );
+    expect(added.data.classificationJob).toBeUndefined();
     expect(
       (await alice.read()).data.foods.find((item) => item.id === secondId)?.standardization
         ?.identity,

@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import { resolve, dirname } from 'node:path';
+import { buildMarker } from './scripts/deployment/build-marker';
 
 export default defineConfig(({ command }) => {
   const full = process.env.PANTRIDGE_FULL === 'true';
@@ -48,6 +49,7 @@ export default defineConfig(({ command }) => {
           ]
         : []),
       react(),
+      buildMarker(),
       VitePWA({
         registerType: 'prompt',
         includeAssets: ['icon.svg', 'apple-touch-icon.png'],

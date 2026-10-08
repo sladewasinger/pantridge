@@ -44,6 +44,35 @@ due or near-due active jobs refresh through normal sync every thirty seconds, su
 offline and retry guards. Once recognition finishes, cloud polling returns to the five-minute idle
 cadence. Failed, paused and distant retry jobs do not trigger the faster cadence.
 
+Freshly synced unfamiliar items also receive a bounded persisted-cache lookup before waiting for
+the worker: at most 25 eligible targets and 750 ms per mutation. A hit can be returned with that
+mutation's snapshot. A miss or lookup failure retains the saved edit and normal durable schedule;
+this path invokes no provider and publishes no catalog entries. Existing local identities and
+saved annotations remain available immediately offline.
+
+## Clarifying recognition
+
+Settings → Food recognition separates queued work from items needing a decision. Unknown,
+uncertain, composite, nonfood and taxonomy-gap results, plus known identities with unknown
+preparation, can be reviewed individually. Choose an existing identity and its preparation, or
+keep the exact name as a custom identity. The exact-name choice does not turn a composite into
+one of its ingredients or establish confirmed recipe compatibility. No new registry entry is
+created automatically, and leaving an item for later remains available.
+
+Saving uses the additive `classification.review` mutation and the signature captured when the
+form opened. Both the local and server reducer reject changed evidence, descriptors, package or
+measurement metadata; an account change also prevents submission. Names, barcode/brand,
+package sizes, stock quantities and dates, nutrition and unrelated recipe edits are preserved.
+The chosen descriptor becomes authoritative over late AI results and works offline through the
+ordinary IndexedDB/outbox flow. It is private to the kitchen and is not published to the shared
+catalog or used as a cross-account alias.
+
+Changing a package's identity/preparation clears its reviewed recipe amount and basis. Changing
+a generic food clears those measurements only on lots inheriting its classification; lots with
+their own manual descriptor retain both their classification and measurements. Recipe reviews
+do not modify stock. Users still review applicable amounts and dietary safety separately.
+See the [API command contract](api.md#recognition-clarification) for stale-write behavior.
+
 ## Shared catalog and its limits
 
 Private names, recipe notes and user corrections are cached under verified account ownership.
@@ -88,6 +117,12 @@ approved develop→main flow, then explicitly enable the flag/schedule through a
 The application deployment role cannot administer infrastructure. Verify a real signed-in disposable
 kitchen, app-closed processing and cross-device synchronization before considering rollout verified.
 Existing kitchens are enrolled on their next server read or edit, not via a bulk scan.
+
+The immediate-cache path additionally requires `dynamodb:ConditionCheckItem` on the access table
+for the API role, to check account/identity status in the annotation transaction. Apply this narrow
+permission manually before the application release. DynamoDB Local and mocked tests cannot prove
+live IAM access. The publication fix separately requires distribution-scoped
+`cloudfront:GetInvalidation` for the deployment role; see [deployment ordering](github-deployment.md#service-worker-publication).
 
 ## Shared identities
 
