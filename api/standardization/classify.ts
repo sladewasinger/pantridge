@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { requestStructured } from '../products/ai';
 import { ProductError } from '../products/errors';
 import { standardizationReasoning } from './config';
+import { classificationMetric, failureOutcome } from './metrics';
 import registry from '../../src/domain/ingredient-matching/registry.json' with { type: 'json' };
 import {
   batchSize,
@@ -42,8 +43,7 @@ export const classificationOutputSchema = (limit: number) =>
       )
       .max(limit),
   });
-export async function classifyBatch(owner: string, evidence: Evidence[]) {
-  const items = z.array(evidenceSchema).min(1).max(batchSize).parse(evidence);
+async function classify(owner: string, items: Evidence[]) {
   const outputSchema = classificationOutputSchema(batchSize);
   const output = await requestStructured(owner, {
     name: 'ingredient_standardization_v1',
@@ -67,4 +67,27 @@ export async function classifyBatch(owner: string, evidence: Evidence[]) {
   )
     throw new ProductError(502, 'Classification was inconsistent. It will be retried.');
   return results.map((item) => resultSchema.parse(item.result));
+}
+export async function classifyBatch(owner: string, evidence: Evidence[]) {
+  const items = z.array(evidenceSchema).min(1).max(batchSize).parse(evidence);
+  const started = Date.now();
+  try {
+    const results = await classify(owner, items);
+    classificationMetric({
+      event: 'provider',
+      source: 'provider',
+      outcome: 'success',
+      durationMs: Date.now() - started,
+      results,
+    });
+    return results;
+  } catch (error) {
+    classificationMetric({
+      event: 'provider',
+      source: 'provider',
+      outcome: failureOutcome(error),
+      durationMs: Date.now() - started,
+    });
+    throw error;
+  }
 }

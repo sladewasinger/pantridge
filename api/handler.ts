@@ -91,7 +91,7 @@ function failure(error: unknown, requestId: string): APIGatewayProxyStructuredRe
     return response(400, { message: 'This change is invalid. Update the app and try again.' });
   if (
     error instanceof Error &&
-    /quantity changed|storage is full|500-item limit|do not match|already exists|no longer exists|Cooking history is full|Review.*again|reviewed package/.test(
+    /quantity changed|storage is full|500-item limit|do not match|already exists|no longer exists|Cooking history is full|Review.*again|reviewed package|Food recognition changed/.test(
       error.message,
     )
   )

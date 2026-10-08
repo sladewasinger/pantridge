@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { run } from './run.mjs';
 import { deploymentConfig } from './deployment-config.mjs';
+import { publishWeb } from './deployment/publish.mjs';
 
 // Infrastructure is applied separately with a reviewable Terraform plan.
 // This command publishes assets only to the bucket named by that state.
@@ -19,7 +20,10 @@ const identity = JSON.parse(
 if (!output.aws_account_id?.value || identity.Account !== output.aws_account_id.value)
   throw new Error('AWS CLI account does not match the Terraform deployment account.');
 if (!process.argv.includes('--built')) run(process.execPath, ['scripts/build-release.mjs']);
-await readFile('dist/index.html');
+const html = await readFile('dist/index.html', 'utf8');
+if (!html.includes('name="pantridge-build"'))
+  throw new Error('Rebuild the application before publishing: the HTML build marker is missing.');
+await readFile('dist/sw.js');
 if (process.argv.includes('--api')) {
   for (const [name, bundle] of Object.entries(output.application_functions.value)) {
     run('aws', [
@@ -37,48 +41,5 @@ if (process.argv.includes('--api')) {
     run('aws', ['lambda', 'wait', 'function-updated', '--function-name', name]);
   }
 }
-// Keep old hashed assets available to already-open clients during an update.
-run('aws', [
-  's3',
-  'sync',
-  'dist/assets',
-  `s3://${bucket}/assets`,
-  '--cache-control',
-  'public,max-age=31536000,immutable',
-]);
-run('aws', [
-  's3',
-  'sync',
-  'dist',
-  `s3://${bucket}`,
-  '--exclude',
-  'assets/*',
-  '--exclude',
-  'api/*',
-  '--exclude',
-  '*.map',
-  '--exclude',
-  'index.html',
-  '--cache-control',
-  'no-cache',
-]);
-// Publish the entry point last, after all its assets are in place.
-run('aws', [
-  's3',
-  'cp',
-  'dist/index.html',
-  `s3://${bucket}/index.html`,
-  '--cache-control',
-  'no-cache',
-  '--content-type',
-  'text/html',
-]);
-run('aws', [
-  'cloudfront',
-  'create-invalidation',
-  '--distribution-id',
-  distribution,
-  '--paths',
-  '/*',
-]);
+publishWeb({ bucket, distribution });
 console.log(`Published ${output.app_url.value}`);
