@@ -1,16 +1,16 @@
 import type { getRecipeAvailability } from '../../domain/recipes/availability';
 import { getSubstitutions } from '../../domain/recipes/substitutions';
-import { amountLabel, dateLabel } from './presentation';
+import { amountLabel, summaryAmountLabel, dateLabel } from './presentation';
 import type { Snapshot } from '../../domain/model';
 import { recipeIdentity } from '../../domain/ingredient-matching/classification';
 
 type IngredientMatch = ReturnType<typeof getRecipeAvailability>['ingredients'][number];
 function matchCopy(match: IngredientMatch): string {
   if (match.status === 'confirmed')
-    return `${amountLabel(match.available ?? 0, match.ingredient.unit)} on hand`;
+    return `${summaryAmountLabel(match.available ?? 0, match.ingredient.unit)} on hand`;
   if (match.status === 'needs-review') return 'On hand · review preparation and amount';
   if (match.missing !== undefined)
-    return `Need ${amountLabel(match.missing, match.ingredient.unit)}${(match.available ?? 0) > 0 ? ' more' : ''}`;
+    return `Need ${summaryAmountLabel(match.missing, match.ingredient.unit)}${(match.available ?? 0) > 0 ? ' more' : ''}`;
   return 'Not confirmed in your kitchen';
 }
 export function RecipeIngredients({
