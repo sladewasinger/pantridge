@@ -8,6 +8,7 @@ import { addScannedStock } from './products/scan-command';
 import { moveShopping, restoreShopping } from './shopping-commands';
 import { saveNutrition } from './products/nutrition-command';
 import { classifyStock, measureStock } from './ingredient-matching/stock-commands';
+import { reviewClassification } from './standardization/review-command';
 
 function replace<T extends { id: string }>(list: T[], value: T): T[] {
   return list.some((item) => item.id === value.id)
@@ -40,6 +41,8 @@ function putAway(
 
 export function applyCommand(data: Snapshot, command: Command): Snapshot {
   switch (command.type) {
+    case 'classification.review':
+      return reviewClassification(data, command);
     case 'classification.retry':
       return data.classificationJob
         ? {

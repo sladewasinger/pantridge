@@ -13,6 +13,8 @@ import {
   changeStored,
 } from './kitchen-storage';
 import { scheduleClassification } from './standardization/schedule';
+import { reuseClassificationCache } from './standardization/sync-cache';
+import { classificationMetric } from './standardization/metrics';
 
 export async function read(owner: string): Promise<Envelope> {
   const current = await readStored(owner);
@@ -75,7 +77,14 @@ export async function mutate(owner: string, mutation: Mutation): Promise<Envelop
           ],
         }),
       );
-      return next;
+      if (mutation.command.type === 'classification.review')
+        classificationMetric({
+          event: 'review',
+          source: 'sync',
+          outcome: 'success',
+          clarifications: 1,
+        });
+      return reuseClassificationCache(owner, current.data, next).catch(() => next);
     } catch (error) {
       if (!(error instanceof Error) || error.name !== 'TransactionCanceledException') throw error;
     }

@@ -31,6 +31,14 @@ normal idempotent kitchen mutation requesting immediate queue eligibility. Snaps
 New food additions above 500 are rejected; pre-existing larger kitchens can be edited or reduced.
 See [architecture, privacy and manual rollout](cookbook-matching.md#ai-standardization-architecture).
 
+After committing a mutation, the API may reuse persisted classifications for up to 25 newly
+eligible targets, within the same request's 750 ms enrichment budget. This path never calls AI
+or publishes catalog entries. It rechecks public evidence, current target fingerprints and active
+account/identity records, then commits using the latest kitchen revision. Cache misses, conflicts,
+timeouts or storage failures leave the already-saved edit and durable queue intact. A reused result
+can therefore appear in the mutation response before the ten-minute classification delay; local
+and already-saved identities still resolve without any request.
+
 ## Apply a change
 
 `POST /v1/mutations` accepts one mutation and returns the latest `{ revision, data }` envelope:
@@ -50,28 +58,52 @@ Generate the mutation UUID once and persist it before sending. Retries must reus
 
 Snapshots reject duplicate IDs and missing food references. `food.restore` accepts a food identity only when its ID is absent; deletion Undo follows it with separate `stock.add` mutations in one local transaction, keeping each API request below the body limit. Put-away validates linked identity and units as well as quantity, then saves placement, stock and shopping removal in one server transaction.
 
-| Command              | Purpose                                                          |
-| -------------------- | ---------------------------------------------------------------- |
-| `food.save`          | Create/update a generic food identity and its shelf/location     |
-| `food.remove`        | Delete food and stock, preserving linked groceries as standalone |
-| `kitchen.initialize` | Initialize starter food once; never refill a cleared kitchen     |
-| `stock.add`          | Add a quantity lot with an optional ISO calendar expiration date |
-| `stock.remove`       | Remove one lot by stockId, retaining food and shopping identity  |
-| `stock.adjust`       | Increment/decrement a lot, clamped to 0–9,999                    |
-| `stock.date`         | Set or clear a lot’s expiration                                  |
-| `stock.classify`     | Review a lot's local ingredient identity, preparation and basis  |
-| `stock.recipeAmount` | Save/clear a measured usable recipe amount per package           |
-| `shopping.save`      | Add/update a linked or one-time shopping entry                   |
-| `shopping.move`      | Move an entry before another ID, or to its group's end           |
-| `shopping.purchase`  | Mark/unmark purchased without changing inventory                 |
-| `shopping.remove`    | Remove an entry or finish a purchase without inventory tracking  |
-| `shopping.putAway`   | Consume a purchased entry and add its stock exactly once         |
+| Command                 | Purpose                                                           |
+| ----------------------- | ----------------------------------------------------------------- |
+| `food.save`             | Create/update a generic food identity and its shelf/location      |
+| `food.remove`           | Delete food and stock, preserving linked groceries as standalone  |
+| `kitchen.initialize`    | Initialize starter food once; never refill a cleared kitchen      |
+| `classification.review` | Save a stale-checked manual food, package or recipe clarification |
+| `stock.add`             | Add a quantity lot with an optional ISO calendar expiration date  |
+| `stock.remove`          | Remove one lot by stockId, retaining food and shopping identity   |
+| `stock.adjust`          | Increment/decrement a lot, clamped to 0–9,999                     |
+| `stock.date`            | Set or clear a lot’s expiration                                   |
+| `stock.classify`        | Review a lot's local ingredient identity, preparation and basis   |
+| `stock.recipeAmount`    | Save/clear a measured usable recipe amount per package            |
+| `shopping.save`         | Add/update a linked or one-time shopping entry                    |
+| `shopping.move`         | Move an entry before another ID, or to its group's end            |
+| `shopping.purchase`     | Mark/unmark purchased without changing inventory                  |
+| `shopping.remove`       | Remove an entry or finish a purchase without inventory tracking   |
+| `shopping.putAway`      | Consume a purchased entry and add its stock exactly once          |
 
 Counts are integers. Units are explicit, and package details are descriptive rather than automatic conversions. Dates use `YYYY-MM-DD`. Request bodies are capped at 16 KB; array and snapshot bounds are validated on the server.
 
 Shopping order is the snapshot's array order; the UI groups unchecked entries before checked ones. `shopping.move` accepts `itemId` and nullable `beforeId`. A null anchor moves to the end; a non-null anchor must exist in the same purchased state. Missing entries, missing anchors, and self-moves are no-ops, so replay cannot resurrect removed items or overwrite quantities. Unrelated concurrent additions survive. Existing-entry `shopping.save` preserves its position. Mutation IDs and the transactional outbox follow the same retry rules as other changes. The API must support this additive command before the updated frontend is published.
 
 Invalid input returns 400, unauthenticated requests 401, conflicting state/capacity 409, oversize requests 413, and transient storage errors 503. Preserve the outbox on any failure. A 409 requires reviewing the conflicting edit; repeating an identical invalid edit does not fix it.
+
+### Recognition clarification
+
+The additive `classification.review` command accepts `key`, `expected` and `ingredient`.
+Keys are `food:<foodId>`, `stock:<stockId>` or `recipe:<recipeId>:<ingredientId>`; `expected`
+is the 64-character signature returned by the shared `recognitionReviews` selector when the
+review opens. `ingredient` uses the existing identity/preparation/amount-basis descriptor.
+The reducer recomputes the review and signature before saving. Changed names, recognition
+results, manual descriptors, package metadata, relevant measured amounts, removed targets or
+changed recipe quantities reject stale reviews with 409. Unrelated recipe edits and current
+stock quantities/dates are preserved.
+
+The command sets a manual descriptor without rewriting the original food/product/recipe name,
+barcode, brand, quantity, package size or nutrition. A package review clears only that package's
+`ingredientSize` and `ingredientSizeBasis`; a generic-food review clears these derived measurements
+only on linked lots without their own manual descriptor. Independently classified lots retain
+their measurements. Recipe reviews leave stock unchanged. Measurements affected by the new
+identity/preparation must be reviewed again; the command does not invent conversions.
+
+Clarifications commit through IndexedDB and the ordinary persistent outbox, so they work offline
+and retain their mutation ID during retries. Manual descriptors take precedence over late AI/cache
+results. Saving one does not publish a shared alias or catalog correction. The API must support this
+command before publishing the updated frontend; existing v1 commands and snapshots remain valid.
 
 ## Future purchase import
 

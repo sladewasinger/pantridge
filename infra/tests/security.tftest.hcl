@@ -67,8 +67,12 @@ run "github_deploy_is_main_only" {
     error_message = "Only the selected repository's main branch may deploy."
   }
   assert {
-    condition     = alltrue([for statement in jsondecode(aws_iam_role_policy.github_deploy[0].policy).Statement : alltrue([for action in statement.Action : contains(["s3:ListBucket", "s3:GetObject", "s3:PutObject", "cloudfront:CreateInvalidation", "lambda:UpdateFunctionCode", "lambda:GetFunctionConfiguration"], action)])])
+    condition     = alltrue([for statement in jsondecode(aws_iam_role_policy.github_deploy[0].policy).Statement : alltrue([for action in statement.Action : contains(["s3:ListBucket", "s3:GetObject", "s3:PutObject", "cloudfront:CreateInvalidation", "cloudfront:GetInvalidation", "lambda:UpdateFunctionCode", "lambda:GetFunctionConfiguration"], action)])])
     error_message = "Deployment must only publish application code, without infrastructure or data permissions."
+  }
+  assert {
+    condition     = length([for statement in jsondecode(aws_iam_role_policy.github_deploy[0].policy).Statement : statement if contains(statement.Action, "cloudfront:GetInvalidation") && contains(statement.Action, "cloudfront:CreateInvalidation") && statement.Resource == aws_cloudfront_distribution.web.arn]) == 1
+    error_message = "Publication may wait for invalidation only on the application distribution."
   }
 }
 run "google_accounts_are_verified" {
@@ -205,6 +209,10 @@ run "bounded_cloud_access" {
   assert {
     condition     = jsondecode(aws_iam_role_policy.access.policy).Statement[0].Resource == aws_dynamodb_table.access.arn && contains(aws_apigatewayv2_api.api.cors_configuration[0].expose_headers, "retry-after")
     error_message = "Keep access policy scoped and allow clients to honor cooldowns."
+  }
+  assert {
+    condition     = length([for statement in jsondecode(aws_iam_role_policy.access.policy).Statement : statement if contains(statement.Action, "dynamodb:ConditionCheckItem") && statement.Resource == aws_dynamodb_table.access.arn]) == 1
+    error_message = "Immediate cache reuse must atomically check active account and identity records on the access table."
   }
 }
 run "configurable_capacity_and_emergency_pause" {

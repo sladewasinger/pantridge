@@ -25,9 +25,10 @@ export function kitchenTable(): string {
   return name;
 }
 export const kitchenKey = (owner: string, sk = 'kitchen') => ({ pk: `user#${owner}`, sk });
-export async function readStored(owner: string): Promise<Envelope> {
+export async function readStored(owner: string, signal?: AbortSignal): Promise<Envelope> {
   const { Item } = await kitchenDb.send(
     new GetCommand({ TableName: kitchenTable(), Key: kitchenKey(owner), ConsistentRead: true }),
+    { abortSignal: signal },
   );
   return Item ? envelopeSchema.parse(Item) : { revision: 0, data: emptySnapshot() };
 }
@@ -44,15 +45,17 @@ export async function changeStored(
   owner: string,
   change: (data: Snapshot) => Snapshot,
   identity?: string,
+  options: { signal?: AbortSignal; attempts?: number } = {},
 ): Promise<Envelope> {
-  for (let attempt = 0; attempt < 5; attempt++) {
-    const current = await readStored(owner);
+  for (let attempt = 0; attempt < (options.attempts ?? 5); attempt++) {
+    options.signal?.throwIfAborted();
+    const current = await readStored(owner, options.signal);
     const changed = change(current.data);
     if (changed === current.data) return current;
     const next = { revision: current.revision + 1, data: snapshotSchema.parse(changed) };
     if (Buffer.byteLength(JSON.stringify(next.data)) > 280_000)
       throw new Error('Kitchen storage is full.');
-    await reserveWriteBudget(next);
+    await reserveWriteBudget(next, options.signal);
     try {
       const put = kitchenPut(owner, current, next);
       if (identity)
@@ -60,8 +63,9 @@ export async function changeStored(
           new TransactWriteCommand({
             TransactItems: [{ Put: put }, ...activeAccountChecks(owner, identity)],
           }),
+          { abortSignal: options.signal },
         );
-      else await kitchenDb.send(new PutCommand(put));
+      else await kitchenDb.send(new PutCommand(put), { abortSignal: options.signal });
       return next;
     } catch (error) {
       if (

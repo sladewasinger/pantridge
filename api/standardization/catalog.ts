@@ -21,8 +21,9 @@ const publicEvidenceSchema = z.object({
   source: z.literal('openfoodfacts'),
   evidence: evidenceSchema,
 });
-export async function catalogEvidence(barcode: string) {
-  return (await cachedResult(`catalog-evidence#${barcode}`, publicEvidenceSchema))?.evidence;
+export async function catalogEvidence(barcode: string, signal?: AbortSignal) {
+  return (await cachedResult(`catalog-evidence#${barcode}`, publicEvidenceSchema, signal))
+    ?.evidence;
 }
 export const catalogNameKey = (name: string) =>
   createHash('sha256')
