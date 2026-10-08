@@ -29,7 +29,7 @@ Both kinds require `STANDARDIZATION_ENABLED=true` in production. `classification
 normal idempotent kitchen mutation requesting immediate queue eligibility. Snapshot
 `classificationJob` and food/lot/recipe `standardization` fields are optional for v1 compatibility.
 New food additions above 500 are rejected; pre-existing larger kitchens can be edited or reduced.
-See [architecture, privacy and manual rollout](cookbook-matching.md#ai-standardization-architecture-prepared-not-deployed).
+See [architecture, privacy and manual rollout](cookbook-matching.md#ai-standardization-architecture).
 
 ## Apply a change
 
