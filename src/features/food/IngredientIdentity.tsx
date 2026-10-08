@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import type { SavedStandardization } from '../../domain/standardization/model';
+import { ResultNote } from '../standardization/ResultNote';
 import {
   ingredientRegistry,
   ingredientLabel,
@@ -32,12 +34,14 @@ export function IngredientIdentity({
   onChange,
   disabled = false,
   inferred,
+  standardization,
 }: {
   name: string;
   value?: Identity;
   onChange: (value: Identity | undefined) => void;
   disabled?: boolean;
   inferred?: Identity | null;
+  standardization?: SavedStandardization;
 }) {
   const [open, setOpen] = useState(false);
   const automatic = automaticIdentity(name, inferred);
@@ -54,6 +58,7 @@ export function IngredientIdentity({
       <summary>Recipe matching</summary>
       {open && (
         <>
+          <ResultNote result={standardization} manual={Boolean(value)} />
           <label>
             Ingredient identity
             <select

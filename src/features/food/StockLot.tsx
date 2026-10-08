@@ -5,6 +5,7 @@ import { units } from '../../domain/selectors';
 import { IngredientIdentity } from './IngredientIdentity';
 import { stockIdentity } from '../../domain/ingredient-matching/classification';
 import { StockRecipeAmount } from './StockRecipeAmount';
+import { currentStandardization, stockEvidence } from '../../domain/standardization/evidence';
 
 export function StockLot({
   stock,
@@ -74,6 +75,10 @@ export function StockLot({
           name={food.name}
           inferred={stockIdentity(food, stock) ?? null}
           value={stock.ingredient}
+          standardization={currentStandardization(
+            stock.standardization,
+            stockEvidence(food, stock),
+          )}
           disabled={busy}
           onChange={(ingredient) =>
             onChange({ type: 'stock.classify', stockId: stock.id, ingredient: ingredient ?? null })

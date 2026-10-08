@@ -3,6 +3,7 @@ import type { RecipeUnit } from '../../domain/recipes/model';
 import { emptyIngredient, type IngredientDraft } from './editorState';
 import { IngredientIdentity } from '../food/IngredientIdentity';
 import { recipeIdentity } from '../../domain/ingredient-matching/classification';
+import { currentStandardization, recipeEvidence } from '../../domain/standardization/evidence';
 
 const units: RecipeUnit[] = [
   'count',
@@ -47,6 +48,10 @@ export function IngredientEditor({
           <IngredientIdentity
             name={item.name}
             value={item.ingredient}
+            standardization={currentStandardization(
+              item.standardization,
+              recipeEvidence({ ...item, quantity: Number(item.quantity) }),
+            )}
             inferred={recipeIdentity({ ...item, quantity: Number(item.quantity) })}
             onChange={(ingredient) => update(item.id, { ingredient })}
           />

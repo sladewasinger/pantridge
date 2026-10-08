@@ -5,7 +5,7 @@ import { takeQuota } from './cache';
 
 const ssm = new SSMClient({ maxAttempts: 1 });
 let credential: { value: string; until: number } | undefined;
-async function apiKey(): Promise<string> {
+export async function apiKey(): Promise<string> {
   if (credential && credential.until > Date.now()) return credential.value;
   const { Parameter } = await ssm.send(
     new GetParameterCommand({

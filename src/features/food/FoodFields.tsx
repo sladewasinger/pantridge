@@ -6,6 +6,8 @@ import type { ReactNode } from 'react';
 import { isSupply, normalizeSupply } from '../../domain/supplies';
 import { storagePlace } from '../../domain/selectors';
 import { IngredientIdentity } from './IngredientIdentity';
+import { foodIdentity } from '../../domain/ingredient-matching/classification';
+import { currentStandardization, foodEvidence } from '../../domain/standardization/evidence';
 export function FoodFields({
   food,
   onChange,
@@ -54,6 +56,8 @@ export function FoodFields({
         <IngredientIdentity
           name={food.name}
           value={food.ingredient}
+          inferred={foodIdentity(food)}
+          standardization={currentStandardization(food.standardization, foodEvidence(food))}
           onChange={(ingredient) => patch({ ingredient })}
         />
       )}

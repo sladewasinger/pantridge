@@ -28,10 +28,30 @@ mock_provider "aws" {
     defaults = { execution_arn = "arn:aws:execute-api:us-west-2:123456789012:example", api_endpoint = "https://example.execute-api.us-west-2.amazonaws.com" }
   }
   mock_resource "aws_cloudwatch_log_group" {
+    override_during = plan
     defaults = { arn = "arn:aws:logs:us-west-2:123456789012:log-group:/aws/lambda/pantridge-test-api" }
   }
 }
 mock_provider "aws" { alias = "edge" }
+run "classification_is_manual_and_scoped" {
+  command = plan
+  assert {
+    condition     = aws_cloudwatch_event_rule.classification.state == "DISABLED" && aws_lambda_function.api.environment[0].variables.STANDARDIZATION_ENABLED == "false"
+    error_message = "Background classification must wait for the owner's manual infrastructure rollout."
+  }
+  assert {
+    condition     = aws_lambda_function.classification.timeout == 25 && aws_cloudwatch_event_rule.classification.schedule_expression == "rate(1 minute)"
+    error_message = "Classification must use bounded invocations without increasing the API timeout."
+  }
+  assert {
+    condition     = alltrue([for statement in jsondecode(aws_iam_role_policy.classification.policy).Statement : alltrue([for action in statement.Action : !startswith(action, "iam:") && !startswith(action, "lambda:") && !endswith(action, "*")])])
+    error_message = "The classification worker may not administer infrastructure."
+  }
+  assert {
+    condition     = length([for index in aws_dynamodb_table.kitchen.global_secondary_index : index.name if index.name == "classification-due" && index.projection_type == "KEYS_ONLY"]) == 1
+    error_message = "Due-job lookup must use the bounded sparse index without copying kitchen contents."
+  }
+}
 run "github_deploy_is_main_only" {
   command = plan
   variables {
@@ -136,7 +156,7 @@ run "scanner_is_authenticated_and_ai_is_opt_in" {
     error_message = "Barcode lookup must require authentication, with paid AI disabled by default."
   }
   assert {
-    condition     = aws_dynamodb_table.products.ttl[0].enabled && length(jsondecode(aws_iam_role_policy.products.policy).Statement) == 1
+    condition     = aws_dynamodb_table.products.ttl[0].enabled && alltrue([for statement in jsondecode(aws_iam_role_policy.products.policy).Statement : !contains(statement.Action, "ssm:GetParameter")])
     error_message = "Cache must expire and rules-only mode must not have secret access."
   }
 }
@@ -144,7 +164,7 @@ run "classifier_key_access_is_narrow" {
   command = plan
   variables { classifier_provider = "openai" }
   assert {
-    condition     = jsondecode(aws_iam_role_policy.products.policy).Statement[1].Action == ["ssm:GetParameter"] && endswith(jsondecode(aws_iam_role_policy.products.policy).Statement[1].Resource, ":parameter/pantridge-personal/classifier/api-key")
+    condition     = length([for statement in jsondecode(aws_iam_role_policy.products.policy).Statement : statement if contains(statement.Action, "ssm:GetParameter")]) == 1 && alltrue([for statement in jsondecode(aws_iam_role_policy.products.policy).Statement : endswith(statement.Resource, ":parameter/pantridge-personal/classifier/api-key") if contains(statement.Action, "ssm:GetParameter")])
     error_message = "AI may read only its dedicated provider key, never a wildcard parameter path."
   }
 }
@@ -202,4 +222,3 @@ run "reject_invalid_limits" {
   }
   expect_failures = [var.max_users, var.access_limits]
 }
-

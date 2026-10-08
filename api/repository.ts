@@ -1,32 +1,32 @@
-import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocumentClient, GetCommand, TransactWriteCommand } from '@aws-sdk/lib-dynamodb';
-import { emptySnapshot, envelopeSchema, type Envelope } from '../src/domain/model';
+import { GetCommand, TransactWriteCommand } from '@aws-sdk/lib-dynamodb';
+import type { Envelope } from '../src/domain/model';
 import type { Mutation } from '../src/domain/commands';
 import { reduceChecked } from '../src/domain/reducer';
 import { starterMutationId } from '../src/domain/starter';
 import { reserveWriteBudget } from './access/write-budget';
+import {
+  kitchenDb as client,
+  kitchenKey as key,
+  kitchenTable as table,
+  kitchenPut,
+  readStored,
+  changeStored,
+} from './kitchen-storage';
+import { scheduleClassification } from './standardization/schedule';
 
-const client = DynamoDBDocumentClient.from(new DynamoDBClient({}), {
-  marshallOptions: { removeUndefinedValues: true },
-});
-function table(): string {
-  const name = process.env.TABLE_NAME;
-  if (!name) throw new Error('Table configuration is missing.');
-  return name;
-}
-const key = (owner: string, sk = 'kitchen') => ({ pk: `user#${owner}`, sk });
-async function readStored(owner: string): Promise<Envelope> {
-  const response = await client.send(
-    new GetCommand({ TableName: table(), Key: key(owner), ConsistentRead: true }),
-  );
-  return response.Item
-    ? envelopeSchema.parse(response.Item)
-    : { revision: 0, data: emptySnapshot() };
-}
 export async function read(owner: string): Promise<Envelope> {
   const current = await readStored(owner);
+  if (
+    current.data.starterVersion &&
+    JSON.stringify(scheduleClassification(current.data, current.data, Date.now())) ===
+      JSON.stringify(current.data)
+  )
+    return current;
   return current.data.starterVersion
-    ? current
+    ? changeStored(owner, (data) => {
+        const scheduled = scheduleClassification(data, data, Date.now());
+        return JSON.stringify(scheduled) === JSON.stringify(data) ? data : scheduled;
+      })
     : mutate(owner, {
         id: starterMutationId,
         command: { type: 'kitchen.initialize' },
@@ -48,7 +48,11 @@ export async function mutate(owner: string, mutation: Mutation): Promise<Envelop
     const current = await readStored(owner);
     const next = {
       revision: current.revision + 1,
-      data: reduceChecked(current.data, mutation.command),
+      data: scheduleClassification(
+        current.data,
+        reduceChecked(current.data, mutation.command),
+        Date.now(),
+      ),
     };
     try {
       await reserveWriteBudget(next);
@@ -56,15 +60,7 @@ export async function mutate(owner: string, mutation: Mutation): Promise<Envelop
         new TransactWriteCommand({
           TransactItems: [
             {
-              Put: {
-                TableName: table(),
-                Item: { ...key(owner), ...next },
-                ConditionExpression:
-                  current.revision === 0 ? 'attribute_not_exists(pk)' : 'revision = :previous',
-                ...(current.revision
-                  ? { ExpressionAttributeValues: { ':previous': current.revision } }
-                  : {}),
-              },
+              Put: kitchenPut(owner, current, next),
             },
             {
               Put: {

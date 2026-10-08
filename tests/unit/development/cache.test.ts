@@ -33,3 +33,15 @@ it('validates cached results and ignores expired entries', async () => {
   await cacheResult('expired', { title: 'Old' }, -1);
   expect(await cachedResult('expired', schema)).toBeNull();
 });
+it('allows an explicit bounded local experiment allowance without resetting accumulated usage', async () => {
+  await Promise.all(Array.from({ length: 50 }, () => takeQuota('ai-user#local-development', 20)));
+  await expect(takeQuota('ai-user#local-development', 20)).rejects.toMatchObject({ status: 429 });
+  vi.stubEnv('LOCAL_AI_DAILY_LIMIT', '1000');
+  const extra = await Promise.allSettled(
+    Array.from({ length: 55 }, () => takeQuota('ai-user#local-development', 20)),
+  );
+  expect(extra.filter((result) => result.status === 'fulfilled')).toHaveLength(50);
+  await expect(takeQuota('ai-user#local-development', 20)).rejects.toMatchObject({ status: 429 });
+  await takeQuota('other-owner', 1);
+  await expect(takeQuota('other-owner', 1)).rejects.toMatchObject({ status: 429 });
+});

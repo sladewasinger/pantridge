@@ -22,8 +22,9 @@
   },
   "application_functions": {
     "value": {
+      "pantridge-personal-api": "artifacts/api.zip",
       "pantridge-personal-auth-guard": "artifacts/auth.zip",
-      "pantridge-personal-api": "artifacts/api.zip"
+      "pantridge-personal-classification": "artifacts/classification.zip"
     }
   }
 }
