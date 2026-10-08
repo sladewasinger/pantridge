@@ -1,15 +1,18 @@
 import { createHash, randomUUID } from 'node:crypto';
-import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, writeFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { z } from 'zod';
 import { lookupSchema, type Lookup } from '../../src/domain/products/lookup';
 import { ProductError } from '../products/errors';
+import type { Evidence } from '../../src/domain/standardization/model';
+import { matchesPublicEvidence } from '../standardization/public-evidence';
 
 const recordSchema = z.object({
   ttl: z.number(),
   result: z.unknown().optional(),
   used: z.number().optional(),
   next: z.number().optional(),
+  classificationName: z.string().optional(),
 });
 const directory = () => process.env.LOCAL_CACHE_DIRECTORY ?? 'artifacts/local/cache';
 const filename = (key: string) =>
@@ -44,8 +47,44 @@ export async function cachedResult<T>(key: string, schema: z.ZodType<T>): Promis
 export function cachedProduct(key: string): Promise<Lookup | null> {
   return cachedResult(key, lookupSchema);
 }
-export function cacheResult(key: string, result: unknown, days: number): Promise<void> {
-  return serialize(() => save(key, { result, ttl: Math.floor(Date.now() / 1000) + days * 86400 }));
+export function cacheCatalogEvidence(barcode: string, evidence: Evidence): Promise<void> {
+  return serialize(async () => {
+    const raw = await cachedProduct(`product#raw-v2#${barcode}`);
+    if (!matchesPublicEvidence(raw, evidence)) return;
+    await save(`catalog-evidence#${barcode}`, {
+      result: { source: 'openfoodfacts', evidence },
+      ttl: Math.floor(Date.now() / 1000) + 365 * 86400,
+    });
+  });
+}
+export function cacheResult(
+  key: string,
+  result: unknown,
+  days: number,
+  metadata: Record<string, string> = {},
+): Promise<void> {
+  return serialize(() =>
+    save(key, { result, ...metadata, ttl: Math.floor(Date.now() / 1000) + days * 86400 }),
+  );
+}
+export function claimCache(key: string): Promise<boolean> {
+  return serialize(async () => {
+    if (await load(`lease#${key}`)) return false;
+    await save(`lease#${key}`, { ttl: Math.floor(Date.now() / 1000) + 60 });
+    return true;
+  });
+}
+export async function findCatalog(nameKey: string): Promise<unknown[]> {
+  await mkdir(directory(), { recursive: true });
+  const records: unknown[] = [];
+  for (const name of await readdir(directory())) {
+    if (!name.endsWith('.json')) continue;
+    const record = recordSchema.parse(JSON.parse(await readFile(join(directory(), name), 'utf8')));
+    if (record.classificationName === nameKey && record.ttl > Date.now() / 1000)
+      records.push(record.result);
+    if (records.length >= 10) break;
+  }
+  return records;
 }
 export function cacheProduct(key: string, result: Lookup): Promise<void> {
   return cacheResult(key, result, result.found ? 30 : 1);
@@ -62,7 +101,13 @@ export function takeQuota(key: string, limit: number): Promise<void> {
 }
 function localDailyLimit(key: string, limit: number): number {
   if (limit <= 0) return limit;
-  return key === 'ai-user#local-development' || key === 'ai-global' ? Math.max(50, limit) : limit;
+  const experimentLimit = Number(process.env.LOCAL_AI_DAILY_LIMIT ?? 50);
+  const allowance = Number.isInteger(experimentLimit)
+    ? Math.min(100, Math.max(50, experimentLimit))
+    : 50;
+  return key === 'ai-user#local-development' || key === 'ai-global'
+    ? Math.max(allowance, limit)
+    : limit;
 }
 export function takeLookupSlot(): Promise<void> {
   return serialize(async () => {

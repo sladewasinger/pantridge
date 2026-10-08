@@ -44,6 +44,24 @@ resource "aws_dynamodb_table" "kitchen" {
     name = "sk"
     type = "S"
   }
+  attribute {
+    name = "classificationQueue"
+    type = "S"
+  }
+  attribute {
+    name = "classificationDue"
+    type = "N"
+  }
+  global_secondary_index {
+    name            = "classification-due"
+    hash_key        = "classificationQueue"
+    range_key       = "classificationDue"
+    projection_type = "KEYS_ONLY"
+    on_demand_throughput {
+      max_read_request_units  = 50
+      max_write_request_units = 100
+    }
+  }
   point_in_time_recovery { enabled = true }
   server_side_encryption { enabled = true }
   lifecycle { prevent_destroy = true }

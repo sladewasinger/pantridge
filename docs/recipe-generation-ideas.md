@@ -27,7 +27,9 @@ ingredients and use-soon reminders. Legacy unsourced built-ins are excluded from
 Complete measured foundations must fit existing ingredient/method/time bounds; baking,
 unknown package amounts and unmeasured extras are excluded. If request space is tight,
 optional foundation context is reduced before inventory; inventory is never silently dropped.
-The existing 600-food and 16 KiB request limits still apply, with a visible error if exceeded.
+The request accepts up to 600 legacy food identities and retains its 16 KiB bound, with a visible
+error if exceeded. New kitchen food growth is capped at 500. Saved generated ingredients share
+the local identity system and upstream standardization described in [cookbook matching](cookbook-matching.md).
 
 The model may select a foundation or create a new idea. For a selected foundation the server
 retains the full original method and ratios, scaled to the requested servings, rather than

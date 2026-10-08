@@ -1,6 +1,7 @@
 import type { Food, ShoppingItem, Snapshot } from './model';
 import { packageLabel } from './products/variants';
 import { stockIdentity } from './ingredient-matching/classification';
+import { evidenceFingerprint, foodEvidence } from './standardization/evidence';
 
 export function restoreFood(data: Snapshot, food: Food): Snapshot {
   if (data.foods.some((item) => item.id === food.id)) throw new Error('Food already exists.');
@@ -9,6 +10,11 @@ export function restoreFood(data: Snapshot, food: Food): Snapshot {
 
 export function saveFood(data: Snapshot, food: Food): Snapshot {
   const previous = data.foods.find((item) => item.id === food.id);
+  if (
+    previous &&
+    evidenceFingerprint(foodEvidence(previous)) === evidenceFingerprint(foodEvidence(food))
+  )
+    food = { ...food, standardization: previous.standardization ?? food.standardization };
   return {
     ...data,
     foods: [...data.foods.filter((item) => item.id !== food.id), food],

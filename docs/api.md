@@ -4,7 +4,32 @@ The deployed API requires `Authorization: Bearer <Cognito access token>`. API Ga
 
 ## Read
 
-`GET /v1/kitchen` returns a `{ revision, data }` envelope. The first read of an empty account initializes six starter foods through an idempotent transaction, returning revision 1 with `data.starterVersion: 1`. Existing nonempty accounts only receive the marker. Subsequent reads are read-only and strongly consistent. Responses use `Cache-Control: no-store`. See [inventory behavior](inventory-behavior.md) for initialization and deletion details.
+`GET /v1/kitchen` returns a `{ revision, data }` envelope. The first read of an empty account initializes six starter foods through an idempotent transaction, returning revision 1 with `data.starterVersion: 1`. Existing nonempty accounts receive the marker without replacement. Reads are strongly consistent; when standardization is enabled, a read may also enroll previously unqueued unfamiliar items in a durable job. Responses use `Cache-Control: no-store`. See [inventory behavior](inventory-behavior.md) for initialization and deletion details.
+
+## Food standardization (feature gated)
+
+`POST /v1/products/resolve` accepts `kind: "standardization"`, `mode: "lookup" | "resolve"`
+(default lookup), and one to 25 items with a client correlation `key`, optional `barcode`, and
+`evidence: { name, brand, details, context: "product" | "food" | "recipe", sourceId? }`.
+Lookup never invokes AI. Resolve uses owner-private or trusted public metadata caches before AI.
+The response contains `items: [{ key, result, source, reused }]`; a lookup miss has `result: null`.
+Results contain status, nullable identity, preparation and a short review reason. No quantities.
+Requests retain the existing 16,384-byte ceiling; provider work is capped at 25 unique inputs,
+2,048 output tokens and fifteen seconds. Both modes retain verified authentication and access gates.
+The worker and local client select fewer items when needed to fit the byte ceiling, retaining
+complete metadata and leaving the remainder queued. Full result fields, low reasoning (deployment
+configuration), existing retry/backoff and per-user/global AI call quotas remain unchanged.
+
+The same route accepts `{ kind: "classification-catalog", name }` for exact normalized-name
+candidate lookup, returning `{ candidates, limit: 10 }`. Candidates expose only public OFF-derived
+barcode/name/brand, evidence fingerprint, classification, version and provenance. These are not
+automatically selected or user corrections. Prefix search is not implemented.
+
+Both kinds require `STANDARDIZATION_ENABLED=true` in production. `classification.retry` is a
+normal idempotent kitchen mutation requesting immediate queue eligibility. Snapshot
+`classificationJob` and food/lot/recipe `standardization` fields are optional for v1 compatibility.
+New food additions above 500 are rejected; pre-existing larger kitchens can be edited or reduced.
+See [architecture, privacy and manual rollout](cookbook-matching.md#ai-standardization-architecture-prepared-not-deployed).
 
 ## Apply a change
 
@@ -73,6 +98,7 @@ Cookbook ingredient matching runs entirely in the shared local domain resolver. 
 matching request, background job or paid matching cache exists. Optional ingredient descriptors on foods,
 lots, recipe ingredients and one-time shopping entries use the same append-only local registry. Lot
 measurements include their reviewed basis. The API validates and persists these fields through normal
-mutations; it does not classify them using OpenAI. Clients must update before sending the two additive
+mutations. The separately gated standardization worker adds persisted AI annotations upstream;
+the matcher itself never calls OpenAI. Clients must update before sending the two additive
 stock commands. Unsigned legacy cooking reviews cannot deduct classified, measured or branded lots.
 See [local ingredient identities](cookbook-matching.md) for quantity and compatibility limits.

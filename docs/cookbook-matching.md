@@ -1,9 +1,88 @@
 # Local ingredient identities and kitchen-first recipes
 
 Cookbook matching is entirely local and offline. Opening the cookbook, editing inventory,
-changing filters, or adding groceries makes no OpenAI matching call. There is no background
-matching endpoint, queue, timer, opt-in, or paid matching cache. Explicit recipe generation,
-barcode refinement and nutrition estimates retain their existing optional API behavior.
+changing filters, or adding groceries makes no OpenAI matching call. Unfamiliar food names now
+have a separate upstream AI standardization queue, described below. Its persisted identities
+feed the same local matcher. Explicit recipe generation, barcode refinement and nutrition
+estimates retain their existing optional API behavior.
+
+## AI standardization architecture (prepared, not deployed)
+
+Known local identities work immediately. Unfamiliar generic foods, branded positive stock lots,
+and saved/imported/generated recipe ingredients without explicit descriptors are eligible for
+standardization. Results are optional versioned snapshot annotations: identity, preparation,
+status, provenance, explanation and a semantic evidence fingerprint. Manual descriptors take
+precedence. Previously explicit custom identities are preserved; selecting Automatic allows
+reclassification. Shopping-only text is not classified until it becomes a kitchen food.
+
+Recognition never writes quantities, package sizes, drainage, edible fractions, nutrition or
+allergen claims. Composite foods, unknown names and taxonomy gaps are explicit results, not
+forced constituent matches. AI-recognized cooked brown rice and canned black beans can match
+the corresponding identities locally; cooked grams cannot fulfill dry grams and net can weight
+cannot fulfill drained weight. Identity is not evidence of celiac, gluten-free or dairy-free safety.
+An AI result with unknown preparation still requires amount/preparation review.
+
+The kitchen snapshot owns the durable job. Server mutation transactions schedule it ten minutes
+after semantic grocery edits, capped at thirty minutes from the first pending edit. Quantity-only
+changes do not postpone it. A sparse DynamoDB due index and EventBridge worker poll every minute;
+the worker claims a sixty-second lease, processes at most 25 targets and commits annotations
+using revision plus active account/identity transaction conditions. Processing continues with all
+devices closed **after edits have synced**. Offline edits remain local until the next successful sync.
+The worker examines up to five due index entries and handles one kitchen batch per invocation;
+due time is eligibility, not a guaranteed completion deadline. Global budgets can add a longer wait.
+
+Late responses recheck target fingerprints, manual corrections and measurement edits. Unchanged
+quantity edits survive. Newer job generations retain their schedule after an older request fails.
+Leases recover abandoned invocations. Provider failures retry with bounded backoff and stop after
+three attempts; quota exhaustion waits until the next UTC day. Suspension pauses processing.
+Settings → Food recognition lists pending names, scheduling and retry state. Item and recipe
+Recipe matching controls explain uncertain results. Process now requests server processing;
+it neither bypasses budgets nor performs matching in the cloud.
+
+## Shared catalog and its limits
+
+Private names, recipe notes and user corrections are cached under verified account ownership.
+Shared records are derived only from server-obtained Open Food Facts evidence, never arbitrary
+client text. Normalized barcode plus evidence, prompt revision and model configuration determine
+reuse. A server-owned public evidence pointer survives expiration of the shorter raw lookup cache;
+fresh raw metadata takes precedence. Pointer publication atomically checks that the raw source is
+still current, so a late older request cannot replace newer barcode evidence. Public evidence and recognized classifications expire after
+365 days; negative classifications after 30 days. Saved kitchen annotations persist until semantic
+edits or an explicit future migration. Source metadata may become stale; this is not a label-safety
+database. OFF attribution and applicable ODbL obligations remain separate from private corrections.
+
+Exact normalized-name lookup returns up to ten public candidates. It does not silently select
+among ambiguous names, and standardization does not automatically reuse a name-only candidate.
+Cross-app authenticated catalog lookup is possible; service-to-service credentials, an unrestricted
+public API and prefix autocomplete are not part of this change. A future autocomplete can query
+local aliases/private history first and shared candidate prefixes second, without AI per keystroke.
+No embeddings or vector database are needed for this version. Similarity could later retrieve
+candidates; it must not establish identity, amounts or dietary safety.
+
+New food growth stops at 500 distinct food records, including zero-stock history. Existing kitchens
+above 500 remain editable/removable within the previous schema bounds. Stock and shopping retain
+their existing separate limits and snapshot byte bound. Shared catalog admission is additionally
+capped at 100 new classifications per owner/day and 1,000 globally/day; the existing AI user/global
+budgets still apply and were not increased. TTL, request bounds and quotas limit growth and spend;
+500 foods alone would not protect against repeated add/delete or arbitrary lookup abuse.
+
+Taxonomy additions require curated append-only IDs shared with recipes. Negative annotations do
+not automatically become recognized when the registry grows; a versioned reclassification migration
+is future work. AI quality needs continued evaluation, especially composite foods and incomplete
+labels. Dense queues, index hot-partition throughput and repeated storage/permission failures need
+operational monitoring; this first worker is intentionally bounded, not a high-throughput service.
+
+## Manual rollout
+
+Terraform prepares a dedicated worker role/function, due/name indexes, minute schedule and narrow
+application-code deployment permissions. `standardization_enabled` defaults false. No Terraform
+apply or application deployment was performed for this preparation. Before enabling: review/apply
+Terraform manually, wait for indexes to become active, refresh public deployment configuration from
+Terraform outputs (including the worker artifact), deploy both API and worker code through the
+approved develop→main flow, then explicitly enable the flag/schedule through a reviewed manual apply.
+The application deployment role cannot administer infrastructure. Verify a real signed-in disposable
+kitchen, app-closed processing and cross-device synchronization before considering rollout verified.
+Existing kitchens are enrolled on their next server read or edit, not via a bulk scan.
 
 ## Shared identities
 

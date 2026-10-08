@@ -40,6 +40,18 @@ function putAway(
 
 export function applyCommand(data: Snapshot, command: Command): Snapshot {
   switch (command.type) {
+    case 'classification.retry':
+      return data.classificationJob
+        ? {
+            ...data,
+            classificationJob: {
+              ...data.classificationJob,
+              state: 'queued',
+              dueAt: 0,
+              attempts: 0,
+            },
+          }
+        : data;
     case 'recipe.restore':
     case 'recipe.save':
     case 'recipe.remove':
@@ -124,6 +136,10 @@ export function applyCommand(data: Snapshot, command: Command): Snapshot {
 
 export function reduceChecked(data: Snapshot, command: Command): Snapshot {
   const next = snapshotSchema.parse(applyCommand(data, command));
+  if (next.foods.length > 500 && next.foods.length > data.foods.length)
+    throw new Error(
+      'Your kitchen has reached its 500-item limit. Remove an item before adding another.',
+    );
   if (new TextEncoder().encode(JSON.stringify(next)).length > 280_000) {
     throw new Error(
       'Kitchen storage is full. Export a backup and archive old lots before adding more.',

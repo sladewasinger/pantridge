@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { roundQuantity, stockQuantitySchema } from '../quantity';
 import { recipeCurationSchema, recipeNutritionSchema } from './metadata';
 import { ingredientIdentitySchema } from '../ingredient-matching/model';
+import { savedStandardizationSchema } from '../standardization/model';
 
 export const recipeUnitSchema = z.enum([
   'count',
@@ -26,6 +27,7 @@ export const ingredientSchema = z.object({
   optional: z.boolean().optional(),
   note: z.string().trim().max(240).optional(),
   ingredient: ingredientIdentitySchema.optional(),
+  standardization: savedStandardizationSchema.optional(),
 });
 export const recipeSchema = z
   .object({

@@ -38,7 +38,7 @@ Local-only and signed-in kitchens use separate IndexedDB keys. Signing in does n
 
 ## Limits and future features
 
-This personal release stores one bounded snapshot per account: at most 600 food identities, 1,500 lots, 500 shopping entries, 100 saved recipes, 180 meal plans, 300 cooking records, and 280 KB serialized. Validation stops further additions before DynamoDB’s item limit. Long-lived or larger inventories can move to per-entity records behind the repository adapter; the client command contract stays independent of DynamoDB. Old zero-quantity lots currently remain for their history; archiving is a follow-up.
+This personal release stores one bounded snapshot per account: new growth stops at 500 food identities; the schema retains 600 for existing kitchens/backups. Limits remain 1,500 lots, 500 shopping entries, 100 saved recipes, 180 meal plans, 300 cooking records, and 280 KB serialized. Validation stops further additions before DynamoDB’s item limit. Long-lived or larger inventories can move to per-entity records behind the repository adapter; the client command contract stays independent of DynamoDB. Old zero-quantity lots currently remain for their history; archiving is a follow-up. See [AI standardization](cookbook-matching.md) for durable worker scheduling and public/private cache boundaries.
 
 The commonly used shelf should query remembered food identities (including zero stock), using explicitly pinned favorites initially or consumption history later. It should offer manual additions to shopping. Automatic restocking belongs in a separate suggestion feature, not in quantity arithmetic.
 

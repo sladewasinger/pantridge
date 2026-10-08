@@ -1,5 +1,6 @@
 import { recipeSchema, type Recipe, type RecipeUnit } from '../../domain/recipes/model';
 import type { IngredientIdentity } from '../../domain/ingredient-matching/model';
+import type { SavedStandardization } from '../../domain/standardization/model';
 
 export interface IngredientDraft {
   id: string;
@@ -9,6 +10,7 @@ export interface IngredientDraft {
   optional: boolean;
   note?: string;
   ingredient?: IngredientIdentity;
+  standardization?: SavedStandardization;
 }
 export interface RecipeDraft {
   title: string;

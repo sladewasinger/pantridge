@@ -40,7 +40,7 @@ resource "aws_iam_role_policy" "github_deploy" {
     { Effect = "Allow", Action = ["s3:ListBucket"], Resource = aws_s3_bucket.web.arn },
     { Effect = "Allow", Action = ["s3:GetObject", "s3:PutObject"], Resource = "${aws_s3_bucket.web.arn}/*" },
     { Effect = "Allow", Action = ["cloudfront:CreateInvalidation"], Resource = aws_cloudfront_distribution.web.arn },
-    { Effect = "Allow", Action = ["lambda:UpdateFunctionCode", "lambda:GetFunctionConfiguration"], Resource = concat([aws_lambda_function.api.arn], aws_lambda_function.auth_guard[*].arn) }
+    { Effect = "Allow", Action = ["lambda:UpdateFunctionCode", "lambda:GetFunctionConfiguration"], Resource = concat([aws_lambda_function.api.arn, aws_lambda_function.classification.arn], aws_lambda_function.auth_guard[*].arn) }
   ] })
 }
 output "github_deploy_role_arn" {
@@ -49,6 +49,7 @@ output "github_deploy_role_arn" {
 output "application_functions" {
   value = merge(
     { (aws_lambda_function.api.function_name) = "artifacts/api.zip" },
+    { (aws_lambda_function.classification.function_name) = "artifacts/classification.zip" },
     local.google_enabled ? { (aws_lambda_function.auth_guard[0].function_name) = "artifacts/auth.zip" } : {}
   )
 }

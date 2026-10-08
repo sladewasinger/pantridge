@@ -163,6 +163,7 @@ test('shopping artwork matches names automatically and remembers a collapsed-pic
     .getByRole('button', { name: 'Edit Fresh raspberries', exact: true })
     .locator('img');
   await expect(image).toHaveAttribute('src', '/art/packaging/1/plain-box.svg');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
   await page.reload();
   await expect(image).toHaveAttribute('src', '/art/packaging/1/plain-box.svg');
   await page.getByRole('button', { name: 'Edit Fresh raspberries', exact: true }).click();

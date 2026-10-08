@@ -23,14 +23,15 @@ resource "aws_iam_role_policy" "auth_guard" {
   ] })
 }
 resource "aws_lambda_function" "auth_guard" {
-  count                          = local.google_enabled ? 1 : 0
-  function_name                  = "${local.name}-auth-guard"
-  role                           = aws_iam_role.auth_guard[0].arn
-  runtime                        = "nodejs22.x"
-  architectures                  = ["arm64"]
-  handler                        = "handler.handler"
-  filename                       = data.archive_file.auth_guard[0].output_path
-  source_code_hash               = data.archive_file.auth_guard[0].output_base64sha256
+  count            = local.google_enabled ? 1 : 0
+  function_name    = "${local.name}-auth-guard"
+  role             = aws_iam_role.auth_guard[0].arn
+  runtime          = "nodejs22.x"
+  architectures    = ["arm64"]
+  handler          = "handler.handler"
+  filename         = data.archive_file.auth_guard[0].output_path
+  source_code_hash = data.archive_file.auth_guard[0].output_base64sha256
+  lifecycle { ignore_changes = [source_code_hash] }
   timeout                        = 5
   memory_size                    = 128
   reserved_concurrent_executions = var.lambda_concurrency.auth

@@ -98,16 +98,16 @@ describe('shared local ingredient identities', () => {
     });
     expect(dry.available).toBeUndefined();
   });
-  it('retains more-specific product identities and preparation instead of inheriting the shelf default', () => {
+  it('retains specific product identity but reviews an undeclared product preparation', () => {
     const data = kitchen('Cooked rice');
     data.stock[0]!.product = { barcode: '12345670', name: 'Brown rice', brand: 'Test' };
     expect(stockIdentity(data.foods[0]!, data.stock[0]!)).toMatchObject({
       id: 'brown-rice',
-      preparation: 'dry',
+      preparation: 'unknown',
     });
     expect(
       getRecipeAvailability(data, recipe(ingredient('Brown rice'))).ingredients[0]?.status,
-    ).toBe('confirmed');
+    ).toBe('needs-review');
     expect(
       getRecipeAvailability(data, recipe(ingredient('Cooked rice'))).ingredients[0]?.status,
     ).toBe('needs-review');

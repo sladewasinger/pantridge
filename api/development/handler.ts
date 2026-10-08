@@ -5,18 +5,30 @@ import { resolveProduct } from '../products/resolve';
 import { ProductError } from '../products/errors';
 import { takeQuota } from './cache';
 import type { LocalResponse } from './server';
+import { resolveStandardization } from '../standardization/resolve';
+import { lookupCatalog } from '../standardization/catalog';
+
+function resolveLocal(input: unknown) {
+  if (typeof input === 'object' && input !== null && 'kind' in input) {
+    switch (input.kind) {
+      case 'classification-catalog':
+        return lookupCatalog(input);
+      case 'standardization':
+        return resolveStandardization('local-development', input);
+      case 'recipe':
+        return resolveRecipeSuggestions('local-development', input);
+      case 'nutrition':
+        return resolveNutrition('local-development', input);
+    }
+  }
+  return resolveProduct('local-development', JSON.stringify(input));
+}
 
 export async function localProductRequest(input: unknown): Promise<LocalResponse> {
   try {
     await takeQuota(`requests-minute#${Math.floor(Date.now() / 60_000)}`, 60);
     await takeQuota('requests-day', 240);
-    let body: unknown;
-    if (typeof input === 'object' && input !== null && 'kind' in input) {
-      body =
-        input.kind === 'recipe'
-          ? await resolveRecipeSuggestions('local-development', input)
-          : await resolveNutrition('local-development', input);
-    } else body = await resolveProduct('local-development', JSON.stringify(input));
+    const body = await resolveLocal(input);
     return { statusCode: 200, body };
   } catch (error) {
     if (error instanceof ProductError)

@@ -37,6 +37,7 @@ jobs:
         run: |
           zip -j artifacts/api.zip artifacts/api/handler.mjs artifacts/api/handler.mjs.map
           zip -j artifacts/auth.zip artifacts/auth/handler.mjs
+          zip -j artifacts/classification.zip artifacts/classification/handler.mjs
       - uses: aws-actions/configure-aws-credentials@cabfdba3510de1431bac9dba27511d97497fc100 # v5
         with:
           role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}

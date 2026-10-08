@@ -7,6 +7,7 @@ import { sizeSchema } from './products/size';
 
 export const commandSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('kitchen.initialize') }),
+  z.object({ type: z.literal('classification.retry') }),
   z.object({ type: z.literal('recipe.save'), recipe: recipeSchema }),
   z.object({ type: z.literal('recipe.restore'), recipe: recipeSchema }),
   z.object({ type: z.literal('recipe.remove'), recipeId: id }),
