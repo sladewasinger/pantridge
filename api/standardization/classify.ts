@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { requestStructured } from '../products/ai';
 import { ProductError } from '../products/errors';
+import { standardizationReasoning } from './config';
 import registry from '../../src/domain/ingredient-matching/registry.json' with { type: 'json' };
 import {
   batchSize,
@@ -49,6 +50,7 @@ export async function classifyBatch(owner: string, evidence: Evidence[]) {
     schema: z.toJSONSchema(outputSchema, { target: 'draft-7' }),
     maxOutputTokens: 2048,
     deadlineMs: 15000,
+    reasoningEffort: standardizationReasoning(),
     instructions: classificationInstructions,
     input: items.map((item, index) => ({ index, ...item })),
   });

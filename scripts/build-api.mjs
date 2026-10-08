@@ -1,5 +1,11 @@
-import { build } from 'esbuild';
+import { build as bundle } from 'esbuild';
 import { spawnSync } from 'node:child_process';
+async function build(options) {
+  const result = await bundle({ ...options, metafile: true });
+  if (Object.keys(result.metafile.inputs).some((path) => path.includes('/development-full/')))
+    throw new Error('Development adapters must never enter production Lambda bundles.');
+  return result;
+}
 await build({
   entryPoints: ['api/handler.ts'],
   outfile: 'artifacts/api/handler.mjs',

@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "dev:connected": "node scripts/local/start.mjs",
-    "build": "tsc --noEmit && vite build && node scripts/build-api.mjs",
+    "dev:full": "node scripts/full/start.mjs",
+    "build": "tsc --noEmit && vite build && node scripts/build-api.mjs && node scripts/full/check-production.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --max-warnings 0",
@@ -21,6 +22,7 @@
     "artwork:check": "node scripts/artwork/generate.mjs --check",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:full": "playwright test --config playwright.full.config.ts",
     "check": "pnpm typecheck && pnpm lint && pnpm structure && pnpm artwork:check && pnpm format:check && pnpm test && pnpm build",
     "deploy": "node scripts/deploy.mjs"
   },

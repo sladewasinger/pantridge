@@ -4,17 +4,22 @@ import { Download, LogIn, LogOut, RefreshCw } from 'lucide-react';
 import { auth, googleSignIn, signOut } from '../../auth/session';
 import { exportKitchen, restoreKitchen } from '../../data/backup';
 import { getAccount, useKitchen } from '../../data/store';
-import { syncKitchen, syncStatus } from '../../data/sync';
+import { syncKitchen } from '../../data/sync';
+import { useSyncStatus } from '../../data/useSyncStatus';
 import { SyncRecovery } from './SyncRecovery';
 import { Modal } from '../../ui/Modal';
 import { useAction } from '../../ui/useAction';
 import { localTesting } from '../../local-testing';
 import { LocalSample } from '../../development/LocalSample';
+import { FullControls } from '../../development/full/Controls';
 
 const localTools = import.meta.env.DEV ? <LocalSample /> : null;
+const fullTools =
+  import.meta.env.DEV && import.meta.env.VITE_LOCAL_FULL === 'true' ? <FullControls /> : null;
 
 export function Settings({ onClose }: { onClose: () => void }) {
   const { syncedAt, pending } = useKitchen();
+  const sync = useSyncStatus();
   const { run, error, busy } = useAction();
   const [storage, setStorage] = useState('');
   const local = getAccount() === 'local';
@@ -55,10 +60,15 @@ export function Settings({ onClose }: { onClose: () => void }) {
             Sync now
           </button>
         )}
-        {syncStatus().detail && <p className="error">{syncStatus().detail}</p>}
+        {sync.detail && (
+          <p className="error" role="status">
+            {sync.detail}
+          </p>
+        )}
         <SyncRecovery />
       </section>
       {localTools}
+      {fullTools}
       <ClassificationStatus />
       <section className="settings-section">
         <h3>Keep a backup</h3>
