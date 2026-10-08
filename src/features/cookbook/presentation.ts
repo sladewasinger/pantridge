@@ -4,6 +4,12 @@ export { dateLabel } from '../../domain/selectors';
 export function amountLabel(quantity: number, unit: string): string {
   return `${new Intl.NumberFormat(undefined, { maximumFractionDigits: 6 }).format(quantity)} ${unit}`;
 }
+export function summaryAmountLabel(quantity: number, unit: string): string {
+  const format = new Intl.NumberFormat(undefined, { maximumFractionDigits: 1 });
+  const amount =
+    quantity > 0 && quantity < 0.1 ? `<${format.format(0.1)}` : format.format(quantity);
+  return `${amount} ${unit}`;
+}
 export function recipeMeta(recipe: Recipe): string {
   return [
     recipe.minutes ? `${recipe.minutes} min` : '',
