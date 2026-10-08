@@ -29,7 +29,7 @@ mock_provider "aws" {
   }
   mock_resource "aws_cloudwatch_log_group" {
     override_during = plan
-    defaults = { arn = "arn:aws:logs:us-west-2:123456789012:log-group:/aws/lambda/pantridge-test-api" }
+    defaults        = { arn = "arn:aws:logs:us-west-2:123456789012:log-group:/aws/lambda/pantridge-test-api" }
   }
 }
 mock_provider "aws" { alias = "edge" }
