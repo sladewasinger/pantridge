@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ClassificationStatus } from '../standardization/ClassificationStatus';
 import { Download, LogIn, LogOut, RefreshCw } from 'lucide-react';
 import { auth, googleSignIn, signOut } from '../../auth/session';
 import { exportKitchen, restoreKitchen } from '../../data/backup';
@@ -58,6 +59,7 @@ export function Settings({ onClose }: { onClose: () => void }) {
         <SyncRecovery />
       </section>
       {localTools}
+      <ClassificationStatus />
       <section className="settings-section">
         <h3>Keep a backup</h3>
         <p className="muted">

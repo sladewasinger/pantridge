@@ -32,6 +32,9 @@ export const lotCookingSignature = (food: Food, lot: Stock) =>
     lot.ingredientSize ?? null,
     lot.ingredientSizeBasis ?? null,
     lot.product ?? null,
+    ...(food.standardization || lot.standardization
+      ? [food.standardization ?? null, lot.standardization ?? null]
+      : []),
   ]);
 
 export interface CookingPreview {
@@ -117,7 +120,7 @@ function validateDeduction(data: Snapshot, deduction: CookingDeduction): void {
   if (
     (deduction.expectedLotSignature &&
       deduction.expectedLotSignature !== lotCookingSignature(food, lot)) ||
-    (!deduction.expectedLotSignature && (lot.ingredient || lot.ingredientSize || lot.product))
+    (!deduction.expectedLotSignature && requiresLotSignature(food, lot))
   )
     throw new Error('Product preparation changed. Review cooking again.');
   if (lot.quantity !== deduction.expectedQuantity)
@@ -127,6 +130,15 @@ function validateDeduction(data: Snapshot, deduction: CookingDeduction): void {
     roundQuantity(lot.quantity - deduction.quantity) !== deduction.remainingQuantity
   )
     throw new Error('Cooking amounts do not match the reviewed package remainder.');
+}
+function requiresLotSignature(food: Food, lot: Stock): boolean {
+  return Boolean(
+    lot.ingredient ||
+    lot.ingredientSize ||
+    lot.product ||
+    lot.standardization ||
+    food.standardization,
+  );
 }
 function validatePlan(data: Snapshot, record: CookingRecord, expectedPlan?: MealPlanEntry): void {
   if (!expectedPlan) return;

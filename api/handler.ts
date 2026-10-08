@@ -11,6 +11,8 @@ import { protectRequest, recordMalformed } from './access/protection';
 import { AccessError } from './access/config';
 import { resolveNutrition } from './products/nutrition-estimate';
 import { resolveRecipeSuggestions } from './recipes/suggest';
+import { resolveStandardization } from './standardization/resolve';
+import { lookupCatalog } from './standardization/catalog';
 
 function response(
   statusCode: number,
@@ -63,8 +65,15 @@ export async function handler(
 function productRequest(owner: string, body: string) {
   const input: unknown = JSON.parse(body);
   if (typeof input === 'object' && input !== null && 'kind' in input) {
+    if (
+      ['standardization', 'classification-catalog'].includes(String(input.kind)) &&
+      process.env.STANDARDIZATION_ENABLED !== 'true'
+    )
+      throw new ProductError(503, 'Food recognition is not enabled yet.');
     if (input.kind === 'nutrition') return resolveNutrition(owner, input);
     if (input.kind === 'recipe') return resolveRecipeSuggestions(owner, input);
+    if (input.kind === 'standardization') return resolveStandardization(owner, input);
+    if (input.kind === 'classification-catalog') return lookupCatalog(input);
   }
   return resolveProduct(owner, body);
 }
@@ -82,7 +91,7 @@ function failure(error: unknown, requestId: string): APIGatewayProxyStructuredRe
     return response(400, { message: 'This change is invalid. Update the app and try again.' });
   if (
     error instanceof Error &&
-    /quantity changed|storage is full|do not match|already exists|no longer exists|Cooking history is full|Review.*again|reviewed package/.test(
+    /quantity changed|storage is full|500-item limit|do not match|already exists|no longer exists|Cooking history is full|Review.*again|reviewed package/.test(
       error.message,
     )
   )

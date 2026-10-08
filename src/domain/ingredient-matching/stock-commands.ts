@@ -31,6 +31,9 @@ export function measureStock(
       const food = data.foods.find((food) => food.id === stock.foodId)!;
       return {
         ...stock,
+        ...(command.size && (stock.standardization || food.standardization)
+          ? { ingredient: stockIdentity(food, stock) }
+          : {}),
         ingredientSize: command.size ?? undefined,
         ingredientSizeBasis: command.size ? stockIdentity(food, stock)?.basis : undefined,
       };

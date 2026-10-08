@@ -1,5 +1,107 @@
 # Local API testing
 
+## Actual batch-size comparisons
+
+The later [October 7 batch experiment](experiments/batching-2026-10-07.md) tests 10, 40, 100 and
+200 items per provider request, with paired formats, repeats, quality scores, token usage and
+bounded concurrency. It supersedes interpreting the earlier twenty-ten-item-call timing as a
+200-item single-request result. The experiment launcher permits an explicitly bounded local-only
+allowance of 100 calls/day while retaining counters; ordinary connected development remains at
+50 and production budgets are unchanged.
+
+## AI standardization verification on October 7, 2026 (not deployed)
+
+Release preparation subsequently passed 412 unit tests, 73 Chromium tests and 59 WebKit tests
+(one existing skip in each browser suite), plus twelve mocked Terraform tests. WebKit first
+exposed a shopping artwork test race: the saved row became visible before the dialog's history
+transition finished, and immediate reload restored that dialog. The test now waits for closure
+before reload; its artwork and persistence assertions and timeouts remain intact. API, auth and
+disabled classification worker bundles are imported in a fresh Node process during the build.
+
+After the owner selected a 25-item limit, a fresh 25-product request through the isolated API
+completed in 9.114 seconds (25 unique inputs, zero reused, zero failures). Repeating the same
+request reused all 25 results in 21 milliseconds. Reproduce with
+`node scripts/local/standardization-benchmark.mjs 25 --verify-25`; its stable evaluation source ID
+preserves cache reuse on repeat. The first response is saved separately under ignored
+`artifacts/local/standardization-25-first.json`. No counters or caches were cleared.
+This used the remaining previously authorized 100-call local allowance, not increased production
+budgets. It is one practical full-format run under the unchanged 2,048-token/15-second limits.
+
+Manual desktop testing at 1280×900 clicked the updated classification button: the isolated
+kitchen went from 77 to 52 pending items. At 390×844, a reload retained 52 pending; expanding
+and scrolling the recognition section kept its list and button usable. Screenshot:
+`artifacts/review/batch25-phone.png`. These actions exercised the local client and IndexedDB,
+not the AWS worker. Unit coverage verifies the worker processes 26 targets as 25 then one,
+and that long UTF-8 metadata leaves an intact remainder under the request byte limit.
+
+The isolated connected frontend/API use the existing server-managed SSM key in memory. Production
+authentication, budgets and tables remain unchanged. Settings → Food recognition has a local-only
+25-item test button (fewer for large metadata). It exercises the real provider and persists annotations in isolated IndexedDB;
+it does not simulate the AWS scheduler. Local AI allowance remains at least 50 attempts/day, with
+the existing persistent counters intact. No cache or quota counter was reset for these experiments.
+
+`node scripts/local/standardization-benchmark.mjs 10|25|40|200` uses 25 ordinary/branded fixtures,
+repeating them for larger batches. `--distinct` instead uses up to 200 distinct registry identities
+with synthetic package names and explicit preparation evidence. This second set tests bounded
+throughput and consistency, not recognition of 200 independent real-world brands. Requests are
+sequential batches of at most 25. Reports stay under ignored `artifacts/local/`.
+The earlier measurements below used the then-current ten-item implementation and twenty fixtures.
+
+| Run                                                      | HTTP batches / provider calls | Total HTTP time | Reused items | Failed batches |
+| -------------------------------------------------------- | ----------------------------- | --------------- | ------------ | -------------- |
+| 10 ordinary/branded, initial prompt                      | 1 / 1                         | 6.704 s         | 0            | 0              |
+| 40 entries, 20 distinct ordinary/branded, revised prompt | 4 / 2                         | 11.368 s        | 10           | 2              |
+| 200 entries, same 20 products, subsequent retry/reuse    | 20 / 1                        | 5.344 s         | 190          | 0              |
+| 200 distinct synthetic packages, first pass              | 20 / 20                       | 61.808 s        | 0            | 1              |
+| 200 distinct, final schema retry/reuse                   | 20 / 1                        | 3.891 s         | 190          | 0              |
+| 10 distinct, warm after backend restart                  | 1 / 0                         | 0.019 s         | 10           | 0              |
+| 40 distinct, warm after backend restart                  | 4 / 0                         | 0.113 s         | 40           | 0              |
+
+The 40-entry run rejected one inconsistent provider batch (502); its immediate duplicate encountered
+the sixty-second cache lease (409). The later 200-entry run successfully retried it. The first distinct
+run likewise rejected one inconsistent batch; all 190 accepted IDs matched expected fixture IDs.
+An intermediate stricter schema used unsupported `oneOf` and received provider HTTP 400 (local 503).
+The final schema uses supported nested `anyOf`, enforces status/identity consistency and disallows
+`any` product preparation. Its retry completed the remaining ten; all 200 final fixture IDs matched.
+Rejected output was not saved. This small fixed evaluation does not establish production accuracy
+or a latency SLA. Observed first-pass distinct batches took 2.585–4.526 seconds each, including the
+rejected batch; the existing fifteen-second provider deadline was not increased.
+
+Ordinary fixtures recognized microwave brown rice as cooked brown rice, unsalted canned beans as
+canned black beans, penne as penne, and frozen broccoli as broccoli/frozen. An earlier prompt had
+wrongly reported frozen broccoli as a taxonomy gap; removing default preparation from candidate
+identities and explicitly separating the two axes corrected it without a product-specific rule.
+Rice-and-pasta mixes and burritos remained composite. Cereal/crackers did not become cinnamon,
+tomato or basil. Wipes were nonfood, vague pouches unknown. Oats, almond milk and teff exposed real
+registry gaps. Curry roux received an explicit gap rather than being forced to curry powder.
+
+Required checks: pinned pnpm 10.32.1 frozen install; `pnpm check` with 401 unit tests; production-build
+Chromium 73 passed/one existing skip; WebKit 59 passed/one existing skip. The WebKit configuration
+excludes simulated offline tests; Chromium covers new offline recognition persistence and zero
+matching API requests. Terraform fmt/validate and twelve mocked tests passed, with existing
+provider deprecation warnings. No blanket artwork decoding or timeout increases were introduced.
+
+Manual browser work at 1280×900 and 390×844 added an unfamiliar food to the existing isolated
+sample kitchen, opened the pending list, ran a real ten-item classification, inspected a saved
+taxonomy-gap explanation, saved an exact-name correction and verified it after reload. Cookbook
+ingredient amounts and the explicit cooking review were opened; cancellation retained quantities.
+The phone recognition panel and correction controls were visually inspected. Existing sample data
+was preserved; the manual test added one food and corrected the local hazelnut spread identity.
+
+Unit tests cover semantic edits during requests, manual descriptors/measurement edits, unchanged
+quantity preservation, recipe-editor stale saves, generation-aware completion/failure, durable
+lease recovery, quota retry, suspension and verified owner cache isolation. Actual storage-command
+tests assert revision/account/identity conditions in one transaction and no unconditional fallback
+after rejection. Public catalog tests cover reverse completion and source metadata changes during
+publication, preventing an older result from replacing newer barcode evidence. These are local/mocked
+checks: live AWS closed-app processing, real Google account
+switching and cross-device cloud sync remain rollout verification requirements after manual
+infrastructure deployment. An additional public barcode→classification→name-catalog live probe
+stopped at the existing local daily quota (HTTP 429) before classification; that extra end-to-end
+probe is not claimed as verified. No quota was raised or reset. The independent reviewer confirmed
+the final pointer-race fix and reported no remaining blocker in the focused review. No production
+application or infrastructure was deployed.
+
 Install the repository's pinned pnpm dependencies with `pnpm install --frozen-lockfile`, run `pnpm check`, then `pnpm dev:connected`. Open the exact printed Local URL: **http://127.0.0.1:5175/**. The fixed frontend port and backend port 4175 must be free. Ordinary `pnpm dev` remains available for offline use.
 
 This runs the app and current recipe, barcode and nutrition API code locally. Google sign-in and cloud sync are disabled in this development mode. No Cognito callback, CORS, IAM or infrastructure change is required. Production builds cannot activate local testing, and retain their existing sign-in and API validation.

@@ -19,19 +19,22 @@ resource "aws_iam_role_policy" "api" {
   ] })
 }
 resource "aws_lambda_function" "api" {
-  function_name                  = "${local.name}-api"
-  role                           = aws_iam_role.api.arn
-  runtime                        = "nodejs22.x"
-  architectures                  = ["arm64"]
-  handler                        = "handler.handler"
-  filename                       = data.archive_file.api.output_path
-  source_code_hash               = data.archive_file.api.output_base64sha256
+  function_name    = "${local.name}-api"
+  role             = aws_iam_role.api.arn
+  runtime          = "nodejs22.x"
+  architectures    = ["arm64"]
+  handler          = "handler.handler"
+  filename         = data.archive_file.api.output_path
+  source_code_hash = data.archive_file.api.output_base64sha256
+  # Initial creation uses this bundle; subsequent code releases belong to GitHub deployment.
+  lifecycle { ignore_changes = [source_code_hash] }
   timeout                        = 25
   memory_size                    = 256
   reserved_concurrent_executions = var.lambda_concurrency.api
   environment {
     variables = merge(local.access_environment, {
       TABLE_NAME                   = aws_dynamodb_table.kitchen.name
+      STANDARDIZATION_ENABLED      = tostring(var.standardization_enabled)
       PRODUCT_TABLE                = aws_dynamodb_table.products.name
       OFF_USER_AGENT               = "Pantridge/1.0 (${local.url})"
       CLASSIFIER_PROVIDER          = var.classifier_provider

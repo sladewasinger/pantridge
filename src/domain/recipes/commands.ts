@@ -5,6 +5,7 @@ import { addMealPlanShopping } from './plan-shopping';
 import { recordCooking } from './cooking';
 import { addMissingShopping } from './shopping';
 import { findRecipe, getCookingHistory, getMealPlan, getRecipes } from './selectors';
+import { preserveRecipeClassifications } from '../standardization/preserve';
 
 function restoreRecipe(data: Snapshot, recipe: Recipe): Snapshot {
   if (getRecipes(data).some((item) => item.id === recipe.id))
@@ -28,7 +29,10 @@ export function applyRecipeCommand(data: Snapshot, command: RecipeCommand): Snap
         ...data,
         recipes: [
           ...getRecipes(data).filter((item) => item.id !== command.recipe.id),
-          command.recipe,
+          preserveRecipeClassifications(
+            getRecipes(data).find((recipe) => recipe.id === command.recipe.id),
+            command.recipe,
+          ),
         ],
       };
     case 'recipe.remove':

@@ -26,6 +26,18 @@ await build({
   },
 });
 
+await build({
+  entryPoints: ['api/standardization/worker.ts'],
+  outfile: 'artifacts/classification/handler.mjs',
+  platform: 'node',
+  target: 'node22',
+  format: 'esm',
+  bundle: true,
+  banner: {
+    js: "import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);",
+  },
+});
+
 // A fresh ESM process matches Lambda's module loading, without test-runner shims.
 const bundleUrl = new URL('../artifacts/api/handler.mjs', import.meta.url).href;
 const probe = spawnSync(
@@ -37,6 +49,9 @@ const probe = spawnSync(
     const { handler } = await import(${JSON.stringify(bundleUrl)});
     const result = await handler({ requestContext: {} });
     if (result.statusCode !== 401) throw new Error('API startup probe failed');
+    process.env.STANDARDIZATION_ENABLED = 'false';
+    const worker = await import(${JSON.stringify(new URL('../artifacts/classification/handler.mjs', import.meta.url).href)});
+    await worker.handler();
     const auth = await import(${JSON.stringify(new URL('../artifacts/auth/handler.mjs', import.meta.url).href)});
     try {
       await auth.handler({ request: { userAttributes: {} }, userName: 'invalid' });

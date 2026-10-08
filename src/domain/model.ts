@@ -8,6 +8,8 @@ import { productSchema } from './products/barcode';
 import { artIds } from './artwork/catalog';
 import { nutritionEstimateSchema } from './products/nutrition-estimate';
 import { ingredientIdentitySchema } from './ingredient-matching/model';
+import { savedStandardizationSchema } from './standardization/model';
+import { classificationJobSchema } from './standardization/job';
 
 export const id = z.uuid();
 export const locationSchema = z.enum(['fridge', 'pantry', 'unspecified']);
@@ -40,6 +42,7 @@ export const foodSchema = z.object({
   frozen: z.boolean(),
   nutritionEstimate: nutritionEstimateSchema.optional(),
   ingredient: ingredientIdentitySchema.optional(),
+  standardization: savedStandardizationSchema.optional(),
 });
 export const stockSchema = z.object({
   id,
@@ -49,6 +52,7 @@ export const stockSchema = z.object({
   expirySource: z.enum(['estimate', 'ai']).optional(),
   product: productSchema.optional(),
   ingredient: ingredientIdentitySchema.optional(),
+  standardization: savedStandardizationSchema.optional(),
   ingredientSize: sizeSchema.optional(),
   ingredientSizeBasis: z.enum(['as-sold', 'drained', 'edible', 'unknown']).optional(),
 });
@@ -68,6 +72,7 @@ export const snapshotSchema = z
   .object({
     version: z.literal(1),
     starterVersion: z.literal(1).optional(),
+    classificationJob: classificationJobSchema.optional(),
     foods: z.array(foodSchema).max(600),
     stock: z.array(stockSchema).max(1500),
     shopping: z.array(shoppingSchema).max(500),
