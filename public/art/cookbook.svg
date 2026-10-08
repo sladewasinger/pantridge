@@ -4,11 +4,6 @@
       <stop stop-color="#b97755"/>
       <stop offset="1" stop-color="#a45f43"/>
     </linearGradient>
-    <linearGradient id="binding">
-      <stop stop-color="#835039"/>
-      <stop offset=".45" stop-color="#a36446"/>
-      <stop offset="1" stop-color="#925439"/>
-    </linearGradient>
     <linearGradient id="paper">
       <stop stop-color="#d3bf98"/>
       <stop offset=".55" stop-color="#f1e5c9"/>
@@ -25,14 +20,11 @@
   <path d="M23.5 5.25h40v49.5M24.9 4.55h40v49.5M26.3 3.85h40v49.5" fill="none" stroke="#b9a17c" stroke-width=".35" opacity=".75"/>
   <path d="M62 55.5 68 52.5v1.4L62 57Z" fill="#8c5038"/>
   <path d="M65 54.5 67 53.5v5.1l-1-.7-1 1.7Z" fill="#83906b" stroke="#64734f" stroke-width=".35"/>
-  <!-- Rounded cloth spine and square, level front board. -->
+  <!-- A single front-facing board, with a narrow cover edge rather than a visible spine. -->
   <rect x="14" y="5" width="49" height="52" rx="1.2" fill="url(#cloth)" stroke="#864f36" stroke-width=".8"/>
-  <path d="M15.2 5H22v52h-6.8a1.2 1.2 0 0 1-1.2-1.2V6.2A1.2 1.2 0 0 1 15.2 5Z" fill="url(#binding)"/>
-  <path d="M16 7v47M23.2 7v48" fill="none" stroke="#daaa7d" stroke-width=".55" opacity=".65"/>
-  <path d="M22 6v50" stroke="#79472f" stroke-width=".65"/>
-  <path d="M16.8 12h3.6m-3.6 1.7h3.6m-3.6 34.6h3.6m-3.6 1.7h3.6" stroke="#d6ae77" stroke-width=".65"/>
-  <path d="M24.5 6.6H61.4V55.4" fill="none" stroke="#d6986f" stroke-width=".55"/>
+  <path d="M15.8 55.4V6.6H61.4V55.4" fill="none" stroke="#d6986f" stroke-width=".55"/>
   <!-- Quiet gilt frame and a centered, unskewed cover stamp. -->
+  <g transform="translate(-3.75 0)">
   <rect x="26" y="10.5" width="32.5" height="40.5" rx=".6" fill="none" stroke="#e0b782" stroke-width=".65"/>
   <path d="M28 15v-2.5h3m22.5 0h3V15M28 46.5V49h3m22.5 0h3v-2.5" fill="none" stroke="#e0b782" stroke-width=".45"/>
   <text x="42.25" y="23" text-anchor="middle" fill="#fff0d0" font-family="Georgia, 'Times New Roman', serif" font-size="6.9">Cookbook</text>
@@ -43,5 +35,6 @@
   <path d="M35.5 36.5q6.75-1.4 13.5 0" fill="none" stroke="#bb8055" stroke-width=".55"/>
   <path d="M36 39q1.5 3.5 5 4" fill="none" stroke="#fff1d1" stroke-width=".65" stroke-linecap="round"/>
   <path d="M39.5 45.5H45m-5.5-12.8c-2-1.5 1.7-2.1.2-3.7m5.4 3.7c-2-1.5 1.7-2.1.2-3.7" fill="none" stroke="#eed9ae" stroke-width=".7" stroke-linecap="round"/>
+  </g>
   <path d="M15.5 56H61.5" stroke="#75472f" stroke-width=".45" opacity=".5"/>
 </svg>
