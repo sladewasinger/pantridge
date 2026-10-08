@@ -1,5 +1,9 @@
 # Local API testing
 
+For the complete sync/database/worker setup without Google login, use
+[full local integration](development/full-local-testing.md). It supersedes `dev:connected` for
+testing background work, cross-device persistence and account boundaries.
+
 ## Actual batch-size comparisons
 
 The later [October 7 batch experiment](experiments/batching-2026-10-07.md) tests 10, 40, 100 and

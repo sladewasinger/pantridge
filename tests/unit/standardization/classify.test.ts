@@ -4,7 +4,27 @@ vi.mock('../../../api/products/ai', () => ({ requestStructured }));
 import { classifyBatch } from '../../../api/standardization/classify';
 const evidence = { name: 'Unfamiliar rice', brand: '', details: '', context: 'product' as const };
 const result = { status: 'recognized', identity: 'rice', preparation: 'cooked', reason: '' };
-beforeEach(() => requestStructured.mockReset());
+beforeEach(() => {
+  requestStructured.mockReset();
+  vi.unstubAllEnvs();
+});
+it('uses the food recognition reasoning override without changing interactive reasoning', async () => {
+  vi.stubEnv('CLASSIFIER_REASONING_EFFORT', 'low');
+  vi.stubEnv('STANDARDIZATION_REASONING_EFFORT', 'medium');
+  requestStructured.mockResolvedValue({ items: [{ index: 0, result }] });
+  await classifyBatch('owner', [evidence]);
+  expect(requestStructured).toHaveBeenLastCalledWith(
+    'owner',
+    expect.objectContaining({ reasoningEffort: 'medium' }),
+  );
+  expect(process.env.CLASSIFIER_REASONING_EFFORT).toBe('low');
+  vi.stubEnv('STANDARDIZATION_REASONING_EFFORT', '');
+  await classifyBatch('owner', [evidence]);
+  expect(requestStructured).toHaveBeenLastCalledWith(
+    'owner',
+    expect.objectContaining({ reasoningEffort: 'low' }),
+  );
+});
 it('classifies 25 items in one call and rejects 26 before contacting the provider', async () => {
   requestStructured.mockResolvedValue({
     items: Array.from({ length: 25 }, (_, index) => ({ index, result })).reverse(),

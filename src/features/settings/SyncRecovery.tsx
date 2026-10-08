@@ -1,10 +1,12 @@
 import { getAccount, useKitchen } from '../../data/store';
-import { syncStatus, useCloudCopy } from '../../data/sync';
+import { useCloudCopy } from '../../data/sync';
+import { useSyncStatus } from '../../data/useSyncStatus';
 import { useAction } from '../../ui/useAction';
 export function SyncRecovery() {
   const { pending } = useKitchen();
+  const sync = useSyncStatus();
   const { run, busy, error } = useAction();
-  if (getAccount() === 'local' || !pending.length || syncStatus().status !== 'error') return null;
+  if (getAccount() === 'local' || !pending.length || sync.status !== 'error') return null;
   return (
     <details>
       <summary>Resolve unsynced changes</summary>

@@ -58,7 +58,7 @@ function cacheKey(owner: string, request: RecipeSuggestionRequest) {
           request.preferences,
           request.bases,
           process.env.CLASSIFIER_PROVIDER,
-          process.env.CLASSIFIER_MODEL ?? 'gpt-4.1-nano',
+          process.env.CLASSIFIER_MODEL ?? 'gpt-6-luna',
           process.env.CLASSIFIER_REASONING_EFFORT,
           tokenLimit,
           instructions,

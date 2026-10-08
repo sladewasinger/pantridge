@@ -26,6 +26,7 @@ const outputSchema = z.object({
     }),
   ),
 });
+const reasoningOptions = (effort?: string) => (effort ? { reasoning: { effort } } : {});
 export async function requestStructured(
   owner: string,
   {
@@ -35,6 +36,7 @@ export async function requestStructured(
     input,
     maxOutputTokens,
     deadlineMs,
+    reasoningEffort = process.env.CLASSIFIER_REASONING_EFFORT,
   }: {
     name: string;
     schema: Record<string, unknown>;
@@ -43,6 +45,7 @@ export async function requestStructured(
     // Server-only recipe allowance; callers cannot select a provider or raise shared quotas.
     maxOutputTokens?: 1536 | 2048;
     deadlineMs?: 15000;
+    reasoningEffort?: string;
   },
 ): Promise<unknown> {
   if (process.env.CLASSIFIER_PROVIDER !== 'openai') return null;
@@ -55,7 +58,7 @@ export async function requestStructured(
       signal: AbortSignal.timeout(deadlineMs ?? 8000),
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: process.env.CLASSIFIER_MODEL ?? 'gpt-4.1-nano',
+        model: process.env.CLASSIFIER_MODEL ?? 'gpt-6-luna',
         store: false,
         max_output_tokens: Math.max(
           128,
@@ -64,9 +67,7 @@ export async function requestStructured(
             maxOutputTokens ?? (Number(process.env.CLASSIFIER_MAX_OUTPUT_TOKENS ?? 200) || 200),
           ),
         ),
-        ...(process.env.CLASSIFIER_REASONING_EFFORT
-          ? { reasoning: { effort: process.env.CLASSIFIER_REASONING_EFFORT } }
-          : {}),
+        ...reasoningOptions(reasoningEffort),
         instructions,
         input: JSON.stringify(input),
         text: { format: { type: 'json_schema', name, strict: true, schema } },

@@ -25,12 +25,27 @@ const item = {
 };
 beforeEach(() => {
   vi.clearAllMocks();
+  vi.unstubAllEnvs();
   mocks.cachedProduct.mockResolvedValue(null);
   mocks.cachedResult.mockResolvedValue(null);
   mocks.claimCache.mockResolvedValue(true);
   mocks.cacheResult.mockResolvedValue(undefined);
   mocks.takeQuota.mockResolvedValue(undefined);
   mocks.classifyBatch.mockResolvedValue([recognized]);
+});
+it('keys cached recognition by its effective effort independently of interactive calls', async () => {
+  const request = { kind: 'standardization', items: [item] };
+  vi.stubEnv('CLASSIFIER_REASONING_EFFORT', 'low');
+  vi.stubEnv('STANDARDIZATION_REASONING_EFFORT', 'low');
+  await resolveStandardization('owner', request);
+  const low = mocks.cachedResult.mock.calls.at(-1)![0];
+  vi.stubEnv('STANDARDIZATION_REASONING_EFFORT', 'medium');
+  await resolveStandardization('owner', request);
+  const medium = mocks.cachedResult.mock.calls.at(-1)![0];
+  expect(medium).not.toBe(low);
+  vi.stubEnv('CLASSIFIER_REASONING_EFFORT', 'high');
+  await resolveStandardization('owner', request);
+  expect(mocks.cachedResult.mock.calls.at(-1)![0]).toBe(medium);
 });
 it('lookup misses never call AI and cached results avoid provider calls', async () => {
   const request = { kind: 'standardization', items: [item] };
