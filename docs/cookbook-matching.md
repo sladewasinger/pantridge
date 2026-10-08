@@ -6,7 +6,7 @@ have a separate upstream AI standardization queue, described below. Its persiste
 feed the same local matcher. Explicit recipe generation, barcode refinement and nutrition
 estimates retain their existing optional API behavior.
 
-## AI standardization architecture (prepared, not deployed)
+## AI standardization architecture
 
 Known local identities work immediately. Unfamiliar generic foods, branded positive stock lots,
 and saved/imported/generated recipe ingredients without explicit descriptors are eligible for
@@ -38,6 +38,11 @@ three attempts; quota exhaustion waits until the next UTC day. Suspension pauses
 Settings → Food recognition lists pending names, scheduling and retry state. Item and recipe
 Recipe matching controls explain uncertain results. Process now requests server processing;
 it neither bypasses budgets nor performs matching in the cloud.
+Recognition counts are separate from unsynced edits. Immediate or overdue jobs show “Queued for
+processing,” never an epoch timestamp; future-day retries include their date. While the app is visible,
+due or near-due active jobs refresh through normal sync every thirty seconds, subject to existing
+offline and retry guards. Once recognition finishes, cloud polling returns to the five-minute idle
+cadence. Failed, paused and distant retry jobs do not trigger the faster cadence.
 
 ## Shared catalog and its limits
 
@@ -75,8 +80,8 @@ operational monitoring; this first worker is intentionally bounded, not a high-t
 ## Manual rollout
 
 Terraform prepares a dedicated worker role/function, due/name indexes, minute schedule and narrow
-application-code deployment permissions. `standardization_enabled` defaults false. No Terraform
-apply or application deployment was performed for this preparation. Before enabling: review/apply
+application-code deployment permissions. `standardization_enabled` defaults false. Production was
+enabled through a manual Terraform apply on October 7, 2026. For another environment: review/apply
 Terraform manually, wait for indexes to become active, refresh public deployment configuration from
 Terraform outputs (including the worker artifact), deploy both API and worker code through the
 approved develop→main flow, then explicitly enable the flag/schedule through a reviewed manual apply.
