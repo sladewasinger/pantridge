@@ -3,6 +3,7 @@ import { classificationTargets } from '../../domain/standardization/targets';
 import { localTesting } from '../../local-testing';
 import { useAction } from '../../ui/useAction';
 import { batchSize } from '../../domain/standardization/model';
+import { classificationStatusCopy } from './status-copy';
 
 export function ClassificationStatus() {
   const { data, pending } = useKitchen();
@@ -14,7 +15,7 @@ export function ClassificationStatus() {
     <section className="settings-section">
       <details>
         <summary>
-          Food recognition{targets.length > 0 ? ` · ${targets.length} pending` : ''}
+          Food recognition{targets.length > 0 ? ` · ${targets.length} awaiting recognition` : ''}
         </summary>
         <p className="muted">
           Known foods match recipes on this device. Unfamiliar names use AI after syncing; amounts
@@ -24,7 +25,9 @@ export function ClassificationStatus() {
           <p>Sign in to recognize unfamiliar foods. Manual recipe matching works offline.</p>
         ) : (
           <>
-            <p role="status">{statusCopy(job, pending.length, targets.length)}</p>
+            <p role="status">
+              {classificationStatusCopy(job, pending.length, targets.length, { localTesting })}
+            </p>
             {targets.length > 0 && (
               <ul>
                 {targets.slice(0, 10).map((target) => (
@@ -57,21 +60,4 @@ export function ClassificationStatus() {
       </details>
     </section>
   );
-}
-function statusCopy(
-  job: ReturnType<typeof useKitchen>['data']['classificationJob'],
-  pending: number,
-  count: number,
-): string {
-  if (!count) return 'No food recognition pending.';
-  if (pending && !localTesting) return 'Waiting for these edits to sync.';
-  if (!job)
-    return localTesting
-      ? 'Isolated test kitchen. Process one batch below.'
-      : 'Waiting for server scheduling.';
-  if (job.state === 'processing') return 'Recognizing foods. You can close the app.';
-  if (job.state === 'failed')
-    return 'Recognition could not finish. Retry or use Recipe matching to correct an item.';
-  if (job.state === 'paused') return 'Cloud recognition is paused.';
-  return `${job.state === 'retry' ? 'Retry scheduled' : 'Queued'} for ${new Date(job.dueAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}. Continues with the app closed.`;
 }

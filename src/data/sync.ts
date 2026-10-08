@@ -4,6 +4,7 @@ import { syncBatch } from './sync-batch';
 import { reconcile } from './reconcile';
 import { getAccount, getKitchen, updateKitchen } from './store';
 import { localTesting } from '../local-testing';
+import { classificationDueSoon } from '../domain/standardization/job';
 
 const api = localTesting ? undefined : (import.meta.env.VITE_API_URL as string | undefined);
 let running: Promise<void> | null = null;
@@ -81,7 +82,11 @@ export function startSync(): () => void {
   let lastPoll = 0;
   const interval = window.setInterval(() => {
     if (document.hidden || !syncAllowed(getAccount())) return;
-    if (getKitchen().pending.length || Date.now() - lastPoll >= 300_000) {
+    if (
+      getKitchen().pending.length ||
+      classificationDueSoon(getKitchen().data.classificationJob, Date.now()) ||
+      Date.now() - lastPoll >= 300_000
+    ) {
       lastPoll = Date.now();
       trigger();
     }
