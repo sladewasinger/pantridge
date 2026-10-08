@@ -10,7 +10,7 @@ variable "classifier_provider" {
 variable "classifier_model" {
   description = "OpenAI model supporting Responses structured outputs. Used only when AI is enabled."
   type        = string
-  default     = "gpt-4.1-nano"
+  default     = "gpt-6-luna"
   validation {
     condition     = can(regex("^[a-zA-Z0-9._-]{1,100}$", var.classifier_model))
     error_message = "Use a model identifier."
@@ -41,5 +41,15 @@ variable "classifier_max_output_tokens" {
   validation {
     condition     = var.classifier_max_output_tokens >= 200 && var.classifier_max_output_tokens <= 4096 && floor(var.classifier_max_output_tokens) == var.classifier_max_output_tokens
     error_message = "Use an integer output budget from 200 to 4096."
+  }
+}
+
+variable "standardization_reasoning_effort" {
+  description = "Optional food standardization override; null inherits classifier_reasoning_effort. Interactive requests retain the classifier setting."
+  type        = string
+  default     = null
+  validation {
+    condition     = var.standardization_reasoning_effort == null || contains(["none", "low", "medium", "high", "xhigh", "max"], var.standardization_reasoning_effort)
+    error_message = "Choose a supported reasoning effort or null."
   }
 }

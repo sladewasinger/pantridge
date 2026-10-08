@@ -171,14 +171,19 @@ run "classifier_key_access_is_narrow" {
 run "luna_low_configuration" {
   command = plan
   variables {
-    classifier_provider          = "openai"
-    classifier_model             = "gpt-5.6-luna"
-    classifier_reasoning_effort  = "low"
-    classifier_max_output_tokens = 1024
+    classifier_provider              = "openai"
+    classifier_model                 = "gpt-6-luna"
+    classifier_reasoning_effort      = "low"
+    standardization_reasoning_effort = "medium"
+    classifier_max_output_tokens     = 1024
   }
   assert {
-    condition     = aws_lambda_function.api.environment[0].variables["CLASSIFIER_MODEL"] == "gpt-5.6-luna" && aws_lambda_function.api.environment[0].variables["CLASSIFIER_REASONING_EFFORT"] == "low" && aws_lambda_function.api.environment[0].variables["CLASSIFIER_MAX_OUTPUT_TOKENS"] == "1024"
+    condition     = aws_lambda_function.api.environment[0].variables["CLASSIFIER_MODEL"] == "gpt-6-luna" && aws_lambda_function.api.environment[0].variables["CLASSIFIER_REASONING_EFFORT"] == "low" && aws_lambda_function.api.environment[0].variables["CLASSIFIER_MAX_OUTPUT_TOKENS"] == "1024"
     error_message = "The selected Luna model, reasoning effort and token cap must reach Lambda."
+  }
+  assert {
+    condition     = aws_lambda_function.api.environment[0].variables["STANDARDIZATION_REASONING_EFFORT"] == "medium"
+    error_message = "Food recognition must use its separate reasoning setting."
   }
 }
 

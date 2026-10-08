@@ -19,6 +19,11 @@ export function App() {
   const settings = () => openOverlay({ type: 'settings' });
   return (
     <div className="app-shell">
+      {import.meta.env.DEV && import.meta.env.VITE_LOCAL_FULL === 'true' && (
+        <p role="status">
+          Local integration · {import.meta.env.VITE_FULL_MODE} AI · no production data
+        </p>
+      )}
       <Header
         view={{ page, location, query }}
         onHome={() => navigate('kitchen')}

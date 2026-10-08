@@ -1,15 +1,9 @@
-import { useEffect, useState } from 'react';
 import { CloudCheck, CloudOff, HardDrive, RefreshCw } from 'lucide-react';
-import { syncStatus } from '../data/sync';
+import { useSyncStatus } from '../data/useSyncStatus';
 import { useKitchen } from '../data/store';
 export function SyncIndicator({ onClick }: { onClick: () => void }) {
-  const [state, setState] = useState(syncStatus);
+  const state = useSyncStatus();
   const { pending } = useKitchen();
-  useEffect(() => {
-    const update = () => setState(syncStatus());
-    window.addEventListener('pantridge-sync', update);
-    return () => window.removeEventListener('pantridge-sync', update);
-  }, []);
   const labels = {
     local: 'Saved on this device',
     offline: 'Offline · saved on this device',

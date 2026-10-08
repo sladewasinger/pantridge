@@ -10,6 +10,7 @@ import {
   type StandardizationRequest,
 } from '../../src/domain/standardization/model';
 import { classifyBatch } from './classify';
+import { standardizationReasoning } from './config';
 
 async function publicEvidence(item: StandardizationRequest['items'][number]) {
   const raw =
@@ -53,7 +54,7 @@ async function cacheInput(owner: string, item: StandardizationRequest['items'][n
           scope,
           evidenceFingerprint(evidence),
           process.env.CLASSIFIER_MODEL,
-          process.env.CLASSIFIER_REASONING_EFFORT,
+          standardizationReasoning(),
         ]),
       )
       .digest('hex');

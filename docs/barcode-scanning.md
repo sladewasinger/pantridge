@@ -56,7 +56,7 @@ the client request and ignores late responses; an already running server call ma
 consume its reserved quota. A failed refinement keeps the initial result available. Saving before lookup finishes retains the barcode and manually entered details; late lookup/AI responses do not alter saved stock. This removes UI blocking, not upstream network latency.
 
 Free rules run first. AI is **disabled by default** (`classifier_provider = "none"`). With
-`"openai"`, ambiguous found products use the configurable model (initial default `gpt-4.1-nano`).
+`"openai"`, ambiguous found products use the configurable model (default `gpt-6-luna`).
 Only product name, brand and categories are sent, with `store: false`, a strict output schema,
 configurable output-token limit and eight-second timeout. The limit includes reasoning tokens.
 Model text has no authority to execute commands.
@@ -114,11 +114,14 @@ small feature. There is no promise that the entire AWS app is free.
 
 ## Attribution and limitations
 
-The personal deployment selects `gpt-5.6-luna` with `low` reasoning and a 1,024-token total output
-cap. Deployment selections live in ignored local Terraform settings; reusable defaults remain
+The personal deployment selects `gpt-6-luna` with `low` reasoning and a 1,024-token total output
+cap for ordinary requests. Recipe generation retains its 2,048-token cap. Background food
+standardization overrides reasoning to `medium`, retaining its 25-item, 2,048-token and
+15-second limits; see the [evaluation](experiments/models-2026-10-07.md).
+Deployment selections live in ignored local Terraform settings; reusable defaults remain
 rules-only. Non-reasoning models omit the reasoning parameter. Cache keys include the provider,
 model, reasoning effort and output cap so a setting change does not reuse an older fallback.
-See [Luna model documentation](https://developers.openai.com/api/docs/models/gpt-5.6-luna).
+See [Luna model documentation](https://developers.openai.com/api/docs/models/gpt-6-luna).
 
 Open Food Facts product data and derived cached classification retain Open Food Facts attribution
 and ODbL licensing. The app links the source on confirmation and product details. The shared
