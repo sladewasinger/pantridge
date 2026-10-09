@@ -1,4 +1,5 @@
 import { getToken } from '../auth/session';
+import { SignInRequiredError } from '../auth/errors';
 import { cloudRequest, syncAllowed } from './sync-request';
 import { syncBatch } from './sync-batch';
 import { reconcile } from './reconcile';
@@ -42,10 +43,12 @@ async function performSync(): Promise<void> {
   report(getKitchen().pending.length ? 'syncing' : 'synced');
 }
 export function syncKitchen(): Promise<void> {
+  const account = getAccount();
   running ??= performSync()
     .catch((error: unknown) => {
+      if (getAccount() !== account) return;
       report(
-        'error',
+        error instanceof SignInRequiredError ? 'signin' : 'error',
         error instanceof Error ? error.message : 'Sync failed. Your changes remain on this device.',
       );
     })
@@ -75,6 +78,10 @@ export async function useCloudCopy(): Promise<void> {
   return running;
 }
 export function startSync(): () => void {
+  const signIn = (event: Event) => {
+    if ((event as CustomEvent<string>).detail === getAccount())
+      report('signin', new SignInRequiredError().message);
+  };
   const trigger = () => {
     void syncKitchen();
   };
@@ -95,6 +102,7 @@ export function startSync(): () => void {
   window.addEventListener('offline', offline);
   window.addEventListener('pantridge-change', trigger);
   window.addEventListener('focus', trigger);
+  window.addEventListener('pantridge-signin', signIn);
   trigger();
   return () => {
     window.clearInterval(interval);
@@ -102,5 +110,6 @@ export function startSync(): () => void {
     window.removeEventListener('offline', offline);
     window.removeEventListener('pantridge-change', trigger);
     window.removeEventListener('focus', trigger);
+    window.removeEventListener('pantridge-signin', signIn);
   };
 }

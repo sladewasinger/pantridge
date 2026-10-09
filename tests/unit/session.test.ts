@@ -13,6 +13,7 @@ beforeEach(() => {
   vi.stubEnv('VITE_AUTHORITY', 'https://issuer.test');
   vi.stubEnv('VITE_CLIENT_ID', 'client');
   vi.stubGlobal('window', { location: { origin: 'https://app.test' }, localStorage: {} });
+  vi.stubGlobal('navigator', {});
 });
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -25,7 +26,7 @@ it('does not hand another account token to the kitchen sync layer', async () => 
   expect(signinSilent).not.toHaveBeenCalled();
 });
 it('checks the account again after an asynchronous token refresh', async () => {
-  getUser.mockResolvedValue({ profile: { sub: 'owner' }, expired: true });
+  getUser.mockResolvedValue({ profile: { sub: 'owner' }, expired: true, refresh_token: 'fixture' });
   signinSilent.mockResolvedValue({ profile: { sub: 'other' }, access_token: 'never-send' });
   const { getToken } = await import('../../src/auth/session');
   await expect(getToken('owner')).rejects.toThrow('account changed');
