@@ -1,7 +1,9 @@
 import { envelopeSchema, type Envelope } from '../domain/model';
+import { requestSignIn } from '../auth/errors';
 
 const api = import.meta.env.VITE_API_URL as string | undefined;
 const blockedUntil = new Map<string, number>();
+const rejectedTokens = new Map<string, string>();
 export const syncAllowed = (account: string) => Date.now() >= (blockedUntil.get(account) ?? 0);
 export async function cloudRequest(
   account: string,
@@ -9,6 +11,7 @@ export async function cloudRequest(
   token: string,
   body?: string,
 ): Promise<Envelope> {
+  if (rejectedTokens.get(account) === token) throw requestSignIn(account);
   if (!syncAllowed(account))
     throw new Error('Cloud access is paused. Your changes remain on this device.');
   const response = await fetch(`${api}${path}`, {
@@ -22,8 +25,8 @@ export async function cloudRequest(
     cache: 'no-store',
   });
   if (response.status === 401) {
-    blockedUntil.set(account, Date.now() + 300000);
-    throw new Error('Sign in again to sync. Your changes are safe on this device.');
+    rejectedTokens.set(account, token);
+    throw requestSignIn(account);
   }
   if (!response.ok) {
     const retry = Number(response.headers.get('Retry-After'));
