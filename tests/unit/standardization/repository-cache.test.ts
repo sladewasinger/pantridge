@@ -1,3 +1,4 @@
+import { standardizationVersion } from '../../../src/domain/standardization/model';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { TransactWriteCommand } from '@aws-sdk/lib-dynamodb';
 import type * as DocumentSdk from '@aws-sdk/lib-dynamodb';
@@ -73,7 +74,7 @@ it('counts a successful clarification once without logging its private target or
   const food = data.foods[0]!;
   food.standardization = {
     fingerprint: evidenceFingerprint(foodEvidence(food)),
-    version: '1',
+    version: standardizationVersion,
     source: 'ai-private',
     status: 'unknown',
     identity: null,

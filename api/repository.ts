@@ -15,6 +15,9 @@ import {
 import { scheduleClassification } from './standardization/schedule';
 import { reuseClassificationCache } from './standardization/sync-cache';
 import { classificationMetric } from './standardization/metrics';
+import { assertCatalogWritable } from './catalog-compatibility';
+import { catalogRevision } from '../src/domain/ingredient-matching/catalog-version';
+import { compatibleMutationCommand } from '../src/domain/ingredient-matching/mutation-compatibility';
 
 export async function read(owner: string): Promise<Envelope> {
   const current = await readStored(owner);
@@ -44,18 +47,24 @@ async function wasApplied(owner: string, mutationId: string): Promise<boolean> {
   );
   return !!result.Item;
 }
-export async function mutate(owner: string, mutation: Mutation): Promise<Envelope> {
+export async function mutate(
+  owner: string,
+  mutation: Mutation,
+  revision = catalogRevision,
+): Promise<Envelope> {
   for (let attempt = 0; attempt < 5; attempt++) {
     if (await wasApplied(owner, mutation.id)) return readStored(owner);
     const current = await readStored(owner);
+    assertCatalogWritable(current.data, revision);
     const next = {
       revision: current.revision + 1,
       data: scheduleClassification(
         current.data,
-        reduceChecked(current.data, mutation.command),
+        reduceChecked(current.data, compatibleMutationCommand(current.data, mutation)),
         Date.now(),
       ),
     };
+    assertCatalogWritable(next.data, revision);
     try {
       await reserveWriteBudget(next);
       await client.send(

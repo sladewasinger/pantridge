@@ -1,8 +1,14 @@
 import type { Snapshot, Food } from '../model';
 import { isSupply } from '../supplies';
 import { identifyIngredient, preparationFrom } from '../ingredient-matching/identity';
-import { foodEvidence, stockEvidence, recipeEvidence, evidenceFingerprint } from './evidence';
-import type { Evidence, SavedStandardization } from './model';
+import {
+  foodEvidence,
+  stockEvidence,
+  recipeEvidence,
+  evidenceFingerprint,
+  currentStandardization,
+} from './evidence';
+import { standardizationVersion, type Evidence, type SavedStandardization } from './model';
 
 export interface ClassificationTarget {
   key: string;
@@ -11,9 +17,18 @@ export interface ClassificationTarget {
   barcode?: string;
 }
 function unresolved(evidence: Evidence, saved?: SavedStandardization): boolean {
-  if (saved?.fingerprint === evidenceFingerprint(evidence)) return false;
-  if (evidence.context === 'product' && !preparationFrom(evidence.name)) return true;
   const known = identifyIngredient(evidence.name);
+  const current = currentStandardization(saved, evidence);
+  if (current) {
+    if (current.status === 'recognized' || current.version === standardizationVersion) return false;
+    return !(current.status === 'taxonomy-gap' && known);
+  }
+  if (
+    evidence.context === 'product' &&
+    (!known || ['dry', 'unknown'].includes(known.preparation)) &&
+    !preparationFrom(evidence.name)
+  )
+    return true;
   return !known;
 }
 function foodTargets(data: Snapshot, foods: Map<string, Food>): ClassificationTarget[] {
@@ -85,7 +100,9 @@ export function applyClassifications(
   const applicable = new Map(
     classificationTargets(data).flatMap((target) => {
       const result = results.get(target.key);
-      return result?.fingerprint === target.fingerprint ? [[target.key, result] as const] : [];
+      return result?.fingerprint === target.fingerprint && result.version === standardizationVersion
+        ? [[target.key, result] as const]
+        : [];
     }),
   );
   if (!applicable.size) return data;

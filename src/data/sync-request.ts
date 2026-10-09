@@ -1,5 +1,6 @@
 import { envelopeSchema, type Envelope } from '../domain/model';
 import { requestSignIn } from '../auth/errors';
+import { catalogRevision } from '../domain/ingredient-matching/catalog-version';
 
 const api = import.meta.env.VITE_API_URL as string | undefined;
 const blockedUntil = new Map<string, number>();
@@ -14,7 +15,8 @@ export async function cloudRequest(
   if (rejectedTokens.get(account) === token) throw requestSignIn(account);
   if (!syncAllowed(account))
     throw new Error('Cloud access is paused. Your changes remain on this device.');
-  const response = await fetch(`${api}${path}`, {
+  const query = `${path.includes('?') ? '&' : '?'}catalogRevision=${catalogRevision}`;
+  const response = await fetch(`${api}${path}${query}`, {
     method: body ? 'POST' : 'GET',
     headers: {
       Authorization: `Bearer ${token}`,

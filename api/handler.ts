@@ -13,6 +13,12 @@ import { resolveNutrition } from './products/nutrition-estimate';
 import { resolveRecipeSuggestions } from './recipes/suggest';
 import { resolveStandardization } from './standardization/resolve';
 import { lookupCatalog } from './standardization/catalog';
+import {
+  projectCatalog,
+  projectClassification,
+  projectRecipes,
+  requestedCatalogRevision,
+} from './catalog-compatibility';
 
 function response(
   statusCode: number,
@@ -38,7 +44,9 @@ export async function handler(
   try {
     const username = event.requestContext.authorizer.jwt.claims.username;
     await protectRequest(owner, typeof username === 'string' ? username : undefined);
-    if (event.routeKey === 'GET /v1/kitchen') return response(200, await read(owner));
+    const revision = requestedCatalogRevision(event.queryStringParameters?.catalogRevision);
+    if (event.routeKey === 'GET /v1/kitchen')
+      return response(200, projectCatalog(await read(owner), revision));
     if (!['POST /v1/mutations', 'POST /v1/products/resolve'].includes(event.routeKey))
       return response(404, { message: 'Not found.' });
     const body = requestBody(event);
@@ -47,9 +55,9 @@ export async function handler(
       return response(413, { message: 'This change is too large.' });
     }
     if (event.routeKey === 'POST /v1/products/resolve')
-      return response(200, await productRequest(owner, body));
+      return response(200, await productRequest(owner, body, revision));
     const mutation = mutationSchema.parse(JSON.parse(body));
-    return response(200, await mutate(owner, mutation));
+    return response(200, projectCatalog(await mutate(owner, mutation, revision), revision));
   } catch (error) {
     if (error instanceof SyntaxError || error instanceof ZodError) {
       try {
@@ -62,7 +70,7 @@ export async function handler(
   }
 }
 
-function productRequest(owner: string, body: string) {
+async function productRequest(owner: string, body: string, revision: number) {
   const input: unknown = JSON.parse(body);
   if (typeof input === 'object' && input !== null && 'kind' in input) {
     if (
@@ -71,9 +79,28 @@ function productRequest(owner: string, body: string) {
     )
       throw new ProductError(503, 'Food recognition is not enabled yet.');
     if (input.kind === 'nutrition') return resolveNutrition(owner, input);
-    if (input.kind === 'recipe') return resolveRecipeSuggestions(owner, input);
-    if (input.kind === 'standardization') return resolveStandardization(owner, input);
-    if (input.kind === 'classification-catalog') return lookupCatalog(input);
+    if (input.kind === 'recipe')
+      return projectRecipes(await resolveRecipeSuggestions(owner, input), revision);
+    if (input.kind === 'standardization') {
+      const result = await resolveStandardization(owner, input);
+      return {
+        ...result,
+        items: result.items.map((item) => ({
+          ...item,
+          result: item.result && projectClassification(item.result, revision),
+        })),
+      };
+    }
+    if (input.kind === 'classification-catalog') {
+      const result = await lookupCatalog(input);
+      return {
+        ...result,
+        candidates: result.candidates.map((item) => ({
+          ...item,
+          result: projectClassification(item.result, revision),
+        })),
+      };
+    }
   }
   return resolveProduct(owner, body);
 }

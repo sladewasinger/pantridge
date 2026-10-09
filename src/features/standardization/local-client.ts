@@ -8,6 +8,7 @@ import {
   type SavedStandardization,
 } from '../../domain/standardization/model';
 import { classificationBatch, classificationRequest } from '../../domain/standardization/batch';
+import { catalogRevision } from '../../domain/ingredient-matching/catalog-version';
 
 export async function classifyLocalBatch(): Promise<void> {
   if (!localTesting) throw new Error('Local classification is unavailable.');
@@ -16,7 +17,7 @@ export async function classifyLocalBatch(): Promise<void> {
   if (!targets.length) return;
   const token = await getToken(account);
   if (!token || getAccount() !== account) throw new Error('The kitchen changed. Try again.');
-  const response = await fetch('/api/v1/products/resolve', {
+  const response = await fetch(`/api/v1/products/resolve?catalogRevision=${catalogRevision}`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
     signal: AbortSignal.timeout(20_000),

@@ -43,6 +43,9 @@ async function application(request: IncomingMessage, owner: string, path: string
   }
   return handler({
     routeKey: `${request.method} ${path}`,
+    queryStringParameters: Object.fromEntries(
+      new URL(request.url ?? '/', 'http://127.0.0.1:4176').searchParams,
+    ),
     body: request.method === 'POST' ? await bodyText(request) : undefined,
     requestContext: {
       requestId: 'full-local',

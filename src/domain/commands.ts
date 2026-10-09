@@ -77,7 +77,11 @@ export const commandSchema = z.discriminatedUnion('type', [
   }),
 ]);
 export const mutationSchema = z
-  .object({ id, command: commandSchema })
+  .object({
+    id,
+    command: commandSchema,
+    catalogRevision: z.number().int().min(1).max(1000).optional(),
+  })
   .refine(
     (mutation) => new TextEncoder().encode(JSON.stringify(mutation)).length <= 16000,
     'This change is too large to sync. Use fewer ingredients or shorter instructions.',

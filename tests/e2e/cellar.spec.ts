@@ -32,7 +32,7 @@ test('cellar continues below the kitchen, puts Storage stock first and loads dee
       }),
     );
   });
-  await page.route('https://api.pantridge.test/v1/kitchen', (route) =>
+  await page.route('https://api.pantridge.test/v1/kitchen**', (route) =>
     route.fulfill({ json: { revision: 0, data } }),
   );
   await page.goto('/');

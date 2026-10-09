@@ -1,13 +1,20 @@
 import type { SavedStandardization } from '../../domain/standardization/model';
+const descriptions = {
+  uncertain: 'Food identity uncertain.',
+  unknown: 'No ingredient match.',
+  'taxonomy-gap': 'Ingredient outside the recipe catalog.',
+  composite: 'Mixed food.',
+  nonfood: 'Nonfood item.',
+};
 export function ResultNote({ result, manual }: { result?: SavedStandardization; manual: boolean }) {
   if (manual || !result) return null;
   return (
     <p className="muted">
       {result.status === 'recognized' && result.preparation === 'unknown'
-        ? 'Ingredient recognized. Choose its preparation below.'
+        ? 'AI ingredient match · preparation unspecified.'
         : result.status === 'recognized'
-          ? 'AI recognized · check preparation and package amounts.'
-          : `Needs review · ${result.reason || result.status}`}
+          ? 'AI ingredient match.'
+          : descriptions[result.status]}
     </p>
   );
 }

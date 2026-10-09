@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { client } from './client';
-test('two devices sync real writes, clarify recognition, reload, and isolate a switched account', async ({
+test('two devices sync real writes, optionally edit recipe matching, reload, and isolate a switched account', async ({
   page,
   browser,
   request,
@@ -32,34 +32,40 @@ test('two devices sync real writes, clarify recognition, reload, and isolate a s
     await page.getByRole('button', { name: 'Run due worker jobs', exact: true }).click();
     await expect(page.getByRole('dialog')).toContainText('Worker checked due jobs.');
     await page.getByRole('button', { name: 'Sync now', exact: true }).click();
-    await expect(page.getByRole('dialog')).toContainText(
-      'No recognition queued. Some items need your clarification below.',
-    );
-    const reviewName = `Clarify ${unique} · Kitchen item`;
-    await expect(page.getByRole('button', { name: reviewName, exact: true })).toBeVisible();
+    await expect(page.getByRole('dialog')).toContainText('No food recognition pending.');
+    await expect(page.getByRole('region', { name: 'Foods needing clarification' })).toHaveCount(0);
+    await expect(page.getByRole('button', { name: /^Clarify / })).toHaveCount(0);
     await page.reload();
     await page.locator('summary').filter({ hasText: 'Food recognition' }).click();
-    await expect(page.getByRole('button', { name: reviewName, exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: /^Clarify / })).toHaveCount(0);
     const before = await alice.read();
-    await page.getByRole('button', { name: reviewName, exact: true }).click();
-    await expect(page.getByRole('form', { name: `Clarify ${unique}`, exact: true })).toContainText(
-      'We could not identify this food.',
-    );
-    await page
-      .getByRole('combobox', { name: 'What food is this?', exact: true })
+    await page.getByRole('button', { name: 'Close', exact: true }).click();
+    await expect.poll(() => page.evaluate(() => history.state.pantridge.overlay)).toBeNull();
+    await page.getByRole('searchbox', { name: 'Find your food' }).fill(unique);
+    await page.getByRole('region', { name: unique, exact: true }).getByRole('button').click();
+    await page.getByRole('button', { name: 'Move or edit item', exact: true }).click();
+    const firstEditor = page.getByRole('dialog').locator('form');
+    await expect(
+      firstEditor.getByRole('combobox', { name: 'Ingredient identity', exact: true }),
+    ).toHaveCount(0);
+    await firstEditor.getByText('Recipe matching', { exact: true }).click();
+    await firstEditor
+      .getByRole('combobox', { name: 'Ingredient identity', exact: true })
       .selectOption('rice');
-    await page
-      .getByRole('combobox', { name: 'How is it prepared?', exact: true })
+    await firstEditor
+      .getByRole('combobox', { name: 'Preparation', exact: true })
       .selectOption('dry');
-    const clarification = page.waitForResponse((response) => {
-      if (!response.url().endsWith('/v1/mutations') || response.request().method() !== 'POST')
+    const correction = page.waitForResponse((response) => {
+      if (
+        !new URL(response.url()).pathname.endsWith('/v1/mutations') ||
+        response.request().method() !== 'POST'
+      )
         return false;
       const body = response.request().postDataJSON() as { command?: { type?: string } };
-      return body.command?.type === 'classification.review' && response.ok();
+      return body.command?.type === 'food.save' && response.ok();
     });
-    await page.getByRole('button', { name: 'Save clarification', exact: true }).click();
-    await clarification;
-    await expect(page.getByRole('button', { name: reviewName, exact: true })).toHaveCount(0);
+    await firstEditor.getByRole('button', { name: 'Save changes', exact: true }).click();
+    await correction;
     const clarified = (await alice.read()).data;
     expect(clarified.foods.find((food) => food.id === foodId)?.ingredient).toEqual({
       id: 'rice',
@@ -71,8 +77,9 @@ test('two devices sync real writes, clarify recognition, reload, and isolate a s
     await second.getByRole('button', { name: 'Settings', exact: true }).click();
     await second.getByRole('button', { name: 'Sync now', exact: true }).click();
     await second.locator('summary').filter({ hasText: 'Food recognition' }).click();
-    await expect(second.getByRole('button', { name: reviewName, exact: true })).toHaveCount(0);
+    await expect(second.getByRole('button', { name: /^Clarify / })).toHaveCount(0);
     await second.getByRole('button', { name: 'Close', exact: true }).click();
+    await expect.poll(() => second.evaluate(() => history.state.pantridge.overlay)).toBeNull();
     await second.reload();
     await second.getByRole('region', { name: unique, exact: true }).getByRole('button').click();
     await second.getByRole('button', { name: 'Move or edit item', exact: true }).click();
@@ -84,9 +91,12 @@ test('two devices sync real writes, clarify recognition, reload, and isolate a s
     await expect(editor.getByRole('combobox', { name: 'Preparation', exact: true })).toHaveValue(
       'dry',
     );
+    await page.getByRole('button', { name: 'Close', exact: true }).click();
+    await expect.poll(() => page.evaluate(() => history.state.pantridge.overlay)).toBeNull();
+    await page.getByRole('button', { name: 'Settings', exact: true }).click();
     await page.reload();
     await page.locator('summary').filter({ hasText: 'Food recognition' }).click();
-    await expect(page.getByRole('button', { name: reviewName, exact: true })).toHaveCount(0);
+    await expect(page.getByRole('button', { name: /^Clarify / })).toHaveCount(0);
     expect((await alice.read()).data.foods.find((food) => food.id === foodId)?.ingredient?.id).toBe(
       'rice',
     );

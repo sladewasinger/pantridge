@@ -9,9 +9,11 @@ export async function client(request: APIRequestContext, owner = 'dev-alice') {
   expect(session.ok()).toBe(true);
   const { token } = (await session.json()) as { token: string };
   const headers = { ...localHeaders, Authorization: `Bearer ${token}` };
-  const get = (path: string) => request.get(`http://127.0.0.1:4178/v1/${path}`, { headers });
+  const versioned = (path: string) => `${path}${path.includes('?') ? '&' : '?'}catalogRevision=2`;
+  const get = (path: string) =>
+    request.get(`http://127.0.0.1:4178/v1/${versioned(path)}`, { headers });
   const post = (path: string, data: unknown) =>
-    request.post(`http://127.0.0.1:4178/v1/${path}`, { headers, data });
+    request.post(`http://127.0.0.1:4178/v1/${versioned(path)}`, { headers, data });
   const status = await get('dev/status');
   expect(await status.json(), 'Full tests require their isolated fixture namespace.').toMatchObject(
     { mode: 'fixture', namespace: 'fixture-test' },
@@ -25,7 +27,7 @@ export async function client(request: APIRequestContext, owner = 'dev-alice') {
       return (await response.json()) as Envelope;
     },
     mutate: async (command: Command, id = crypto.randomUUID()) => {
-      const response = await post('mutations', { id, command });
+      const response = await post('mutations', { id, command, catalogRevision: 2 });
       expect(response.ok(), await response.text()).toBe(true);
       return (await response.json()) as Envelope;
     },
