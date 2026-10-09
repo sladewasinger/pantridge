@@ -107,3 +107,12 @@ it('bounds and validates bodies before paid work and rotates nonces between proc
   await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
   expect((await send('POST', '/v1/products/resolve', headers(value), '{}')).status).toBe(403);
 });
+it('accepts catalog negotiation without weakening origin or nonce checks', async () => {
+  const value = await token();
+  const path = '/v1/products/resolve?catalogRevision=2';
+  expect((await send('POST', path, headers(value), '{"kind":"recipe"}')).status).toBe(200);
+  expect(
+    (await send('POST', path, { ...headers(value), authorization: 'wrong' }, '{}')).status,
+  ).toBe(403);
+  expect(handle).toHaveBeenCalledTimes(1);
+});

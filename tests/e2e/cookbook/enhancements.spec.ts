@@ -19,15 +19,15 @@ async function ideas(page: Page) {
       ),
     owner,
   );
-  await page.route('https://api.pantridge.test/v1/kitchen', (route) =>
+  await page.route('https://api.pantridge.test/v1/kitchen**', (route) =>
     route.fulfill({ json: { revision: 0, data } }),
   );
-  await page.route('https://api.pantridge.test/v1/mutations', (route) =>
+  await page.route('https://api.pantridge.test/v1/mutations**', (route) =>
     route.fulfill({ status: 503, json: {} }),
   );
   const idea = { ...data.recipes![0]!, title: 'Suggested eggs', source: 'ai', minutes: 10 };
   const requests: unknown[] = [];
-  await page.route('https://api.pantridge.test/v1/products/resolve', (route) => {
+  await page.route('https://api.pantridge.test/v1/products/resolve**', (route) => {
     requests.push(route.request().postDataJSON());
     return route.fulfill({ json: { recipes: [idea] } });
   });

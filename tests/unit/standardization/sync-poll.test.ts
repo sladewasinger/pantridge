@@ -1,3 +1,4 @@
+import { standardizationVersion } from '../../../src/domain/standardization/model';
 import 'fake-indexeddb/auto';
 import { beforeEach, afterEach, expect, it, vi } from 'vitest';
 import { kitchen } from '../ingredient-matching/fixtures';
@@ -66,7 +67,7 @@ it('fetches and persists completed recognition within the next poll, then return
       identity: 'brown-rice',
       preparation: 'cooked' as const,
       reason: '',
-      version: '1',
+      version: standardizationVersion,
       source: 'ai-private' as const,
       fingerprint: evidenceFingerprint(foodEvidence(data.foods[0]!)),
     };

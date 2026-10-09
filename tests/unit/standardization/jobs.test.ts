@@ -5,7 +5,10 @@ import { claimJob, finishJob, failJob } from '../../../api/standardization/worke
 import { classificationTargets } from '../../../src/domain/standardization/targets';
 import { ProductError } from '../../../api/products/errors';
 import { AccessError } from '../../../api/access/config';
-import type { SavedStandardization } from '../../../src/domain/standardization/model';
+import {
+  standardizationVersion,
+  type SavedStandardization,
+} from '../../../src/domain/standardization/model';
 afterEach(() => vi.unstubAllEnvs());
 function queued(now = 1000) {
   vi.stubEnv('STANDARDIZATION_ENABLED', 'true');
@@ -47,7 +50,7 @@ it('does not erase later edits when an older generation completes', () => {
   const claimed = claimJob(queued(), 'lease-a', 601000);
   const target = classificationTargets(claimed)[0]!;
   const saved: SavedStandardization = {
-    version: '1',
+    version: standardizationVersion,
     fingerprint: target.fingerprint,
     source: 'ai-private',
     status: 'recognized',

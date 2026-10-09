@@ -2,7 +2,7 @@ import type { Food, Stock } from '../model';
 import type { RecipeIngredient } from '../recipes/model';
 import type { IngredientIdentity } from '../ingredient-matching/model';
 import { matchHash } from '../ingredient-matching/hash';
-import { standardizationVersion, type Evidence, type SavedStandardization } from './model';
+import type { Evidence, SavedStandardization } from './model';
 
 export const foodEvidence = (food: Food): Evidence => ({
   name: food.name,
@@ -26,7 +26,9 @@ export const recipeEvidence = (item: RecipeIngredient): Evidence => ({
 export function evidenceFingerprint(evidence: Evidence): string {
   return matchHash(
     JSON.stringify([
-      standardizationVersion,
+      // Evidence format is independent of classifier policy. Reuse good saved results
+      // when the taxonomy expands; only outdated negative results need another attempt.
+      '1',
       evidence.context,
       evidence.name.trim().toLowerCase().replace(/\s+/g, ' '),
       evidence.brand.trim().toLowerCase().replace(/\s+/g, ' '),

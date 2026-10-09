@@ -33,10 +33,10 @@ test('storage grows beyond three rows and ignores legacy shelf assignments', asy
       }),
     ),
   );
-  await page.route('https://api.pantridge.test/v1/kitchen', (route) =>
+  await page.route('https://api.pantridge.test/v1/kitchen**', (route) =>
     route.fulfill({ json: { revision: 0, data } }),
   );
-  await page.route('https://api.pantridge.test/v1/mutations', (route) =>
+  await page.route('https://api.pantridge.test/v1/mutations**', (route) =>
     route.fulfill({ status: 503, json: {} }),
   );
   await page.goto('/');

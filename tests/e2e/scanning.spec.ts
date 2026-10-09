@@ -16,13 +16,13 @@ async function signedIn(page: Page) {
       }),
     );
   });
-  await page.route('https://api.pantridge.test/v1/kitchen', (route) =>
+  await page.route('https://api.pantridge.test/v1/kitchen**', (route) =>
     route.fulfill({
       json: { revision: 0, data: { ...emptySnapshot(), starterVersion: 1 } },
     }),
   );
   // Keep edits pending to exercise IndexedDB durability without a real backend.
-  await page.route('https://api.pantridge.test/v1/mutations', (route) =>
+  await page.route('https://api.pantridge.test/v1/mutations**', (route) =>
     route.fulfill({ status: 503, json: {} }),
   );
 }
@@ -56,7 +56,7 @@ test('anonymous scanning is disabled while manual package sizes remain available
 
 test('signed-in confirmation can be edited or cancelled without adding stock', async ({ page }) => {
   await signedIn(page);
-  await page.route('https://api.pantridge.test/v1/products/resolve', (route) =>
+  await page.route('https://api.pantridge.test/v1/products/resolve**', (route) =>
     route.fulfill({
       json: {
         product: { barcode: '03017620422003', name: 'Test Beans', brand: 'Test' },
@@ -101,7 +101,7 @@ test('camera decodes a barcode once and unknown products require an explicit siz
     });
   });
   let lookups = 0;
-  await page.route('https://api.pantridge.test/v1/products/resolve', (route) => {
+  await page.route('https://api.pantridge.test/v1/products/resolve**', (route) => {
     lookups++;
     return route.fulfill({
       json: {
@@ -152,7 +152,7 @@ test('scanning always confirms, groups sizes, retains brands, and remembers prod
 }) => {
   await signedIn(page);
   let lookups = 0;
-  await page.route('https://api.pantridge.test/v1/products/resolve', (route) => {
+  await page.route('https://api.pantridge.test/v1/products/resolve**', (route) => {
     lookups++;
     const code = (route.request().postDataJSON() as { barcode: string }).barcode;
     return route.fulfill({

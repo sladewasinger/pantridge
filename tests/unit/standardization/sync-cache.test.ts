@@ -2,7 +2,10 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { kitchen } from '../ingredient-matching/fixtures';
 import type { Snapshot } from '../../../src/domain/model';
 import { classificationTargets } from '../../../src/domain/standardization/targets';
-import type { SavedStandardization } from '../../../src/domain/standardization/model';
+import {
+  standardizationVersion,
+  type SavedStandardization,
+} from '../../../src/domain/standardization/model';
 import { scheduleClassification } from '../../../api/standardization/schedule';
 const mocks = vi.hoisted(() => ({
   cachedProduct: vi.fn(),
@@ -134,7 +137,7 @@ it('preserves newer names, manual choices, measurements and other queued debounc
     identity: 'rice',
     preparation: 'dry',
     fingerprint: target.fingerprint,
-    version: '1',
+    version: standardizationVersion,
     source: 'ai-private',
   };
   const results = new Map([[target.key, result]]);

@@ -6,6 +6,13 @@
     "preparation": "plain"
   },
   {
+    "id": "almond-milk",
+    "label": "Almond milk",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
     "id": "almonds",
     "label": "Almonds",
     "aliases": [],
@@ -18,10 +25,24 @@
     "preparation": "plain"
   },
   {
+    "id": "apple-juice",
+    "label": "Apple juice",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
     "id": "apples",
     "label": "Apples",
     "aliases": ["Apple"],
     "preparation": "raw"
+  },
+  {
+    "id": "apricots",
+    "label": "Apricots",
+    "aliases": ["Apricot"],
+    "preparation": "raw",
+    "introduced": 2
   },
   {
     "id": "arborio-rice",
@@ -29,6 +50,13 @@
     "aliases": [],
     "parent": "rice",
     "preparation": "dry"
+  },
+  {
+    "id": "asparagus",
+    "label": "Asparagus",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
   },
   {
     "id": "avocado",
@@ -47,6 +75,13 @@
     "label": "Bacon slices",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "bagels",
+    "label": "Bagels",
+    "aliases": ["Bagel"],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "baking-powder",
@@ -71,6 +106,20 @@
     "label": "Bananas",
     "aliases": ["Banana"],
     "preparation": "raw"
+  },
+  {
+    "id": "barbecue-sauce",
+    "label": "Barbecue sauce",
+    "aliases": ["BBQ sauce"],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "barley",
+    "label": "Barley",
+    "aliases": [],
+    "preparation": "dry",
+    "introduced": 2
   },
   {
     "id": "basil",
@@ -98,10 +147,25 @@
     "preparation": "plain"
   },
   {
+    "id": "beef",
+    "label": "Beef",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
     "id": "beef-bouillon-cube",
     "label": "Beef bouillon cube",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "beef-brisket",
+    "label": "Beef brisket",
+    "aliases": ["Brisket"],
+    "preparation": "raw",
+    "introduced": 2,
+    "parent": "beef"
   },
   {
     "id": "beef-broth",
@@ -113,7 +177,8 @@
     "id": "beef-chuck-roast",
     "label": "Beef chuck roast",
     "aliases": [],
-    "preparation": "raw"
+    "preparation": "raw",
+    "parent": "beef"
   },
   {
     "id": "beer",
@@ -140,6 +205,12 @@
     "preparation": "unknown"
   },
   {
+    "id": "black-eyed-peas",
+    "label": "Black-eyed peas",
+    "aliases": ["Black eyed peas"],
+    "preparation": "unknown"
+  },
+  {
     "id": "black-pepper",
     "label": "Black pepper",
     "aliases": [],
@@ -152,10 +223,32 @@
     "preparation": "plain"
   },
   {
-    "id": "black-eyed-peas",
-    "label": "Black-eyed peas",
-    "aliases": ["Black eyed peas"],
-    "preparation": "unknown"
+    "id": "blackberries",
+    "label": "Blackberries",
+    "aliases": ["Blackberry"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "blueberries",
+    "label": "Blueberries",
+    "aliases": ["Blueberry"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "bread",
+    "label": "Bread",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "breakfast-cereal",
+    "label": "Breakfast cereal",
+    "aliases": ["Cereal"],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "broccoli",
@@ -167,7 +260,8 @@
     "id": "brown-lentils",
     "label": "Brown lentils",
     "aliases": ["Dry brown lentils"],
-    "preparation": "dry"
+    "preparation": "dry",
+    "parent": "lentils"
   },
   {
     "id": "brown-mushrooms",
@@ -196,6 +290,13 @@
     "preparation": "raw"
   },
   {
+    "id": "buffalo-sauce",
+    "label": "Buffalo sauce",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
     "id": "butter",
     "label": "Butter",
     "aliases": [],
@@ -206,6 +307,13 @@
     "label": "Buttermilk",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "butternut-squash",
+    "label": "Butternut squash",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
   },
   {
     "id": "cabbage",
@@ -222,7 +330,7 @@
   {
     "id": "canned-tuna",
     "label": "Canned tuna",
-    "aliases": ["Tuna"],
+    "aliases": [],
     "preparation": "canned"
   },
   {
@@ -236,6 +344,13 @@
     "label": "Canola oil",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "cantaloupe",
+    "label": "Cantaloupe",
+    "aliases": ["Cantaloupes"],
+    "preparation": "raw",
+    "introduced": 2
   },
   {
     "id": "capers",
@@ -254,6 +369,13 @@
     "label": "Carrots",
     "aliases": ["Carrot"],
     "preparation": "raw"
+  },
+  {
+    "id": "cashews",
+    "label": "Cashews",
+    "aliases": ["Cashew"],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "cauliflower",
@@ -284,6 +406,20 @@
     "label": "Cheddar cheese",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "cherries",
+    "label": "Cherries",
+    "aliases": ["Cherry"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "chia-seeds",
+    "label": "Chia seeds",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "chicken",
@@ -342,6 +478,21 @@
     "preparation": "plain"
   },
   {
+    "id": "chipotle-hot-sauce",
+    "label": "Chipotle hot sauce",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2,
+    "parent": "hot-sauce"
+  },
+  {
+    "id": "chipotles-in-adobo",
+    "label": "Chipotles in adobo",
+    "aliases": ["Chipotle peppers in adobo sauce"],
+    "preparation": "canned",
+    "introduced": 2
+  },
+  {
     "id": "cilantro",
     "label": "Cilantro",
     "aliases": [],
@@ -354,6 +505,13 @@
     "preparation": "plain"
   },
   {
+    "id": "clams",
+    "label": "Clams",
+    "aliases": ["Clam"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
     "id": "coconut-milk",
     "label": "Coconut milk",
     "aliases": [],
@@ -364,6 +522,20 @@
     "label": "Coconut oil",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "cod",
+    "label": "Cod",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "coffee",
+    "label": "Coffee",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "condensed-cheddar-cheese-soup",
@@ -424,6 +596,34 @@
     "label": "Cornstarch",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "cottage-cheese",
+    "label": "Cottage cheese",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "couscous",
+    "label": "Couscous",
+    "aliases": [],
+    "preparation": "dry",
+    "introduced": 2
+  },
+  {
+    "id": "crackers",
+    "label": "Crackers",
+    "aliases": ["Cracker"],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "cranberries",
+    "label": "Cranberries",
+    "aliases": ["Cranberry"],
+    "preparation": "raw",
+    "introduced": 2
   },
   {
     "id": "cream-cheese",
@@ -530,6 +730,13 @@
     "preparation": "plain"
   },
   {
+    "id": "eggplant",
+    "label": "Eggplant",
+    "aliases": ["Aubergine"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
     "id": "eggs",
     "label": "Eggs",
     "aliases": ["Egg"],
@@ -548,6 +755,13 @@
     "aliases": [],
     "parent": "cucumber",
     "preparation": "raw"
+  },
+  {
+    "id": "english-muffins",
+    "label": "English muffins",
+    "aliases": ["English muffin"],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "evaporated-milk",
@@ -574,6 +788,13 @@
     "aliases": [],
     "preparation": "canned",
     "parent": "tomatoes"
+  },
+  {
+    "id": "flaxseed",
+    "label": "Flaxseed",
+    "aliases": ["Flax seeds"],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "flour-tortillas",
@@ -626,6 +847,28 @@
     "preparation": "dry"
   },
   {
+    "id": "goat-cheese",
+    "label": "Goat cheese",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "graham-crackers",
+    "label": "Graham crackers",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2,
+    "parent": "crackers"
+  },
+  {
+    "id": "granola",
+    "label": "Granola",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
     "id": "granulated-sugar",
     "label": "Granulated sugar",
     "aliases": ["Sugar"],
@@ -637,6 +880,28 @@
     "aliases": ["Grape tomato"],
     "parent": "tomatoes",
     "preparation": "raw"
+  },
+  {
+    "id": "grapefruit",
+    "label": "Grapefruit",
+    "aliases": ["Grapefruits"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "grapes",
+    "label": "Grapes",
+    "aliases": ["Grape"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "greek-yogurt",
+    "label": "Greek yogurt",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2,
+    "parent": "yogurt"
   },
   {
     "id": "green-beans",
@@ -661,13 +926,15 @@
     "id": "ground-beef",
     "label": "Ground beef",
     "aliases": [],
-    "preparation": "raw"
+    "preparation": "raw",
+    "parent": "beef"
   },
   {
     "id": "ground-pork",
     "label": "Ground pork",
     "aliases": [],
-    "preparation": "raw"
+    "preparation": "raw",
+    "parent": "pork"
   },
   {
     "id": "ground-sage",
@@ -676,10 +943,32 @@
     "preparation": "plain"
   },
   {
+    "id": "ground-turkey",
+    "label": "Ground turkey",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2,
+    "parent": "turkey"
+  },
+  {
     "id": "gruyere-cheese",
     "label": "Gruyere cheese",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "guacamole",
+    "label": "Guacamole",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "haddock",
+    "label": "Haddock",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
   },
   {
     "id": "half-and-half",
@@ -712,6 +1001,13 @@
     "preparation": "plain"
   },
   {
+    "id": "hoisin-sauce",
+    "label": "Hoisin sauce",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
     "id": "honey",
     "label": "Honey",
     "aliases": ["Raw honey", "Unfiltered honey", "Raw unfiltered honey"],
@@ -722,6 +1018,20 @@
     "label": "Honey mustard sauce",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "hot-sauce",
+    "label": "Hot sauce",
+    "aliases": ["Hot pepper sauce"],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "hummus",
+    "label": "Hummus",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "italian-bread-crumbs",
@@ -748,11 +1058,25 @@
     "preparation": "plain"
   },
   {
+    "id": "jam",
+    "label": "Jam",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
     "id": "jasmine-rice",
     "label": "Jasmine rice",
     "aliases": [],
     "parent": "rice",
     "preparation": "dry"
+  },
+  {
+    "id": "jelly",
+    "label": "Jelly",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "jiffy-corn-muffin-mix",
@@ -777,6 +1101,20 @@
     "label": "Kidney beans",
     "aliases": ["Kidney bean", "Red kidney beans", "Canned red kidney beans"],
     "preparation": "unknown"
+  },
+  {
+    "id": "kiwi",
+    "label": "Kiwi",
+    "aliases": ["Kiwifruit"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "lamb",
+    "label": "Lamb",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
   },
   {
     "id": "lasagna-noodles",
@@ -804,6 +1142,20 @@
     "preparation": "plain"
   },
   {
+    "id": "lentils",
+    "label": "Lentils",
+    "aliases": ["Lentil"],
+    "preparation": "dry",
+    "introduced": 2
+  },
+  {
+    "id": "lettuce",
+    "label": "Lettuce",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
     "id": "lime",
     "label": "Lime",
     "aliases": [],
@@ -821,6 +1173,27 @@
     "label": "Lump crab meat",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "mackerel",
+    "label": "Mackerel",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "mango",
+    "label": "Mango",
+    "aliases": ["Mangoes"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "maple-syrup",
+    "label": "Maple syrup",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "marinara-sauce",
@@ -859,16 +1232,65 @@
     "preparation": "raw"
   },
   {
+    "id": "molasses",
+    "label": "Molasses",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
     "id": "mozzarella-cheese",
     "label": "Mozzarella cheese",
     "aliases": [],
     "preparation": "plain"
   },
   {
+    "id": "muesli",
+    "label": "Muesli",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
     "id": "mushrooms",
     "label": "Mushrooms",
     "aliases": [],
     "preparation": "raw"
+  },
+  {
+    "id": "mussels",
+    "label": "Mussels",
+    "aliases": ["Mussel"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "nectarines",
+    "label": "Nectarines",
+    "aliases": ["Nectarine"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "oat-milk",
+    "label": "Oat milk",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "oats",
+    "label": "Oats",
+    "aliases": ["Oat"],
+    "preparation": "dry",
+    "introduced": 2
+  },
+  {
+    "id": "okra",
+    "label": "Okra",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
   },
   {
     "id": "old-bay-seasoning",
@@ -893,6 +1315,20 @@
     "label": "Onions",
     "aliases": ["Onion"],
     "preparation": "raw"
+  },
+  {
+    "id": "orange-juice",
+    "label": "Orange juice",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "oranges",
+    "label": "Oranges",
+    "aliases": ["Orange"],
+    "preparation": "raw",
+    "introduced": 2
   },
   {
     "id": "oregano",
@@ -926,6 +1362,13 @@
     "preparation": "plain"
   },
   {
+    "id": "papaya",
+    "label": "Papaya",
+    "aliases": ["Papayas"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
     "id": "paprika",
     "label": "Paprika",
     "aliases": [],
@@ -944,6 +1387,13 @@
     "preparation": "raw"
   },
   {
+    "id": "parsnips",
+    "label": "Parsnips",
+    "aliases": ["Parsnip"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
     "id": "pasta",
     "label": "Pasta",
     "aliases": ["Dry pasta"],
@@ -956,6 +1406,13 @@
     "preparation": "plain"
   },
   {
+    "id": "peaches",
+    "label": "Peaches",
+    "aliases": ["Peach"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
     "id": "peanut-butter",
     "label": "Peanut butter",
     "aliases": [],
@@ -966,6 +1423,13 @@
     "label": "Peanuts",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "pears",
+    "label": "Pears",
+    "aliases": ["Pear"],
+    "preparation": "raw",
+    "introduced": 2
   },
   {
     "id": "peas",
@@ -1005,6 +1469,13 @@
     "preparation": "plain"
   },
   {
+    "id": "pineapple",
+    "label": "Pineapple",
+    "aliases": ["Pineapples"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
     "id": "pineapple-chunks",
     "label": "Pineapple chunks",
     "aliases": [],
@@ -1023,10 +1494,39 @@
     "preparation": "unknown"
   },
   {
+    "id": "pistachios",
+    "label": "Pistachios",
+    "aliases": ["Pistachio"],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "plums",
+    "label": "Plums",
+    "aliases": ["Plum"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "popcorn",
+    "label": "Popcorn",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "pork",
+    "label": "Pork",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
     "id": "pork-chops",
     "label": "Pork chops",
     "aliases": ["Pork chop"],
-    "preparation": "raw"
+    "preparation": "raw",
+    "parent": "pork"
   },
   {
     "id": "pork-sausage",
@@ -1038,7 +1538,15 @@
     "id": "pork-tenderloin",
     "label": "Pork tenderloin",
     "aliases": [],
-    "preparation": "raw"
+    "preparation": "raw",
+    "parent": "pork"
+  },
+  {
+    "id": "potato-chips",
+    "label": "Potato chips",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "potatoes",
@@ -1053,6 +1561,49 @@
     "preparation": "plain"
   },
   {
+    "id": "pretzels",
+    "label": "Pretzels",
+    "aliases": ["Pretzel"],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "pumpkin",
+    "label": "Pumpkin",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "pumpkin-seeds",
+    "label": "Pumpkin seeds",
+    "aliases": ["Pepitas"],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "quick-oats",
+    "label": "Quick oats",
+    "aliases": ["Quick cooking oats"],
+    "preparation": "dry",
+    "introduced": 2,
+    "parent": "oats"
+  },
+  {
+    "id": "quinoa",
+    "label": "Quinoa",
+    "aliases": [],
+    "preparation": "dry",
+    "introduced": 2
+  },
+  {
+    "id": "radishes",
+    "label": "Radishes",
+    "aliases": ["Radish"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
     "id": "raisins",
     "label": "Raisins",
     "aliases": [],
@@ -1063,6 +1614,20 @@
     "label": "Ramen noodles",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "ranch-dressing",
+    "label": "Ranch dressing",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "raspberries",
+    "label": "Raspberries",
+    "aliases": ["Raspberry"],
+    "preparation": "raw",
+    "introduced": 2
   },
   {
     "id": "red-bell-pepper",
@@ -1082,7 +1647,8 @@
     "id": "red-lentils",
     "label": "Red lentils",
     "aliases": [],
-    "preparation": "dry"
+    "preparation": "dry",
+    "parent": "lentils"
   },
   {
     "id": "red-onions",
@@ -1129,6 +1695,14 @@
     "preparation": "plain"
   },
   {
+    "id": "rolled-oats",
+    "label": "Rolled oats",
+    "aliases": ["Old-fashioned oats"],
+    "preparation": "dry",
+    "introduced": 2,
+    "parent": "oats"
+  },
+  {
     "id": "roma-tomatoes",
     "label": "Roma tomatoes",
     "aliases": ["Roma tomato"],
@@ -1155,6 +1729,13 @@
     "preparation": "raw"
   },
   {
+    "id": "salmon",
+    "label": "Salmon",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
     "id": "salsa",
     "label": "Salsa",
     "aliases": [],
@@ -1165,6 +1746,28 @@
     "label": "Salt",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "saltine-crackers",
+    "label": "Saltine crackers",
+    "aliases": ["Saltines"],
+    "preparation": "plain",
+    "introduced": 2,
+    "parent": "crackers"
+  },
+  {
+    "id": "sardines",
+    "label": "Sardines",
+    "aliases": ["Sardine"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "scallops",
+    "label": "Scallops",
+    "aliases": ["Scallop"],
+    "preparation": "raw",
+    "introduced": 2
   },
   {
     "id": "seasoned-bread-crumbs",
@@ -1211,6 +1814,21 @@
     "preparation": "plain"
   },
   {
+    "id": "sourdough-bread",
+    "label": "Sourdough bread",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2,
+    "parent": "bread"
+  },
+  {
+    "id": "soy-milk",
+    "label": "Soy milk",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
     "id": "soy-sauce",
     "label": "Soy sauce",
     "aliases": [],
@@ -1236,16 +1854,39 @@
     "preparation": "raw"
   },
   {
+    "id": "split-peas",
+    "label": "Split peas",
+    "aliases": [],
+    "preparation": "dry",
+    "introduced": 2
+  },
+  {
     "id": "sriracha",
     "label": "Sriracha",
     "aliases": [],
     "preparation": "plain"
   },
   {
+    "id": "steel-cut-oats",
+    "label": "Steel-cut oats",
+    "aliases": [],
+    "preparation": "dry",
+    "introduced": 2,
+    "parent": "oats"
+  },
+  {
     "id": "stewing-beef",
     "label": "Stewing beef",
     "aliases": [],
-    "preparation": "raw"
+    "preparation": "raw",
+    "parent": "beef"
+  },
+  {
+    "id": "strawberries",
+    "label": "Strawberries",
+    "aliases": ["Strawberry"],
+    "preparation": "raw",
+    "introduced": 2
   },
   {
     "id": "stuffing-mix",
@@ -1279,6 +1920,13 @@
     "preparation": "plain"
   },
   {
+    "id": "swiss-cheese",
+    "label": "Swiss cheese",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
     "id": "taco-seasoning",
     "label": "Taco seasoning",
     "aliases": [],
@@ -1289,6 +1937,27 @@
     "label": "Tahini",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "tea",
+    "label": "Tea",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "tempeh",
+    "label": "Tempeh",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "teriyaki-sauce",
+    "label": "Teriyaki sauce",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "thyme",
@@ -1307,6 +1976,13 @@
     "label": "Toasted sesame oil",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "tofu",
+    "label": "Tofu",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "tomato-paste",
@@ -1333,6 +2009,34 @@
     "preparation": "plain"
   },
   {
+    "id": "trout",
+    "label": "Trout",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "tuna",
+    "label": "Tuna",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "turkey",
+    "label": "Turkey",
+    "aliases": [],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "turnips",
+    "label": "Turnips",
+    "aliases": ["Turnip"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
     "id": "vanilla-extract",
     "label": "Vanilla extract",
     "aliases": [],
@@ -1349,6 +2053,36 @@
     "label": "Vegetable oil",
     "aliases": [],
     "preparation": "plain"
+  },
+  {
+    "id": "walnuts",
+    "label": "Walnuts",
+    "aliases": ["Walnut"],
+    "preparation": "plain",
+    "introduced": 2
+  },
+  {
+    "id": "watermelon",
+    "label": "Watermelon",
+    "aliases": ["Watermelons"],
+    "preparation": "raw",
+    "introduced": 2
+  },
+  {
+    "id": "wheat-crackers",
+    "label": "Wheat crackers",
+    "aliases": ["Whole wheat crackers"],
+    "preparation": "plain",
+    "introduced": 2,
+    "parent": "crackers"
+  },
+  {
+    "id": "white-bread",
+    "label": "White bread",
+    "aliases": [],
+    "preparation": "plain",
+    "introduced": 2,
+    "parent": "bread"
   },
   {
     "id": "white-onions",
@@ -1398,6 +2132,14 @@
     "parent": "tomatoes"
   },
   {
+    "id": "whole-wheat-bread",
+    "label": "Whole-wheat bread",
+    "aliases": ["Whole wheat bread"],
+    "preparation": "plain",
+    "introduced": 2,
+    "parent": "bread"
+  },
+  {
     "id": "whole-wheat-pasta",
     "label": "Whole wheat pasta",
     "aliases": [],
@@ -1442,6 +2184,13 @@
     "aliases": ["Yellow onion"],
     "parent": "onions",
     "preparation": "raw"
+  },
+  {
+    "id": "yogurt",
+    "label": "Yogurt",
+    "aliases": ["Yoghurt"],
+    "preparation": "plain",
+    "introduced": 2
   },
   {
     "id": "yukon-gold-potatoes",

@@ -3,7 +3,10 @@ import { cachedProduct } from '../products/cache';
 import { catalogEvidence } from './catalog';
 import { normalizeBarcode, validBarcode } from '../../src/domain/products/barcode';
 import { evidenceFingerprint } from '../../src/domain/standardization/evidence';
-import type { StandardizationRequest } from '../../src/domain/standardization/model';
+import {
+  standardizationVersion,
+  type StandardizationRequest,
+} from '../../src/domain/standardization/model';
 import { standardizationReasoning } from './config';
 
 async function publicEvidence(item: StandardizationRequest['items'][number], signal?: AbortSignal) {
@@ -46,6 +49,7 @@ export async function cacheInput(
       .update(
         JSON.stringify([
           scope,
+          standardizationVersion,
           evidenceFingerprint(evidence),
           process.env.CLASSIFIER_MODEL,
           standardizationReasoning(),

@@ -5,6 +5,7 @@ import { reduceChecked } from '../domain/reducer';
 import { blankKitchen, changeKitchen, readKitchen, type StoredKitchen } from './database';
 import { initializeStarter } from '../domain/starter';
 import { localTesting } from '../local-testing';
+import { catalogRevision } from '../domain/ingredient-matching/catalog-version';
 
 let account = 'local';
 let current: StoredKitchen = blankKitchen();
@@ -51,7 +52,7 @@ export async function dispatch(command: Command): Promise<void> {
 export async function dispatchMany(commands: Command[], requireEmpty = false): Promise<void> {
   if (!ready) throw new Error('Your kitchen is still opening.');
   const mutations = commands.map((command) =>
-    mutationSchema.parse({ id: crypto.randomUUID(), command }),
+    mutationSchema.parse({ id: crypto.randomUUID(), command, catalogRevision }),
   );
   await updateKitchen((value) => {
     if (

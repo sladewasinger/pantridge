@@ -29,7 +29,7 @@ filter metric = "FoodRecognition" and event = "provider"
     by bin(1h), outcome
 ```
 
-Successful provider records report status counts for a batch of at most 25. These distinguish recognition coverage from transport failures; taxonomy gaps and composite foods are review outcomes, not verified identities:
+Successful provider records report status counts for a batch of at most 25. These distinguish recognition coverage from transport failures; taxonomy gaps and composite foods are negative recognition outcomes, not verified identities or mandatory correction tasks:
 
 ```sql
 filter metric = "FoodRecognition" and event = "provider" and outcome = "success"
@@ -40,9 +40,9 @@ filter metric = "FoodRecognition" and event = "provider" and outcome = "success"
     by bin(1h)
 ```
 
-## Queue progress, failures, and clarification
+## Queue progress, failures, and legacy corrections
 
-`worker` records include queue age from the persisted first-queued timestamp at the start of processing, processing duration, and retry attempt count. Quota and busy outcomes preserve attempts; suspension pauses work. Successful `review` records count explicit saved clarifications once per mutation receipt, without recording the target or selected identity.
+`worker` records include queue age from the persisted first-queued timestamp at the start of processing, processing duration, and retry attempt count. Quota and busy outcomes preserve attempts; suspension pauses work. Successful `review` records count the legacy `classification.review` command once per mutation receipt, without recording the target or selected identity. Current optional item corrections use ordinary editor commands and are not counted by this metric; it is not a census of corrections or unresolved items. The interface has no global clarification list.
 
 ```sql
 filter metric = "FoodRecognition" and event = "worker"
@@ -59,6 +59,8 @@ filter metric = "FoodRecognition" and event = "review" and outcome = "success"
 Limits are deliberate: hit/miss and individual status counts cap at 25 per record, clarifications at one, retries at three, duration at 60 seconds, and queue age at seven days. Unknown or nonfinite numeric values become zero. These are observed processing events: they do not provide a census of queued kitchens, count items never processed, prove a provider result is correct, or distinguish individual users. A worker failure before claiming a job can have zero queue age. Evaluate low request volume and these caps when reading percentages or latency percentiles. Existing log retention and access controls apply; no new user-level tracking, quotas, dashboards, or alarms are introduced.
 
 ## Release verification, October 8, 2026
+
+These historical checks cover the earlier clarification release, before catalog revision 2 and removal of the global clarification flow. They do not verify the current automatic recognition release or its model accuracy.
 
 Pinned pnpm 10.32.1 frozen installation and `pnpm check` passed with 458 unit tests. Production-build browser suites passed 78 Chromium and 64 WebKit tests, each with one existing skip. The Docker-backed full integration suite passed seven tests, including a real local API clarification transaction, unchanged stock/shopping, second-device editor verification after reload, account isolation, and immediate cache reuse without another provider call. The provider in that integration suite is a fixture; these results do not measure model accuracy.
 

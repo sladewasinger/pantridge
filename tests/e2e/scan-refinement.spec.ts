@@ -15,10 +15,10 @@ async function setup(page: Page, slowLookup = false, failLookup = false) {
       }),
     );
   });
-  await page.route('https://api.pantridge.test/v1/kitchen', (route) =>
+  await page.route('https://api.pantridge.test/v1/kitchen**', (route) =>
     route.fulfill({ json: { revision: 0, data: { ...emptySnapshot(), starterVersion: 1 } } }),
   );
-  await page.route('https://api.pantridge.test/v1/mutations', (route) =>
+  await page.route('https://api.pantridge.test/v1/mutations**', (route) =>
     route.fulfill({ status: 503, json: {} }),
   );
   let release = () => {};
@@ -49,7 +49,7 @@ async function setup(page: Page, slowLookup = false, failLookup = false) {
     classifiedBy: 'rules',
     enhancement: 'pending',
   };
-  await page.route('https://api.pantridge.test/v1/products/resolve', async (route) => {
+  await page.route('https://api.pantridge.test/v1/products/resolve**', async (route) => {
     if (route.request().postDataJSON().stage === 'enhance') {
       await pending;
       await route
