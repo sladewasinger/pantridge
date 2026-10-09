@@ -3,6 +3,8 @@ import { createServer, type IncomingMessage } from 'node:http';
 
 export type LocalResponse = { statusCode: number; body: unknown };
 type Handle = (input: unknown) => Promise<LocalResponse>;
+const requestPath = (request: IncomingMessage) =>
+  new URL(request.url ?? '/', 'http://127.0.0.1:4175').pathname;
 
 async function requestBody(request: IncomingMessage) {
   const chunks: Buffer[] = [];
@@ -25,6 +27,7 @@ export function localServer(handle: Handle, origin: string) {
   const token = randomBytes(32).toString('hex');
   return createServer((request, response) => {
     void (async () => {
+      const path = requestPath(request);
       response.setHeader('Cache-Control', 'no-store');
       response.setHeader('Content-Type', 'application/json');
       const respond = (status: number, body: unknown) =>
@@ -38,7 +41,7 @@ export function localServer(handle: Handle, origin: string) {
       }
       if (
         request.method === 'GET' &&
-        request.url === '/v1/local/session' &&
+        path === '/v1/local/session' &&
         request.headers['sec-fetch-site'] === 'same-origin'
       ) {
         respond(200, { token });
@@ -46,7 +49,7 @@ export function localServer(handle: Handle, origin: string) {
       }
       if (
         request.method !== 'POST' ||
-        request.url !== '/v1/products/resolve' ||
+        path !== '/v1/products/resolve' ||
         request.headers.origin !== origin ||
         request.headers['content-type'] !== 'application/json' ||
         !hasToken(request, token)

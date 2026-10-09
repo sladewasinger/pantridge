@@ -157,15 +157,6 @@ summary {
 .settings-section {
   margin-bottom: 24px;
 }
-.recognition-reviews button {
-  text-align: left;
-  justify-content: flex-start;
-}
-.recognition-reviews small {
-  display: block;
-  font-weight: 400;
-  opacity: 0.75;
-}
 .settings-section h3 {
   margin-bottom: 10px;
   font-size: 22px;

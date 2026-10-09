@@ -20,7 +20,8 @@ allergen claims. Composite foods, unknown names and taxonomy gaps are explicit r
 forced constituent matches. AI-recognized cooked brown rice and canned black beans can match
 the corresponding identities locally; cooked grams cannot fulfill dry grams and net can weight
 cannot fulfill drained weight. Identity is not evidence of celiac, gluten-free or dairy-free safety.
-An AI result with unknown preparation still requires amount/preparation review.
+An AI result with unknown preparation cannot confirm a recipe amount. Relevant preparation and
+amounts are checked when using a recipe; recognition does not create a separate correction chore.
 
 The kitchen snapshot owns the durable job. Server mutation transactions schedule it ten minutes
 after semantic grocery edits, capped at thirty minutes from the first pending edit. Quantity-only
@@ -35,8 +36,9 @@ Late responses recheck target fingerprints, manual corrections and measurement e
 quantity edits survive. Newer job generations retain their schedule after an older request fails.
 Leases recover abandoned invocations. Provider failures retry with bounded backoff and stop after
 three attempts; quota exhaustion waits until the next UTC day. Suspension pauses processing.
-Settings → Food recognition lists pending names, scheduling and retry state. Item and recipe
-Recipe matching controls explain uncertain results. Process now requests server processing;
+Settings → Food recognition lists pending names, scheduling and retry state. It has no global
+review list or count of items needing clarification. Collapsed item and recipe **Recipe matching**
+controls offer optional corrections and neutral result descriptions. Process now requests server processing;
 it neither bypasses budgets nor performs matching in the cloud.
 Recognition counts are separate from unsynced edits. Immediate or overdue jobs show “Queued for
 processing,” never an epoch timestamp; future-day retries include their date. While the app is visible,
@@ -50,28 +52,24 @@ mutation's snapshot. A miss or lookup failure retains the saved edit and normal 
 this path invokes no provider and publishes no catalog entries. Existing local identities and
 saved annotations remain available immediately offline.
 
-## Clarifying recognition
+## Optional item corrections
 
-Settings → Food recognition separates queued work from items needing a decision. Unknown,
-uncertain, composite, nonfood and taxonomy-gap results, plus known identities with unknown
-preparation, can be reviewed individually. Choose an existing identity and its preparation, or
-keep the exact name as a custom identity. The exact-name choice does not turn a composite into
-one of its ingredients or establish confirmed recipe compatibility. No new registry entry is
-created automatically, and leaving an item for later remains available.
+Recognition runs automatically after eligible edits sync. Unknown, uncertain, composite, nonfood
+and taxonomy-gap results remain ordinary saved items, without a global review queue or required
+clarification. Users can optionally change identity and preparation through collapsed **Recipe matching**
+controls while editing a food, package or recipe ingredient, or keep its exact name as a custom identity.
+An exact-name choice neither turns a composite into a constituent nor confirms compatible amounts.
+No registry entry is created automatically.
 
-Saving uses the additive `classification.review` mutation and the signature captured when the
-form opened. Both the local and server reducer reject changed evidence, descriptors, package or
-measurement metadata; an account change also prevents submission. Names, barcode/brand,
-package sizes, stock quantities and dates, nutrition and unrelated recipe edits are preserved.
-The chosen descriptor becomes authoritative over late AI results and works offline through the
-ordinary IndexedDB/outbox flow. It is private to the kitchen and is not published to the shared
-catalog or used as a cross-account alias.
+Corrections use the ordinary food, package and recipe editing commands, commit through IndexedDB
+and the persistent outbox, and remain private to the kitchen. Manual descriptors take precedence
+over late AI/cache results and are never published as shared aliases. Selecting Automatic permits
+recognition again. Identity changes can invalidate measured recipe amounts; recipe edits never
+modify stock, and cooking deductions still require explicit amount review.
 
-Changing a package's identity/preparation clears its reviewed recipe amount and basis. Changing
-a generic food clears those measurements only on lots inheriting its classification; lots with
-their own manual descriptor retain both their classification and measurements. Recipe reviews
-do not modify stock. Users still review applicable amounts and dietary safety separately.
-See the [API command contract](api.md#recognition-clarification) for stale-write behavior.
+The deprecated `classification.review` command remains supported for older clients with its
+target signature and stale-write guards. The current interface does not use its former global
+clarification flow. See the [compatibility command contract](api.md#recognition-clarification).
 
 ## Shared catalog and its limits
 
@@ -81,8 +79,9 @@ client text. Normalized barcode plus evidence, prompt revision and model configu
 reuse. A server-owned public evidence pointer survives expiration of the shorter raw lookup cache;
 fresh raw metadata takes precedence. Pointer publication atomically checks that the raw source is
 still current, so a late older request cannot replace newer barcode evidence. Public evidence and recognized classifications expire after
-365 days; negative classifications after 30 days. Saved kitchen annotations persist until semantic
-edits or an explicit future migration. Source metadata may become stale; this is not a label-safety
+365 days; negative classifications after 30 days. Successful saved annotations remain reusable
+across the current policy update; obsolete negative results can be retried as described below.
+Source metadata may become stale; this is not a label-safety
 database. OFF attribution and applicable ODbL obligations remain separate from private corrections.
 
 Exact normalized-name lookup returns up to ten public candidates. It does not silently select
@@ -100,9 +99,19 @@ capped at 100 new classifications per owner/day and 1,000 globally/day; the exis
 budgets still apply and were not increased. TTL, request bounds and quotas limit growth and spend;
 500 foods alone would not protect against repeated add/delete or arbitrary lookup abuse.
 
-Taxonomy additions require curated append-only IDs shared with recipes. Negative annotations do
-not automatically become recognized when the registry grows; a versioned reclassification migration
-is future work. AI quality needs continued evaluation, especially composite foods and incomplete
+Catalog revision 2 adds 104 curated generic identities with append-only IDs shared with recipes.
+Classification policy version 2 retries saved negative results from older policies through the
+normal bounded queue. Successful version-one annotations remain reusable. An obsolete taxonomy-gap
+result can resolve immediately when its exact evidence now has a known local identity; other negative
+results continue to block inferred compatibility while queued. Manual descriptors remain authoritative.
+
+The semantic evidence hash retains format version 1, separate from catalog and classification policy
+versions. Quantity-only edits therefore do not invalidate identity evidence. Cache keys include the
+current policy/model configuration. Applying a new response requires the current result version and
+unchanged evidence fingerprint, with the existing schema, manual-edit and measurement guards; delayed
+responses from an older policy are ignored even when their evidence hash still matches.
+
+AI quality needs continued evaluation, especially composite foods and incomplete
 labels. Dense queues, index hot-partition throughput and repeated storage/permission failures need
 operational monitoring; this first worker is intentionally bounded, not a high-throughput service.
 
@@ -133,7 +142,7 @@ accept brown rice. Different beans, milk alternatives, powders and composite pro
 distinct. Cinnamon cereal is not cinnamon; tomato-and-basil crackers are neither ingredient.
 Artwork and arbitrary substring/fuzzy similarity are never identity evidence.
 
-Unrecognized exact names receive a stable local custom identity, initially requiring review.
+Unrecognized exact names receive a stable local custom identity without confirmed recipe compatibility.
 Users can choose a catalog ingredient or confirm an exact custom name through collapsed
 **Recipe matching** controls in food, package and recipe editors. Renaming a food or ingredient,
 or editing an ingredient note, clears the previous explicit descriptor so it cannot become stale.
@@ -141,8 +150,8 @@ Registry IDs must not be removed or reassigned after release, because they can b
 
 Each descriptor separates identity, preparation and quantity basis. A stock lot can override
 its generic shelf identity. Recognized product names preserve their more-specific variety and
-preparation; unknown branded/composite descriptions require review even when the shelf name
-is known. An explicit package classification can confirm that evidence. Household supplies
+preparation; unknown branded/composite descriptions cannot confirm recipe amounts even when the shelf name
+is known. An optional explicit package classification can establish that evidence. Household supplies
 and zero-quantity lots cannot qualify recipes.
 
 ## Quantities and review
@@ -188,12 +197,22 @@ the existing IndexedDB/outbox transaction and authenticated account isolation. U
 are needed for these new commands. Legacy cooking without a lot signature cannot apply to
 newly classified, measured or branded lots; it must be reviewed using the updated app.
 
+Current API requests advertise catalog revision 2. Older clients receive a response-only projection
+that omits unsupported descriptors and presents unsupported AI identities as unknown, preserving
+IDs, quantities and the kitchen revision. Writes to a kitchen containing identities unavailable to
+that client require an app update. Existing outbox mutations retain their IDs and bodies; after updating,
+replay preserves newer server classifications when the older edit did not change classification evidence.
+See [catalog compatibility](api.md#catalog-compatibility) for the request and mutation contract.
+
 Recipes without stocked required ingredients stay hidden until **View → Show recipes without
 matches** is enabled. Complete ingredient presence and reviewable amounts lead; missing rows
 appear below **Partial matches**. Source, search, time and use-soon filters retain this scope.
 Shelf date badges still show only the next seven days or past dates; full dates remain editable.
 
 ## Verification
+
+The historical checks below predate catalog revision 2 and the removal of the global clarification
+flow. They are not verification of the current model policy or a completed current release review.
 
 Local matching benchmark, one cold and one warm calculation over all 104 built-ins:
 

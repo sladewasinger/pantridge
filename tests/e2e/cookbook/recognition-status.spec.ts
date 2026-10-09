@@ -1,3 +1,4 @@
+import { standardizationVersion } from '../../../src/domain/standardization/model';
 import { expect, test } from '@playwright/test';
 import { cookbookFixture } from './fixtures';
 import { evidenceFingerprint, foodEvidence } from '../../../src/domain/standardization/evidence';
@@ -21,7 +22,7 @@ test('Process now shows immediate eligibility and refreshes completed recognitio
   );
   const data = cookbookFixture();
   const food = data.foods[0]!;
-  food.name = 'Brown Rice (microwaveable)';
+  food.name = 'Recognition status fixture 739';
   data.classificationJob = {
     state: 'queued',
     input: 'test',
@@ -32,10 +33,10 @@ test('Process now shows immediate eligibility and refreshes completed recognitio
   };
   let revision = 1;
   let requested = false;
-  await page.route('https://api.pantridge.test/v1/kitchen', (route) =>
+  await page.route('https://api.pantridge.test/v1/kitchen*', (route) =>
     route.fulfill({ json: { revision, data } }),
   );
-  await page.route('https://api.pantridge.test/v1/mutations', (route) => {
+  await page.route('https://api.pantridge.test/v1/mutations*', (route) => {
     expect(route.request().postDataJSON().command.type).toBe('classification.retry');
     requested = true;
     data.classificationJob!.dueAt = 0;
@@ -43,6 +44,7 @@ test('Process now shows immediate eligibility and refreshes completed recognitio
     return route.fulfill({ json: { revision, data } });
   });
   await page.goto('/');
+  await expect(page.getByRole('button', { name: 'Kitchen synced', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Settings', exact: true }).click();
   await page.getByText(/Food recognition ·/).click();
   await expect(page.getByRole('dialog')).toContainText('0 changes waiting to sync');
@@ -52,7 +54,7 @@ test('Process now shows immediate eligibility and refreshes completed recognitio
   await expect(page.getByRole('dialog')).toContainText('Queued for processing.');
   await expect(page.getByRole('dialog')).toContainText('0 changes waiting to sync');
   food.standardization = {
-    version: '1',
+    version: standardizationVersion,
     fingerprint: evidenceFingerprint(foodEvidence(food)),
     source: 'ai-private',
     status: 'recognized',

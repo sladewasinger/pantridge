@@ -3,11 +3,12 @@ import { resolve } from 'node:path';
 export async function buildFullApi(namespace, purpose = 'server') {
   if (!['fixture', 'fixture-test', 'real'].includes(namespace))
     throw new Error('Unsupported local bundle namespace.');
-  if (!['server', 'migration'].includes(purpose)) throw new Error('Unsupported local entry point.');
+  if (!['server', 'migration', 'groceries'].includes(purpose))
+    throw new Error('Unsupported local entry point.');
   const outfile = `artifacts/full/${namespace}/${purpose}.mjs`;
   const result = await build({
     entryPoints: [
-      purpose === 'server' ? 'api/development-full/start.ts' : 'api/experiments/migration.ts',
+      purpose === 'server' ? 'api/development-full/start.ts' : `api/experiments/${purpose}.ts`,
     ],
     outfile,
     platform: 'node',

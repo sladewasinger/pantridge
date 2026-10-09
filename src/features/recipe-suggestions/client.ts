@@ -2,6 +2,7 @@ import { getToken } from '../../auth/session';
 import { requestSignIn } from '../../auth/errors';
 import { getAccount } from '../../data/store';
 import { localTesting } from '../../local-testing';
+import { catalogRevision } from '../../domain/ingredient-matching/catalog-version';
 import {
   recipeSuggestionRequestSchema,
   recipeSuggestionResultSchema,
@@ -31,7 +32,7 @@ export async function requestRecipeSuggestions(
   signal.throwIfAborted();
   requireAccount(account);
   if (!token) throw new Error('Sign in again to suggest recipes.');
-  const response = await fetch(`${api}/v1/products/resolve`, {
+  const response = await fetch(`${api}/v1/products/resolve?catalogRevision=${catalogRevision}`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
     signal: AbortSignal.any([signal, AbortSignal.timeout(20000)]),

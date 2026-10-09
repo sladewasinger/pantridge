@@ -17,10 +17,10 @@ async function signedKitchen(page: Page, data = cookbookFixture()) {
       ),
     owner,
   );
-  await page.route('https://api.pantridge.test/v1/kitchen', (route) =>
+  await page.route('https://api.pantridge.test/v1/kitchen**', (route) =>
     route.fulfill({ json: { revision: 0, data } }),
   );
-  await page.route('https://api.pantridge.test/v1/mutations', (route) =>
+  await page.route('https://api.pantridge.test/v1/mutations**', (route) =>
     route.fulfill({ status: 503, json: {} }),
   );
   await page.goto('/');
@@ -52,7 +52,7 @@ async function recipes(page: Page) {
 }
 test('AI ideas require sign-in and never run merely by opening the cookbook', async ({ page }) => {
   let calls = 0;
-  await page.route('https://api.pantridge.test/v1/products/resolve', (route) => {
+  await page.route('https://api.pantridge.test/v1/products/resolve**', (route) => {
     calls++;
     return route.fulfill({ json: { recipes: [] } });
   });
@@ -70,7 +70,7 @@ test('AI previews disclose transmission, require review/save and leave stock unc
 }) => {
   const result = { ...cookbookFixture().recipes![0]!, title: 'AI egg supper', source: 'ai' };
   let calls = 0;
-  await page.route('https://api.pantridge.test/v1/products/resolve', (route) => {
+  await page.route('https://api.pantridge.test/v1/products/resolve**', (route) => {
     calls++;
     const request = route.request().postDataJSON();
     expect(request.kind).toBe('recipe');
@@ -133,7 +133,7 @@ test('closing in-flight ideas discards late results and provider limits remain r
     release = resolve;
   });
   let requested = false;
-  await page.route('https://api.pantridge.test/v1/products/resolve', async (route) => {
+  await page.route('https://api.pantridge.test/v1/products/resolve**', async (route) => {
     requested = true;
     await ready;
     await route.fulfill({ json: { recipes: [] } });
@@ -148,8 +148,8 @@ test('closing in-flight ideas discards late results and provider limits remain r
   await expect(page.getByText('No useful recipes found. Add more food or try again.')).toHaveCount(
     0,
   );
-  await page.unroute('https://api.pantridge.test/v1/products/resolve');
-  await page.route('https://api.pantridge.test/v1/products/resolve', (route) =>
+  await page.unroute('https://api.pantridge.test/v1/products/resolve**');
+  await page.route('https://api.pantridge.test/v1/products/resolve**', (route) =>
     route.fulfill({ status: 429, json: { message: 'Daily AI limit reached.' } }),
   );
   await page.getByRole('button', { name: 'Suggest recipes', exact: true }).click();
@@ -163,7 +163,7 @@ test('AI ingredient matches show a past-date warning when current stock is overd
   const data = cookbookFixture();
   data.stock[1]!.expires = '2000-01-01';
   const result = { ...data.recipes![0]!, title: 'AI eggs with butter', source: 'ai' };
-  await page.route('https://api.pantridge.test/v1/products/resolve', (route) => {
+  await page.route('https://api.pantridge.test/v1/products/resolve**', (route) => {
     const input = route.request().postDataJSON();
     expect(input.inventory.map((item: { name: string }) => item.name)).not.toContain('Butter');
     return route.fulfill({ json: { recipes: [result] } });
@@ -201,7 +201,7 @@ async function holdKitchenWrites(page: Page) {
 
 test('finishing a dismissed AI recipe save cannot close a newer review draft', async ({ page }) => {
   const recipe = { ...cookbookFixture().recipes![0]!, source: 'ai' };
-  await page.route('https://api.pantridge.test/v1/products/resolve', (route) =>
+  await page.route('https://api.pantridge.test/v1/products/resolve**', (route) =>
     route.fulfill({
       json: {
         recipes: [
@@ -249,7 +249,7 @@ test('a delayed editor save does not dismiss a newer edit of the same preview', 
   page,
 }) => {
   const idea = { ...cookbookFixture().recipes![0]!, title: 'Slow saved idea', source: 'ai' };
-  await page.route('https://api.pantridge.test/v1/products/resolve', (route) =>
+  await page.route('https://api.pantridge.test/v1/products/resolve**', (route) =>
     route.fulfill({ json: { recipes: [idea] } }),
   );
   const initial = await signedKitchen(page);

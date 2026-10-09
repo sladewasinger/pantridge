@@ -37,6 +37,11 @@ it('includes the date for a future-day retry and the local time for same-day wor
     soon.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }),
   );
 });
+it('reports a failed background job without requesting item corrections', () => {
+  expect(classificationStatusCopy({ ...job, state: 'failed' }, 0, 1, { now })).toBe(
+    'Recognition could not finish.',
+  );
+});
 it('fast-polls only active due or near-due work, not paused/failed/distant jobs', () => {
   expect(classificationDueSoon(job, now)).toBe(true);
   expect(classificationDueSoon({ ...job, state: 'processing' }, now)).toBe(true);

@@ -45,7 +45,7 @@ async function setup(page: Page, label = false) {
       }),
     ),
   );
-  await page.route('https://api.pantridge.test/v1/kitchen', (route) =>
+  await page.route('https://api.pantridge.test/v1/kitchen**', (route) =>
     route.fulfill({
       json: {
         revision: 0,
@@ -75,7 +75,7 @@ async function setup(page: Page, label = false) {
       },
     }),
   );
-  await page.route('https://api.pantridge.test/v1/mutations', (route) =>
+  await page.route('https://api.pantridge.test/v1/mutations**', (route) =>
     route.fulfill({ status: 503, json: {} }),
   );
   await page.goto('/');
@@ -94,7 +94,7 @@ test('manual-food nutrition estimates require review, persist offline, and suppo
   browserName,
 }) => {
   let calls = 0;
-  await page.route('https://api.pantridge.test/v1/products/resolve', (route) => {
+  await page.route('https://api.pantridge.test/v1/products/resolve**', (route) => {
     calls++;
     expect(route.request().postDataJSON()).toEqual({
       kind: 'nutrition',
@@ -160,7 +160,7 @@ test('closing an in-flight estimate discards late results and provider errors re
     release = resolve;
   });
   let requested = false;
-  await page.route('https://api.pantridge.test/v1/products/resolve', async (route) => {
+  await page.route('https://api.pantridge.test/v1/products/resolve**', async (route) => {
     requested = true;
     await ready;
     await route.fulfill({ json: { estimate: { ...estimate, details: '' } } });
@@ -175,8 +175,8 @@ test('closing an in-flight estimate discards late results and provider errors re
   await expect(page.getByRole('heading', { name: 'Estimated nutrition', exact: true })).toHaveCount(
     0,
   );
-  await page.unroute('https://api.pantridge.test/v1/products/resolve');
-  await page.route('https://api.pantridge.test/v1/products/resolve', (route) =>
+  await page.unroute('https://api.pantridge.test/v1/products/resolve**');
+  await page.route('https://api.pantridge.test/v1/products/resolve**', (route) =>
     route.fulfill({ status: 429, json: { message: 'Daily AI limit reached.' } }),
   );
   await estimateButton(page).click();

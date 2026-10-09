@@ -8,7 +8,11 @@ import {
   stockEvidence,
   evidenceFingerprint,
 } from '../../../src/domain/standardization/evidence';
-import type { Evidence, SavedStandardization } from '../../../src/domain/standardization/model';
+import {
+  standardizationVersion,
+  type Evidence,
+  type SavedStandardization,
+} from '../../../src/domain/standardization/model';
 import type { Snapshot } from '../../../src/domain/model';
 import { customIngredient } from '../../../src/domain/ingredient-matching/identity';
 import { lotMatch } from '../../../src/domain/ingredient-matching/resolver';
@@ -22,7 +26,7 @@ function result(
   patch: Partial<SavedStandardization> = {},
 ): SavedStandardization {
   return {
-    version: '1',
+    version: standardizationVersion,
     source: 'ai-private',
     fingerprint: evidenceFingerprint(evidence),
     status: 'recognized',

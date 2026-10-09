@@ -9,8 +9,9 @@ vi.mock('../../api/access/protection', () => ({
 }));
 beforeEach(() => {
   vi.clearAllMocks();
-  read.mockResolvedValue({ revision: 0 });
-  mutate.mockResolvedValue({ revision: 1 });
+  const data = { version: 1, foods: [], stock: [], shopping: [] };
+  read.mockResolvedValue({ revision: 0, data });
+  mutate.mockResolvedValue({ revision: 1, data });
 });
 
 function request(subject: string | undefined, routeKey = 'GET /v1/kitchen') {
@@ -36,7 +37,7 @@ it('selects each kitchen from the authenticated subject, ignoring caller-selecte
 });
 it('writes only to the authenticated account even if a different owner is in the body', async () => {
   await handler(request('account-one', 'POST /v1/mutations'));
-  expect(mutate).toHaveBeenCalledWith('account-one', expect.any(Object));
+  expect(mutate).toHaveBeenCalledWith('account-one', expect.any(Object), 1);
 });
 it('never accesses persistence without an authenticated subject', async () => {
   expect((await handler(request(undefined))).statusCode).toBe(401);

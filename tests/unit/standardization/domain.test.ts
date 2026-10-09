@@ -10,7 +10,10 @@ import {
 } from '../../../src/domain/ingredient-matching/classification';
 import { stockEvidence, evidenceFingerprint } from '../../../src/domain/standardization/evidence';
 import { snapshotSchema, type Snapshot } from '../../../src/domain/model';
-import type { SavedStandardization } from '../../../src/domain/standardization/model';
+import {
+  standardizationVersion,
+  type SavedStandardization,
+} from '../../../src/domain/standardization/model';
 import { reduceChecked } from '../../../src/domain/reducer';
 import { lotMatch } from '../../../src/domain/ingredient-matching/resolver';
 import { lotCookingSignature } from '../../../src/domain/recipes/cooking';
@@ -28,7 +31,7 @@ function result(
         identity: 'brown-rice',
         preparation: 'cooked',
         reason: '',
-        version: '1',
+        version: standardizationVersion,
         source: 'ai-private',
         fingerprint: target.fingerprint,
       },

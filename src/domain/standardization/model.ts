@@ -2,7 +2,7 @@ import { z } from 'zod';
 import registry from '../ingredient-matching/registry.json' with { type: 'json' };
 import { preparationSchema } from '../ingredient-matching/model';
 
-export const standardizationVersion = '1';
+export const standardizationVersion = '2';
 export const batchSize = 25;
 export const evidenceSchema = z.object({
   name: z.string().trim().min(1).max(160),
