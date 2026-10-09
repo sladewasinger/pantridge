@@ -50,7 +50,7 @@ are ignored under `artifacts/local/grocery-recognition-*.jsonl`. No budget reset
 part of either procedure.
 
 Release validation for this change: pinned pnpm 10.32.1 frozen installation;
-`pnpm check` with 554 unit tests and production builds; 83 Chromium and 69 WebKit
+`pnpm check` with 555 unit tests and production builds; 83 Chromium and 69 WebKit
 tests (one existing camera/platform skip each); and eight full local integration
 tests. Independent review covered stale classification responses, negative-result
 matching, old-client response projection and pending mutation replay after an

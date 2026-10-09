@@ -1,4 +1,7 @@
-import type { SavedStandardization } from '../../domain/standardization/model';
+import {
+  standardizationVersion,
+  type SavedStandardization,
+} from '../../domain/standardization/model';
 const descriptions = {
   uncertain: 'Food identity uncertain.',
   unknown: 'No ingredient match.',
@@ -8,6 +11,7 @@ const descriptions = {
 };
 export function ResultNote({ result, manual }: { result?: SavedStandardization; manual: boolean }) {
   if (manual || !result) return null;
+  if (result.status !== 'recognized' && result.version !== standardizationVersion) return null;
   return (
     <p className="muted">
       {result.status === 'recognized' && result.preparation === 'unknown'
