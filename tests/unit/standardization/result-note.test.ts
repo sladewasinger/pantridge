@@ -43,3 +43,15 @@ it('keeps an unspecified recognized preparation descriptive', () => {
 it('does not display a stale automatic result over a manual correction', () => {
   expect(renderToStaticMarkup(createElement(ResultNote, { result: saved, manual: true }))).toBe('');
 });
+it('hides obsolete catalog-gap notes while keeping successful older results visible', () => {
+  const old = { ...saved, version: '1', status: 'taxonomy-gap' as const };
+  expect(renderToStaticMarkup(createElement(ResultNote, { result: old, manual: false }))).toBe('');
+  expect(
+    renderToStaticMarkup(
+      createElement(ResultNote, {
+        result: { ...old, status: 'recognized', identity: 'rice', preparation: 'cooked' },
+        manual: false,
+      }),
+    ),
+  ).toContain('AI ingredient match.');
+});
