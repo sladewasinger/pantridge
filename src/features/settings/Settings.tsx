@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ClassificationStatus } from '../standardization/ClassificationStatus';
-import { Download, LogIn, LogOut, RefreshCw } from 'lucide-react';
-import { auth, googleSignIn, signOut } from '../../auth/session';
+import { Download, RefreshCw } from 'lucide-react';
+import { AccountActions } from './AccountActions';
 import { exportKitchen, restoreKitchen } from '../../data/backup';
 import { getAccount, useKitchen } from '../../data/store';
 import { syncKitchen } from '../../data/sync';
@@ -23,7 +23,7 @@ export function Settings({ onClose }: { onClose: () => void }) {
   const { run, error, busy } = useAction();
   const [storage, setStorage] = useState('');
   const local = getAccount() === 'local';
-  const signInLabel = googleSignIn ? 'Sign in with Google' : 'Sign in';
+  const reconnect = !local && sync.status === 'signin';
   return (
     <Modal title="Your kitchen" onClose={onClose}>
       <section className="settings-section">
@@ -34,26 +34,7 @@ export function Settings({ onClose }: { onClose: () => void }) {
         </p>
         {syncedAt && <p className="muted">Last synced {new Date(syncedAt).toLocaleString()}</p>}
         {!local && <p>{pending.length} changes waiting to sync</p>}
-        {auth && (
-          <button
-            className="secondary full"
-            onClick={() =>
-              void run(async () => {
-                if (local) await auth?.signinRedirect();
-                else await signOut();
-              })
-            }
-          >
-            {local ? <LogIn size={17} /> : <LogOut size={17} />}
-            {local ? signInLabel : 'Sign out'}
-          </button>
-        )}
-        {auth && local && (
-          <p className="muted">
-            Your local and signed-in kitchens are separate. Export a backup here to restore into an
-            empty signed-in kitchen.
-          </p>
-        )}
+        <AccountActions local={local} reconnect={reconnect} />
         {!local && (
           <button className="text-button full" onClick={() => void syncKitchen()}>
             <RefreshCw size={16} />

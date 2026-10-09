@@ -164,8 +164,11 @@ test('shopping artwork matches names automatically and remembers a collapsed-pic
     .locator('img');
   await expect(image).toHaveAttribute('src', '/art/packaging/1/plain-box.svg');
   await expect(page.getByRole('dialog')).toHaveCount(0);
+  // The dialog dismisses before asynchronous Back finishes; reload the settled history frame.
+  await expect.poll(() => page.evaluate(() => history.state.pantridge.overlay)).toBeNull();
   await page.reload();
   await expect(image).toHaveAttribute('src', '/art/packaging/1/plain-box.svg');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
   await page.getByRole('button', { name: 'Edit Fresh raspberries', exact: true }).click();
   await expect(page.locator('.shopping-artwork')).not.toHaveAttribute('open', '');
   await page.locator('.shopping-artwork summary').click();

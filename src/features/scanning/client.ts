@@ -1,4 +1,5 @@
 import { getToken } from '../../auth/session';
+import { requestSignIn } from '../../auth/errors';
 import { getAccount, getKitchen } from '../../data/store';
 import { normalizeBarcode } from '../../domain/products/barcode';
 import { rememberedProduct } from '../../domain/products/variants';
@@ -65,6 +66,8 @@ async function requestProduct(
       ? AbortSignal.any([signal, AbortSignal.timeout(15000)])
       : AbortSignal.timeout(12000),
   });
+  requireScanAccount(account);
+  if (response.status === 401) throw requestSignIn(account);
   const body: unknown = await response.json();
   requireScanAccount(account);
   if (!response.ok) {

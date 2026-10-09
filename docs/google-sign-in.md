@@ -41,6 +41,29 @@ Run `pnpm check`, then Terraform format/validate/mocked tests. Build before plan
 
 ## Access and verification
 
+### Session recovery
+
+An expired or rejected refresh credential leaves the account's IndexedDB kitchen and pending
+mutation IDs intact. Settings offers **Sign in again**, with a reminder to use the same account.
+Successful sign-in resumes the existing outbox; choosing a different account opens its separate
+kitchen and never transfers the original pending changes. A canceled or failed OAuth callback
+reopens the saved kitchen instead of blocking startup. Export remains available while signed out
+of cloud access. **Use cloud copy** is not offered for authentication failures.
+
+Renewal happens on demand, with a 30-second expiry buffer and a 15-second authorization-server
+request limit. Refresh, callback storage and logout share a Web Lock across tabs where supported,
+and a same-page queue everywhere. Browsers without Web Locks retain account checks but cannot
+serialize across tabs. Terminal OAuth failures stop renewal attempts for the rejected credential
+for the current page lifetime; a reload may try once again. Fresh credentials clear that condition.
+Network errors remain retryable. A backend 401 blocks reuse of that exact access token for sync;
+new credentials do not clear separate 403/429 abuse throttles.
+
+Production-build browser regressions exercise the real OIDC client with a synthetic local issuer,
+state/PKCE callbacks and isolated kitchens. They cover rejected refresh credentials, same-account
+recovery, different-account isolation, backend 401, and sign-in cancellation. These fixtures do not
+validate Google's hosted UI or explain an individual production `invalid_grant`. That error can
+have multiple causes; see [Cognito token endpoint errors](https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html).
+
 The app client allows Google only when enabled. Public native signup stays disabled. Cognito maps Google's `email` and `email_verified`; the Google identity-check Lambda accepts any verified Google email and rejects unverified emails, native signup, and other providers. It runs before federated account creation and token issuance, including refresh. It has no database permissions and does not log personal details. Each kitchen is keyed by the authenticated Cognito subject, never by a caller-supplied email or account ID.
 
 After configuration, test the actual Google round trip, two different Google accounts with separate kitchens, sync between two signed-in browsers, and offline changes followed by reconnection. Mocked trigger tests and the existing anonymous offline browser tests do not establish that Google federation or authenticated sync works in production.

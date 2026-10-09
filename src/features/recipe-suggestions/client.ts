@@ -1,4 +1,5 @@
 import { getToken } from '../../auth/session';
+import { requestSignIn } from '../../auth/errors';
 import { getAccount } from '../../data/store';
 import { localTesting } from '../../local-testing';
 import {
@@ -36,6 +37,8 @@ export async function requestRecipeSuggestions(
     signal: AbortSignal.any([signal, AbortSignal.timeout(20000)]),
     body: JSON.stringify(input),
   });
+  requireAccount(account);
+  if (response.status === 401) throw requestSignIn(account);
   const body: unknown = await response.json();
   signal.throwIfAborted();
   requireAccount(account);
